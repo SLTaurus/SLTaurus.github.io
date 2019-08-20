@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SLTaurus的安全屋</title>
+    <link>https://SLTaurus.github.io/</link>
+    <description>Recent content on SLTaurus的安全屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Aug 2019 10:25:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://SLTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First</title>
+      <link>https://SLTaurus.github.io/2019/08/first/</link>
+      <pubDate>Tue, 20 Aug 2019 10:25:08 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/08/first/</guid>
+      <description>&lt;p&gt;#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
