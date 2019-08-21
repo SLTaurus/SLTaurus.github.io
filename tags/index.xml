@@ -6,26 +6,26 @@
     <description>Recent content in Tags on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Aug 2019 10:25:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 10:25:08 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>tag1</title>
-      <link>https://SLTaurus.github.io/tags/tag1/</link>
-      <pubDate>Tue, 20 Aug 2019 10:25:08 +0800</pubDate>
+      <title>C#</title>
+      <link>https://SLTaurus.github.io/tags/c#/</link>
+      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/tag1/</guid>
+      <guid>https://SLTaurus.github.io/tags/c#/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tag2</title>
-      <link>https://SLTaurus.github.io/tags/tag2/</link>
-      <pubDate>Tue, 20 Aug 2019 10:25:08 +0800</pubDate>
+      <title>ref和out</title>
+      <link>https://SLTaurus.github.io/tags/ref%E5%92%8Cout/</link>
+      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/tag2/</guid>
+      <guid>https://SLTaurus.github.io/tags/ref%E5%92%8Cout/</guid>
       <description></description>
     </item>
     

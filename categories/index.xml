@@ -6,26 +6,17 @@
     <description>Recent content in Categories on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Aug 2019 10:25:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 10:25:08 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>category</title>
-      <link>https://SLTaurus.github.io/categories/category/</link>
-      <pubDate>Tue, 20 Aug 2019 10:25:08 +0800</pubDate>
+      <title>C#</title>
+      <link>https://SLTaurus.github.io/categories/c#/</link>
+      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/categories/category/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>subcategory</title>
-      <link>https://SLTaurus.github.io/categories/subcategory/</link>
-      <pubDate>Tue, 20 Aug 2019 10:25:08 +0800</pubDate>
-      
-      <guid>https://SLTaurus.github.io/categories/subcategory/</guid>
+      <guid>https://SLTaurus.github.io/categories/c#/</guid>
       <description></description>
     </item>
     
