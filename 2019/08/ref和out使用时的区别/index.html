@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="轲">
-<meta name="keywords" content="tech, C, C&#43;&#43;, PAT">
+<meta name="keywords" content="tech, C#, .NET, 个人博客">
 <meta name="description" content="在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？">
 
 
@@ -69,7 +69,7 @@
 
     <title>ref和out使用时的区别</title>
 
-    <link rel="icon" href="https://SLTaurus.github.io/favicon.png">
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
     
 
     
@@ -263,6 +263,18 @@
             <div class="main-content-wrap">
               <p>在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？</p>
 
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#案例">案例：</a></li>
+<li><a href="#总结">总结：</a>
+<ul>
+<li><a href="#相同点">相同点：</a></li>
+<li><a href="#不同点">不同点：</a></li>
+</ul></li>
+<li><a href="#结论">结论</a></li>
+</ul>
+</nav>
+
 <blockquote>
 <p><a href="https://msdn.microsoft.com/zh-cn/library/ms310241" title="MSDN地址">MSDN</a>：
 ref 关键字使参数按引用传递。其效果是，当控制权传递回调用方法时，在方法中对参数所做的任何更改都将反映在该变量中。若要使用 ref 参数，则方法定义和调用方法都必须显式使用 ref 关键字。
@@ -399,18 +411,7 @@ public void SomeMethod(out int i)
 
 <h1 id="结论">结论</h1>
 
-<p>C#中的ref和out提供了值类型按引用进行传递的 解决方案，当然引用类型也可以用ref和out修饰,但这样已经失去了意义。因为引用数据类型本来就是传递的引用本身而非值的拷贝。ref和out关键字 将告诉编译器，现在传递的是参数的地址而不是参数本身，这和引用类型默认的传递方式是一样的。同时，编译器不允许out和ref之间构成重载，又充分说明 out和ref的区别仅是编译器角度的，他们生成的IL代码是一样的。有人或许疑问，和我刚开始学习的时候一样的疑惑：值类型在托管堆中不会分配内存，为 什么可以按地址进行传递呢？值类型虽然活在线程的堆栈中，它本身代表的就是数据本身(而区别于引用数据类型本身不代表数据而是指向一个内存引用),但是值 类型也有它自己的地址，即指针，现在用ref和out修饰后，传递的就是这个指针，所以可以实现修改后a，b的值真正的交换。这就是ref和out给我们 带来的好处。
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li><a href="#案例">案例：</a></li>
-<li><a href="#总结">总结：</a>
-<ul>
-<li><a href="#相同点">相同点：</a></li>
-<li><a href="#不同点">不同点：</a></li>
-</ul></li>
-<li><a href="#结论">结论</a></li>
-</ul>
-</nav></p>
+<p>C#中的ref和out提供了值类型按引用进行传递的 解决方案，当然引用类型也可以用ref和out修饰,但这样已经失去了意义。因为引用数据类型本来就是传递的引用本身而非值的拷贝。ref和out关键字 将告诉编译器，现在传递的是参数的地址而不是参数本身，这和引用类型默认的传递方式是一样的。同时，编译器不允许out和ref之间构成重载，又充分说明 out和ref的区别仅是编译器角度的，他们生成的IL代码是一样的。有人或许疑问，和我刚开始学习的时候一样的疑惑：值类型在托管堆中不会分配内存，为 什么可以按地址进行传递呢？值类型虽然活在线程的堆栈中，它本身代表的就是数据本身(而区别于引用数据类型本身不代表数据而是指向一个内存引用),但是值 类型也有它自己的地址，即指针，现在用ref和out修饰后，传递的就是这个指针，所以可以实现修改后a，b的值真正的交换。这就是ref和out给我们 带来的好处。</p>
               
             </div>
           </div>
@@ -512,7 +513,7 @@ public void SomeMethod(out int i)
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 轲. All Rights Reserved
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
   </span>
 </footer>
 
@@ -664,6 +665,10 @@ public void SomeMethod(out int i)
 
 <script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
 
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
 
 <script lang="javascript">
 window.onload = updateMinWidth;
