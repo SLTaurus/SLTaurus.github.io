@@ -3,8 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/c#/</loc>
-    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
+    <loc>https://SLTaurus.github.io/categories/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/category/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/2019/08/markdown/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/post/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/subcategory/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/tag1/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/tag2/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
   <url>
@@ -13,12 +53,7 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/</loc>
-    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/post/</loc>
+    <loc>https://SLTaurus.github.io/categories/c#/</loc>
     <lastmod>2019-08-21T10:25:08+08:00</lastmod>
   </url>
   
@@ -29,16 +64,6 @@
   
   <url>
     <loc>https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/</loc>
-    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/tags/</loc>
     <lastmod>2019-08-21T10:25:08+08:00</lastmod>
   </url>
   

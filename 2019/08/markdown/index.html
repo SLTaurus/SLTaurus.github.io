@@ -8,39 +8,39 @@
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="轲">
 <meta name="keywords" content="tech, C#, .NET, 个人博客">
-<meta name="description" content="在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？">
+<meta name="description" content="#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概">
 
 
-<meta property="og:description" content="在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？">
+<meta property="og:description" content="#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ref和out使用时的区别">
-<meta name="twitter:title" content="ref和out使用时的区别">
-<meta property="og:url" content="https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
-<meta property="twitter:url" content="https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+<meta property="og:title" content="Markdown">
+<meta name="twitter:title" content="Markdown">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/08/markdown/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/08/markdown/">
 <meta property="og:site_name" content="SLTaurus的安全屋">
-<meta property="og:description" content="在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？">
-<meta name="twitter:description" content="在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？">
+<meta property="og:description" content="#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概">
+<meta name="twitter:description" content="#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-08-21T10:25:08">
+    <meta property="article:published_time" content="2019-08-22T17:14:39">
   
   
-    <meta property="article:modified_time" content="2019-08-21T10:25:08">
+    <meta property="article:modified_time" content="2019-08-22T17:14:39">
   
-  
-  
-    
-      <meta property="article:section" content="C#">
-    
   
   
     
-      <meta property="article:tag" content="C#">
+      <meta property="article:section" content="category">
     
-      <meta property="article:tag" content="ref和out">
+      <meta property="article:section" content="subcategory">
     
-      <meta property="article:tag" content="值类型按引用进行传递">
+  
+  
+    
+      <meta property="article:tag" content="tag1">
+    
+      <meta property="article:tag" content="tag2">
     
   
 
@@ -53,12 +53,12 @@
 
 
 
-  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
-  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="og:image" content="https://SLTaurus.github.io/images/markdown.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/markdown.jpg">
 
 
-  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
-  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="og:image" content="https://SLTaurus.github.io/images/markdown.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/markdown.jpg">
 
 
 
@@ -67,14 +67,14 @@
   <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
 
 
-    <title>ref和out使用时的区别</title>
+    <title>Markdown</title>
 
     <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
     
 
     
 
-    <link rel="canonical" href="https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/08/markdown/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,7 +216,7 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('/images/cover.jpg')"
+       style="background-image:url('/images/markdown.jpg')"
        data-behavior="5">
     
   </div>
@@ -228,21 +228,21 @@
                hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
-            <span class="post-header-cover-caption caption">有梦想就要早点去追求</span>
+            <span class="post-header-cover-caption caption">markdown</span>
           
           
             <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      ref和out使用时的区别
+      Markdown
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-08-21T10:25:08&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-08-22T17:14:39&#43;08:00">
         
-  八月 21, 2019
+  八月 22, 2019
 
       </time>
     
@@ -251,7 +251,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://SLTaurus.github.io/categories/c">C#</a>
+      <a class="category-link" href="https://SLTaurus.github.io/categories/category">category</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/subcategory">subcategory</a>
     
   
 
@@ -261,157 +263,9 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？</p>
+              <p>#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概</p>
 
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li><a href="#案例">案例：</a></li>
-<li><a href="#总结">总结：</a>
-<ul>
-<li><a href="#相同点">相同点：</a></li>
-<li><a href="#不同点">不同点：</a></li>
-</ul></li>
-<li><a href="#结论">结论</a></li>
-</ul>
-</nav>
-
-<blockquote>
-<p><a href="https://msdn.microsoft.com/zh-cn/library/ms310241" title="MSDN地址">MSDN</a>：
-ref 关键字使参数按引用传递。其效果是，当控制权传递回调用方法时，在方法中对参数所做的任何更改都将反映在该变量中。若要使用 ref 参数，则方法定义和调用方法都必须显式使用 ref 关键字。
-out 关键字会导致参数通过引用来传递。这与 ref 关键字类似，不同之处在于 ref 要求变量必须在传递之前进行初始化。若要使用 out 参数，方法定义和调用方法都必须显式使用 out 关键字。</p>
-</blockquote>
-
-<h1 id="案例">案例：</h1>
-
-<p>定义一个方法，求一个整数数组中的最大值，最小值，和，平均数。如果是一个方法只能有一个返回值，那只能每一个都得定义一个方法来实现，不过有了ref和out这实现起来就方便多了。</p>
-
-<p>ref参数按照引用传递部分：</p>
-
-<pre><code>static int GetIntResult(int[] arry, ref float avg, ref int max, ref int min)
-{
-    int sum = 0;
-    max = arry[0];
-    min = arry[0];
-    for (int i = 0; i &lt; arry.Length; i++)
-    {
-        sum += arry[i];
-
-        if (max &lt; arry[i])
-        {
-            max = arry[i];
-        }
-        if (min &gt; arry[i])
-        {
-                min = arry[i];
-        }
-    }
-    avg = sum / arry.Length;
-    return sum;
-}
-</code></pre>
-
-<p>然后在控制台中试着调用该方法：</p>
-
-<pre><code>static void Main(string[] args)
-{
-    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    float avg;
-    int max;
-    int min;
-    int sum = GetIntResult(arr, ref avg, ref max, ref min);
-}
-</code></pre>
-
-<p>此时编译器就会提示画红线，错误：<strong>使用了未赋值的avg,max,min</strong>.</p>
-
-<pre><code>static void Main(string[] args)
-{
-    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    float avg = 0;
-    int max = 0;
-    int min = 0;
-    int sum = GetIntResult(arr, ref avg, ref max, ref min);
-    Console.WriteLine(&quot;和：{0}\t平均值：{1}\t最大值：{2}\t最小值：{3}&quot;, sum, avg, max, min);
-    Console.Read();
-}
-</code></pre>
-
-<p>运行结果：
-<img src="https://SLTaurus.github.io/images/ref.png" alt="ref运行结果" title="运行结果" /></p>
-
-<p>Out参数按照引用传递部分：</p>
-
-<pre><code>static void Main(string[] args)
-{
-    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    float avg;//在使用out关键字时，不需要在此处初始化，初始化也不会影响到方法内部的值，所以你初始化没用
-    int max;
-    int min;
-    int sum = GetIntResult(arr, out avg, out max, out min);
-    Console.WriteLine(&quot;和：{0}\t平均值：{1}\t最大值：{2}\t最小值：{3}&quot;, sum, avg, max, min);
-    Console.Read();
-}
-
-static int GetIntResult(int[] arry, out float avg, out int max, out int min)
-{
-    int sum = 0;
-    max = arry[0];
-    min = arry[0];//使用out关键字时，必须在离开方法前对out关键字修饰的参数初始化
-    for (int i = 0; i &lt; arry.Length; i++)
-    {
-        sum += arry[i];
-
-        if (max &lt; arry[i])
-        {
-            max = arry[i];
-        }
-        if (min &gt; arry[i])
-        {
-            min = arry[i];
-        }
-    }
-    avg = sum / arry.Length;
-    return sum;
-}
-</code></pre>
-
-<h1 id="总结">总结：</h1>
-
-<h2 id="相同点">相同点：</h2>
-
-<p>ref和out都是C#中的关键字，所实现的功能也差不多，都是指定一个参数按照引用传递。对于编译后的程序而言，它们之间没有任何区别，也就是说它们只有语法区别。</p>
-
-<h2 id="不同点">不同点：</h2>
-
-<ol>
-<li><p>ref传进去的参数必须在调用前初始化，out不必，即：</p>
-
-<pre><code>int i;
-SomeMethod(ref i);//语法错误
-SomeMethod(out i);//通过
-</code></pre></li>
-
-<li><p>ref传进去的参数在函数内部可以直接使用，而out不可：</p>
-
-<pre><code>public void SomeMethod(ref int i)
-{
-    int j=i;//通过
-    //...
-}
-
-public void SomeMethod(out int i)
-{
-    int j=i;//语法错误
-    //...
-}
-</code></pre></li>
-
-<li><p>ref在参数传递之前必须初始化；而out则在传递前不必初始化。ref传进去的参数在函数内部可以不被修改，但out必须在离开函数体前进行赋值。</p></li>
-</ol>
-
-<h1 id="结论">结论</h1>
-
-<p>C#中的ref和out提供了值类型按引用进行传递的 解决方案，当然引用类型也可以用ref和out修饰,但这样已经失去了意义。因为引用数据类型本来就是传递的引用本身而非值的拷贝。ref和out关键字 将告诉编译器，现在传递的是参数的地址而不是参数本身，这和引用类型默认的传递方式是一样的。同时，编译器不允许out和ref之间构成重载，又充分说明 out和ref的区别仅是编译器角度的，他们生成的IL代码是一样的。有人或许疑问，和我刚开始学习的时候一样的疑惑：值类型在托管堆中不会分配内存，为 什么可以按地址进行传递呢？值类型虽然活在线程的堆栈中，它本身代表的就是数据本身(而区别于引用数据类型本身不代表数据而是指向一个内存引用),但是值 类型也有它自己的地址，即指针，现在用ref和out修饰后，传递的就是这个指针，所以可以实现修改后a，b的值真正的交换。这就是ref和out给我们 带来的好处。</p>
+<h1 id="table-of-contents">目录</h1>
               
             </div>
           </div>
@@ -423,17 +277,15 @@ public void SomeMethod(out int i)
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/c/">C#</a>
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/tag1/">tag1</a>
 
-  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/ref%E5%92%8Cout/">ref和out</a>
-
-  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%8C%89%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92/">值类型按引用进行传递</a>
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/tag2/">tag2</a>
 
                   </div>
                 
               
             
-              <span id="/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="ref和out使用时的区别">
+              <span id="/2019/08/markdown/" class="leancloud_visitors" data-flag-title="Markdown">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -460,7 +312,7 @@ public void SomeMethod(out int i)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" data-tooltip="ref和out使用时的区别">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -468,7 +320,7 @@ public void SomeMethod(out int i)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/markdown/" data-tooltip="Markdown">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -486,19 +338,19 @@ public void SomeMethod(out int i)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -546,7 +398,7 @@ public void SomeMethod(out int i)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" data-tooltip="ref和out使用时的区别">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -554,7 +406,7 @@ public void SomeMethod(out int i)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/markdown/" data-tooltip="Markdown">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -572,19 +424,19 @@ public void SomeMethod(out int i)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/markdown/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -614,19 +466,19 @@ public void SomeMethod(out int i)
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fref%25E5%2592%258Cout%25E4%25BD%25BF%25E7%2594%25A8%25E6%2597%25B6%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fmarkdown%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fref%25E5%2592%258Cout%25E4%25BD%25BF%25E7%2594%25A8%25E6%2597%25B6%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fmarkdown%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fref%25E5%2592%258Cout%25E4%25BD%25BF%25E7%2594%25A8%25E6%2597%25B6%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fmarkdown%2F">
           <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
         </a>
       </li>
@@ -722,9 +574,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/08\/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB\/';
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/08\/markdown\/';
           
-            this.page.identifier = '\/2019\/08\/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB\/'
+            this.page.identifier = '\/2019\/08\/markdown\/'
           
         };
         (function() {
