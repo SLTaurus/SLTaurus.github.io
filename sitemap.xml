@@ -8,12 +8,17 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/category/</loc>
+    <loc>https://SLTaurus.github.io/categories/markdown/</loc>
     <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/2019/08/markdown/</loc>
+    <loc>https://SLTaurus.github.io/tags/markdown/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
@@ -28,32 +33,22 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/subcategory/</loc>
-    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/tags/tag1/</loc>
-    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/tags/tag2/</loc>
-    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://SLTaurus.github.io/tags/</loc>
     <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/c#/</loc>
-    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
+    <loc>https://SLTaurus.github.io/categories/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://SLTaurus.github.io/tags/c#/</loc>
+    <lastmod>2019-08-21T10:25:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/c#/</loc>
     <lastmod>2019-08-21T10:25:08+08:00</lastmod>
   </url>
   
