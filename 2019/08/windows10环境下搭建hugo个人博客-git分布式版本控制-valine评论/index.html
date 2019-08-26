@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="Hugo, git, valine, C#, .NET, 个人博客">
+<meta name="description" content="自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。
+
+可以看下B站up主CodeSheep的视频和saquarius的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！">
+
+
+<meta property="og:description" content="自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。
+
+可以看下B站up主CodeSheep的视频和saquarius的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论">
+<meta name="twitter:title" content="windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+<meta property="og:site_name" content="SLTaurus的安全屋">
+<meta property="og:description" content="自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。
+
+可以看下B站up主CodeSheep的视频和saquarius的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！">
+<meta name="twitter:description" content="自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。
+
+可以看下B站up主CodeSheep的视频和saquarius的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-08-23T17:05:35">
+  
+  
+    <meta property="article:modified_time" content="2019-08-23T17:05:35">
+  
+  
+  
+    
+      <meta property="article:section" content="个人博客">
+    
+  
+  
+    
+      <meta property="article:tag" content="Hugo">
+    
+      <meta property="article:tag" content="git">
+    
+      <meta property="article:tag" content="valine">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/hugo.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/hugo.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">SLTaurus的安全屋</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=250 height=86 src="//music.163.com/outchain/player?type=2&id=1313052943&auto=1&height=66"></iframe>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-08-23T17:05:35&#43;08:00">
+        
+  八月 23, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a2">个人博客</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。</p>
+
+<p>可以看下<a href="https://www.bilibili.com/video/av51574688">B站up主CodeSheep的视频</a>和<a href="https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/">saquarius</a>的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#准备工作">准备工作</a></li>
+<li><a href="#个人博客的搭建">个人博客的搭建</a>
+<ul>
+<li><a href="#安装git">安装git</a></li>
+<li><a href="#安装hugo">安装hugo</a></li>
+<li><a href="#notepad-加markdown插件书写博客">Notepad++加Markdown插件书写博客</a></li>
+<li><a href="#博客的书写">博客的书写</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="准备工作">准备工作</h1>
+
+<ul>
+<li>下载hugo安装包</li>
+<li>创建Github账户</li>
+<li>创建LeanCloud账户（用于个人评论系统）</li>
+<li><del>下载markdown</del> ，下载Notepad++加markdown插件就可以了</li>
+</ul>
+
+<h1 id="个人博客的搭建">个人博客的搭建</h1>
+
+<h2 id="安装git">安装git</h2>
+
+<ul>
+<li>安装git，具体流程可参考<a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的Git教程</a></li>
+<li><del>学习git基本的语法</del>,可以稍后学习。</li>
+<li>添加git到系统环境变量PATH中，添加方法：桌面我的电脑，右键属性，左边高级系统设置，右下角环境变量。Path编辑，浏览确定。需要添加的文件夹如图所示：<img src="https://SLTaurus.github.io/images/gitpath.jpg" alt="gitpath" /></li>
+</ul>
+
+<h2 id="安装hugo">安装hugo</h2>
+
+<ul>
+<li>在<a href="https://github.com/gohugoio/hugo/releases">hugo下载地址</a>下载Hugo安装包，选择Windows64版本的程序包。</li>
+<li>解压到文件夹中,路径不要有中文，后面会用到这个路径，记得以后不要删除这个文件夹和文件，</li>
+<li>添加hugo到系统环境变量PATH中，添加方法：桌面我的电脑，右键属性，左边高级系统设置，右下角环境变量。Path编辑，浏览确定。</li>
+
+<li><p>命令控制台输入：hugo version出现以下提示则hugo安装成功。
+<img src="https://SLTaurus.github.io/images/hugoversion.jpg" alt="hugo安装验证" title="hugo安装验证" /></p></li>
+
+<li><p>安装成功后，用Hugo来创建自己的博客，命令如下图所示：hugo new site myblog,myblog为自己私人博客的文件夹名称，在之前可以选择合适的地址来放博客。如图：
+<img src="https://SLTaurus.github.io/images/hugonewsite.jpg" alt="新建博客" title="新建博客" /></p></li>
+
+<li><p>在myblog里面，可以看到如下内容：
+<img src="https://SLTaurus.github.io/images/myblogdir.png" alt="myblog文件目录" title="博客目录" /></p></li>
+
+<li><p>设置主题，去<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>选择自己喜欢的主题,这里以<a href="https://themes.gohugo.io/hugo-tranquilpeak-theme/">tranquilpeak主题</a>为例。按照指引操作，如图所示：</p>
+
+<pre><code>cd themes
+git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git
+</code></pre></li>
+</ul>
+
+<p><img src="https://SLTaurus.github.io/images/downthemes.jpg" alt="downthemes" />
+<img src="https://SLTaurus.github.io/images/hugothemes.jpg" alt="hugothemes" /></p>
+
+<ul>
+<li>打开myblog文件夹下的themes主题文件夹，改名为：tranquilpeak。</li>
+
+<li><p>用Notepad++修改myblog文件夹下的配置文件config.toml，配置可修改内容详见<a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md">tranquilpeak主题页的说明</a>，我的配置如下：</p>
+
+<pre><code># Tranquilpeak
+# Version : 0.4.7-BETA
+# Author : Thibaud Leprêtre
+
+# I STRONGLY recommend you to use a CDN to speed up loading of pages.
+# There is many free CDN like Cloudinary or you can also use indirectly
+# by using services like Google Photos.
+
+# If you want to store images yourself, please read this guidelines:
+# For users, if you only use this theme, put your images directly in `source/assets/images` folder
+# But if you want to add local images, you can put your images directly in `source/assets/images` folder
+# For developpers, if you modify this theme, put your images in `source/images` folder and
+# use grunt task `build` to synchronize assets
+
+# 写在最前面的说明，这些带号的都属于注释，但是作者把某些可自定义的内容，注释掉了，我们也可自己改过来
+baseURL = &quot;https://SLTaurus.github.io/&quot;
+# 这个是站点在github的仓库链接，如果已经有了仓库直接修改为仓库地址，或者在build的时候用命令指定baseurl
+languageCode = &quot;en-us&quot;
+defaultContentLanguage = &quot;zh-cn&quot;
+# 这个是语言设置，这样子就是中文啦！
+title = &quot;SLTaurus的安全屋&quot;
+# 站点的名字，可以自己随便写
+theme = &quot;tranquilpeak&quot;
+# 所使用的主题，即主题的文件夹名字，如果有多个主题想轮换使用，改这个就行，或者在build的时候使用-t指令指定主题也可以
+disqusShortname = &quot;hugo-tranquilpeak-theme&quot;
+# 这个是评论系统，我才用的是在leancloud上的valine评论系统
+# 如果是第一次用hugo搭建博客，这个可以暂时不用管
+# 因为leancloud需要实名资料认证，可能需要些时间才能审核通过
+# 等到熟悉的使用hugo和配置文件以及git后再来添加评论系统也不迟
+# googleAnalytics = &quot;UA-123-45&quot;
+# 每一页显示的文章数量
+paginate = 6
+# 这个我也忘记是什么了，就按他默认的true吧
+canonifyurls = true
+
+# 这个是使用hugo命令后产生的静态文件的输出目录，大家都是用的public，作者的好像是docs
+# 就很迷，很多教程没提到这一点，我一直以为自己的没产生public
+# 其实，也可以在生成的时候使用hugo -D public 指定输出目录
+# 建议还是改成public，这样很多教程都用这个，省的看了不一样的教程，搞迷糊了
+publishDir = &quot;public&quot;
+
+# 这个应该是时间格式，不用改
+[permalinks]
+  post = &quot;/:year/:month/:slug/&quot;
+
+# 这一项保持默认
+[taxonomies]
+  tag = &quot;tags&quot;
+  category = &quot;categories&quot;
+  archive = &quot;archives&quot;
+
+# 关于站点作者的相关信息
+[author]
+  name = &quot;轲&quot;
+  bio = &quot;只要坚持希望不气馁，生活迟早会让我们变得无所不能。&quot;
+  job = &quot;程序猿&quot;
+  location = &quot;广州&quot;
+  # Your profile picture
+  # Overwritten by your gravatar image if `author.gravatarEmail` is filled
+  # 作者直接用的WordPress的头像，填写，一个邮箱就可以直接拉取账号的头像
+  # 因为需要梯子访问WordPress所以我删去了邮箱的那一项，直接使用文件路径，
+  # 直接在tranquilpeak/static/images文件夹里放上头像图片就行了，比如放一个touxiang.png
+  picture = &quot;/images/touxiang.jpg&quot;
+
+  # 下边这些Twitter还有google的就省了吧，后边关于这些的分享选项我也一并删掉了
+  # Your Twitter username without the @. E.g : thibaudlepretre
+  # twitter = &quot;thibaudlepretre&quot;
+  # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
+  # googlePlus = &quot;+ThibaudLepretre&quot;
+
+# Menu Configuration
+# 侧边栏菜单配置，可以改成自定义的内容，其实只用改identifier和name就可以了
+[[menu.main]]
+  weight = 1
+  identifier = &quot;首页&quot;
+  name = &quot;首页&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-home\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/&quot;
+[[menu.main]]
+  weight = 2
+  identifier = &quot;类别&quot;
+  name = &quot;类别&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-bookmark\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/categories&quot;
+[[menu.main]]
+  weight = 3
+  identifier = &quot;标签&quot;
+  name = &quot;标签&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-tags\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/tags&quot;
+[[menu.main]]
+  weight = 4
+  identifier = &quot;归档&quot;
+  name = &quot;归档&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-archive\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/archives&quot;
+[[menu.main]]
+  weight = 5
+  identifier = &quot;关于&quot;
+  name = &quot;关于&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-question\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/#about&quot;
+
+[[menu.links]]
+  weight = 1
+  identifier = &quot;github&quot;
+  name = &quot;GitHub&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-github\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;https://github.com/SLTaurus&quot;
+  #github的链接，改为自己的Github链接就行了
+#[[menu.links]]
+  #weight = 2
+  #identifier = &quot;stackoverflow&quot;
+  #name = &quot;Stack Overflow&quot;
+  #pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-stack-overflow\&quot;&gt;&lt;/i&gt;&quot;
+  #url = &quot;https://stackoverflow.com/users/636472/kakawait&quot;
+
+[[menu.misc]]
+  weight = 1
+  identifier = &quot;rss&quot;
+  name = &quot;RSS&quot;
+  pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-rss\&quot;&gt;&lt;/i&gt;&quot;
+  url = &quot;/index.xml&quot;
+
+[params]
+  # Customize date format use to render blog post date, categories and other
+  # You must use date format used by Go Time package https://golang.org/pkg/time/
+  # Months (not work with short month like &quot;jan&quot;, &quot;feb&quot;, etc) are translated if translation exists on i18n folders
+  # Default format is: January 2, 2006
+  # dateFormat = &quot;2 January 2006&quot;
+
+  # Global keywords configuration. Following keywords will be add to every pages
+  # 站点的全局关键字，应该是给搜索引擎参考用的吧，可以自己修改添加，用逗号隔开就行
+  keywords = [&quot;C#&quot;, &quot;.NET&quot;,&quot;个人博客&quot;]
+
+  # Syntax highlighter, possible choice between: &quot;highlight.js&quot; (recommanded) and &quot;prism.js&quot; (experimental)
+  # You can comment it to disable syntax highlighting
+  # 代码高亮，有两种可以选，哪个好看选哪个，我直接默认了
+  syntaxHighlighter = &quot;highlight.js&quot;
+
+  # Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. (true: enable, false: disable)
+  # 清爽阅读，就是看文章的时候把侧边栏缩进去
+  clearReading = true
+
+  # Define categories will create hierarchy between parents: `categories = [&quot;foo&quot;, &quot;bar&quot;]` will consider &quot;bar&quot; a sub-category of &quot;foo&quot;.
+  # If false it will flat categories.
+  # 和分类与标签有关，直接默认就是了
+  hierarchicalCategories = true
+
+  # 站点的描述
+  description = &quot;SLTaurus的安全屋&quot;
+
+  # Customization
+  # Define the behavior of the sidebar
+  # 1: Display extra large sidebar on extra large screen, large sidebar on large screen,
+  #    medium sidebar on medium screen and header bar on small screen and
+  # extra large sidebar is swiped on extra large screen and large sidebar on all lower screen (default)
+  # 2: Display large sidebar on large screen, medium sidebar on medium screen and
+  #    header bar on small screen and large sidebar is swiped
+  # 3: Display medium sidebar on large and medium screen and header bar on small screen and
+  #    medium sidebar is swiped
+  # 4: Display header bar on all screens, extra large sidebar is swiped on extra large screen and
+  #    large sidebar is swiped on all lower screens
+  # 5: Display header bar on all screens and large sidebar is swiped on large screen
+  # 6: Display header bar on all screens and medium sidebar is swiped
+  # 这个是侧边栏的模式，1-6代表不同的宽度之类的，2看起来很好看，自己每个都试试就知道效果了，或者直接看上边的英文介绍
+  sidebarBehavior = 2
+
+  # Your blog cover picture. I STRONGLY recommend you to use a CDN to speed up loading of pages.
+  # There is many free CDN like Cloudinary or you can also use indirectly
+  # by using services like Google Photos.
+  # Current image is on AWS S3 and delivered by AWS CloudFront.
+  # Otherwise put your image, for example `cover.jpg` in folder `static/images/`,
+  # and use relative url : `images/cover.jpg`
+  # 这个是站点的封面，放在和头像一样的文件夹下，自定义一些图片吧，属于自己的自定义肯定看着舒服
+  coverImage = &quot;images/cover.jpg&quot;
+
+  # Display an image gallery at the end of a post which have photos variables (false: disabled, true: enabled)
+  #照片墙，或者叫图片走廊，用于默认缩略图或者文章封面的功能，前提是你得存放照片
+  imageGallery = true
+
+  # Display thumbnail image of each post on index pages (false: disabled, true: enabled)
+  # 文章缩略图功能
+  thumbnailImage = true
+  # Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`)
+  # Set this value to `right` if you have old posts to keep the old style on them
+  # and define `thumbnailImagePosition` on a post to overwrite this setting
+  # 缩略图的位置，默认为bottom，即在下边，可以选top，left或者right，这是默认的，也可以在文章里重新定义
+  thumbnailImagePosition = &quot;bottom&quot;
+  # Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image
+  # Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image
+  # and set `autoThumbnailImage` to `false` on a post to overwrite this setting
+  # 自动缩略图，就是从照片墙中选一张用作缩略图，直接默认吧
+  autoThumbnailImage = true
+
+  # Your favicon path, default is &quot;/favicon.png&quot;
+  # 很好玩的功能，就是访问时，浏览器标签页那里显示的站点图标，有兴趣可以自己做一个，存放路径应该和头像一样吧，自己试一试，我没使用，就保持注释掉的状态
+  favicon = &quot;/favicon.jpg&quot;
+
+  # Header configuration
+  # The link at the right of the header is customizable
+  # You can add a link (as an icon) at the right of the header instead of the author's gravatar image or author's picture.
+  # By default, author's gravatar or author's picture is displayed.
+  #     url: /#search
+  #     icon: search
+  #     class: st-search-show-outputs
+
+  # Display `Next` on left side of the pagination, and `Prev` on right side one.
+  # If you set this value to `true`, these positions swap.
+  # 一个很反人类习惯的设定，默认作者是注释掉了，一定要开启并且改为true
+  # 默认是下一篇按钮在左，上一篇按钮在右，开了就调换过来，符合国人的习惯，可能是外国人使用习惯不一样吧
+  swapPaginator = true
+
+  # Custom CSS. Put here your custom CSS files. They are loaded after the theme CSS;
+  # they have to be referred from static root. Example
+  # [[params.customCSS]]
+  #   href = &quot;css/mystyle.css&quot;
+
+  # Custom JS. Put here your custom JS files. They are loaded after the theme JS;
+  # they have to be referred from static root. Example
+  #自定义js插件，这里采用一个很好看的点击鼠标出现爱心的特效
+  #将在这个主题的目录下static/js中新建文件clicklove.js
+  #然后将下边给出的插件代码复制进去，就可以了
+  [[params.customJS]]
+     src = &quot;js/myscript.js&quot;
+
+  # Sharing options
+  # Comment and uncomment to enable or disable sharing options
+  # If you wanna add a sharing option, read user documentation :
+  # Tranquilpeak configuration &gt; Theme configuration &gt; sharing-options
+  #这个地方应该我删掉了sharing options，也就是分享链接的设置，有兴趣的可以研究一下加上微信之类的分享
+  [[params.sharingOptions]]
+    name = &quot;Facebook&quot;
+    icon = &quot;fa-facebook-official&quot;
+    url = &quot;https://www.facebook.com/sharer/sharer.php?u=%s&quot;
+
+  [[params.sharingOptions]]
+    name = &quot;Twitter&quot;
+    icon = &quot;fa-twitter&quot;
+    url = &quot;https://twitter.com/intent/tweet?text=%s&quot;
+
+  [[params.sharingOptions]]
+    name = &quot;Google+&quot;
+    icon = &quot;fa-google-plus&quot;
+    url = &quot;https://plus.google.com/share?url=%s&quot;
+
+  # 点击about时候的行为，展示个人信息，不用改，默认就行
+  [params.header.rightLink]
+    class = &quot;&quot;
+    icon = &quot;&quot;
+    url = &quot;/#about&quot;
+
+  # Valine.
+  # 如果添加了valine的评论系统，就需要加上这一段代码，否则不用管；
+  # 占位符在后边会讲到怎么填
+  # You can get your appid and appkey from https://leancloud.cn
+  # more info please open https://valine.js.org
+  [params.valine]
+    enable = true
+    appId = 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz'
+    appKey = '27rweMzy4Q07Rqa7s4RKVD8O'
+    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify = false # Verification code
+    avatar = 'mm' 
+    placeholder = '说点什么吧...'
+    visitor = true
+
+  # Customize link of author avatar in sidebar
+  # [params.sidebar.profile]
+  #   url = &quot;/#about&quot;
+
+  # Customize copyright value &quot;© 2017 &lt;CUSTOMIZATION&gt;. All Rights Reserved&quot;
+  [params.footer]
+ copyright = &quot;&lt;a href=\&quot;https://github.com/SLTaurus\&quot;&gt;轲&lt;/a&gt;&quot;
+</code></pre></li>
+
+<li><p>在myblog\themes\tranquilpeak\static\images文件夹下放置好需要的图片文件。</p></li>
+
+<li><p>在config.toml中修改好默认主题，则启动博客命令，输入 hugo server -D，如图所示：
+<img src="https://SLTaurus.github.io/images/hugoserver.jpg" alt="hugoserver" /></p></li>
+</ul>
+
+<p>效果如图所示：</p>
+
+<p><img src="https://SLTaurus.github.io/images/hugoshow.jpg" alt="hugoshow" /></p>
+
+<ul>
+<li><p>下面是创建文章，首先是创建文章的模板，在\myblog\themes\tranquilpeak\archetypes\post.md,我的模板设置如下：</p>
+
+<pre><code>---
+title: &quot;{{ replace .TranslationBaseName &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+categories:
+- category
+- subcategory
+tags:
+- tag1
+- tag2
+keywords:
+- tech
+# 每次编辑文档时请删去这些解释的注释
+# 缩略图，最好采用宽度为750的图片，可以使用本地文件或者使用git图床
+# 使用本地图库，请把图片存在themes/static/images文件夹下，并且用下面的路径引用
+thumbnailImage: /images/cover.jpg
+# 缩略图位置，我觉得放在上面好看，如果用的小图片作缩略图
+# 可以放在（left或者right），设置此项会取代配置文件中默认在下边的设置
+thumbnailImagePosition: top
+# 这个下边默认就好了，暂时不清楚有什么影响
+autoThumbnailImage: yes
+metaAlignment: center
+# 封面图片，如果选用本地文件的话，和缩略图同样的路径，21：9的图片效果很好看
+coverImage: /images/cover.jpg
+# 封面图片的描述引号中的文字可以自己选
+coverCaption: &quot;文章cover图片描述&quot;
+# in表示文章标题显示在封面图片上，out表示显示在封面图片的外边，也就是文章开头
+coverMeta: in
+# 封面图片的覆盖大小，直接默认为full吧，21:9的图片这样设置显示效果真的不错
+coverSize: full
+---
+#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概
+&lt;!--more--&gt;
+&lt;!-- toc --&gt;
+</code></pre></li>
+</ul>
+
+<p><code>&lt;!--more--&gt;</code> 这行上面的一行是文章的概述， <code>&lt;!-- toc --&gt;</code> 是文章的目录。</p>
+
+<ul>
+<li><p>新建一篇文章，输入如下：</p>
+
+<p>hugo new post/blog.md</p></li>
+</ul>
+
+<p>blog.md是博客的名称，具体操作如图所示：
+<img src="https://SLTaurus.github.io/images/hugoblogmd.jpg" alt="hugoblogmd" /></p>
+
+<p>根据模板新生成的博客就放在myblog\content\post\文件夹下面了。</p>
+
+<h2 id="notepad-加markdown插件书写博客">Notepad++加Markdown插件书写博客</h2>
+
+<blockquote>
+<p>参考了Hunter1023同学在CSDN的教程：<a href="https://blog.csdn.net/weixin_39345384/article/details/80786184">Win10环境下，告别MarkdownPad，用Notepad++搭建编写md文档的环境</a></p>
+</blockquote>
+
+<ul>
+<li>下载Notepad++（可以在360或者qq管家的软件服务中下载）。</li>
+
+<li><p>在Notepad++设置-&gt;语言格式设置中进行如下设置：
+<img src="https://SLTaurus.github.io/images/notepadset.jpg" alt="notepadset" /></p></li>
+
+<li><p>安装插件MarkdownViewer++，在菜单栏选择插件 → 插件管理，找到MarkdownViewer++，右上角点击安装，完成之后重启Notepad++即可在工具栏找到预览Markdown的功能。</p></li>
+
+<li><p>导入自定义语言格式。为了设置符合markdown语言的显示效果，需要下载<a href="https://github.com/Edditoria/markdown-plus-plus">Markdown语言格式的xml配置文件</a>,该文件中包含四种不同风格的xml配置，根据自己的喜好导入xml文件（classic.xml/modern.xml皆可）到Notepad。如图所示：
+<img src="https://SLTaurus.github.io/images/Importmarkdownview.png" alt="Importmarkdownview" /></p></li>
+</ul>
+
+<p><a href="https://pan.baidu.com/s/1U39pITrVN5iwZYwKE__G5Q">Markdown语言格式的xml配置文件百度云备份</a>，提取码: xry6。</p>
+
+<h2 id="博客的书写">博客的书写</h2>
+
+<ul>
+<li>根据文中的中文注释，做相应修改即可。</li>
+<li><code>&lt;!--more--&gt;</code> 这行上面的一行是文章的概述， <code>&lt;!-- toc --&gt;</code> 是文章的目录。</li>
+<li><a href="https://www.appinn.com/markdown/#autoescape">Markdown的语法</a>请自行学习，这里不再赘叙。</li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/hugo/">Hugo</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/git/">git</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/valine/">valine</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" class="leancloud_visitors" data-flag-title="windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" data-tooltip="Markdown语法完整版">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" data-tooltip="Markdown语法完整版">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fwindows10%25E7%258E%25AF%25E5%25A2%2583%25E4%25B8%258B%25E6%2590%25AD%25E5%25BB%25BAhugo%25E4%25B8%25AA%25E4%25BA%25BA%25E5%258D%259A%25E5%25AE%25A2-git%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%2589%2588%25E6%259C%25AC%25E6%258E%25A7%25E5%2588%25B6-valine%25E8%25AF%2584%25E8%25AE%25BA%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fwindows10%25E7%258E%25AF%25E5%25A2%2583%25E4%25B8%258B%25E6%2590%25AD%25E5%25BB%25BAhugo%25E4%25B8%25AA%25E4%25BA%25BA%25E5%258D%259A%25E5%25AE%25A2-git%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%2589%2588%25E6%259C%25AC%25E6%258E%25A7%25E5%2588%25B6-valine%25E8%25AF%2584%25E8%25AE%25BA%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fwindows10%25E7%258E%25AF%25E5%25A2%2583%25E4%25B8%258B%25E6%2590%25AD%25E5%25BB%25BAhugo%25E4%25B8%25AA%25E4%25BA%25BA%25E5%258D%259A%25E5%25AE%25A2-git%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E7%2589%2588%25E6%259C%25AC%25E6%258E%25A7%25E5%2588%25B6-valine%25E8%25AF%2584%25E8%25AE%25BA%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/08\/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA\/';
+          
+            this.page.identifier = '\/2019\/08\/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

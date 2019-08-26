@@ -6,10 +6,37 @@
     <description>Recent content in Tags on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Aug 2019 17:14:39 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 17:05:35 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>git</title>
+      <link>https://SLTaurus.github.io/tags/git/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://SLTaurus.github.io/tags/hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>valine</title>
+      <link>https://SLTaurus.github.io/tags/valine/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/tags/valine/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Markdown</title>
