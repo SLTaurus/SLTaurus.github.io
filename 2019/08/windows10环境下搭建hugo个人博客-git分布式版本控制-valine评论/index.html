@@ -283,7 +283,12 @@
 <li><a href="#安装hugo">安装hugo</a></li>
 <li><a href="#notepad-加markdown插件书写博客">Notepad++加Markdown插件书写博客</a></li>
 <li><a href="#博客的书写">博客的书写</a></li>
+<li><a href="#把博客部署的远端github上">把博客部署的远端github上</a></li>
+<li><a href="#valine评论">valine评论</a></li>
+<li><a href="#页面内音乐">页面内音乐</a></li>
 </ul></li>
+<li><a href="#小结">小结</a></li>
+<li><a href="#备注">备注</a></li>
 </ul>
 </nav>
 
@@ -335,7 +340,7 @@ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git
 <ul>
 <li>打开myblog文件夹下的themes主题文件夹，改名为：tranquilpeak。</li>
 
-<li><p>用Notepad++修改myblog文件夹下的配置文件config.toml，配置可修改内容详见<a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md">tranquilpeak主题页的说明</a>，我的配置如下：</p>
+<li><p>将 根目录\themes\tranquilpeak\exampleSite路径下的config.toml文件复制到根目录下，用Notepad++修改myblog文件夹下的配置文件config.toml，配置可修改内容详见<a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md">tranquilpeak主题页的说明</a>，不建议全复制。我的配置如下：</p>
 
 <pre><code># Tranquilpeak
 # Version : 0.4.7-BETA
@@ -612,12 +617,12 @@ publishDir = &quot;public&quot;
   [params.footer]
  copyright = &quot;&lt;a href=\&quot;https://github.com/SLTaurus\&quot;&gt;轲&lt;/a&gt;&quot;
 </code></pre></li>
-
-<li><p>在myblog\themes\tranquilpeak\static\images文件夹下放置好需要的图片文件。</p></li>
-
-<li><p>在config.toml中修改好默认主题，则启动博客命令，输入 hugo server -D，如图所示：
-<img src="https://SLTaurus.github.io/images/hugoserver.jpg" alt="hugoserver" /></p></li>
 </ul>
+
+<p>记得在配置中设置静态网页生成目录，publishDir = &ldquo;public&rdquo;。
+* 在myblog\themes\tranquilpeak\static\images文件夹下放置好需要的图片文件。
+* 在config.toml中修改好默认主题，则启动博客命令，输入 hugo server -D，如图所示：
+<img src="https://SLTaurus.github.io/images/hugoserver.jpg" alt="hugoserver" /></p>
 
 <p>效果如图所示：</p>
 
@@ -698,10 +703,199 @@ coverSize: full
 <h2 id="博客的书写">博客的书写</h2>
 
 <ul>
-<li>根据文中的中文注释，做相应修改即可。</li>
+<li>用Notepad++修改博客内容，本例中是myblog\content\post\blog.md，根据文中的中文注释，做相应修改即可。</li>
 <li><code>&lt;!--more--&gt;</code> 这行上面的一行是文章的概述， <code>&lt;!-- toc --&gt;</code> 是文章的目录。</li>
-<li><a href="https://www.appinn.com/markdown/#autoescape">Markdown的语法</a>请自行学习，这里不再赘叙。</li>
+<li><a href="https://www.appinn.com/markdown/#autoescape">Markdown的语法</a>请自行学习，这里不再赘叙。<a href="https://sltaurus.github.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">Markdown语法备份</a>。</li>
+<li>写完以后记得保存修改。</li>
 </ul>
+
+<h2 id="把博客部署的远端github上">把博客部署的远端github上</h2>
+
+<ul>
+<li><p>在<a href="https://github.com">GitHub</a>中新建账户，创建新的仓库,我的仓库名是SLTaurusBlog.github.io，最终仓库地址为 <a href="https://github.com/SLTaurus/SLTaurusBlog.github.io">https://github.com/SLTaurus/SLTaurusBlog.github.io</a>，如图所示：
+<img src="https://SLTaurus.github.io/images/NewRepositoty.jpg" alt="NewRepositoty" />
+<img src="https://SLTaurus.github.io/images/CreateNewResository.jpg" alt="CreateNewResository" /></p></li>
+
+<li><p>输入hugo，生成静态网页到设置的文件中，前面设置config.toml的时候，本文设置了是public。</p></li>
+
+<li><p>在myblog目录下输入指令hugo server -D，再打开 <a href="http://localhost:1313">http://localhost:1313</a> 查看博客网页和内容是否有异常。这里我改为用git的控制台来操作，省去了切换到myblog的操作，只需要在myblog文件夹内右键点击Git Bash Here，如图所示：
+<img src="https://SLTaurus.github.io/images/GitBashHere.jpg" alt="GitBashHere" />
+<img src="https://SLTaurus.github.io/images/GitHugoServerD.jpg" alt="GitHugoServerD" /></p></li>
+
+<li><p>操作之后生成了一个public文件夹， <code>CD public</code> 进入public文件夹内。</p></li>
+
+<li><p>把public传到github仓库上，继续在控制台操作，如图所示：
+<img src="https://SLTaurus.github.io/images/GitCommitPublic.jpg" alt="GitCommitPublic" />
+<img src="https://SLTaurus.github.io/images/GitRemoteOrigin.jpg" alt="GitRemoteOrigin" /></p></li>
+</ul>
+
+<p>有时候会要求输入账号密码，正确输入就可以了，如图所示
+<img src="https://SLTaurus.github.io/images/GitUaserName.jpg" alt="GitUaserName" /></p>
+
+<ul>
+<li>以后博客修改可以按照以下流程操作。如图所示：</li>
+</ul>
+
+<p><img src="https://SLTaurus.github.io/images/GitNewblogCommitFirst.jpg" alt="GitNewblogCommitFirst" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/GitNewblogCommitSecond.jpg" alt="GitNewblogCommitSecond" /></p>
+
+<h2 id="valine评论">valine评论</h2>
+
+<blockquote>
+<p>Valine - 一款快速、简洁且高效的无后端评论系统。Valine 诞生于2017年8月7日，是一款基于Leancloud的快速、简洁且高效的无后端评论系统,理论上支持但不限于静态博客，目前已有Hexo、Jekyll、Typecho等博客程序在使用Valine。</p>
+
+<p>参考教程：<a href="https://www.smslit.top/2018/07/08/hugo-valine/">hugo博客添加评论系统Valine</a></p>
+</blockquote>
+
+<ul>
+<li><p>评论系统依赖于leancloud，第一步需要先在leancloud中进行相关的准备工作。<a href="(https://leancloud.cn/dashboard/login.html#/signin)">登录</a>或<a href="(https://leancloud.cn/dashboard/login.html#/signup)">注册</a>LeanCloud,登录成功后，进入后台点击左上角的创建应用：
+<img src="https://SLTaurus.github.io/images/LeanCloudCreateNew.jpg" alt="LeanCloudCreateNew" /></p></li>
+
+<li><p>创建好应用，进入应用，左边栏找到 设置 ，然后点击 应用Key，此时记录出现的 App ID 和 App Key，后面配置文件中会用到,这里建议用F12进行页面调试，获取ID和Key，手打的很容易出现不一致，操作如图：
+<img src="https://SLTaurus.github.io/images/leanCloudSetting.jpg" alt="leanCloudSetting" /></p></li>
+
+<li><p>因为评论和文章阅读数统计依赖于存储，所以还需要建立两个新的存储 Class，左边栏找到并点击 存储，点击 创建Class,分别命名为: Counter 和 Comment.操作如图所示：
+<img src="https://SLTaurus.github.io/images/leanCloudClass.jpg" alt="leanCloudClass" /></p></li>
+
+<li><p>还需要为应用添加安全域名，左边栏点击 设置，找到 安全中心，点击后会看到 安全域名 设置框，输入博客使用的域名，点击保存即可：
+<img src="https://SLTaurus.github.io/images/leanCloudSafe.jpg" alt="leanCloudSafe" /></p></li>
+
+<li><p>config.toml添加参数.为了使配置更灵活，将 Valine 中大部分初始化参数项均设置为配置文件中的参数项，在 config.toml 的适当位置，如图所示：
+<img src="https://SLTaurus.github.io/images/ValineParamsSetting.jpg" alt="ValineParamsSetting" /></p></li>
+</ul>
+
+<p>添加 Valine 参数项：</p>
+
+<pre><code>    # Valine.
+    # 如果添加了valine的评论系统，就需要加上这一段代码，否则不用管；
+    # 占位符在后边会讲到怎么填
+    # You can get your appid and appkey from https://leancloud.cn
+    # more info please open https://valine.js.org
+    [params.valine]
+        enable = true
+        appId = '你的appid'
+        appKey = '你的appKey'
+        notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+        verify = false # Verification code
+        avatar = 'mm' 
+        placeholder = '说点什么吧...'
+        visitor = true
+</code></pre>
+
+<p>上面几项内容的含义具体需要查看<a href="https://valine.js.org/configuration.html">valine官网中配置相关的内容</a>,以下表格为简述：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">enable</td>
+<td align="left">这是用于主题中配置的，不是官方Valine的参数，true时控制开启此评论系统</td>
+</tr>
+
+<tr>
+<td align="center">appId</td>
+<td align="left">这是在 leancloud 后台应用中获取的，也就是上面提到的 App ID</td>
+</tr>
+
+<tr>
+<td align="center">appKey</td>
+<td align="left">这是在 leancloud 后台应用中获取的，也就是上面提到的 App Key</td>
+</tr>
+
+<tr>
+<td align="center">notify</td>
+<td align="left">用于控制是否开启邮件通知功能，具体参考邮件提醒配置</td>
+</tr>
+
+<tr>
+<td align="center">verify</td>
+<td align="left">用于控制是否开启评论验证码功能</td>
+</tr>
+
+<tr>
+<td align="center">avatar</td>
+<td align="left">用于配置评论项中用户头像样式，有多种选择：mm, identicon, monsterid, wavatar, retro, hide。详细参考：头像配置</td>
+</tr>
+
+<tr>
+<td align="center">placehoder</td>
+<td align="left">评论框的提示符</td>
+</tr>
+
+<tr>
+<td align="center">visitor</td>
+<td align="left">控制是否开启文章阅读数的统计功能i, 详情阅读文章阅读数统计</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>修改主题文件，主要是修改主题中评论相关的布局文件。在\themes\tranquilpeak\layouts\partials文件夹下新增comments.html，具体内容为：</p>
+
+<pre><code>  &lt;!-- valine --&gt;
+  {{- if .Site.Params.valine.enable -}}
+  &lt;!-- id 将作为查询条件 --&gt;
+  &lt;span id=&quot;{{ .URL | relURL }}&quot; class=&quot;leancloud_visitors&quot; data-flag-title=&quot;{{ .Title }}&quot;&gt;
+    &lt;span class=&quot;post-meta-item-text&quot;&gt;文章阅读量 &lt;/span&gt;
+    &lt;span class=&quot;leancloud-visitors-count&quot;&gt;100&lt;/span&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/span&gt;
+  &lt;div id=&quot;vcomments&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src='//unpkg.com/valine/dist/Valine.min.js'&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    new Valine({
+        el: '#vcomments' ,
+        appId: '{{ .Site.Params.valine.appId }}',
+        appKey: '{{ .Site.Params.valine.appKey }}',
+        notify: {{ .Site.Params.valine.notify }}, 
+        verify: {{ .Site.Params.valine.verify }}, 
+        avatar:'{{ .Site.Params.valine.avatar }}', 
+        placeholder: '{{ .Site.Params.valine.placeholder }}',
+        visitor: {{ .Site.Params.valine.visitor }}
+    });
+  &lt;/script&gt;
+  {{- end }}
+</code></pre></li>
+</ul>
+
+<p>然后在themes\tranquilpeak\layouts_default\single.html文件的第36行新增如下内容：</p>
+
+<pre><code>&lt;!-- 加入评论功能 --&gt;
+{{ partial &quot;comments.html&quot; . }}
+</code></pre>
+
+<ul>
+<li>最终结果如图所示：
+<img src="https://SLTaurus.github.io/images/ValineResult.jpg" alt="ValineResult" /></li>
+</ul>
+
+<h2 id="页面内音乐">页面内音乐</h2>
+
+<ul>
+<li>在网易云音乐中挑选喜欢的音乐，生成外链，如图所示：
+<img src="https://SLTaurus.github.io/images/CreateMusicLink.jpg" alt="CreateMusicLink" /></li>
+</ul>
+
+<p>进行自定义的选择，复制代码到\themes\tranquilpeak\layouts\partials的sidebar.html文件内。操作如图所示：
+<img src="https://SLTaurus.github.io/images/UsingMusicPlusins.jpg" alt="UsingMusicPlusins" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/MusicSideBar.jpg" alt="UsingMusicPlusins" /></p>
+
+<h1 id="小结">小结</h1>
+
+<p>在搭建个人博客的过程中，遇到过很多问题，不过在各种尝试和其他网友在网上发布的教程、问答的帮助下终于是完成了。个人认为作为一个好的程序员，不仅要有很强的动手能力和学习能力，还要有很强的总结的能力、描述能力，希望利用这个博客，可以将我的零散知识凝聚为一个系统，发挥更强的个人能力吧。</p>
+
+<h1 id="备注">备注</h1>
+
+<p>前面Github仓库用的<a href="https://github.com/SLTaurus/SLTaurusBlog.github.io">https://github.com/SLTaurus/SLTaurusBlog.github.io</a>来存放新建的博客，后面为了减少麻烦，valine评论部分改为现在博客在用的仓库<a href="https://github.com/SLTaurus/SLTaurus.github.io">https://github.com/SLTaurus/SLTaurus.github.io</a>。config.toml配置中的baseURL也改为现在在用的博客地址： <code>baseURL = &quot;https://SLTaurus.github.io/&quot;</code> 。</p>
               
             </div>
           </div>
