@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="JavaScript, C#, .NET, 个人博客">
+<meta name="description" content="这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。">
+
+
+<meta property="og:description" content="这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript笔记">
+<meta name="twitter:title" content="JavaScript笔记">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="SLTaurus的安全屋">
+<meta property="og:description" content="这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。">
+<meta name="twitter:description" content="这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-08-29T08:39:39">
+  
+  
+    <meta property="article:modified_time" content="2019-08-29T08:39:39">
+  
+  
+  
+    
+      <meta property="article:section" content="JavaScript">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/JavaScript/JavaScript.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/JavaScript/JavaScript.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>JavaScript笔记</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">SLTaurus的安全屋</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">JavaScript笔记</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      JavaScript笔记
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-08-29T08:39:39&#43;08:00">
+        
+  八月 29, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/javascript">JavaScript</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#概念">概念</a>
+<ul>
+<li><a href="#服务器段和客户端编程">服务器段和客户端编程</a></li>
+<li><a href="#dom简介">DOM简介</a></li>
+<li><a href="#script标签">script标签</a></li>
+<li><a href="#函数">函数</a></li>
+<li><a href="#javascript中的数据类型">JavaScript中的数据类型</a></li>
+</ul></li>
+<li><a href="#javascript基础">JavaScript基础</a>
+<ul>
+<li><a href="#与用户交互的弹窗">与用户交互的弹窗</a></li>
+<li><a href="#捕获鼠标事件">捕获鼠标事件</a></li>
+<li><a href="#变量作用域">变量作用域</a></li>
+<li><a href="#根据id选择元素">根据Id选择元素</a>
+<ul>
+<li><a href="#innerhtml属性">innerHTML属性</a></li>
+</ul></li>
+<li><a href="#访问浏览器的历史记录window-history">访问浏览器的历史记录window.history</a></li>
+<li><a href="#使用location对象">使用location对象</a></li>
+<li><a href="#浏览器信息">浏览器信息</a></li>
+<li><a href="#日期和时间">日期和时间</a></li>
+<li><a href="#利用math对象简化运算">利用Math对象简化运算</a>
+<ul>
+<li><a href="#数学常数">数学常数</a></li>
+<li><a href="#关键字with">关键字with</a></li>
+</ul></li>
+<li><a href="#数据类型">数据类型</a>
+<ul>
+<li><a href="#非数值-nan">非数值（NaN）</a></li>
+<li><a href="#使用parsefloat-和parseint">使用parseFloat()和parseint()</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="概念">概念</h1>
+
+<h2 id="服务器段和客户端编程">服务器段和客户端编程</h2>
+
+<p>文字描述如下：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript1.jpg" alt="JavaScript1" /></p>
+
+<h2 id="dom简介">DOM简介</h2>
+
+<ul>
+<li><p>DOM简介文字描述如下：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript2.jpg" alt="JavaScript2" /></p></li>
+
+<li><p>这个层级树的最顶端是浏览器window对象，他是页面的DOM表示中的一切对象的父对象。
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript3.jpg" alt="JavaScript3" /></p></li>
+</ul>
+
+<h2 id="script标签">script标签</h2>
+
+<ul>
+<li>使用 <code>&lt;script&gt;&lt;/script&gt;</code> 可以在HTML代码里直接包含Javascript语句。</li>
+<li><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code> 中 <code>type=&quot;text/javascript&quot;</code> 是可选的写法，在HTML5中不需要，在HTML4和XHYML中添加javascript就需要type属性了。</li>
+<li><code>&lt;script&gt;&lt;/script&gt;</code> 常放置于 <code>&lt;head&gt;&lt;/head&gt;</code> 标签中，也可以放在 <code>&lt;body&gt;&lt;/body&gt;</code> 等标签中。</li>
+<li>把Javascript代码关联到HTML代码中有两种办法，第一种就是把语句直接包含在HTML文件里，第二种更好的办法是把JavaScript放在单独的的文件，然后利用<code>&lt;script&gt;&lt;/script&gt;</code> 元素的 <code>src</code> 属性来指定文件名，即 <code>&lt;script src = 'mycode.js'&gt;&lt;/script&gt;</code> ，从而把这个文件包含在页面里。</li>
+</ul>
+
+<p>把JavaScript代码保存到单独的文件夹的好处：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript4.jpg" alt="JavaScript" /></p>
+
+<h2 id="函数">函数</h2>
+
+<p>函数内部能够包含对其他函数的调用，可以根据需要进行多重嵌套。</p>
+
+<h2 id="javascript中的数据类型">JavaScript中的数据类型</h2>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript13.jpg" alt="JavaScript13" /></p>
+
+<h1 id="javascript基础">JavaScript基础</h1>
+
+<h2 id="与用户交互的弹窗">与用户交互的弹窗</h2>
+
+<ul>
+<li><p>弹出模拟对话框，只有一个按钮。</p>
+
+<pre><code>window.alert(&quot;你好啊！&quot;);
+</code></pre></li>
+
+<li><p>弹出模拟对话框，有两个按钮，ok或者cancle,返回一个布尔值。</p>
+
+<pre><code>var answer = confirm(&quot;真的假的？&quot;);
+</code></pre></li>
+
+<li><p>弹出模拟对话框，允许用户输入信息，包含两个参数，第二个参数是输入栏的默认信息，如果用户点击的是ok则返回的信息就是输入的字符串，取消获取ESC返回的会是null。</p>
+
+<pre><code>var answer = prompt('你的名字是啥？','刘轲')
+</code></pre></li>
+</ul>
+
+<h2 id="捕获鼠标事件">捕获鼠标事件</h2>
+
+<ul>
+<li>onClient鼠标点击事件。</li>
+
+<li><p>检测鼠标指针和特定元素的位置关系，当鼠标进入页面上被某个元素所占据的区域时，会触发 <code>onMouseOver</code> 事件，鼠标离开这一区域时会触发 <code>onMouseOut</code> 事件。图像翻滚的经典示例：</p>
+
+<pre><code>&lt;img src=&quot;Resources/bajian.jpg&quot; alt=&quot;image 1&quot; onmouseover=&quot;this.src = 'Resources/bajian2.jpg'&quot; onmouseout=&quot;this.src = 'Resources/bajian.jpg'&quot; /&gt;
+</code></pre></li>
+</ul>
+
+<h2 id="变量作用域">变量作用域</h2>
+
+<p>函数内部声明的变量只存在于函数内部，下面示例比较出乎意料，变量a是全局变量，在函数内也声明了一个变量a，两个变量是不同的。</p>
+
+<pre><code>&lt;body&gt;
+    &lt;script&gt;
+        var a = 10;
+        var b = 10;
+        function showVars() {
+            var a = 20;
+            b = 20;
+            return &quot;函数中的a是：&quot; + a + &quot;函数中的b是：&quot; + b;
+        }
+        var message = showVars();
+        alert(&quot;函数返回结果:&quot; + message + &quot;全局变量a现在是：&quot; + a);
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>最终结果：函数中的a是20，全局变量a仍然是10。</p>
+
+<h2 id="根据id选择元素">根据Id选择元素</h2>
+
+<p>从HTML中选择某个具有特殊Id的元素的方法：</p>
+
+<pre><code>    var btn = document.getElementById('btnMakeSure');
+</code></pre>
+
+<p>它会返回特定Id的页面元素所对应的DOM对象。</p>
+
+<h3 id="innerhtml属性">innerHTML属性</h3>
+
+<p>innerHTML属性可以读取或者设置页面元素的HTML内容。getElementById和innerHTML属性组合可以获取元素HTML内容，也可以修改其内容。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        function TextModify()
+        {
+            document.getElementById('div1').innerHTML = &quot;页面内容修改成功！&quot;;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;
+        &lt;p&gt;这里是一段话！&lt;/p&gt;
+    &lt;/div&gt;    
+    &lt;input id=&quot;btnModifyWords&quot; type=&quot;button&quot; onclick=TextModify() value=&quot;innerHTML文字修改&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="访问浏览器的历史记录window-history">访问浏览器的历史记录window.history</h2>
+
+<p>浏览器的历史记录是用window.history对象来表示的，他基本上就是访问过的URL列表。history对象的方法让我们能够使用这个列表，但是不能直接操作这些URL。history对象只有一个对象，就是length，也就是它的长度，表示用户访问过的页面的数量。</p>
+
+<p>history有三个方法，forward()和backward()方法相当于点击浏览器的前进和后退的按钮。可以得到历史列表里面的下一个或者前一个页面。第三个方法go()，它有一个参数，是正的或者负的整数，可以跳到历史列表里面的相对位置，这个方法也可以接收字符串作为参数，找到历史记录列表里面的第一个匹配的URL。</p>
+
+<pre><code>&lt;script&gt;
+    function HistoryMofify()
+    {
+        //页面后退
+        history.backword()
+        //页面前进
+        history.forward ();
+        //回退三个页面
+        history.go(-3);
+        //前进两个页面
+        history.go(2);
+        //到达历史记录列表里面第一个包含baidu.com的URL
+        history.go('baidu.com');
+    }
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="使用location对象">使用location对象</h2>
+
+<p>location对象包含当前加载页面的信息。页面的URL是由多个部分组成的：[协议]//[主机名]:[端口]/[路径][搜索][hash]。下面是个URL范例： <code>http://www.example.com:8080/tools/display.php?section=435#list</code> .location对象的一系列属性包含了URL各个部分的数据，如图所示：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript5.jpg" alt="JavaScript5" /></p>
+
+<p>利用location有两种方法可以帮助用户导航至新页面。第一种是直接设置对象的href属性,这种方法原始页面还保留在浏览器的历史纪录里，用户可以利用浏览器的back按钮方便的回到以前的页面。
+第二种方法使用location的replace()方法是利用新的URL直接替换当前的的页面，会把当前的页面从历史记录里面删除。</p>
+
+<pre><code>    location.href= 'www.newpage.com';
+    location.replace('www.newpage.com')`;
+</code></pre>
+
+<p>可以用location对象的reload()方法在浏览器里面重新加载当前页面，如果方法内有参数则会确保从服务器端重新获取页面数据：</p>
+
+<pre><code>    location.reload();
+    location.reload(true);
+</code></pre>
+
+<h2 id="浏览器信息">浏览器信息</h2>
+
+<p>navigator对象包含了浏览器程序本身的数据,展示如图所示：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript6.jpg" alt="JavaScript6" /></p>
+
+<h2 id="日期和时间">日期和时间</h2>
+
+<p>新建一个包含日期和时间信息的Date对象的最简单方法是：</p>
+
+<pre><code>    var mydate = new Date();
+</code></pre>
+
+<p>mydate就是一个Date对象，其中包含了创建对象的日期和时间信息。JavaScript具有很多方法用于获取设置和编辑Date对象中的数据，展示如图：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript7.jpg" alt="JavaScript7" /></p>
+
+<p>给Date()语句指定参数，可以创建任意指定日期和时间的Date()对象，方式如图：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript8.jpg" alt="JavaScript8" />
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript9.jpg" alt="JavaScript9" /></p>
+
+<p>设置和编辑日期与时间:</p>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript10.jpg" alt="JavaScript" /></p>
+
+<h2 id="利用math对象简化运算">利用Math对象简化运算</h2>
+
+<p>JavaScript中的Math方法：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript11.jpg" alt="JavaScript11" /></p>
+
+<p>特别说下随机数，利用 <code>Math.random()</code> 产生的是0到1之间随机数，要想获取0到100的随机数需要乘以100 <code>Math.random() * 100</code> 。</p>
+
+<h3 id="数学常数">数学常数</h3>
+
+<p>很多常用的数学常熟都以Math的属性的方式出现，如图所示：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript12.jpg" alt="JavaScript12" /></p>
+
+<h3 id="关键字with">关键字with</h3>
+
+<p>任何对象都可以使用with，但是Math对象是最适合用来示范的。通过使用with，可以减少键盘的输入。</p>
+
+<p>关键字with以对象为参数，然后是一对花括号，其中包含着代码块。代码块里的语句在调用特定对象方法时可以不必指定这个对象，因为JavaScript会假定这些方法是属于参数的那个对象的。范例：</p>
+
+<pre><code>&lt;script&gt;
+    function withDemo()
+    {
+        with (Math) {
+            var myRand = random();
+            var bigger = max(2, 6, 9);
+            var height = round(72.38);
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="数据类型">数据类型</h2>
+
+<h3 id="非数值-nan">非数值（NaN）</h3>
+
+<p>当脚本试图把一些非数值数据当作数值处理，却无法得到数值时，其返回值就是NaN。利用isNaN()函数可以检测非数值：</p>
+
+<pre><code>isNaN(3); //返回false
+isNaN('test'); //返回true
+</code></pre>
+
+<h3 id="使用parsefloat-和parseint">使用parseFloat()和parseint()</h3>
+
+<p>parseFloat()函数解析字符串，并返回一个浮点数。，如果被解析的字符串的首字符时一个数字，函数会一直解析到数组结束，然后返回一个数值而不是字符串：</p>
+
+<pre><code>parseFloat(&quot;2.14&quot;); //返回2.14
+parseFloat(&quot;35 test&quot;); //返回35
+parseFloat(&quot;test 35&quot;) = 35;
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/javascript/">JavaScript</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/08/javascript%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="JavaScript笔记">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" data-tooltip="windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" data-tooltip="windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/08/javascript%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fjavascript%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fjavascript%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F08%2Fjavascript%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/08\/javascript%E7%AC%94%E8%AE%B0\/';
+          
+            this.page.identifier = '\/2019\/08\/javascript%E7%AC%94%E8%AE%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

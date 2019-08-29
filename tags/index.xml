@@ -6,35 +6,44 @@
     <description>Recent content in Tags on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Aug 2019 17:05:35 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Aug 2019 08:39:39 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>git</title>
-      <link>https://SLTaurus.github.io/tags/git/</link>
-      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      <title>JavaScript</title>
+      <link>https://SLTaurus.github.io/tags/javascript/</link>
+      <pubDate>Thu, 29 Aug 2019 08:39:39 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/git/</guid>
+      <guid>https://SLTaurus.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Hugo</title>
-      <link>https://SLTaurus.github.io/tags/hugo/</link>
+      <title>git版本控制</title>
+      <link>https://SLTaurus.github.io/tags/git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
       <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/hugo/</guid>
+      <guid>https://SLTaurus.github.io/tags/git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>valine</title>
-      <link>https://SLTaurus.github.io/tags/valine/</link>
+      <title>Hugo博客</title>
+      <link>https://SLTaurus.github.io/tags/hugo%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/valine/</guid>
+      <guid>https://SLTaurus.github.io/tags/hugo%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>valine评论</title>
+      <link>https://SLTaurus.github.io/tags/valine%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/tags/valine%E8%AF%84%E8%AE%BA/</guid>
       <description></description>
     </item>
     
@@ -48,29 +57,11 @@
     </item>
     
     <item>
-      <title>C#</title>
-      <link>https://SLTaurus.github.io/tags/c#/</link>
+      <title>ref和out值类型按引用进行传递</title>
+      <link>https://SLTaurus.github.io/tags/ref%E5%92%8Cout%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%8C%89%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92/</link>
       <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/tags/c#/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ref和out</title>
-      <link>https://SLTaurus.github.io/tags/ref%E5%92%8Cout/</link>
-      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
-      
-      <guid>https://SLTaurus.github.io/tags/ref%E5%92%8Cout/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>值类型按引用进行传递</title>
-      <link>https://SLTaurus.github.io/tags/%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%8C%89%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92/</link>
-      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
-      
-      <guid>https://SLTaurus.github.io/tags/%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%8C%89%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92/</guid>
+      <guid>https://SLTaurus.github.io/tags/ref%E5%92%8Cout%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%8C%89%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%92/</guid>
       <description></description>
     </item>
     
