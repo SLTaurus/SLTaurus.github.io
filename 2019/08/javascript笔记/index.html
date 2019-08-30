@@ -261,16 +261,12 @@
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#概念">概念</a>
+<li><a href="#javascript基础">JavaScript基础</a>
 <ul>
 <li><a href="#服务器段和客户端编程">服务器段和客户端编程</a></li>
 <li><a href="#dom简介">DOM简介</a></li>
 <li><a href="#script标签">script标签</a></li>
 <li><a href="#函数">函数</a></li>
-<li><a href="#javascript中的数据类型">JavaScript中的数据类型</a></li>
-</ul></li>
-<li><a href="#javascript基础">JavaScript基础</a>
-<ul>
 <li><a href="#与用户交互的弹窗">与用户交互的弹窗</a></li>
 <li><a href="#捕获鼠标事件">捕获鼠标事件</a></li>
 <li><a href="#变量作用域">变量作用域</a></li>
@@ -287,16 +283,42 @@
 <li><a href="#数学常数">数学常数</a></li>
 <li><a href="#关键字with">关键字with</a></li>
 </ul></li>
-<li><a href="#数据类型">数据类型</a>
+<li><a href="#数据类型">数据类型</a></li>
+<li><a href="#javascript中的数据类型">JavaScript中的数据类型</a>
 <ul>
 <li><a href="#非数值-nan">非数值（NaN）</a></li>
 <li><a href="#使用parsefloat-和parseint">使用parseFloat()和parseint()</a></li>
+<li><a href="#无穷大-infinity">无穷大（Infinity）</a></li>
+<li><a href="#字符串方法">字符串方法</a></li>
+<li><a href="#布尔值">布尔值</a></li>
+<li><a href="#非-操作符">&ldquo;非&rdquo;操作符</a></li>
+<li><a href="#null和undefined">null和undefined</a></li>
 </ul></li>
+<li><a href="#数组">数组</a></li>
+<li><a href="#程序控制">程序控制</a>
+<ul>
+<li><a href="#比较操作符">比较操作符</a></li>
+<li><a href="#常见程序控制">常见程序控制</a></li>
+<li><a href="#设置和使用定时器">设置和使用定时器</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#对象">对象</a>
+<ul>
+<li><a href="#面向对象编程">面向对象编程</a></li>
+<li><a href="#创建直接实例">创建直接实例</a></li>
+<li><a href="#匿名函数">匿名函数</a></li>
+<li><a href="#使用构造函数">使用构造函数</a></li>
+<li><a href="#对象实例化">对象实例化</a></li>
+<li><a href="#拓展对象">拓展对象</a></li>
+<li><a href="#继承">继承</a></li>
+<li><a href="#封装">封装</a></li>
+<li><a href="#功能检测">功能检测</a></li>
+<li><a href="#遍历dom">遍历DOM</a></li>
 </ul></li>
 </ul>
 </nav>
 
-<h1 id="概念">概念</h1>
+<h1 id="javascript基础">JavaScript基础</h1>
 
 <h2 id="服务器段和客户端编程">服务器段和客户端编程</h2>
 
@@ -328,12 +350,6 @@
 <h2 id="函数">函数</h2>
 
 <p>函数内部能够包含对其他函数的调用，可以根据需要进行多重嵌套。</p>
-
-<h2 id="javascript中的数据类型">JavaScript中的数据类型</h2>
-
-<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript13.jpg" alt="JavaScript13" /></p>
-
-<h1 id="javascript基础">JavaScript基础</h1>
 
 <h2 id="与用户交互的弹窗">与用户交互的弹窗</h2>
 
@@ -516,6 +532,10 @@
 
 <h2 id="数据类型">数据类型</h2>
 
+<h2 id="javascript中的数据类型">JavaScript中的数据类型</h2>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript13.jpg" alt="JavaScript13" /></p>
+
 <h3 id="非数值-nan">非数值（NaN）</h3>
 
 <p>当脚本试图把一些非数值数据当作数值处理，却无法得到数值时，其返回值就是NaN。利用isNaN()函数可以检测非数值：</p>
@@ -530,8 +550,365 @@ isNaN('test'); //返回true
 
 <pre><code>parseFloat(&quot;2.14&quot;); //返回2.14
 parseFloat(&quot;35 test&quot;); //返回35
-parseFloat(&quot;test 35&quot;) = 35;
+parseFloat(&quot;test 35&quot;) = 35; //返回NaN
 </code></pre>
+
+<p>parseint()的功能类似,但是其返回的时整数和NaN，该函数可以加第二个参数，用于指定数值的基，从而返回二进制等其他进制的数值所对应的十进位制数值。</p>
+
+<pre><code>parseint(25.8); 返回25
+parseint(&quot;34px&quot;，10); 返回34
+parseint(&quot;1110&quot;,2); 返回14
+parseint(&quot;Hello&quot;); 返回NaN
+</code></pre>
+
+<h3 id="无穷大-infinity">无穷大（Infinity）</h3>
+
+<p>超过Javascript能表示的最大数值，就是无穷大，在大多数的JavaScript版本中最大的数值是正或者负的2的53次方，还有一个表示负的无穷大的关键字字面值：-infinity。利用isFinite()函数可以判断一个数值是否是无穷大。他会把参数转换为数值，如果得到的数值是NaN、正无穷大（Infinity）、负无穷大（-Infinity），函数返回false，其他返回true。</p>
+
+<pre><code>isFinite(32); //返回true
+isFinite(&quot;hello&quot;); //返回false
+</code></pre>
+
+<h3 id="字符串方法">字符串方法</h3>
+
+<p>比较重要的字符串方法：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript14.jpg" alt="JavaScript14" /></p>
+
+<h3 id="布尔值">布尔值</h3>
+
+<p>布尔值做运算的话 <code>true * 1 = 1</code> <code>false * 1 = 0</code> 即true会换算为1，false会换算为0。下面这些值在JavaScript中都当作false处理</p>
+
+<ul>
+<li>布尔值false</li>
+<li>未定义（undefined）</li>
+<li>null</li>
+<li>0</li>
+<li>NaN</li>
+<li>&rdquo; &ldquo;(空字符串)</li>
+</ul>
+
+<h3 id="非-操作符">&ldquo;非&rdquo;操作符</h3>
+
+<p>当字符!位于布尔变量之前时，Javascript把它解释为非，也就是相反的值。</p>
+
+<h3 id="null和undefined">null和undefined</h3>
+
+<p>当我们想让变量具有有效值，却又不是任何数值时，就把null赋值给变量，对数值来说null相当于0，对字符串来说null相当于字符串&rdquo;&ldquo;，对布尔值来说相当于false。与null不同的时undefined不是关键字，而是预定义的全局变量，当某个变量已经在语句里使用了，却没有赋给任何值时，它的值不是null而时undefined，表示Javascript不能识别它。</p>
+
+<h2 id="数组">数组</h2>
+
+<p>创建新数组的方法：</p>
+
+<pre><code>var myArray = new Array();
+var myArray = [];
+</code></pre>
+
+<p>在创建数组时可以同时加载数据：</p>
+
+<pre><code>var myArray = ['Monday','Tuesday'];
+</code></pre>
+
+<p>或者在数组创建以后再添加：</p>
+
+<pre><code>var myArray = [];
+myArray[] = 'Monday';
+myArray[] = 'Tuesday';
+</code></pre>
+
+<p>下图时数组常用的一些方法：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript15.jpg" alt="JavaScript15" /></p>
+
+<p>join()方法还可以有一个字符串参数，他会作为分隔符插入到最终的字符串里面：</p>
+
+<pre><code>var joinStr = myArray.join(&quot;-&quot;); // 返回Monday-Tuesday
+</code></pre>
+
+<p>tostring()方法还可以说时Join()方法的一个特例，它返回由数组元素组成的字符串，用逗号分隔每个元素。</p>
+
+<pre><code>var tostringStr = myArray.tostring(); // 返回Monday,Tuesday
+</code></pre>
+
+<p>slice()方法用来提取子集，用这个方法，在参数中指定开始的索引和要提取的数量：</p>
+
+<pre><code>var sliceStr = myArray.slice(1,1); // 返回Monday
+</code></pre>
+
+<p>splice()方法可以在数组删除指定位置元素后再添加元素。</p>
+
+<pre><code>array.splice(index,howMany,[new elements);
+</code></pre>
+
+<p>第一个参数指定在数组的什么位置操作，第二个参数说明要删除多少个元素(设置为0则不删除)，第三个参数是可选的，是要插入的新元素列表。返回的参数是删除的元素</p>
+
+<pre><code>var myArray = ['Monday','Tuesday'];
+myArray.splice(2,1,&quot;friday&quot;) //结果是['Monday','friday']，返回Tuesday。
+</code></pre>
+
+<p>多维数组：</p>
+
+<pre><code>var myArray = [[1,2],[3,4],[5,6]];
+alert(myArray[1][0]); //结果是3
+</code></pre>
+
+<h2 id="程序控制">程序控制</h2>
+
+<h3 id="比较操作符">比较操作符</h3>
+
+<p>比较操作符，不常见的有 <code>===</code> 即值和类型都相等,具体如下：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript16.jpg" alt="JavaScript16" /></p>
+
+<h3 id="常见程序控制">常见程序控制</h3>
+
+<p>JavaScript中常见的程序控制有： <code>if</code> <code>if else</code> <code>switch</code> ,循环和控制结构： <code>while</code> <code>do...while</code> <code>for</code> <code>for in</code> 。不常见的有 <code>for in</code> ， <code>for in</code> 是一种特殊循环，用于在对象的属性里进行循环，类似编程中的foreach。</p>
+
+<h3 id="设置和使用定时器">设置和使用定时器</h3>
+
+<p>很多情况下我们需要   让程序延迟一会儿再执行JavaScript代码，例如：想让一条消息显示一会儿，然后再将其删除。JavaScript提供了两个有用的方法，分别是setTimeout()和setInterval().
+setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调用作为第一个参数传入的函数（或者计算该表达式）。setTimeout()方法返回一个值，如果想取消定时器的函数，可以通过将该返回值传入给clearTimeout()方法来引用它。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        function hide(elementId) {
+            document.getElementById(elementId).innerHTML = &quot;定时任务触发成功！&quot;;
+        }
+
+        window.onload = function () {
+            var time1 = setTimeout(hide('id1'), 3000);
+            clearTimeout(time1);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;id1&quot;&gt;
+            我一会儿会消失~~~
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>setInterval(action,delay)方法的工作方式和setTimeout(action,delay)的差不多，不过setInterval()是重复执行，在两次执行之间，延迟第二个参数指定的毫秒时间。同样可以用返回值调用clearInterval()方法以停止该定时器。</p>
+
+<h1 id="对象">对象</h1>
+
+<h2 id="面向对象编程">面向对象编程</h2>
+
+<p>面向对象编程的优点：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript17.jpg" alt="JavaScript17" /></p>
+
+<h2 id="创建直接实例">创建直接实例</h2>
+
+<p>Javascript有一个内置的对象Object，利用它可以创建一个空白的对象，这个时候它没有任何属性和方法，我们给它添加属性添加方法：</p>
+
+<pre><code>&lt;script&gt;
+    //新建对象
+    myNewObject = new Object();
+    //增加属性
+    myNewObject.info = &quot;我是一个新的对象！&quot;;
+    //增加方法
+    function myFunc() {
+        //this指向函数的父对象，即调用函数的对象，不是用对象而是直接调用的时候，
+        //this指代window，因为window没有info对象，所以会触发异常报错。
+        alert(this.info);
+    }
+    myNewObject.showInfo = myFunc;
+    //调用方法
+    myNewObject.showInfo();
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="匿名函数">匿名函数</h2>
+
+<p>还可以用另一种方法来给对象添加方法，因它不需要函数名称，所以被称为匿名方法：</p>
+
+<pre><code>&lt;script&gt;
+    //新建对象
+    myNewObject = new Object();
+    //增加属性
+    myNewObject.info = &quot;我是一个新的对象！&quot;;
+    //增加方法
+
+    myNewObject.showInfo = function () {
+        //this指向函数的父对象，即调用函数的对象，不是用对象而是直接调用的时候，
+        //this指代window，因为window没有info对象，所以会触发异常报错。
+        alert(this.info);
+    }
+    //调用方法
+    myNewObject.showInfo();
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="使用构造函数">使用构造函数</h2>
+
+<p>如果创建多个函数，上面的方法就需要重复操作了，更好的方法是使用对象构造函数来创建模板，方便多次实例化，同时它可以附带多个参数，进行定制对象。</p>
+
+<pre><code>&lt;script&gt;
+    function myObjectType(perserName) {
+        //增加属性
+        this.info = &quot;我是一个新的对象！&quot;;
+        this.name = perserName;
+        //增加方法
+        this.showInfo = function () {
+            alert(this.info);
+        };
+        this.setInfo = function (newInfo) {
+            this.info = newInfo;//覆盖Info属性
+        };
+    }
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="对象实例化">对象实例化</h2>
+
+<p>现在可以创建多个含有这个myObjectType函数定义的属性和方法，实例化这个对象很简单：</p>
+
+<pre><code>var myNewObject = new myObjectType(&quot;tom&quot;);
+var myNewObject2 = new myObjectType(&quot;marry&quot;);//可以方便的创建多个
+</code></pre>
+
+<h2 id="拓展对象">拓展对象</h2>
+
+<p>我们可以用关键字prototype，来迅速给已经实例化的对象添加属性和方法然后就可以用于全部实例。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        function myObjectType(perserName) {
+            //增加属性
+            this.info = &quot;我是一个新的对象！&quot;;
+            this.name = perserName;
+            //增加方法
+            this.showInfo = function () {
+                alert(this.info);
+            };
+            this.setInfo = function (newInfo) {
+                this.info = newInfo;//覆盖Info属性
+            };
+        }
+
+        myNewObject = new myObjectType(&quot;Marry&quot;);
+        myObjectType.prototype.sayHello = function () {
+            alert(&quot;我是&quot; + this.name + &quot;，你好啊！&quot;);
+        }
+        myNewObject2 = new myObjectType(&quot;Jack&quot;);
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;button&quot; value=&quot;对象测试&quot; onclick=&quot;myNewObject.sayHello()&quot; /&gt;    
+    &lt;input type=&quot;button&quot; value=&quot;对象测试2&quot; onclick=&quot;myNewObject2.sayHello()&quot; /&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="继承">继承</h2>
+
+<p>JavaScript模拟实现继承的方法也是使用关键字prototype，因为prototype可以添加新的方法和属性，所以我们可以用它把已有的构造函数的方法和属性都添加到新的对象。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        function pet() {
+            this.animal = &quot;&quot;;
+            this.name = &quot;&quot;;
+            //增加方法
+            this.setAnimail = function (newAnimail) {
+                this.animal = newAnimail;
+            };
+            this.setName = function (newName) {
+                this.Name = newName;//覆盖Info属性
+            };
+        }
+
+        var mycat = new pet();
+        mycat.setAnimail = &quot;猫&quot;;
+        mycat.setName = &quot;Tony&quot;;
+
+        function Dog() {
+            this.breed = &quot;&quot;;
+            this.setBreed = function (newBreed) {
+                this.breed = newBreed;
+            }
+        }
+
+        Dog.prototype = new pet();
+
+        var myDog = new Dog();
+        myDog.setAnimail = &quot;狗&quot;;
+        myDog.setName = &quot;Lily&quot;;
+        myDog.setBreed = &quot;藏獒&quot;;
+
+        alert(&quot;我的宠物是&quot; + myDog.animal + &quot;，它的名字是&quot; + myDog.name + &quot;，它的品种是&quot; + myDog.breed);
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>关键字prototype还可以拓展Javascript内置的属性。</strong></p>
+
+<h2 id="封装">封装</h2>
+
+<p>封装是面向对象编程的一种能力，表示把数据和指令隐藏到对象内部。对于Javascript来说，在构造函数内部声明的变量和函数只能在内部使用，他们对于外部是不可见的。如果没有用关键字this把变量和函数注册为属性和方法，它们就不能从函数外部调用。</p>
+
+<pre><code>function Box(width,length,height){
+    function volume(a,b,c){
+    return a * b * c;
+    }
+    this.boxVolume = volume(width,length,height);
+}
+
+var crete = new Box(5,4,3);
+alert(&quot;体积=&quot; + crete.boxVolume); //正常工作
+alert(&quot;体积=&quot; + volume(5,4,3)); //不能正常工作
+</code></pre>
+
+<h2 id="功能检测">功能检测</h2>
+
+<p>在JavaScript中检测浏览器是否支持代码所需的功能可以用尝试使用对方、方法或者属性，然后检测JavaScript返回的值。以下例子是检测是否支持：</p>
+
+<pre><code>&lt;script&gt;
+    if(document.getElementById)
+    {
+        //可以用getElementById方法
+    }
+    else
+    {
+        //不可以用getElementById方法
+    }
+&lt;/script&gt;
+</code></pre>
+
+<p>使用typeof操作符检测某个JavaScript函数是否存在：</p>
+
+<pre><code>&lt;script&gt;        
+    if (typeof document.getElementById == 'function')
+    {
+        //可以用getElementById方法
+    }
+    else
+    {
+        //不可以用getElementById方法
+    }
+&lt;/script&gt;
+</code></pre>
+
+<p>typeof可能返回的值如图：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript18.jpg" alt="JavaScript18" /></p>
+
+<p>使用这种技术不禁可以检测DOM和内置对象、方法和属性的存在，还可以检测脚本中创建的对象、方法和属性。</p>
+
+<h2 id="遍历dom">遍历DOM</h2>
               
             </div>
           </div>
