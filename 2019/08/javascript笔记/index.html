@@ -313,7 +313,10 @@
 <li><a href="#继承">继承</a></li>
 <li><a href="#封装">封装</a></li>
 <li><a href="#功能检测">功能检测</a></li>
-<li><a href="#遍历dom">遍历DOM</a></li>
+<li><a href="#遍历dom">遍历DOM</a>
+<ul>
+<li><a href="#创建节点">创建节点</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -909,6 +912,204 @@ alert(&quot;体积=&quot; + volume(5,4,3)); //不能正常工作
 <p>使用这种技术不禁可以检测DOM和内置对象、方法和属性的存在，还可以检测脚本中创建的对象、方法和属性。</p>
 
 <h2 id="遍历dom">遍历DOM</h2>
+
+<p>W3C“文档对象模型”(DOM)是一种由父子关系组成的层次树形结构，构成当前Web页面的模型。DOM层级结构中最顶端的是window对象，而document对象是它的子对象之一。每个节点都有一个关联的数值，保存在属性noteType中值含义如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">noteType值</th>
+<th align="center">节点类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">元素</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td align="center">属性</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td align="center">文本(包含空白)</td>
+</tr>
+
+<tr>
+<td align="center">4</td>
+<td align="center">CDATA区域</td>
+</tr>
+
+<tr>
+<td align="center">5</td>
+<td align="center">实体引用</td>
+</tr>
+
+<tr>
+<td align="center">6</td>
+<td align="center">实体</td>
+</tr>
+
+<tr>
+<td align="center">7</td>
+<td align="center">执行指令</td>
+</tr>
+
+<tr>
+<td align="center">8</td>
+<td align="center">HTML注释</td>
+</tr>
+
+<tr>
+<td align="center">9</td>
+<td align="center">文档</td>
+</tr>
+
+<tr>
+<td align="center">10</td>
+<td align="center">文档类型(DTD)</td>
+</tr>
+
+<tr>
+<td align="center">11</td>
+<td align="center">文档片段</td>
+</tr>
+
+<tr>
+<td align="center">12</td>
+<td align="center">标签</td>
+</tr>
+</tbody>
+</table>
+
+<p>每个节点都有一个childNodes属性。这个类似数组的属性包含了当前节点全部子节点的集合，被称作节点列表(nodeList)，其中的项目以数值来索引，可以像访问数组元素一样访问集合里的项目，也可以遍历这个数组，但是有些数组方法不可使用，比如push()和pop()。节点列表是一个动态集合，这表示集合的任何改变都会立即反映到列表。</p>
+
+<p>使用firstChild和lastChild可以分别访问节点列表的第一个和最后一个元素，而parentNode属性保存节点的父节点。previousSibling和nextSibling属性分别返回节点的前一个和后一个兄弟节点，如果节点不存在则返回null。</p>
+
+<p>DOM节点的nodeValue属性返回保存在节点里的值，常用来返回文本节点里的内容。nodeName属性以字符串形式返回节点的名称，，这个属性是只读的。当nodeName返回元素名称时并不包括HTML源代码里面使用的尖括号。以下是NodeName可能返回的值：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">notype</th>
+<th align="center">节点类型</th>
+<th align="center">nodeName值</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">元素</td>
+<td align="center">元素(标签)名称</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td align="center">属性</td>
+<td align="center">属性名称</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td align="center">文本</td>
+<td align="center">字符串&rdquo;#text&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<p>document的方法getElementsByTagName可以获得特定的全部标签，将它们放在一个数组里面，它需要的参数是标签的名称。</p>
+
+<p>使用getAttribute()方法可以获取元素的属性值，如果尝试访问不存在的属性，这个方法会返回null，由于JavaScript把null解释为false，利用这个特性可以检查一个元素节点是否定义了特定的属性。</p>
+
+<pre><code>if(myNode.getAttribut(&quot;title&quot;))
+{
+    //执行操作
+}
+</code></pre>
+
+<h3 id="创建节点">创建节点</h3>
+
+<p>给DOM树添加新节点需要两个步骤：</p>
+
+<ul>
+<li>首先是创建一个新节点。节点创建以后处于某种“不确定的状态”,它的确存在，但不属于DOM树的任何位置，也就不会出现在浏览器窗口里了。</li>
+<li>接下来把节点添加到DOM树的指定位置，它就成为页面的组成部分了。</li>
+</ul>
+
+<p>createElement可以用来创建任意的标准Html元素，比如段落、区间、表格、列表等</p>
+
+<pre><code>var newDiv = document.createElement(&quot;div&quot;);
+</code></pre>
+
+<p>页面很多的HTML元素需要文本形式的内容，这就需要使用CreateTextNode()方法，它的参数是元素需要的文本内容：</p>
+
+<pre><code>var newTextNode = document.createTestNode(&quot;这是一些文字！&quot;);
+</code></pre>
+
+<p>为避免重复劳动，如果新建节点和已有的节点比较类似就可以使用cloneNode()来创建节点，cloneNode()接收一个单个的布尔型参数，当参数为true时表示不仅要复制节点，还要复制它的全部子节点。</p>
+
+<p>前面创建的节点不在DOM树的任何位置，需要将新增的节点放置在DOM树里。</p>
+
+<p>把新节点添加到DOM树的最简单的方法是用appendChild()方法把它作为已有节点的一个子节点，这里只需要获取它的父节点。appendChild()不仅可以用于文本节点，也可以用于各种类型的节点。</p>
+
+<pre><code>var newText = document.createTextNode(&quot;这里是一些文字&quot;);
+var myDIv = document.getElementById(&quot;div1&quot;);
+myDIv.appendChild(newText);
+</code></pre>
+
+<p>appendChild()总是把新的节点添加到子节点列表的末尾，而insertBefore()方法可以指定一个子节点，然后把新节点插入到它的前面。这个方法的参数有两个：要插入的新节点和要放在哪个节点前面。</p>
+
+<pre><code>var newpara = document.createElement(&quot;P&quot;);
+var myDIv = document.getElementById(&quot;div1&quot;);
+var para2 = document.getElementById(&quot;para2&quot;);
+myDIv.insertBefore(newpara, para2);
+</code></pre>
+
+<p>replaceChild()方法可以把父节点现有的元素替换为另一个节点。它有两个参数：一个是新的节点，另一个是要被替换的现有节点。</p>
+
+<pre><code>var newpara = document.createElement(&quot;P&quot;);
+var myDIv = document.getElementById(&quot;div1&quot;);
+var para2 = document.getElementById(&quot;para2&quot;);
+myDIv.replaceChild(newpara, para2);
+</code></pre>
+
+<p>removeChild()方法专门用于从DOM树里删除子节点，参数是被删除的节点。方法的返回值是被删除节点的一个引用，在需要时可以利用它对被删除的节点实现进一步操作。</p>
+
+<pre><code>var myDIv = document.getElementById(&quot;div1&quot;);
+var para2 = document.getElementById(&quot;para2&quot;);
+var oldChild = myDIv.removeChild(para2);
+</code></pre>
+
+<p>编辑元素属性，前面介绍过使用getAttribute()读取元素属性，可以用setAttribute()方法为元素节点创建属性并赋值。它有两个参数，一个是要添加的属性，一个是属性值。</p>
+
+<p>在某些情况下我们需要在浏览器加载的页面随时加载Javascript代码，实现方法如下</p>
+
+<pre><code>var scr = document.createElement(&quot;script&quot;);
+src.setAttribute(&quot;src&quot;, &quot;newScript.js&quot;);
+document.head.appendChild(scr);
+</code></pre>
+
+<p>注意，如果以这种方式加载的JavaScript源文件在文件完成加载前，页面不能使用其中包含的代码。在使用这些额外的代码前最好进行校验。几乎现在的浏览器在脚本完成下载之后都会触发一个onload()事件，与window.onload事件的工作方式类似，不过后者是在页面完成加载时触发，而前者是在外部资源（本例是JavaScript源文件）完成下载应可以使用时触发。</p>
+
+<pre><code>var scr = document.createElement(&quot;script&quot;);
+src.setAttribute(&quot;src&quot;, &quot;newScript.js&quot;);
+document.head.appendChild(scr);
+scr.onload = function () {
+    //新代码加载完成后要执行的逻辑
+}
+</code></pre>
+
+<p>动态创建菜单的范例：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript19.jpg" alt="JavaScript19" />
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript20.jpg" alt="JavaScript20" />
+具体的menu.js如下：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript21.jpg" alt="JavaScript20" />
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript22.jpg" alt="JavaScript20" /></p>
               
             </div>
           </div>
