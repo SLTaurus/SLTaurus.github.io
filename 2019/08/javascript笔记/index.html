@@ -261,23 +261,25 @@
 
 <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
+<li><a href="#javascript入门经典第6版">JavaScript入门经典第6版</a>
+<ul>
 <li><a href="#javascript基础">JavaScript基础</a>
 <ul>
 <li><a href="#服务器段和客户端编程">服务器段和客户端编程</a></li>
 <li><a href="#dom简介">DOM简介</a></li>
 <li><a href="#script标签">script标签</a></li>
 <li><a href="#函数">函数</a></li>
+</ul></li>
+<li><a href="#javascript编程">JavaScript编程</a>
+<ul>
 <li><a href="#与用户交互的弹窗">与用户交互的弹窗</a></li>
 <li><a href="#捕获鼠标事件">捕获鼠标事件</a></li>
 <li><a href="#变量作用域">变量作用域</a></li>
-<li><a href="#根据id选择元素">根据Id选择元素</a>
-<ul>
-<li><a href="#innerhtml属性">innerHTML属性</a></li>
-</ul></li>
-<li><a href="#访问浏览器的历史记录window-history">访问浏览器的历史记录window.history</a></li>
-<li><a href="#使用location对象">使用location对象</a></li>
-<li><a href="#浏览器信息">浏览器信息</a></li>
-<li><a href="#日期和时间">日期和时间</a></li>
+<li><a href="#页面获取元素常用方法">页面获取元素常用方法</a></li>
+<li><a href="#浏览器的历史记录window-history对象">浏览器的历史记录window.history对象</a></li>
+<li><a href="#当前加载页面信息window-location对象">当前加载页面信息window.location对象</a></li>
+<li><a href="#浏览器信息navigator对象">浏览器信息navigator对象</a></li>
+<li><a href="#日期和时间date对象">日期和时间Date对象</a></li>
 <li><a href="#利用math对象简化运算">利用Math对象简化运算</a>
 <ul>
 <li><a href="#数学常数">数学常数</a></li>
@@ -290,11 +292,14 @@
 <li><a href="#使用parsefloat-和parseint">使用parseFloat()和parseint()</a></li>
 <li><a href="#无穷大-infinity">无穷大（Infinity）</a></li>
 <li><a href="#字符串方法">字符串方法</a></li>
-<li><a href="#布尔值">布尔值</a></li>
-<li><a href="#非-操作符">&ldquo;非&rdquo;操作符</a></li>
+<li><a href="#布尔值和-非-操作符">布尔值和&rdquo;非&rdquo;操作符</a></li>
 <li><a href="#null和undefined">null和undefined</a></li>
 </ul></li>
-<li><a href="#数组">数组</a></li>
+<li><a href="#数组">数组</a>
+<ul>
+<li><a href="#数组常用">数组常用</a></li>
+<li><a href="#多维数组">多维数组</a></li>
+</ul></li>
 <li><a href="#程序控制">程序控制</a>
 <ul>
 <li><a href="#比较操作符">比较操作符</a></li>
@@ -304,31 +309,64 @@
 </ul></li>
 <li><a href="#对象">对象</a>
 <ul>
-<li><a href="#面向对象编程">面向对象编程</a></li>
+<li><a href="#面向对象编程">面向对象编程</a>
+<ul>
+<li><a href="#对象基础操作">对象基础操作</a>
+<ul>
 <li><a href="#创建直接实例">创建直接实例</a></li>
 <li><a href="#匿名函数">匿名函数</a></li>
 <li><a href="#使用构造函数">使用构造函数</a></li>
 <li><a href="#对象实例化">对象实例化</a></li>
 <li><a href="#拓展对象">拓展对象</a></li>
+</ul></li>
 <li><a href="#继承">继承</a></li>
 <li><a href="#封装">封装</a></li>
 <li><a href="#功能检测">功能检测</a></li>
+</ul></li>
 <li><a href="#遍历dom">遍历DOM</a>
 <ul>
+<li><a href="#dom常用">DOM常用</a></li>
 <li><a href="#创建节点">创建节点</a></li>
+</ul></li>
+<li><a href="#javascript的json">JavaScript的JSON</a>
+<ul>
+<li><a href="#json简述">JSON简述</a></li>
+<li><a href="#访问json数据">访问JSON数据</a>
+<ul>
+<li><a href="#使用浏览器对json直接支持">使用浏览器对JSON直接支持</a></li>
+</ul></li>
+<li><a href="#json的数据序列化">JSON的数据序列化</a></li>
+<li><a href="#json数据类型">JSON数据类型</a></li>
+<li><a href="#模拟关联数组">模拟关联数组</a></li>
+<li><a href="#使用json创建对象">使用JSON创建对象</a>
+<ul>
+<li><a href="#属性">属性</a></li>
+<li><a href="#方法">方法</a></li>
+<li><a href="#属性可以是数组">属性可以是数组</a></li>
+<li><a href="#json对象换可以包含其他对象">JSON对象换可以包含其他对象</a></li>
+</ul></li>
+<li><a href="#json的安全性">JSON的安全性</a></li>
+<li><a href="#如何确定浏览器内置了json解析器">如何确定浏览器内置了JSON解析器</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#html和css">HTML和CSS</a>
+<ul>
+<li><a href="#html5和javascript">HTML5和JavaScript</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
 
-<h1 id="javascript基础">JavaScript基础</h1>
+<h1 id="javascript入门经典第6版">JavaScript入门经典第6版</h1>
 
-<h2 id="服务器段和客户端编程">服务器段和客户端编程</h2>
+<h2 id="javascript基础">JavaScript基础</h2>
+
+<h3 id="服务器段和客户端编程">服务器段和客户端编程</h3>
 
 <p>文字描述如下：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript1.jpg" alt="JavaScript1" /></p>
 
-<h2 id="dom简介">DOM简介</h2>
+<h3 id="dom简介">DOM简介</h3>
 
 <ul>
 <li><p>DOM简介文字描述如下：
@@ -338,7 +376,7 @@
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript3.jpg" alt="JavaScript3" /></p></li>
 </ul>
 
-<h2 id="script标签">script标签</h2>
+<h3 id="script标签">script标签</h3>
 
 <ul>
 <li>使用 <code>&lt;script&gt;&lt;/script&gt;</code> 可以在HTML代码里直接包含Javascript语句。</li>
@@ -350,11 +388,13 @@
 <p>把JavaScript代码保存到单独的文件夹的好处：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript4.jpg" alt="JavaScript" /></p>
 
-<h2 id="函数">函数</h2>
+<h3 id="函数">函数</h3>
 
 <p>函数内部能够包含对其他函数的调用，可以根据需要进行多重嵌套。</p>
 
-<h2 id="与用户交互的弹窗">与用户交互的弹窗</h2>
+<h2 id="javascript编程">JavaScript编程</h2>
+
+<h3 id="与用户交互的弹窗">与用户交互的弹窗</h3>
 
 <ul>
 <li><p>弹出模拟对话框，只有一个按钮。</p>
@@ -373,10 +413,10 @@
 </code></pre></li>
 </ul>
 
-<h2 id="捕获鼠标事件">捕获鼠标事件</h2>
+<h3 id="捕获鼠标事件">捕获鼠标事件</h3>
 
 <ul>
-<li>onClient鼠标点击事件。</li>
+<li>onclick鼠标点击事件。</li>
 
 <li><p>检测鼠标指针和特定元素的位置关系，当鼠标进入页面上被某个元素所占据的区域时，会触发 <code>onMouseOver</code> 事件，鼠标离开这一区域时会触发 <code>onMouseOut</code> 事件。图像翻滚的经典示例：</p>
 
@@ -384,7 +424,7 @@
 </code></pre></li>
 </ul>
 
-<h2 id="变量作用域">变量作用域</h2>
+<h3 id="变量作用域">变量作用域</h3>
 
 <p>函数内部声明的变量只存在于函数内部，下面示例比较出乎意料，变量a是全局变量，在函数内也声明了一个变量a，两个变量是不同的。</p>
 
@@ -405,7 +445,7 @@
 
 <p>最终结果：函数中的a是20，全局变量a仍然是10。</p>
 
-<h2 id="根据id选择元素">根据Id选择元素</h2>
+<h3 id="页面获取元素常用方法">页面获取元素常用方法</h3>
 
 <p>从HTML中选择某个具有特殊Id的元素的方法：</p>
 
@@ -413,8 +453,6 @@
 </code></pre>
 
 <p>它会返回特定Id的页面元素所对应的DOM对象。</p>
-
-<h3 id="innerhtml属性">innerHTML属性</h3>
 
 <p>innerHTML属性可以读取或者设置页面元素的HTML内容。getElementById和innerHTML属性组合可以获取元素HTML内容，也可以修改其内容。</p>
 
@@ -439,7 +477,7 @@
 &lt;/html&gt;
 </code></pre>
 
-<h2 id="访问浏览器的历史记录window-history">访问浏览器的历史记录window.history</h2>
+<h3 id="浏览器的历史记录window-history对象">浏览器的历史记录window.history对象</h3>
 
 <p>浏览器的历史记录是用window.history对象来表示的，他基本上就是访问过的URL列表。history对象的方法让我们能够使用这个列表，但是不能直接操作这些URL。history对象只有一个对象，就是length，也就是它的长度，表示用户访问过的页面的数量。</p>
 
@@ -462,7 +500,7 @@
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="使用location对象">使用location对象</h2>
+<h3 id="当前加载页面信息window-location对象">当前加载页面信息window.location对象</h3>
 
 <p>location对象包含当前加载页面的信息。页面的URL是由多个部分组成的：[协议]//[主机名]:[端口]/[路径][搜索][hash]。下面是个URL范例： <code>http://www.example.com:8080/tools/display.php?section=435#list</code> .location对象的一系列属性包含了URL各个部分的数据，如图所示：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript5.jpg" alt="JavaScript5" /></p>
@@ -480,12 +518,12 @@
     location.reload(true);
 </code></pre>
 
-<h2 id="浏览器信息">浏览器信息</h2>
+<h3 id="浏览器信息navigator对象">浏览器信息navigator对象</h3>
 
 <p>navigator对象包含了浏览器程序本身的数据,展示如图所示：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript6.jpg" alt="JavaScript6" /></p>
 
-<h2 id="日期和时间">日期和时间</h2>
+<h3 id="日期和时间date对象">日期和时间Date对象</h3>
 
 <p>新建一个包含日期和时间信息的Date对象的最简单方法是：</p>
 
@@ -503,19 +541,19 @@
 
 <p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript10.jpg" alt="JavaScript" /></p>
 
-<h2 id="利用math对象简化运算">利用Math对象简化运算</h2>
+<h3 id="利用math对象简化运算">利用Math对象简化运算</h3>
 
 <p>JavaScript中的Math方法：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript11.jpg" alt="JavaScript11" /></p>
 
 <p>特别说下随机数，利用 <code>Math.random()</code> 产生的是0到1之间随机数，要想获取0到100的随机数需要乘以100 <code>Math.random() * 100</code> 。</p>
 
-<h3 id="数学常数">数学常数</h3>
+<h4 id="数学常数">数学常数</h4>
 
 <p>很多常用的数学常熟都以Math的属性的方式出现，如图所示：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript12.jpg" alt="JavaScript12" /></p>
 
-<h3 id="关键字with">关键字with</h3>
+<h4 id="关键字with">关键字with</h4>
 
 <p>任何对象都可以使用with，但是Math对象是最适合用来示范的。通过使用with，可以减少键盘的输入。</p>
 
@@ -533,13 +571,13 @@
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="数据类型">数据类型</h2>
+<h3 id="数据类型">数据类型</h3>
 
-<h2 id="javascript中的数据类型">JavaScript中的数据类型</h2>
+<h3 id="javascript中的数据类型">JavaScript中的数据类型</h3>
 
 <p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript13.jpg" alt="JavaScript13" /></p>
 
-<h3 id="非数值-nan">非数值（NaN）</h3>
+<h4 id="非数值-nan">非数值（NaN）</h4>
 
 <p>当脚本试图把一些非数值数据当作数值处理，却无法得到数值时，其返回值就是NaN。利用isNaN()函数可以检测非数值：</p>
 
@@ -547,7 +585,7 @@
 isNaN('test'); //返回true
 </code></pre>
 
-<h3 id="使用parsefloat-和parseint">使用parseFloat()和parseint()</h3>
+<h4 id="使用parsefloat-和parseint">使用parseFloat()和parseint()</h4>
 
 <p>parseFloat()函数解析字符串，并返回一个浮点数。，如果被解析的字符串的首字符时一个数字，函数会一直解析到数组结束，然后返回一个数值而不是字符串：</p>
 
@@ -564,7 +602,7 @@ parseint(&quot;1110&quot;,2); 返回14
 parseint(&quot;Hello&quot;); 返回NaN
 </code></pre>
 
-<h3 id="无穷大-infinity">无穷大（Infinity）</h3>
+<h4 id="无穷大-infinity">无穷大（Infinity）</h4>
 
 <p>超过Javascript能表示的最大数值，就是无穷大，在大多数的JavaScript版本中最大的数值是正或者负的2的53次方，还有一个表示负的无穷大的关键字字面值：-infinity。利用isFinite()函数可以判断一个数值是否是无穷大。他会把参数转换为数值，如果得到的数值是NaN、正无穷大（Infinity）、负无穷大（-Infinity），函数返回false，其他返回true。</p>
 
@@ -572,12 +610,12 @@ parseint(&quot;Hello&quot;); 返回NaN
 isFinite(&quot;hello&quot;); //返回false
 </code></pre>
 
-<h3 id="字符串方法">字符串方法</h3>
+<h4 id="字符串方法">字符串方法</h4>
 
 <p>比较重要的字符串方法：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript14.jpg" alt="JavaScript14" /></p>
 
-<h3 id="布尔值">布尔值</h3>
+<h4 id="布尔值和-非-操作符">布尔值和&rdquo;非&rdquo;操作符</h4>
 
 <p>布尔值做运算的话 <code>true * 1 = 1</code> <code>false * 1 = 0</code> 即true会换算为1，false会换算为0。下面这些值在JavaScript中都当作false处理</p>
 
@@ -590,15 +628,15 @@ isFinite(&quot;hello&quot;); //返回false
 <li>&rdquo; &ldquo;(空字符串)</li>
 </ul>
 
-<h3 id="非-操作符">&ldquo;非&rdquo;操作符</h3>
-
 <p>当字符!位于布尔变量之前时，Javascript把它解释为非，也就是相反的值。</p>
 
-<h3 id="null和undefined">null和undefined</h3>
+<h4 id="null和undefined">null和undefined</h4>
 
 <p>当我们想让变量具有有效值，却又不是任何数值时，就把null赋值给变量，对数值来说null相当于0，对字符串来说null相当于字符串&rdquo;&ldquo;，对布尔值来说相当于false。与null不同的时undefined不是关键字，而是预定义的全局变量，当某个变量已经在语句里使用了，却没有赋给任何值时，它的值不是null而时undefined，表示Javascript不能识别它。</p>
 
-<h2 id="数组">数组</h2>
+<h3 id="数组">数组</h3>
+
+<h4 id="数组常用">数组常用</h4>
 
 <p>创建新数组的方法：</p>
 
@@ -647,24 +685,26 @@ myArray[] = 'Tuesday';
 myArray.splice(2,1,&quot;friday&quot;) //结果是['Monday','friday']，返回Tuesday。
 </code></pre>
 
-<p>多维数组：</p>
+<h4 id="多维数组">多维数组</h4>
+
+<p>多维数组很少用，这个是示例：</p>
 
 <pre><code>var myArray = [[1,2],[3,4],[5,6]];
 alert(myArray[1][0]); //结果是3
 </code></pre>
 
-<h2 id="程序控制">程序控制</h2>
+<h3 id="程序控制">程序控制</h3>
 
-<h3 id="比较操作符">比较操作符</h3>
+<h4 id="比较操作符">比较操作符</h4>
 
 <p>比较操作符，不常见的有 <code>===</code> 即值和类型都相等,具体如下：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript16.jpg" alt="JavaScript16" /></p>
 
-<h3 id="常见程序控制">常见程序控制</h3>
+<h4 id="常见程序控制">常见程序控制</h4>
 
 <p>JavaScript中常见的程序控制有： <code>if</code> <code>if else</code> <code>switch</code> ,循环和控制结构： <code>while</code> <code>do...while</code> <code>for</code> <code>for in</code> 。不常见的有 <code>for in</code> ， <code>for in</code> 是一种特殊循环，用于在对象的属性里进行循环，类似编程中的foreach。</p>
 
-<h3 id="设置和使用定时器">设置和使用定时器</h3>
+<h4 id="设置和使用定时器">设置和使用定时器</h4>
 
 <p>很多情况下我们需要   让程序延迟一会儿再执行JavaScript代码，例如：想让一条消息显示一会儿，然后再将其删除。JavaScript提供了两个有用的方法，分别是setTimeout()和setInterval().
 setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调用作为第一个参数传入的函数（或者计算该表达式）。setTimeout()方法返回一个值，如果想取消定时器的函数，可以通过将该返回值传入给clearTimeout()方法来引用它。</p>
@@ -695,14 +735,16 @@ setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调�
 
 <p>setInterval(action,delay)方法的工作方式和setTimeout(action,delay)的差不多，不过setInterval()是重复执行，在两次执行之间，延迟第二个参数指定的毫秒时间。同样可以用返回值调用clearInterval()方法以停止该定时器。</p>
 
-<h1 id="对象">对象</h1>
+<h2 id="对象">对象</h2>
 
-<h2 id="面向对象编程">面向对象编程</h2>
+<h3 id="面向对象编程">面向对象编程</h3>
 
 <p>面向对象编程的优点：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript17.jpg" alt="JavaScript17" /></p>
 
-<h2 id="创建直接实例">创建直接实例</h2>
+<h4 id="对象基础操作">对象基础操作</h4>
+
+<h5 id="创建直接实例">创建直接实例</h5>
 
 <p>Javascript有一个内置的对象Object，利用它可以创建一个空白的对象，这个时候它没有任何属性和方法，我们给它添加属性添加方法：</p>
 
@@ -723,7 +765,7 @@ setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调�
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="匿名函数">匿名函数</h2>
+<h5 id="匿名函数">匿名函数</h5>
 
 <p>还可以用另一种方法来给对象添加方法，因它不需要函数名称，所以被称为匿名方法：</p>
 
@@ -744,7 +786,7 @@ setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调�
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="使用构造函数">使用构造函数</h2>
+<h5 id="使用构造函数">使用构造函数</h5>
 
 <p>如果创建多个函数，上面的方法就需要重复操作了，更好的方法是使用对象构造函数来创建模板，方便多次实例化，同时它可以附带多个参数，进行定制对象。</p>
 
@@ -764,7 +806,7 @@ setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调�
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="对象实例化">对象实例化</h2>
+<h5 id="对象实例化">对象实例化</h5>
 
 <p>现在可以创建多个含有这个myObjectType函数定义的属性和方法，实例化这个对象很简单：</p>
 
@@ -772,7 +814,7 @@ setTimeout(action,delay)方法在第二个参数所指定的毫秒之后，调�
 var myNewObject2 = new myObjectType(&quot;marry&quot;);//可以方便的创建多个
 </code></pre>
 
-<h2 id="拓展对象">拓展对象</h2>
+<h5 id="拓展对象">拓展对象</h5>
 
 <p>我们可以用关键字prototype，来迅速给已经实例化的对象添加属性和方法然后就可以用于全部实例。</p>
 
@@ -809,7 +851,7 @@ var myNewObject2 = new myObjectType(&quot;marry&quot;);//可以方便的创建�
 &lt;/html&gt;
 </code></pre>
 
-<h2 id="继承">继承</h2>
+<h4 id="继承">继承</h4>
 
 <p>JavaScript模拟实现继承的方法也是使用关键字prototype，因为prototype可以添加新的方法和属性，所以我们可以用它把已有的构造函数的方法和属性都添加到新的对象。</p>
 
@@ -860,7 +902,7 @@ var myNewObject2 = new myObjectType(&quot;marry&quot;);//可以方便的创建�
 
 <p><strong>关键字prototype还可以拓展Javascript内置的属性。</strong></p>
 
-<h2 id="封装">封装</h2>
+<h4 id="封装">封装</h4>
 
 <p>封装是面向对象编程的一种能力，表示把数据和指令隐藏到对象内部。对于Javascript来说，在构造函数内部声明的变量和函数只能在内部使用，他们对于外部是不可见的。如果没有用关键字this把变量和函数注册为属性和方法，它们就不能从函数外部调用。</p>
 
@@ -876,7 +918,7 @@ alert(&quot;体积=&quot; + crete.boxVolume); //正常工作
 alert(&quot;体积=&quot; + volume(5,4,3)); //不能正常工作
 </code></pre>
 
-<h2 id="功能检测">功能检测</h2>
+<h4 id="功能检测">功能检测</h4>
 
 <p>在JavaScript中检测浏览器是否支持代码所需的功能可以用尝试使用对方、方法或者属性，然后检测JavaScript返回的值。以下例子是检测是否支持：</p>
 
@@ -911,7 +953,9 @@ alert(&quot;体积=&quot; + volume(5,4,3)); //不能正常工作
 
 <p>使用这种技术不禁可以检测DOM和内置对象、方法和属性的存在，还可以检测脚本中创建的对象、方法和属性。</p>
 
-<h2 id="遍历dom">遍历DOM</h2>
+<h3 id="遍历dom">遍历DOM</h3>
+
+<h4 id="dom常用">DOM常用</h4>
 
 <p>W3C“文档对象模型”(DOM)是一种由父子关系组成的层次树形结构，构成当前Web页面的模型。DOM层级结构中最顶端的是window对象，而document对象是它的子对象之一。每个节点都有一个关联的数值，保存在属性noteType中值含义如下：</p>
 
@@ -1032,7 +1076,7 @@ alert(&quot;体积=&quot; + volume(5,4,3)); //不能正常工作
 }
 </code></pre>
 
-<h3 id="创建节点">创建节点</h3>
+<h4 id="创建节点">创建节点</h4>
 
 <p>给DOM树添加新节点需要两个步骤：</p>
 
@@ -1110,6 +1154,233 @@ scr.onload = function () {
 具体的menu.js如下：
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript21.jpg" alt="JavaScript20" />
 <img src="https://SLTaurus.github.io/images/JavaScript/JavaScript22.jpg" alt="JavaScript20" /></p>
+
+<h3 id="javascript的json">JavaScript的JSON</h3>
+
+<h4 id="json简述">JSON简述</h4>
+
+<p>JSON是JavaScript object notation的缩写，JSON数据的表示方式是一系列成对的参数与值，参数和值由冒号分隔，每对之间以逗号分隔。</p>
+
+<pre><code>&quot;param1&quot;:&quot;value1&quot;,&quot;param2&quot;:&quot;value2&quot;,&quot;param3&quot;:&quot;value3&quot;
+</code></pre>
+
+<p>最终这些用花括号包围起来，构成表示数据的JSON对象：</p>
+
+<pre><code>var jsonObject = {
+        &quot;param1&quot;: &quot;value1&quot;,
+        &quot;param2&quot;: &quot;value2&quot;,
+        &quot;param3&quot;: &quot;value3&quot;
+    }
+</code></pre>
+
+<p>对象jsonObject的定义使用标准JavaScript表示法的子集，这只是有效的JavaScript代码的一小部分。
+使用JSON表示法编写的对象也具有属性和方法，能够利用句号表示法进行访问：</p>
+
+<pre><code>alert(jsonObject.param1); //显示value1
+</code></pre>
+
+<p>更好的是json是一种以字符串格式实现数据交换的通用语法，不仅仅是对象，任何能够以一系列&rdquo;参数&rdquo;:&ldquo;值”对表示的数据都能够以Json表示法来表示。前面提到的&rdquo;序列化&rdquo;过程可以方便的把json对象转换为字符串，而序列化的数据便于在网络环境中进行存储和传输。</p>
+
+<p>json和xml的区别：作为一种通用的数据交换方法，JSON的用途有些类似于XML，但是它更易于阅读和理解。另外大型的XML文件解析过程较慢，而JSON提供的是JSON对象，随时可以使用。</p>
+
+<p>JSON具有一些重要的优点，从而在近期获得了巨大的发展动力。</p>
+
+<ul>
+<li>对人类和计算机都很易读。</li>
+<li>概念很简单，JSON就是一系列用花括号包含的一系列&rdquo;参数&rdquo;:&ldquo;值&rdquo;对。</li>
+<li>基本上是其义自明的。</li>
+<li>能够快速创建和解析。</li>
+<li>它是JavaScript的一个子集，不需要特殊的解释程序和额外的软件包。</li>
+</ul>
+
+<h4 id="访问json数据">访问JSON数据</h4>
+
+<p>直到最近，才有一些浏览器可以直接支持JSON，但是由于json是JavaScript的一个子集，我们可以使用JavaScript的函数eval()把JSON转换为JavaScript对象。</p>
+
+<p>eval()会计算或运行作为参数传递的内容，如果参数是表达式，eval()会计算它的值，如果参数包含一个或者多个JavaScript语句，eval()会执行这些语句。示例如下：</p>
+
+<pre><code>var x = eval(4 * 3); //x = 12
+eval(&quot;a= 1;b=2; docunment.write(a+b);&quot;); //向页面写入3
+</code></pre>
+
+<p>eval()函数使用JavaScript解释程序解析JSON文本来生成JavaScript对象，然后就可以在对象里使用这个对象了：</p>
+
+<pre><code>var user = {
+    &quot;userName&quot;: &quot;Sean&quot;,
+    &quot;location&quot;: &quot;China&quot;,
+    &quot;height&quot;: &quot;1.85&quot;
+}
+var myObject = eval('(' + user + ')');
+alert(myObject.userName);
+</code></pre>
+
+<p><strong>注意：字符串必须像这样包含在括号里，以避免造成含义不明确的JavaScript语法。</strong></p>
+
+<h5 id="使用浏览器对json直接支持">使用浏览器对JSON直接支持</h5>
+
+<p>最新的浏览器都对JSON提供直接支持，而不需要使用eval()函数，这些浏览器包括：</p>
+
+<ul>
+<li>FireFix(Mozilla) 3.5+</li>
+<li>IE 8+</li>
+<li>Goole Chrome</li>
+<li>Opera 10+</li>
+<li>Safari 4+</li>
+</ul>
+
+<p>浏览器会创建一个名为JSON的Javascript对象来管理JSON的编码和解码。这个对象有两个方法stringify()和parse()。JSON.parse()方法用于解释JSON字符串，它接受一个字符串作为参数，解析它，创建一个对象并且根据字符串中找到的&rdquo;参数&rdquo;:&ldquo;值&rdquo;对设置对象的参数：</p>
+
+<pre><code>window.onload = function() {
+        var user = '{&quot;userName&quot;: &quot;Sean&quot;,&quot;location&quot;: &quot;China&quot;,&quot;height&quot;: &quot;1.85&quot; }';            
+        var myObject = JSON.parse(user);
+        var out = &quot;&quot;;
+        for (i in myObject) {
+            out += i + &quot; = &quot; + myObject[i] + &quot;\n&quot;;
+        }            
+        alert(out);
+    }
+</code></pre>
+
+<p>结果如图所示：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript23.jpg" alt="JavaScript23" /></p>
+
+<h4 id="json的数据序列化">JSON的数据序列化</h4>
+
+<p>在数据存储和转化时，序列化是指把数据转换为便于通过网络进行存储和传输的形式，稍后再恢复为原始的格式，JSON选择字符串作为序列化数据的格式。在支持JSON的浏览器里，我们只需要简单的使用JSON.stringify()方法。</p>
+
+<pre><code>var dan = new Object();
+dan.height = 1.86;
+dan.age = 28;
+alert(JSON.stringify(dan));
+</code></pre>
+
+<h4 id="json数据类型">JSON数据类型</h4>
+
+<p>每个&rdquo;参数&rdquo;:&ldquo;值&rdquo;对里的参数部分必须遵循一些简单的语法规则：</p>
+
+<ul>
+<li>不能是JavaScript保留的关键字</li>
+<li>不能以数字开头</li>
+<li>除下划线和美元符号外，不能包含任何特殊字符。</li>
+</ul>
+
+<p>JSON的对象的值可以是如下的一些数据类型：</p>
+
+<ul>
+<li>数值</li>
+<li>字符串</li>
+<li>布尔值</li>
+<li>数组</li>
+<li>对象</li>
+<li>null(空)</li>
+</ul>
+
+<p>javascript有一些数据类型不属于JSON标准，包括Date、Error、Math、和function。这些数据必须用其他数据格式来表示，使用遵循相同编码和解码规则的其他数据格式来进行处理。</p>
+
+<h4 id="模拟关联数组">模拟关联数组</h4>
+
+<p>JavaScript的数组里的元素具有唯一的数值索引：</p>
+
+<pre><code>var myArray = [];
+myArray[0] = 'Monday';
+</code></pre>
+
+<p>在其他编程方式中可以使用文本形式的索引,但是JavaScript并不支持：</p>
+
+<pre><code>myArray['startDay'] = 'Monday';
+</code></pre>
+
+<p>然而利用对象可以方便的模拟这种行为，比如利用JSON表示法可以让上述代码更易于阅读和理解：</p>
+
+<pre><code>var conference = {
+    &quot;startDay&quot;: &quot;Monday&quot;,
+    &quot;nextDay&quot;: &quot;Tuesday&quot;,
+    &quot;endDay&quot;: &quot;Wednesday&quot;
+};
+alert(conference[&quot;startDay&quot;]);
+</code></pre>
+
+<p>在Javascript中Object.property和Object[&ldquo;property&rdquo;]是相同的语法。虽然看上去挺像字符串索引的数组，但是对它进行遍历，会得到对象的三个属性和它包含的全部方法。</p>
+
+<h4 id="使用json创建对象">使用JSON创建对象</h4>
+
+<h5 id="属性">属性</h5>
+
+<p>于创建数组不同，我们在用JSON表示法表示对象时，是把对象包括在花括号里，而不是方括号里，并且以&rdquo;参数&rdquo;:&ldquo;值&rdquo;对的方式列出属性：</p>
+
+<pre><code>var user = {&quot;userName&quot;: &quot;Sean&quot;,&quot;location&quot;: &quot;China&quot;,&quot;height&quot;: &quot;1.85&quot; };
+</code></pre>
+
+<p>之后就可以用常见的形式访问对象的属性：</p>
+
+<pre><code>var name = user.userName; //变量name包含的值是Sean
+</code></pre>
+
+<h5 id="方法">方法</h5>
+
+<p>同样使用上面的形式，在对象定义之中利用匿名函数就可以给对象添加方法。</p>
+
+<pre><code>var user = {
+    &quot;userName&quot;: &quot;Sean&quot;,
+    &quot;location&quot;: &quot;China&quot;,
+    &quot;height&quot;: &quot;1.85&quot;,
+    &quot;setName&quot;: function (newName) {
+        this.userName = newName;
+    };
+
+var userName = prompt(&quot;请输入一个新的用户名&quot;);
+user.setName(userName);
+</code></pre>
+
+<p><strong>注意：在JavaScript环境中使用这种方式添加方法是可以的，但当JSON作为通用数据交换格式时，不能这样使用。在支持JSON的浏览器里面，以这种形式声明的函数会直接解析错误，但eval()函数仍然可以工作。当然如果实例化的脚本只是在自己的脚本里使用，还是可以这样使用的。这是考虑到JSON的安全性。</strong></p>
+
+<h5 id="属性可以是数组">属性可以是数组</h5>
+
+<p>属性可以是数组，示例如下：</p>
+
+<pre><code>var user = {
+    &quot;userName&quot;: &quot;Sean&quot;,
+    &quot;location&quot;: &quot;China&quot;,
+    &quot;height&quot;: &quot;1.85&quot;,
+    &quot;hasBooks&quot;:[&quot;小人国&quot;,&quot;三国志&quot;,&quot;钢炼&quot;] 
+};
+var book = user.hasBooks[0];
+alert(book);
+</code></pre>
+
+<h5 id="json对象换可以包含其他对象">JSON对象换可以包含其他对象</h5>
+
+<p>JSON对象换可以包含其他对象，通过把数组元素本身设置为JSON编码的对象，我们就可以用句点表示法访问它们。在下面的示例中，属性booklist的值是json对象组成的数组，每个JSON对象分别用于保存图书的标题和作者信息。在获得图书列表后可以很方便的获取标题和作者信息属性。</p>
+
+<pre><code>var bookListObject = {
+    &quot;bookList&quot;: [{ &quot;title&quot;: &quot;小人国&quot;, &quot;author&quot;: &quot;乔纳森·斯威夫特&quot; },
+        { &quot;title&quot;: &quot;三国志&quot;, &quot;author&quot;: &quot;陈寿&quot; }
+    ]
+};
+alert(bookListObject.bookList[1].author);//显示第二本书的作者-陈寿
+</code></pre>
+
+<h4 id="json的安全性">JSON的安全性</h4>
+
+<p>使用JavaScript的eval()函数可以执行任何JavaScript命令，这可能会导致潜在的安全问题，特别是处理来源不明的JSON数据时。更安全的方法是使用浏览器内置的JSON解析器把JSON字符串转化为Javascript对象，它只识别JSON文本，而且不会执行脚本命令。同时内置的JSON解析器的速度也比eval()函数快一些，基本较新的浏览器都内置了JSON解析器。</p>
+
+<h4 id="如何确定浏览器内置了json解析器">如何确定浏览器内置了JSON解析器</h4>
+
+<p>确保脚本中没有自己定义的名为JSON的对象，然后利用typeof操作符可以判断是否存在JSON对象：</p>
+
+<pre><code>if(typeof JSON == 'object')
+{
+    alert(&quot;浏览器内置了JSON解析器！&quot;);
+}
+else
+{
+    alert(&quot;浏览器没有内置JSON解析器！&quot;);
+}
+</code></pre>
+
+<h2 id="html和css">HTML和CSS</h2>
+
+<h3 id="html5和javascript">HTML5和JavaScript</h3>
               
             </div>
           </div>
