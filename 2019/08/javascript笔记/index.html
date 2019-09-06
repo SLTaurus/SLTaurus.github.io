@@ -351,7 +351,17 @@
 </ul></li>
 <li><a href="#html和css">HTML和CSS</a>
 <ul>
-<li><a href="#html5和javascript">HTML5和JavaScript</a></li>
+<li><a href="#html5和javascript">HTML5和JavaScript</a>
+<ul>
+<li><a href="#html5一些重要的新元素">HTML5一些重要的新元素</a>
+<ul>
+<li><a href="#video-元素"><code>&lt;video&gt;</code>元素</a></li>
+<li><a href="#用-audio-标签播放声音">用<code>&lt;audio&gt;</code>标签播放声音</a></li>
+<li><a href="#利用-canvas-在页面上绘图">利用<code>&lt;canvas&gt;</code>在页面上绘图</a></li>
+<li><a href="#html5拖放操作">HTML5拖放操作</a></li>
+<li><a href="#本地存储">本地存储</a></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1381,6 +1391,348 @@ else
 <h2 id="html和css">HTML和CSS</h2>
 
 <h3 id="html5和javascript">HTML5和JavaScript</h3>
+
+<p>HTML5的新标签：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>&lt;section&gt;</code></td>
+<td align="left">定义页面的区域</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;header&gt;</code></td>
+<td align="left">页面标题</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;footer&gt;</code></td>
+<td align="left">页面页脚</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;nav&gt;</code></td>
+<td align="left">页面导航元素</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;article&gt;</code></td>
+<td align="left">页面的文章或主要内容</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;aside&gt;</code></td>
+<td align="left">页面的附加内容，比如边栏</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;figure&gt;</code></td>
+<td align="left">文章的配图</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;figcaption&gt;</code></td>
+<td align="left"><code>&lt;figure&gt;</code>元素的标题</td>
+</tr>
+
+<tr>
+<td align="center"><code>&lt;summary&gt;</code></td>
+<td align="left"><code>&lt;details&gt;</code>元素的可视标题</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="html5一些重要的新元素">HTML5一些重要的新元素</h4>
+
+<h5 id="video-元素"><code>&lt;video&gt;</code>元素</h5>
+
+<p>HTML5提供了一个崭新的<code>&lt;video&gt;</code>元素，其目标是嵌入任意一种视频格式。使用新的<code>&lt;video&gt;</code>标签可以像下面这样实现QuickTime视频：</p>
+
+<pre><code>&lt;video src=&quot;Resources/video.mp4&quot;/&gt;
+</code></pre>
+
+<p>当前获得HTML5广泛支持的视频格式有三种：MP4、WebM和Ogg。给<code>&lt;video&gt;</code>元素指定高度和宽度是个很好的习惯，否则浏览器不知道应该保留多大面积的区域，会导致加载时改变页面布局。还建议在<code>&lt;video&gt;</code>和<code>&lt;/video&gt;</code>之间设置一些文本用于在不支持video标签的浏览器显示。</p>
+
+<pre><code>&lt;video id=&quot;vid1&quot; width=&quot;400&quot; height=&quot;300&quot; controls=&quot;controls&quot; loop autoplay poster=&quot;Resources/bajian2.jpg&quot;&gt;
+    &lt;source src=&quot;Resources/video.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    &lt;source src=&quot;Resources/video.ogg&quot; type=&quot;video/ogg&quot; /&gt;
+    &lt;source src=&quot;Resources/video.webm&quot; type=&quot;video/webm&quot; /&gt;
+    &lt;p&gt;视频标签不被支持&lt;/p&gt;
+&lt;/video&gt;
+</code></pre>
+
+<p>以下是<code>&lt;video&gt;</code>标签的一些重要属性：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">loop</td>
+<td align="left">循环播放</td>
+</tr>
+
+<tr>
+<td align="center">autoplay</td>
+<td align="left">视频加载后自动播放</td>
+</tr>
+
+<tr>
+<td align="center">controls</td>
+<td align="left">显示回放控件(其外观取决于浏览器)</td>
+</tr>
+
+<tr>
+<td align="center">ended</td>
+<td align="left">回放结束时，值为true(只读)</td>
+</tr>
+
+<tr>
+<td align="center">paused</td>
+<td align="left">回放结束时，值为true(只读)</td>
+</tr>
+
+<tr>
+<td align="center">poster</td>
+<td align="left">设置影片加载时显示的图片</td>
+</tr>
+
+<tr>
+<td align="center">volume</td>
+<td align="left">音量，值是从0(静音)到1(最大)</td>
+</tr>
+</tbody>
+</table>
+
+<p>访问这些属性的方式与对待其他JavaScript或DOM对象是一样的：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        function btnClick() {
+            var myVideo = document.getElementById(&quot;vid1&quot;).volume += -0.5;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;video id=&quot;vid1&quot; width=&quot;400&quot; height=&quot;300&quot; controls=&quot;controls&quot; loop autoplay poster=&quot;Resources/bajian2.jpg&quot;&gt;
+        &lt;source src=&quot;Resources/video.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+        &lt;source src=&quot;Resources/video.ogg&quot; type=&quot;video/ogg&quot; /&gt;
+        &lt;source src=&quot;Resources/video.webm&quot; type=&quot;video/webm&quot; /&gt;
+        &lt;p&gt;视频标签不被支持&lt;/p&gt;
+    &lt;/video&gt;&lt;br /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;减音量&quot; onclick=&quot;btnClick()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>以及在视频暂停时向用户显示提示消息：</p>
+
+<pre><code>if (document.getElementById(&quot;vid1&quot;).paused) {
+            alert(&quot;累了就休息下吧.&quot;);
+        }
+</code></pre>
+
+<p>利用JavaScript的canPlayType(type)方法可以检查对特定解码器的支持，其中type是表示媒体类型的字符串，比如&rdquo;video/mp4&rdquo;.如果浏览器确定支持指定的内容，这个方法会返回一个空字符串，如果浏览器认为它支持指定格式，方法会返回&rdquo;probably&rdquo;，其他情况就会返回&rdquo;maybe&rdquo;。</p>
+
+<p>利用pause()和play()命令也可以控制视频回放：</p>
+
+<pre><code>var myVideo = document.getElementById(&quot;vid1&quot;).pause();
+var myVideo = document.getElementById(&quot;vid1&quot;).play();
+</code></pre>
+
+<h5 id="用-audio-标签播放声音">用<code>&lt;audio&gt;</code>标签播放声音</h5>
+
+<p><code>&lt;audio&gt;</code>标签与<code>&lt;video&gt;</code>标签类似，使用<code>&lt;audio&gt;</code>元素最简单的方法是：</p>
+
+<pre><code>&lt;audio src=&quot;Resources/一身诗意千寻瀑.mp3&quot;&gt;&lt;/audio&gt;
+</code></pre>
+
+<p>还可以对回放进行更多的控制：</p>
+
+<pre><code>&lt;audio src=&quot;Resources/一身诗意千寻瀑.mp3&quot; autoplay loop&gt;&lt;/audio&gt;
+</code></pre>
+
+<p>像前面处理视频文件一样，我们可以包含多个不同的格式，以确保浏览器可以找到自己能播放的格式，<code>&lt;audio&gt;</code>元素支持的常见文件格式是MP3、WAV和Ogg：</p>
+
+<pre><code>&lt;audio controls&gt;
+    &lt;source src=&quot;Resources/一身诗意千寻瀑.mp3&quot;  type=&quot;audio/mp3&quot;/&gt;
+    &lt;source src=&quot;Resources/一身诗意千寻瀑.ogg&quot; type=&quot;audio/ogg&quot; /&gt;
+    &lt;p&gt;你的浏览器不支持音频播放&lt;/p&gt;
+&lt;/audio&gt;
+</code></pre>
+
+<p>在JavaScript中控制音频的方式和针对<code>&lt;video&gt;</code>使用的方法差不多。利用JavaScript添加和播放音频文件时，只需要把它当作JavaScript或DOM对象即可：</p>
+
+<pre><code>var soundElement = document.createElement('audio');
+soundElement.setAttribute('src', 'Resources/一身诗意千寻瀑.mp3');
+soundElement.play();
+soundElement.pause();
+</code></pre>
+
+<p><code>&lt;audio&gt;</code>和<code>&lt;video&gt;</code>标签有很多可用的属性可以通过JavaScript进行控制，下面列出了一些，它们是立即发挥作用的：</p>
+
+<pre><code>mediaElement.duration //持续时间
+mediaElement.currentTime //跳转到播放内容的多少秒
+mediaElement.playbackRate //播放速率
+mediaElement.muted //静音
+</code></pre>
+
+<h5 id="利用-canvas-在页面上绘图">利用<code>&lt;canvas&gt;</code>在页面上绘图</h5>
+
+<p><code>&lt;canvas&gt;</code>标签能够提供的时页面上的一个矩形区域，我们可以利用JavaScript在其中绘制图形和图像，也可以加载和展现图像文件并控制其显示方式。这个元素有很多实用领域，比如动态图标，JavaScript/HTML游戏和受控动画。<code>&lt;canvas&gt;</code>元素只是通过width和height参数定义一个矩形区域，其他与创建图形内容相关的内容都是通过JavaScript实现的。Canvas 2D API就是绘画方法的一个大集合。</p>
+
+<p><code>&lt;canvas&gt;</code>唯一支持的形状就是简单的矩形：</p>
+
+<pre><code>fillRect(x,y,width,height) //绘制一个填充的矩形
+strokeRect(x,y,width,height) //绘制一个矩形框
+clearRect(x,y,width,height) //绘制一个矩形框
+</code></pre>
+
+<p>其他形状的就需要使用一个或多个路径绘制函数才能实现。<code>&lt;canvas&gt;</code>提供了很多不同的路径绘制函数：</p>
+
+<pre><code>moveTo(x,y) //会移动到指定位置，不绘制任何东西。
+lineTo(x,y) //会从当前位置到指定位置绘制一条直线。
+arc(x,y,r,startAngle,endAngle,anti) //绘制弧线，圆心位置是xy，半径是r，起始角度是startAngle，结束角度是endAngle，默认的绘制方向是顺时针。如果最后一个参数是true，就会以逆时针方向绘制。
+</code></pre>
+
+<p>为了使用这些基本命令来绘制形状，还需要其他方法：</p>
+
+<pre><code>object.beginPath();
+object.closePath(); //完成剩余部分形状
+object.stroke(); //绘制轮廓形状
+object.fill(); //绘制填充形状
+</code></pre>
+
+<p>利用<code>&lt;canvas&gt;</code>实现一个简单的动画，就是一个红色圆盘（表示一个球）在页面上以圆形轨迹运动。示例如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script&gt;
+        var context;
+        var x = 50;
+        var y = 50;
+        var counter = 0;
+        function paint() {
+            context.beginPath();
+            context.fillStyle = &quot;#ff0000&quot;;
+            context.arc(x, y, 15, 0, Math.PI * 2, false);
+            context.closePath();
+            context.fill();
+        }
+
+        function animate() {
+            context.clearRect(0, 0, 400, 300);
+            counter++;
+            x += 20 * Math.sin(counter);
+            y += 20 * Math.cos(counter);
+            paint();
+        }
+
+        window.onload = function () {
+            context = canvas1.getContext('2d');//首先需要指定渲染环境
+            setInterval(animate, 100);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;canvas id=&quot;canvas1&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;
+        &lt;P&gt;你的浏览器不支持画布元素&lt;/P&gt;
+    &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h5 id="html5拖放操作">HTML5拖放操作</h5>
+
+<p>拖放操作是HTML5标准的组成部分，几乎页面上的所有东西都是可以拖放的，只需要设置他的draggable属性为true：</p>
+
+<pre><code>&lt;img src=&quot;Resources/bajian2.jpg&quot; width=&quot;300&quot; height=&quot;500&quot; draggable=&quot;true&quot; /&gt;
+</code></pre>
+
+<p>拖动操作本身没什么意义，需要被拖动的元素可以放下才有意义。为了定义元素能够被放到什么位置，并且控制拖动和放下的过程，我们需要编写事件监听器来检测和控制拖放过程的各个部分。能够用于控制拖放操作的事件有：</p>
+
+<ul>
+<li>dragstart</li>
+<li>drag</li>
+<li>dragenter</li>
+<li>dragleave</li>
+<li>dragover</li>
+<li>drop</li>
+<li>dragend</li>
+</ul>
+
+<p>为了控制拖放操作，我们需要定义源元素（拖放开始的地方）、数据（拖动的对象）和放置目标（捕获拖动元素的区域）。<strong>不是任何元素都能够作为放置区域的，比如<code>&lt;img&gt;</code>就不能接受放置操作。</strong></p>
+
+<p>dataTransfer属性包含的数据会在拖放操作中进行传递，它通常在dragstart事件处理器里进行设置，由drop事件处理器里进行读取和设置。setData(format.data)和getData(format.data)分别用于这个属性的设置和读取。示例如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        body { background-color:#ddd;font-family:Arial,Verdana,sans-serif; }
+        #drop1 { width:200px;height:200px;border:1px solid black; background-color:white}
+        #drag1 {width:80px;height:150px;}
+    &lt;/style&gt;
+    &lt;script&gt;
+        //代码定义了三个重要的函数，他们都会接收到当前处理的事件
+
+        //函数在拖动元素经过放置区域时执行，它的作用是阻止放置区域执行默认操作（因为默认的行为就是不允许拖动）
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        //函数在拖放开始时执行，它把dataTransfer属性设置为拖动元素的id
+        function drag(ev) {
+            ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
+        }
+
+        //函数会在拖动元素被放下时执行，他会读取dataTransfer属性的值来获得拖动元素的id，把这个元素设置为放置区域的子元素。这时仍需要阻止放置区域执行默认操作。
+        function drop(ev) {
+            var data = ev.dataTransfer.getData(&quot;Text&quot;);
+            ev.target.appendChild(document.getElementById(data));//ev.target在后台会基于拖放操作的状态而自动修改为相应的事件类型。
+            ev.preventDefault();
+        }
+
+        window.onload = function () {
+            var dragged = document.getElementById(&quot;drag1&quot;);
+            var drophere = document.getElementById(&quot;drop1&quot;);
+            dragged.ondragstart = drag;
+            drophere.ondragover = allowDrop;
+            drophere.ondrop = drop;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;drop1&quot;&gt;&lt;/div&gt;  &lt;!--捕获拖放操作的放置区域--&gt;
+    &lt;p&gt;Drag the image below into the box above:&lt;/p&gt;
+    &lt;img id=&quot;drag1&quot; src=&quot;Resources/bajian2.jpg&quot; draggable=&quot;true&quot;/&gt;&lt;!--要拖动的元素--&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h5 id="本地存储">本地存储</h5>
               
             </div>
           </div>
