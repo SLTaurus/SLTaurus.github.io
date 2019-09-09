@@ -360,6 +360,7 @@
 <li><a href="#利用-canvas-在页面上绘图">利用<code>&lt;canvas&gt;</code>在页面上绘图</a></li>
 <li><a href="#html5拖放操作">HTML5拖放操作</a></li>
 <li><a href="#本地存储">本地存储</a></li>
+<li><a href="#操作本地文件">操作本地文件</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -1733,6 +1734,130 @@ object.fill(); //绘制填充形状
 </code></pre>
 
 <h5 id="本地存储">本地存储</h5>
+
+<p>HTML5能够在用户的浏览器里保存大量的数据，同时对站点的性能不会造成任何影响。与使用cookies相比，web存储更加安全和快速。与cookies相同的是，数据也是以&rdquo;关键字/值&rdquo;对的方式存储的，而且web页面只能访问自己存储的数据。在浏览器里实现本地数据存储的两个新对象如下：</p>
+
+<ul>
+<li>localStorage：存储数据，没有过期时间。</li>
+<li>SessionStorage：只在当前会话中存储数据。</li>
+</ul>
+
+<p>如果不能确定浏览器是否支持本地存储，解决的办法仍然是使用功能检测：</p>
+
+<pre><code>if (typeof (Storage) != &quot;undefined&quot;) {
+       //使用两个新对象进行操作
+   }
+</code></pre>
+
+<p>保存数据有两种方式。一种是调用setItem方法，向他传递一个关键字和一个值，另一种是像操作关联数组一样使用localStorage对象：</p>
+
+<pre><code>localStorage.setItem(&quot;key&quot;, &quot;value&quot;);
+localStorage[&quot;key&quot;] = &quot;Value&quot;;
+</code></pre>
+
+<p>获取数据也可以用以下两种方式的一种：</p>
+
+<pre><code>alert(localStorage.getItem(&quot;key&quot;));
+alert(localStorage[&quot;key&quot;]);
+</code></pre>
+
+<h5 id="操作本地文件">操作本地文件</h5>
+
+<p>HTML5的文件API规范让我们终于有一种标准方式来访问用户的本地文件了，具体途径有多种：</p>
+
+<ul>
+<li>File：提供的信息包括名称、大小和MIME类型，以及对文件句柄的引用。</li>
+<li>FileList：类似数组的File对象列表。</li>
+<li>FileReader：使用File和FileList异步读取文件的接口。我们可以查看读取进程、捕获错误、判断文件何时加载完成。</li>
+</ul>
+
+<p>利用功能检测功能可以查看浏览器是否支持文件API：</p>
+
+<pre><code>if(window.File &amp;&amp; window.FileList &amp;&amp; window.FileReader){
+    //进行操作
+}
+</code></pre>
+
+<p>与本地文件交互：</p>
+
+<p>我们将修改前一个拖放操作的范例，实现多个本地文件拖放到web页面的操作。要做到这点，方法是使用FileList数据结构。修改后的drop(ev)函数是这样的：</p>
+
+<pre><code>function drop(ev) {
+        var files = ev.dataTransfer.files;
+        for (var i = 0; i &lt; files.length; i++) {
+            var f = files[i];
+            var pnode = document.createElement(&quot;P&quot;);
+            var tnode = document.createTextNode(f.name + &quot;(&quot; + f.type + &quot;)&quot; + f.size + &quot;bytes&quot;);
+            pnode.appendChild(tnode);
+            ev.target.appendChild(pnode);//ev.target在后台会基于拖放操作的状态而自动修改为相应的事件类型。
+        }
+        ev.preventDefault();
+    }
+</code></pre>
+
+<p>在这里程序从dataTransfer对象读取了FileList，它包含了拖放文件的信息：</p>
+
+<pre><code>var files = ev.dataTransfer.files;
+</code></pre>
+
+<p>完整代码如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            background-color: #ddd;
+            font-family: Arial,Verdana,sans-serif;
+        }
+
+        #drop1 {
+            width: 1000px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: white;
+        }
+
+        #drag1 {
+            width: 80px;
+            height: 150px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        //代码定义了三个重要的函数，他们都会接收到当前处理的事件
+
+        //函数在拖动元素经过放置区域时执行，它的作用是阻止放置区域执行默认操作（因为默认的行为就是不允许拖动）
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        //函数会在拖动元素被放下时执行，他会读取dataTransfer属性的值来获得拖动文件的信息
+        function drop(ev) {
+            var files = ev.dataTransfer.files;
+            for (var i = 0; i &lt; files.length; i++) {
+                var f = files[i];
+                var pnode = document.createElement(&quot;P&quot;);
+                var tnode = document.createTextNode(f.name + &quot;(&quot; + f.type + &quot;)&quot; + f.size + &quot;bytes&quot;);
+                pnode.appendChild(tnode);
+                ev.target.appendChild(pnode);//ev.target在后台会基于拖放操作的状态而自动修改为相应的事件类型。
+            }
+            ev.preventDefault();
+        }
+
+        window.onload = function () {
+            var drophere = document.getElementById(&quot;drop1&quot;);
+            drophere.ondragover = allowDrop;
+            drophere.ondrop = drop;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;drop1&quot;&gt;&lt;/div&gt;  &lt;!--捕获拖放操作的放置区域--&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
               
             </div>
           </div>
