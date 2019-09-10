@@ -374,6 +374,16 @@
 <li><a href="#在哪里保存样式声明">在哪里保存样式声明</a></li>
 </ul></li>
 <li><a href="#dom的style属性">DOM的style属性</a></li>
+<li><a href="#classname访问类">className访问类</a></li>
+<li><a href="#dom的stylesheet对象">DOM的styleSheet对象</a>
+<ul>
+<li><a href="#选择特定样式表">选择特定样式表</a></li>
+</ul></li>
+<li><a href="#javascript样式表小功能">JavaScript样式表小功能</a></li>
+</ul></li>
+<li><a href="#css3简介">CSS3简介</a>
+<ul>
+<li><a href="#特定厂商属性和前缀">特定厂商属性和前缀</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1999,6 +2009,249 @@ mynode.style[myProperty] = 200px;
 </code></pre>
 
 <p>遗憾的是虽然这种方式在用于内联样式的时候很正常，但如果在页面<code>&lt;head&gt;</code>部分使用<code>&lt;style&gt;</code>元素，或是使用外部样式表来设置页面元素的样式，DOM的style对象就不能访问它们了。</p>
+
+<p>CSS的很多属性名称包含连字符，比如background-color,font-size等，但是JavaScript不允许在属性或者方法中使用连字符，因此需要调整这些名称的书写方式，方法是删除其中的连字符，并且把连字符后面的字母大写，就像是backgroundColor，fontSize。</p>
+
+<p>编写一个函数，使用DOM的style对象让页面的背景颜色和字体在两个值之间切换。程序清单如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        span{
+            font-size:16pt;
+            font-family:Arial, Helvetica, sans-serif;
+            padding:20px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        function toggle() {
+            var myElement = document.getElementById(&quot;id1&quot;);
+            if(myElement.style.backgroundColor == &quot;red&quot;)
+            {
+                myElement.style.backgroundColor = &quot;yellow&quot;;
+                myElement.style.color = &quot;black&quot;;
+            }
+            else
+            {
+                myElement.style.backgroundColor = &quot;red&quot;;
+                myElement.style.color = &quot;white&quot;;
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById(&quot;btn1&quot;).onclick = toggle;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;span id=&quot;id1&quot;&gt;欢迎来到我的网站。&lt;/span&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; value=&quot;切换&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="classname访问类">className访问类</h3>
+
+<p>一般情况下，为了调整页面样式而不覆盖相应的样式声明，利用元素的className属性，我们就可以通过修改class属性的值来调整应用于元素的样式。程序清单如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        .classA {
+        width:180px;
+        border:3px solid black;
+        background-color:white;
+        color:red;
+        font: normal 24px arial,helvetica,sans-serif;
+        padding:20px;
+        }
+
+        .classB {
+        width:180px;
+        border:3px dotted white;
+        background-color:black;
+        color:yellow;
+        font: italic bold 24px &quot;Times New Roman&quot;,serif;
+        padding:20px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        function toggleClass() {
+            var myElement = document.getElementById(&quot;id1&quot;);
+            if (myElement.className == &quot;classA&quot;)
+            {
+                myElement.className = &quot;classB&quot;;
+            }
+            else
+            {
+                myElement.className = &quot;classA&quot;;
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById(&quot;btn1&quot;).onclick = toggleClass;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;id1&quot; class=&quot;classA&quot;&gt;欢迎来到我的网站。&lt;/div&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; value=&quot;切换&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="dom的stylesheet对象">DOM的styleSheet对象</h3>
+
+<p>document对象的styleSheet属性是一个数组，包含了页面上全部样式表，无论样式表是在外部文件中还是在页面内的。styleSheet数组里的项目以数值索引，第一个出现的样式索引为0。数组里的每个样式表都有一个属性disable，其值为true或者false。它是可读写的，可以方便地启用或者禁用某个样式表。</p>
+
+<pre><code>document.stylesheet[0].disabled = true; //禁用第一个样式表
+</code></pre>
+
+<p>切换样式表示例：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            background-color:white;
+            color:red;
+        padding:20px;
+        }
+        &lt;/style&gt;
+    &lt;style&gt;
+        body {
+            background-color:black;
+            color:yellow;
+            padding:20px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        var whichSheet = 0;
+        document.styleSheets[1].disabled = true;
+
+        function sheet() {
+            document.styleSheets[whichSheet].disabled = true;
+            whichSheet = (whichSheet == 1) ? 0 : 1;
+            document.styleSheets[whichSheet].disabled = false;
+        }
+
+        window.onload = function () {
+            document.getElementById(&quot;btn1&quot;).onclick = sheet;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    用按钮切换样式表！&lt;br /&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; value=&quot;切换&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="选择特定样式表">选择特定样式表</h4>
+
+<p>虽然样式表具有数值索引，但是并不便于选择，如果给样式表设置标题，并编写一个函数，根据title选择就会很容易。程序清单如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style title=&quot;sheet1&quot;&gt;
+        body {
+            background-color: white;
+            color: red;
+        }
+    &lt;/style&gt;
+
+    &lt;style title=&quot;sheet2&quot;&gt;
+        body {
+            background-color:black;
+            color:yellow;
+        }
+    &lt;/style&gt;
+
+    &lt;style title=&quot;sheet3&quot;&gt;
+        body {
+            background-color: pink;
+            color: green;
+        }
+    &lt;/style&gt;
+
+    &lt;script&gt;       
+        function ssEnable(mysheet) {
+            var change = false;
+            var oldsheet = 0;
+            for (var i = 0; i &lt; document.styleSheets.length; i++)
+            {
+                //一般情况下，如果有多个可以应用的样式表，只有第一个是启用的
+                if (document.styleSheets[i].disabled == false)
+                {
+                    oldsheet = i;
+                }
+
+                document.styleSheets[i].disabled = true;
+                if(document.styleSheets[i].title == mysheet)
+                {
+                    document.styleSheets[i].disabled = false;
+                    change = true;
+                }
+            }
+
+            if (!change)
+                document.styleSheets[oldsheet].disabled = false;
+
+            return change;
+        }
+
+        function sheet()
+        {
+            var sheetName = prompt(&quot;Stylesheet Name?&quot;);
+            if(!ssEnable(sheetName))
+            {
+                alert(&quot;没找到这个样式表，原来的样式表保持&quot;);
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById(&quot;btn1&quot;).onclick = sheet;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    用按钮切换样式表！&lt;br /&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; value=&quot;切换&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="javascript样式表小功能">JavaScript样式表小功能</h3>
+
+<p>JavaScript可以变换鼠标指示，在style对象有一个cursor属性，可以设置一些不同的值来表示鼠标的形状，常见的包括：</p>
+
+<ul>
+<li>十字：像瞄准器一样的十字。</li>
+<li>指针：通常的指针形状。</li>
+<li>文本：插入文本的提示符。</li>
+<li>等待：表示程序忙。</li>
+</ul>
+
+<h2 id="css3简介">CSS3简介</h2>
+
+<p>使用CSS3可以很容易的实现很多酷炫的新效果，而不需要很多的JavaScript代码或者像PS这样单独的图形应用程序。你可以创建圆角的边框，给方框添加阴影，使用图像作为边框等等。CSS3包含了几个新的背景属性，使得你更好的控制背景元素，包含多个背景图像，而CSS3渐变允许你显示两种或者多种特定颜色之间的平滑过渡。新的文本功能包括文本阴影和单词换行，以及易于使用的web字体。CSS3使你可以很容易的构建真正酷炫的过度、变换和动画。</p>
+
+<h3 id="特定厂商属性和前缀">特定厂商属性和前缀</h3>
+
+<p>CSS3浏览器前缀如下：
+![JavaScript24][/images/JavaScript/JavaScript24.jpg]</p>
               
             </div>
           </div>
