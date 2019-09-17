@@ -384,6 +384,34 @@
 <li><a href="#css3简介">CSS3简介</a>
 <ul>
 <li><a href="#特定厂商属性和前缀">特定厂商属性和前缀</a></li>
+<li><a href="#css3边框">CSS3边框</a>
+<ul>
+<li><a href="#创建边框阴影">创建边框阴影</a></li>
+<li><a href="#用border-radius属性实现圆角">用border-radius属性实现圆角</a></li>
+</ul></li>
+<li><a href="#css3背景">CSS3背景</a>
+<ul>
+<li><a href="#backgroud-size属性">backgroud-size属性</a></li>
+<li><a href="#backgroud-origin属性">backgroud-origin属性</a></li>
+<li><a href="#多背景图像">多背景图像</a></li>
+</ul></li>
+<li><a href="#css3渐变">CSS3渐变</a>
+<ul>
+<li><a href="#线性渐变">线性渐变</a></li>
+<li><a href="#放射渐变">放射渐变</a></li>
+<li><a href="#其他渐变">其他渐变</a></li>
+</ul></li>
+<li><a href="#css3文本效果">CSS3文本效果</a>
+<ul>
+<li><a href="#文本阴影">文本阴影</a></li>
+<li><a href="#单词换行">单词换行</a></li>
+</ul></li>
+<li><a href="#css3过渡-变换和动画">CSS3过渡、变换和动画</a></li>
+<li><a href="#在javascript中引用css3属性">在JavaScript中引用CSS3属性</a>
+<ul>
+<li><a href="#将css3属性名转换到javascript中">将CSS3属性名转换到JavaScript中</a></li>
+<li><a href="#dom的getcomputedstyle-方法">DOM的getComputedStyle()方法</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2251,7 +2279,326 @@ mynode.style[myProperty] = 200px;
 <h3 id="特定厂商属性和前缀">特定厂商属性和前缀</h3>
 
 <p>CSS3浏览器前缀如下：
-![JavaScript24][/images/JavaScript/JavaScript24.jpg]</p>
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript24.jpg" alt="JavaScript24" /></p>
+
+<p>当需要使用CSS3规范中的属性且需要使用一个前缀的时候，针对所使用的浏览器，添加上表的前缀就可以了。示例：</p>
+
+<pre><code>-webkit-transition：backgroud 0.5s ease；
+-moz-transition：backgroud 0.5s ease；
+-o-transition：backgroud 0.5s ease；
+transition：backgroud 0.5s ease；
+</code></pre>
+
+<p>用户的浏览器将会对它所理解的过渡功能版本做出响应而忽略其他版本。现在需要添加前缀的属性正在飞速减少，哪些功能/浏览器组合需要一个前缀可以在<a href="http://shouldiprefix.com">http://shouldiprefix.com</a>查询。一个属性的前缀的版本可能并不总是与CSS3规范所描述的相同，特定厂商扩展几乎肯定会在CSS验证中失败。</p>
+
+<h3 id="css3边框">CSS3边框</h3>
+
+<p>CSS3允许我们对边框做一些很酷的东西，这些在以前只能使用大量复杂的且难以维护的代码去实现。</p>
+
+<h4 id="创建边框阴影">创建边框阴影</h4>
+
+<p>box-shadow属性允许你为页面的box元素添加阴影，可以分别为颜色、大小、模糊和偏移量指定值。box-shadow属性的参数如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">阴影参数</th>
+<th align="center">动作</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">h-shadow(必须的)</td>
+<td align="center">水平阴影的位置，复制是不允许的</td>
+</tr>
+
+<tr>
+<td align="center">v-shadow(必须的)</td>
+<td align="center">垂直阴影的位置，复制是不允许的</td>
+</tr>
+
+<tr>
+<td align="center">blur(可选的)</td>
+<td align="center">模糊距离</td>
+</tr>
+
+<tr>
+<td align="center">spread(可选的)</td>
+<td align="center">阴影的大小</td>
+</tr>
+
+<tr>
+<td align="center">color(可选的)</td>
+<td align="center">阴影的颜色，默认为黑色</td>
+</tr>
+</tbody>
+</table>
+
+<p>以下是一个10像素宽的向下和向右伸展的阴影，在其整个宽度中模糊，并且颜色为中度灰的示例：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            background-color: #00ff21;
+            width:400px;
+            height:250px;
+            box-shadow:10px 10px 10px #808080;
+        }        
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="用border-radius属性实现圆角">用border-radius属性实现圆角</h4>
+
+<p>border-radius属性允许我们给页面元素添加圆角，而不需要专门创建圆角图像。示例如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            background-color:#ffd800;
+            width:200px;
+            height:200px;
+            border-radius:25px;
+        }        
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>可以使用单独的border-bottom-left-radius、border-top-left-radius、border-top-right-radius和border-bottom-right-radius属性来分别指定圆角，或者像我们所做的那样在一条语句中使用border-radius属性指定所有的4个圆角。</p>
+
+<h3 id="css3背景">CSS3背景</h3>
+
+<p>CSS3包含了几个新的背景属性，它们使得你更好的控制背景元素。</p>
+
+<h4 id="backgroud-size属性">backgroud-size属性</h4>
+
+<p>backgroud-size属性允许使用长度、百分比，或者另外的两个关键字contain或cover来设置图像的大小。当使用百分比的时候他们是相对于背景的可用空间，而不是相对于背景图像的宽度和高度。auto关键字用于替代width或height的值，如果只为backgroud-size属性指定了一个值，会认为是其宽度，然后高度默认为是auto。示例：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            background-size:400px;
+            background-image:url(/Resources/bajian.jpg);
+            width: 400px;
+            height: 250px;
+            border-radius:25px;
+        }        
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="backgroud-origin属性">backgroud-origin属性</h4>
+
+<p>backgroud-origin属性用于设置一个背景在框中的位置如何计算。backgroud-origin属性接受如下三个值：padding-box（默认值）、border-box和content-box。当你提供了padding-box值，其位置相对于边距边缘的左上角。使用border-box，其位置相对于边框的左上角，而content-box表示背景相对于内容的左上角来定位。</p>
+
+<blockquote>
+<p>Origin有“起源”的意思，而background-origin就有“背景图片起点”的意思。它是告诉浏览器background-position是相对于哪里定位的。在这里要用盒模型这个概念来解释，在CSS中元素被看成一个盒子，这个盒子被拆解为上面三个部分。</p>
+
+<p>在CSS中，border-box区域的大小是由border属性控制的，padding-box区域的大小是由padding属性控制的，content-box区域的大小是由实际内容区域大小控制的。回到background-origin这个属性上来，它的三个值就好理解了。在CSS中页面的渲染性格是由页面左上角开始的，那么</p>
+
+<ul>
+<li>border-box就是把背景图片的坐标原点设置在盒模型border-box区域的左上角</li>
+<li>padding-box就是把背景图片的坐标原点设置在盒模型padding-box区域的左上角</li>
+<li>content-box就是把背景图片的坐标原点设置在盒模型content-box区域的左上角</li>
+</ul>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/backgroundOrigin.png" alt="backgroundOrigin" />
+这里要注意一下，当background-attachment属性设置为fixed时，background-origin属性会失效。参考教程: <a href="https://blog.csdn.net/weixin_39256994/article/details/78698145">CSS background-origin属性</a></p>
+</blockquote>
+
+<h4 id="多背景图像">多背景图像</h4>
+
+<p>CSS3允许我们对框元素使用多个背景图像，直接使用逗号隔开的一个列表就可以了。列表的顺序很重要，所提供的第一个值表示距离用户最近的层，列表中的后续条目会作为该层之后的后续层实现，示例如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            background-size:400px;
+            background-image:url(/Resources/bajian.jpg),url(/Resources/bajian2.jpg);
+            width: 600px;
+            height: 350px;
+            background-position:center bottom,left top;
+            background-repeat:no-repeat;
+        }        
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="css3渐变">CSS3渐变</h3>
+
+<p>CSS3渐变允许你在两种或者多种指定的颜色之间生成平滑的过渡，而在此之前必须使用图像来实现这种效果。和使用图像相比，使用CSS3渐变可以减少下载的时间，节省缓存空间，减少宽带的使用。当使用缩放的时候，CSS3渐变也执行的很好。</p>
+
+<p>CSS3提供了两种类型的渐变：线性渐变（分别沿着上/下/左/右/对角线的方向进行）；还有放射性渐变，从一个确定的中心点向外围放射。</p>
+
+<h4 id="线性渐变">线性渐变</h4>
+
+<p>要使用CSS3创建线性渐变，必须定义两种颜色作为渐变的端点。也可以为渐变定义一个起点和一个方向（上/下/左/右/对角线），如果没有为渐变定义一个方向，浏览器会默认使用从上到下的方向。示例如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            width: 600px;
+            height: 350px;
+            background: linear-gradient(red,#00ff21)
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>也可以为渐变输入一个方向，从左到右的示例：
+    background: linear-gradient(to right, red,#00ff21);
+沿对角线方向的渐变示例：</p>
+
+<pre><code>background: linear-gradient(to bottom right, red,#00ff21);
+</code></pre>
+
+<p>还可以定义一个角度来完全控制渐变的方向：</p>
+
+<pre><code>background: linear-gradient(135deg, red,#00ff21);
+</code></pre>
+
+<h4 id="放射渐变">放射渐变</h4>
+
+<p>放射渐变由其中心确定，并且也必须至少定义两种颜色，作为渐变的端点：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1 {
+            width: 600px;
+            height: 350px;
+            background: radial-gradient(red,#21bd54);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>也可以用关键字at，为放射渐变设置一个位置参数：</p>
+
+<pre><code>background: radial-gradient(at top left ,red,#21bd54);
+</code></pre>
+
+<h4 id="其他渐变">其他渐变</h4>
+
+<p>CSS3渐变能做的还很多，还包括使用两种以上的颜色、透明度，以及修改渐变的形状，大小等，甚至可以为相同的元素添加多做渐变，完整的介绍详见W3C的文档，位于<a href="https://www.w3.org/TR/css3-images/">https://www.w3.org/TR/css3-images/</a></p>
+
+<h3 id="css3文本效果">CSS3文本效果</h3>
+
+<h4 id="文本阴影">文本阴影</h4>
+
+<p>box-shadow属性可以对块元素添加阴影，在CSS3中，text-shadow属性为文本添加阴影的方式与其如出一辙，可以为阴影指定水平的和垂直的阴影距离以及可选的模糊距离，并且指定阴影的颜色：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        h1 {
+            text-shadow:10px 10px 3px #808080;
+            font-size:26px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;测试阴影&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="单词换行">单词换行</h4>
+
+<p>如果一句话太长了，块元素无法包含它，它会超出其容器的范围。在CSS3中可以使用word-wrap属性强制让单词换行，即使是从一个单词的中间换行也可以：</p>
+
+<pre><code>p{
+        word-wrap:break-word;
+    }
+</code></pre>
+
+<h3 id="css3过渡-变换和动画">CSS3过渡、变换和动画</h3>
+
+<p>CSS3可以用一种容易的方式为页面上的元素添加简单的效果，以过渡、变换和动画的形式呈现。在下面的示例中我们添加了一个过渡的效果，以便在链接上悬停的时候变换背景颜色。随着背景颜色的变化，过渡效果将平滑的进行。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        a.trans {
+            background:#00ffff;
+            transition:background 0.5s ease;
+        }
+        a.trans:hover{
+            background:red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;https://www.baidu.com/&quot; class=&quot;trans&quot; id=&quot;link1&quot;&gt;测试用例&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="在javascript中引用css3属性">在JavaScript中引用CSS3属性</h3>
+
+<p>CSS3和JavaScript组合起来，提供了一些很好的效果，而且性能不错、可靠性高，并且将代码的复杂度最小化。在本节，将介绍在JavaScript代码中成功获取和设置CSS3属性的一些方法。</p>
+
+<h4 id="将css3属性名转换到javascript中">将CSS3属性名转换到JavaScript中</h4>
+
+<p>要让CSS的属性的名称和JavaScript的命名系统兼容，CSS属性名需要从它们在样式表中的格式来进行一些转换，不在像是在CSS中使用小写名称和连字符，JavaScript去掉了连字符，并且将连字符后面的字母大写，本身没有连字符的不需要改变，例如width还是width。</p>
+
+<h4 id="dom的getcomputedstyle-方法">DOM的getComputedStyle()方法</h4>
+
+<p>在前面的章节中访问元素的样式属性用 <code>document.getElementById(&quot;div1&quot;).style.background</code> 类似的写法，但是它只作用于内联样式的元素，对于那些将CSS声明组织到页面头部的<code>&lt;style&gt;</code>元素中的元素，或者将CSS声明在外部文件中的情况是无效的。</p>
               
             </div>
           </div>
