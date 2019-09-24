@@ -6,18 +6,27 @@
     <description>Recent content on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Aug 2019 08:39:39 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 Sep 2019 14:46:39 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>JavaScript入门经典第6版笔记</title>
-      <link>https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0/</link>
+      <title>JavaScript入门经典第6版笔记(下)</title>
+      <link>https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/</link>
+      <pubDate>Mon, 23 Sep 2019 14:46:39 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/</guid>
+      <description>&lt;p&gt;这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JavaScript入门经典第6版笔记(上)</title>
+      <link>https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/</link>
       <pubDate>Thu, 29 Aug 2019 08:39:39 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0/</guid>
-      <description>&lt;p&gt;这里记录下自己感觉有用的或者见到的不常用的JavaScript知识，用来以后开发需要或者温故知新时候来翻看查用。&lt;/p&gt;</description>
+      <guid>https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/</guid>
+      <description>&lt;p&gt;这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。&lt;/p&gt;</description>
     </item>
     
     <item>

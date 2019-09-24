@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="JavaScript, C#, .NET, 个人博客">
+<meta name="description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。">
+
+
+<meta property="og:description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript入门经典第6版笔记(下)">
+<meta name="twitter:title" content="JavaScript入门经典第6版笔记(下)">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+<meta property="og:site_name" content="SLTaurus的安全屋">
+<meta property="og:description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。">
+<meta name="twitter:description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-23T14:46:39">
+  
+  
+    <meta property="article:modified_time" content="2019-09-23T14:46:39">
+  
+  
+  
+    
+      <meta property="article:section" content="JavaScript">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/JavaScript/JavaScript.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/JavaScript/JavaScript.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>JavaScript入门经典第6版笔记(下)</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">SLTaurus的安全屋</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">JavaScript笔记</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      JavaScript入门经典第6版笔记(下)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-23T14:46:39&#43;08:00">
+        
+  九月 23, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/javascript">JavaScript</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#使用javascript库">使用JavaScript库</a>
+<ul>
+<li><a href="#库">库</a>
+<ul>
+<li><a href="#为什么要使用库">为什么要使用库</a>
+<ul>
+<li><a href="#库能做什么">库能做什么</a></li>
+</ul></li>
+<li><a href="#常见的库">常见的库</a>
+<ul>
+<li><a href="#property框架">property框架</a></li>
+<li><a href="#dojo">Dojo</a></li>
+<li><a href="#yahoo-ui">Yahoo！UI</a></li>
+<li><a href="#mootools">MooTools</a></li>
+<li><a href="#jquery">jQuery</a></li>
+</ul></li>
+<li><a href="#prototype-js介绍">prototype.js介绍</a>
+<ul>
+<li><a href="#函数">$()函数</a></li>
+<li><a href="#f-函数">#F()函数</a></li>
+<li><a href="#form对象">Form对象</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#小结">小结</a></li>
+</ul></li>
+<li><a href="#jquery入门">jQuery入门</a>
+<ul>
+<li><a href="#在页面里使用jquery">在页面里使用jQuery</a></li>
+<li><a href="#jquer的-document-ready处理器">jQuer的$(document).ready处理器</a></li>
+<li><a href="#选择页面元素">选择页面元素</a></li>
+<li><a href="#操作html内容">操作HTML内容</a></li>
+<li><a href="#显示和隐藏元素">显示和隐藏元素</a></li>
+<li><a href="#元素动画">元素动画</a>
+<ul>
+<li><a href="#淡入淡出">淡入淡出</a></li>
+<li><a href="#滑动">滑动</a></li>
+<li><a href="#动画">动画</a></li>
+</ul></li>
+<li><a href="#命令链">命令链</a></li>
+<li><a href="#处理事件">处理事件</a></li>
+<li><a href="#小结-1">小结</a></li>
+</ul></li>
+<li><a href="#jquery-ui">jQuery UI</a>
+<ul>
+<li><a href="#jquery-ui-是什么">jQuery UI 是什么</a></li>
+<li><a href="#如何在页面里引用jquery-ui">如何在页面里引用jQuery UI</a>
+<ul>
+<li><a href="#使用-themeroller">使用 ThemeRoller</a></li>
+</ul></li>
+<li><a href="#交互">交互</a>
+<ul>
+<li><a href="#拖和放">拖和放</a></li>
+<li><a href="#调整大小">调整大小</a></li>
+<li><a href="#排序">排序</a></li>
+</ul></li>
+<li><a href="#使用微件">使用微件</a>
+<ul>
+<li><a href="#可折叠控件">可折叠控件</a></li>
+<li><a href="#日期拾取器">日期拾取器</a></li>
+<li><a href="#选项卡">选项卡</a></li>
+</ul></li>
+<li><a href="#小结-2">小结</a></li>
+</ul></li>
+<li><a href="#ajax-和-jquery">Ajax 和 jQuery</a>
+<ul>
+<li><a href="#ajax解析">Ajax解析</a>
+<ul>
+<li><a href="#ajax-入门">Ajax 入门</a></li>
+<li><a href="#xmlhttprequest对象">XMLHttpRequest对象</a></li>
+<li><a href="#不同浏览器的不同规则">不同浏览器的不同规则</a></li>
+<li><a href="#方法和属性">方法和属性</a></li>
+<li><a href="#与服务器通信">与服务器通信</a></li>
+<li><a href="#在服务器端发生了什么">在服务器端发生了什么</a></li>
+<li><a href="#处理服务器响应">处理服务器响应</a></li>
+</ul></li>
+<li><a href="#使用jquery实现ajax">使用jQuery实现Ajax</a></li>
+<li><a href="#篇外之一get对比post">篇外之一GET对比POST</a></li>
+<li><a href="#篇外之二w3school上面的jquery-ajax-get-和-post-方法诠释">篇外之二W3school上面的jQuery - AJAX get() 和 post() 方法诠释</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="使用javascript库">使用JavaScript库</h1>
+
+<h2 id="库">库</h2>
+
+<p>库就是可重用的JavaScript代码的集合，让我们只需要在代码中添加几行代码就可以实现复杂的操作。</p>
+
+<h3 id="为什么要使用库">为什么要使用库</h3>
+
+<p>一些JavaScript开发人员强烈建议编写自己的代码而不是使用库，原因如下：</p>
+
+<ul>
+<li>使用库时只是调用其他人编写的算法和函数，所以我们不能确切了解库里的代码是如何运作的。</li>
+<li>JavaScript库中有很多我们不会用到的代码，但是用户仍然需要下载它。</li>
+</ul>
+
+<p>使用库的好处：</p>
+
+<ul>
+<li>不需要编写别人已经写过的代码，常用的库包含了程序猿经常要用到的函数。这些库得到了很多人的使用和评价，经过了更完整的测试和调试，比我们的代码会更完善点。</li>
+<li>吸取其他程序猿的思路，我们可以用这些优秀的乐于分享的程序猿的代码成果来完善改进自己的代码。</li>
+<li>利用编写细致的库可以避免跨浏览器时JavaScript可能产生的问题。编写库的程序猿和他的用户会测试各种常见的浏览器。</li>
+<li>大部分的库的文件不是很大，下载不会造成明显的影响。对于需要缩短下载时间的场合，大多数库都提供了压缩的版本，我们还可以查看库的代码，只保留需要使用的部分。</li>
+</ul>
+
+<h4 id="库能做什么">库能做什么</h4>
+
+<p>库的功能是多种多样的，取决于它应用的领域、创建者的目的和需求。但一些功能是大多库都包括的：</p>
+
+<ul>
+<li>封装DOM方法。JavaScript库可以提供方便的方式来选择和管理页面的元素或元素组，prototype.js就是如此。</li>
+<li>动画。我们只需要很少的代码就可以实现滑动、淡出、晃动、变形、折叠、跳动等页面效果，而且在很多浏览器上面都是可以正常运行的。</li>
+<li>拖放。真正跨浏览器拖放是很复杂的，使用库可以大大简化这个工作。</li>
+<li>Ajax。不必考虑XMLHttpRequest实例化问题，不必关心回调函数和状态代码，就能动态更新页面内容。</li>
+</ul>
+
+<h3 id="常见的库">常见的库</h3>
+
+<h4 id="property框架">property框架</h4>
+
+<p>property框架(<a href="http://www.propertyjs.org">http://www.propertyjs.org</a>)的优势在于DOM扩展和Ajax处理，在JSON支持与创建和继承类方面也做得不错。property框架作为单独的库进行发布，但也会作为更大项目的组件，比如Ruby on Rails和Script.aculo.us库。</p>
+
+<h4 id="dojo">Dojo</h4>
+
+<p>Dojo(<a href="http://www.dojotoolkit.org">http://www.dojotoolkit.org</a>)是一个开源工具集，能够简化创建程序和用户界面的工作，功能包括扩展的字符串和数学函数，还由动画和Ajax。最新版不仅支持全部的支流浏览器，还支持手机环境（Dojo Mobile），包括苹果的IOS、Android和Blackberry等平台。</p>
+
+<h4 id="yahoo-ui">Yahoo！UI</h4>
+
+<p>Yahoo！UI库（<a href="http://developer.yaoo.com/yui/">http://developer.yaoo.com/yui/</a>）是由Yahoo！开发的开源程序，功能包括动画、DOM、事件管理及一些方便的用户界面元素，比如日历和滑块。</p>
+
+<h4 id="mootools">MooTools</h4>
+
+<p>MooTools（<a href="http://mootool.net/">http://mootool.net/</a>）是一个小型模块化JavaScript框架，提供易于理解的、文档清晰的API（应用程序接口），能够帮我们创建功能强大的、灵活的跨浏览器程序。</p>
+
+<h4 id="jquery">jQuery</h4>
+
+<p>jQuery（<a href="http://jquery.com">http://jquery.com</a>）是一个小型高效的JavaScript库，简化了多种开发工作，比如HTML文档转换、事件处理、动画和Ajax调用，适合快速开发交互站点。</p>
+
+<h3 id="prototype-js介绍">prototype.js介绍</h3>
+
+<p>这里是展示prototype.js库对DOM操作、HTML表单和XMLHttpRequest对象的强大支持，可以如何简化Javascript代码。备注：作为对后世很多库产生过重大影响的库，Prototype 对前端技术进步做出的贡献不可磨灭，但是鉴于其主要功能都能被更好用的 jQuery（或者其它同类型的库）甚至是标准取代了，Prototype 早就已经事实上退出历史舞台了。</p>
+
+<h4 id="函数">$()函数</h4>
+
+<p>$()基本就是getElementById()方法的快捷方式，getElementById(&ldquo;div1&rdquo;)被简化为$(&ldquo;div1&rdquo;)。$()可以接收多个元素的Id作为参数返回元素所组成的数组。</p>
+
+<pre><code>mydataArray = $(&quot;div1&quot;,&quot;div2&quot;,&quot;div3&quot;);
+</code></pre>
+
+<p>mydataArray[0]包含元素ID为div1的值，依次类推。</p>
+
+<h4 id="f-函数">#F()函数</h4>
+
+<p>#F()函数以表单的输入元素或它的ID作为参数，返回它包含的值。比如下面的HTML脚本：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script src=&quot;Resources/prototype.js&quot;&gt;&lt;/script&gt;    
+    &lt;script&gt;
+    function ShowInput(id) {
+        var mydata = $F(id);
+        alert(mydata);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;text&quot; id=&quot;input1&quot; /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;查询&quot; onclick=&quot;ShowInput('input1')&quot; /&gt;   &lt;br /&gt;&lt;br /&gt;
+    &lt;select id=&quot;input2&quot; name=&quot;input2&quot;&gt;
+        &lt;option value=&quot;0&quot;&gt;选项A&lt;/option&gt;
+        &lt;option value=&quot;1&quot;&gt;选项B&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;选项C&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type=&quot;button&quot; value=&quot;查询&quot; onclick =&quot;ShowInput('input2')&quot; /&gt;   
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>$F(&lsquo;input1&rsquo;)返回的是文本框的值，$F(&lsquo;input2&rsquo;)返回的是选择框当前选中的值。我们可以用同样的方式对文本框和选择框使用#F()函数，不必考虑输入元素的类型，从而非常方便的返回相应的值。</p>
+
+<h4 id="form对象">Form对象</h4>
+
+<p>prototype.js定义了一个Form对象，它包含的一些方法能够简化HTML表单操作。比如调用getElementById()方法可以返回一个数组，其中包含表单的输入字段：</p>
+
+<pre><code>inputs = From.getElementById(&quot;thisform&quot;);
+</code></pre>
+
+<p>serialize（）方法可以把输入名称和值转换为URL兼容的序列：</p>
+
+<pre><code>inputslist = From.serialize(&quot;thisform&quot;);
+</code></pre>
+
+<p>在前面的这行代码里，变量inputslist会包含序列化的&rdquo;参数/值&rdquo;对：</p>
+
+<pre><code>file11=value1&amp;file12=value2&amp;file13=value3...
+</code></pre>
+
+<p>Form.disable(&ldquo;thisform&rdquo;)和Form.enable(&ldquo;thisform&rdquo;)从名称就可以看出它们的功能。</p>
+
+<h4 id="示例">示例</h4>
+
+<p>用getElementById()方法收集HTML表单的一些相关信息。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script src=&quot;Resources/prototype.js&quot;&gt;&lt;/script&gt;    
+    &lt;script&gt;
+    function ShowFormFileds() {
+        var form = $('exampleForm');
+        var message = '';
+        var fileds = form.getElements();
+        for (var i = 0; i &lt; fileds.length; i++) {
+            message += &quot;Filed Name：&quot; + fileds[i].name + &quot; Value：&quot; + fileds[i].value + &quot;\n&quot;;            
+        }
+        alert(message);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;exampleForm&quot; action=&quot;#&quot; onsubmit=&quot;return false&quot;&gt;
+        UserName：&lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br /&gt;
+        Telephone：&lt;input type=&quot;text&quot; name=&quot;telephone&quot; /&gt;&lt;br /&gt;
+        Message：&lt;input type=&quot;text&quot; name=&quot;message&quot; /&gt;&lt;br /&gt;
+    &lt;/form&gt;
+    &lt;input type=&quot;button&quot; value=&quot;结果&quot; onclick=&quot;ShowFormFileds()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="小结">小结</h3>
+
+<p>在很多情况下，利用库都可以简化JavaScript的编写过程。这些库把众多常用的对象和方法包装为便于使用的形式，让程序猿在添加或删除事件监听器或是访问表单元素是不必再担心跨浏览器的问题，这里只是简单介绍了几个最常用的JavaScript库。</p>
+
+<h2 id="jquery入门">jQuery入门</h2>
+
+<p>虽然存在着很多JavaScript库，但jQuery显然是最常用的，而且几乎是最容易拓展的一个。大量开发人员给jQuery提供了开源的插件，让我们几乎可以为任何应用找到适当的插件。这些范围广泛的插件和易于使用的简单语法让jQuery成为一个伟大的库。</p>
+
+<h3 id="在页面里使用jquery">在页面里使用jQuery</h3>
+
+<p>在页面里引用jQuery主要有两种方式：</p>
+
+<ul>
+<li>一种是将jQuery下载下来然后在页面的<code>&lt;head&gt;</code>部分用<code>&lt;script&gt;</code>标签来包含jQuery库，示例：<code>&lt;script src=&quot;Resources/jquery-3.4.1.js&quot;&gt;&lt;/script&gt;</code>。</li>
+<li>第二种是使用远程方式，用“内容分发网络”，也就是CDN的方式引用它。除了不用下载jQuery之外，这种方式还有一些优点：当浏览器需要使用JQuery时，它很有可能已经存在缓存里了，另外CDN通常能够保证从最近的地理位置的服务器提供文件，从而减少加载时间。jQuery站的CDN可以在网络上找到很多，这里的范例如下：<code>&lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;</code>。</li>
+</ul>
+
+<p>除非有特定的理由需要在自己的服务器上加载jQuery，一般情况下CDN方式是更好的选择。</p>
+
+<h3 id="jquer的-document-ready处理器">jQuer的$(document).ready处理器</h3>
+
+<p>本书多次使用了window.onload处理器，而jQuery具有自己的相应方法：</p>
+
+<pre><code>$(document).ready(function () {
+//jQuery代码
+        });
+</code></pre>
+
+<p>与window.onload一样，它完成两件事情：</p>
+
+<ul>
+<li>确保在DOM可用之后，也就是代码中可能访问的元素都已经存在了，再执行代码，从而避免产生错误。</li>
+<li>把语义层（HTML）和表现层（CSS）分离开，让代码更清晰。</li>
+</ul>
+
+<p>jQuery相比window.onload还有一个优点：不是一定等到页面加载完成才运行代码。在使用JQuery的$(document).ready时候，只要DOM树构造完成，代码就开始运行，而不会等到图像和其他资源都加载完，这对性能改善略有帮助。</p>
+
+<h3 id="选择页面元素">选择页面元素</h3>
+
+<p>在jQuery里，利用操作符$(&ldquo;&rdquo;)就可以选择HTML元素。下面是一些使用范例：</p>
+
+<pre><code>$(&quot;span&quot;);                  //全部span元素
+$(&quot;#elem&quot;);                 //id 为&quot;elem&quot;的HTML元素
+$(&quot;.classname&quot;);            //类为&quot;classname&quot;的HTML元素
+$(&quot;div#elem&quot;);              //id为&quot;elem&quot;的＜div＞元素
+$(&quot;ul li a.menu&quot;);          //类为&quot;menu&quot;且嵌套在列表项里的锚点
+$(&quot;p ＞ span&quot;);              //p的直接子元素 span
+$(&quot;input[type=password]&quot;);  //具有指定类型的输入元素
+$(&quot;p:first&quot;);               //页面上第一个段落
+$(&quot;p:even&quot;);                //全部偶数段落
+</code></pre>
+
+<p>关于DOM和CSS的选择符就是上述这些，但jQuery还有一些自己定制的选择符，比如：</p>
+
+<pre><code>$(&quot;:header&quot;);       //标题元素(hl 到 h6)
+$(&quot;：button&quot;);       //全部按钮元素(输入框或按钮)
+$(&quot;：radio&quot;);        //单选钮
+$(&quot;:check box&quot;);    //选择框
+$(&quot;:checked&quot;);      //选中状态的选择框或单选钮
+</code></pre>
+
+<p>前面这几条jQuery语句都会返回一个对象，其中包括由指定DOM元素组成的数组。这些 语句并没有实际操作，而只是从DOM获取相应的元素。</p>
+
+<h3 id="操作html内容">操作HTML内容</h3>
+
+<p>操作页面元素内容是最能体现jQuery高效工作的方面之一。html()和text()方法能够获取和设置使用前面的语句所选中的元素的内容，而attr()可以获取和设置单个元素的属性。</p>
+
+<p>html()这个方法能够获取元素或一组元素的HTML内容，它类似于JavaScript的innerHTML：</p>
+
+<pre><code>var htmlContent = $(&quot;#elem&quot;).html(); //变量htmlContent就会包含id为&quot;elem&quot;的页面元素内部的全部HTML (包括文本)。
+</code></pre>
+
+<p>使用类似的语法，就可以设置元素或一组元素的HTML内容：</p>
+
+<pre><code>$(&quot;#elem&quot;).html(&quot;&lt;p&gt;Here is some new content.&lt;/p&gt;n); //这样就会修改id为“elem”的页面元素的HTML内容
+</code></pre>
+
+<p>text()如果只是想获得一个元素或一组元素的文本内容，除了使用html()外，还可以使用text()：</p>
+
+<pre><code>var textcontent = $(&quot;#teim&quot;)*text(); //变量textcontent就会包含id为&quot;elem&quot;的页面元素内部的全部文本(不包括HTML)。
+</code></pre>
+
+<p>同样地，它也可以设置元素的文本内容：</p>
+
+<pre><code>$(&quot;#elem&quot;).text (&quot;Here is some new content.&quot;)； //这样就会修改id为&quot;elem&quot;的页面元素的文本内容。
+</code></pre>
+
+<p>如果想给元素添加文本内容而不是替换其中的内容，可以这样做：</p>
+
+<pre><code>$(&quot;#elem&quot;).append(&quot;&lt;p&gt;Here is some new content.&lt;/p&gt;&quot;); //这样会在保持原有内容的基础上，添加新的内容。
+</code></pre>
+
+<p>类似地：
+    $(&ldquo;div&rdquo;).append(&rdquo;<p>Here is some new content.</p>&rdquo;); //会给页面上全部<div>元素添加一些内容.</p>
+
+<p>attr()当应用于一个元素时，这个方法返回特定属性的值。</p>
+
+<pre><code>var titie = $(&quot;#elem&quot;).attr(&quot;title&quot;);
+</code></pre>
+
+<p>如果应用于一组元素，它只返回第一个元素的值,利用这个方法还可以设置属性的值：</p>
+
+<pre><code>$(&quot;#elem&quot;).attr(&quot;title&quot;,&quot;This is the new title&quot;);
+</code></pre>
+
+<h3 id="显示和隐藏元素">显示和隐藏元素</h3>
+
+<p>对于传统的JavaScript来说，显示和隐藏页面元素通常是利用元素style对象的display或visibility属性来实现的。这种方法没有什么问题，但通常会导致比较长的代码：</p>
+
+<pre><code>document.getElementByTd(&quot;elem”).style.visibility = 'visible';
+</code></pre>
+
+<p>利用jQuery的show()和hide()方法就可以只用较短的代码实现相同的功能，而且还具有额外一些功能。</p>
+
+<p>show()方法可以让单个元素或一组元素显示在页面上：</p>
+
+<pre><code>$(&quot;div&quot;).show();    //显示全部&lt;div&gt;元素
+</code></pre>
+
+<p>另外，还可以添加一些参数来调整显示的过程。在下面的范例里，第一个参数&rdquo;fast&rdquo;决定了显示元素的速度。这个参数除了可以设置为fast或slow外，还可以用数字表示特定时间(单位是毫秒)。如果不设置这个参数，元素就会立即显示，没有任何动画。slow对应的数值大约是600毫秒，fast对应的数值大约是200毫秒。</p>
+
+<p>hide()方法的用途显然与show()是相反的，用于隐藏页面元素。它也有一些和show()一样的可选参数：</p>
+
+<pre><code>$ (&quot;#elem&quot;) .hide (&quot;slow&quot;, function () {
+//在元素隐藏之后进行某些操作
+});
+</code></pre>
+
+<p>toggle()方法会改变一个元素或一组元素的当前显示状态，也就是说把处于显示状态 的元素隐藏起来，把处于隐藏状态的元素显示出来。它也具有关于变化速度及回调函数的参数。</p>
+
+<pre><code>$(&quot;#elemn&quot;).toggle(1000, function() {
+/ / 在元素显示或隐藏之后进行某些操作
+})；
+</code></pre>
+
+<p>show()、hide()和 toggle()方法都可以应用于一组元素，这些元素会同时显示或隐藏。</p>
+
+<h3 id="元素动画">元素动画</h3>
+
+<h4 id="淡入淡出">淡入淡出</h4>
+
+<p>在实现元素淡入淡出的同时，还可以设置持续时间和回调函数。淡出的操作是这样的：</p>
+
+<pre><code>$ (&quot;#elem&quot;).fadeOut(&quot;slow&quot;,function() {
+/ / 在淡出之后进行一些操作
+})；
+</code></pre>
+
+<p>淡入的操作是这样的：</p>
+
+<pre><code>$(&quot;#elem&quot;).fadein(500,function() {
+/ / 在淡入之后进行一些操作
+})；
+</code></pre>
+
+<p>还可以让元素只进行部分淡入或淡出：</p>
+
+<pre><code>$ (&quot;#elemn&quot;).fadeTo(3000, 0.5, function() {
+/ / 在淡入或淡出之后进行一些操作
+});
+</code></pre>
+
+<p>其中第二个参数(本例是0.5)表示最终的不透明度，类似于CSS里设置的不透明度。不管元素曾经的不透明度是多少，在执行上述语句之后，它都会变成第二个参数所指定的值。</p>
+
+<h4 id="滑动">滑动</h4>
+
+<p>jQuery实现元素滑动的方法与实现淡入淡出的方法如出一辙，它们的参数具有同样的规 则，可以实现单个或一组元素的向上或向下滑动。</p>
+
+<pre><code>$(&quot;#elem&quot;).slideDown(150, function(){
+/ / 向下滑动之后进行一些操作
+})；
+</code></pre>
+
+<p>向上滑动是这样的：</p>
+
+<pre><code>$(&quot;#elem&quot;).slideUp(&quot;slow&quot;,function() {
+//向上滑动之后进行一些操作
+})；
+</code></pre>
+
+<p>为了实现根据元素目前位置自动决定是向上滑动还是向下滑动，jQuery还提供了slideToggle()方法。</p>
+
+<pre><code>$(&quot;#elem&quot;).slideToggle(1000, function () {
+/ / 向上或向下滑动之后进行一些操作
+})；
+</code></pre>
+
+<h4 id="动画">动画</h4>
+
+<p>实现动画的方法很简单，利用jQuery指定元素要使用CSS样式表。jQuery就以渐变方式应用新的CSS样式(而不是像普通的CSS或 JavaScript那样直接应用)，从而实现动画的效果。animate()方法可以应用于很多CSS属性。下面的范例中把元素的宽度和高度动画到400 像素x500像素，并且在动画完成之后，利用回调函数把元素淡出为隐藏:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1{
+            width: 200px;
+            height: 200px;
+            border:5px solid red;
+        }
+    &lt;/style&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        function demo() {
+            $(&quot;#div1&quot;).animate(
+                    {
+                        width: &quot;400px&quot;,
+                        height: &quot;500px&quot;
+                    }, 1500, function () {
+                        $(this).fadeOut(&quot;slow&quot;);
+                    }
+                );
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;input id=&quot;input1&quot; type=&quot;button&quot; value=&quot;测试&quot; onclick=&quot;demo()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="命令链">命令链</h3>
+
+<p>jQuery的大多数方法都返回一个jQuery对象，它可以用于再调用其他方法，这是jQuery 的另一个方便之处。比如可以像这样组合前面的范例：</p>
+
+<pre><code>$(&quot;#elem&quot;).fadeOut().fadein();
+</code></pre>
+
+<p>上面这行代码会先淡岀指定的元素，然后淡入显示它们。命令链的长度没有什么限制, 从而可以对同一组元素连续进行很多操作：</p>
+
+<pre><code>$(&quot;#elem&quot;).text(&quot;Hello from jQuery&quot;).fadeOut().fade1n();
+</code></pre>
+
+<p>页面加载之后应该显示一个红色<div>元素，具有黑色边框，其中内容是“改变形状&hellip;.”，在动画变化为新的宽度和高度之后，其中的内容会变为&rdquo;褪色&hellip;”，并且整个元素淡出消失。示例：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #animateMe {
+            position: absolute;
+            width: 100px;
+            height: 400px;
+            top: 100px;
+            Left: 100px;
+            border: 2px solid black;
+            background-color: red;
+            padding: 20px;
+        }
+    &lt;/style&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(document).ready(function () {
+            $(&quot;#animateMe&quot;).text(&quot;改变形状...&quot;).animate(
+            {
+                width: &quot;400px&quot;,
+                height: &quot;200px&quot;
+            }, 5000, function () {
+                $(this).text(&quot;褪色...&quot;).fadeOut(4000);
+            }
+        );
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id =&quot;animateMe&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="处理事件">处理事件</h3>
+
+<p>在jQuery里可以用多种方式给单个元素或一组元素添加事件处理器。首先，最直接的方法是这样的：</p>
+
+<pre><code>$(&quot;a&quot;).click(function() {
+/ / 当锚点元素被单击时要执行的代码
+})；
+</code></pre>
+
+<p>或者像下面这样使用命名的函数：</p>
+
+<pre><code>function hello(){
+    alert(n Hello from jQuery&quot;);
+}
+$(&quot;a&quot;).click(hello);
+</code></pre>
+
+<p>在上面这两个范例里，当锚点被单击时，就会执行指定的函数。jQuery里其他常见的事件包括</p>
+
+<ul>
+<li>blur：当元素失去焦点时发生。</li>
+<li>focus：当元素获得焦点时发生。</li>
+<li>hover：当鼠标指针悬停在被选元素上时发生。</li>
+<li>keypress：键被按下时发生。</li>
+<li>keydown：键按下的过程。</li>
+<li>keyup：键被松开。</li>
+<li>change：当元素的值发生改变时触发事件,该事件仅适用于文本域(text field)，以及textarea和select 元素。</li>
+<li>mousemove：当鼠标指针在指定的元素中移动时,<code>$(document).mousemove(function(e){$(&quot;span&quot;).text(e.pageX + &quot;, &quot; + e.pageY);});)</code>。</li>
+<li>resize：当调整浏览器窗口大小时发生。</li>
+<li>scroll：当用户滚动指定的元素时会发生，scroll 事件适用于所有可滚动的元素和 window 对象（浏览器窗口）。</li>
+<li>submit：当提交表单时，会发生的事件。该事件只适用于表单元素。</li>
+<li>select：当 textarea 或文本类型的 input 元素中的文本被选择（标记）时，会发生 select 事件。</li>
+</ul>
+
+<p>jQuery以跨浏览器的方式包装了attachEvent和 addEventListener方法，从而便于添加多个事件处理器：</p>
+
+<pre><code>$(&quot;a&quot;).on ('click',hello);
+</code></pre>
+
+<p>on()方法是在jQuery 1.7引入的，用于取代以前一些事件处理方法，包括 bind()、delegate()和 live()。on()方法可以给原本存在于HTML页面的元素或者动态添加DOM的元素添加处理器。</p>
+
+<h3 id="小结-1">小结</h3>
+
+<p>jQuery是功能强大且非常流行的JavaScript库，它具有很容易使用的API,可以在广大的主流的浏览器中工作。jQuery由JohnResig编写，发布于2006年。目前有多个jQuery项目，包括jQuery Core(上面的介绍)和jQuery UI(后面有所介绍)。这些项目都处于活跃的开发状态，由John和一个志愿者小组进行维护。关于这些项目及开发小组的情况可以参考jquery.orgo。jQuery可以与其他库同时使用。它提供了 jQuery.noConflict()方法来避免冲突, 详情请见 <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries">http://docs.jquery.com/Using_jQuery_with_Other_Libraries</a>。</p>
+
+<h2 id="jquery-ui">jQuery UI</h2>
+
+<p>jQuery UI提供了很多高级效果和主题微件，可以帮助我们建立互动的Web应用。</p>
+
+<h3 id="jquery-ui-是什么">jQuery UI 是什么</h3>
+
+<p>jQuery开发小组决定提供一个”官方“的jQuery插件集合，集中大量流行的用户界面组 件，并且赋予它们统一的界面风格。利用这些组件，只用少量的代码就可以建立高度交互且
+样式迷人的Web应用。
+jQuery U I为我们提供了：</p>
+
+<ul>
+<li>交互性。jQuery UI支持对页面元素进行拖放、调整尺寸、选择和排序。</li>
+<li>微件。这些功能丰富的控件包括可折叠控件、自动完成、按钮、日期拾取器、对话框、进度条、滑动条和选项卡。</li>
+<li>主题。让站点在全部用户界面组件都具有一致的观感。从<a href="http://jqueryui.com/themeroller">http://jqueryui.com/themeroller</a>上下载ThemeRoller工具，它可以从预先设置的很多设计中选择主题，也可以根据现有主题创建定制的主题。</li>
+</ul>
+
+<p>由于jQuery U I具有出色的用户界面一致性，利 用jQuery文档，可以轻松地查看很多其他可用的插件。</p>
+
+<h3 id="如何在页面里引用jquery-ui">如何在页面里引用jQuery UI</h3>
+
+<p>第一步是访问<a href="http://jqueryui.com/themeroller/">http://jqueryui.com/themeroller/</a>的jQuery ThemeRoller在线应用。</p>
+
+<h4 id="使用-themeroller">使用 ThemeRoller</h4>
+
+<p>jQuery UI CSS框架是一组类，满足了相当大范围的用户界面需求。利用ThemeRoller 工具，我们就可以从无到有建立自己的样式，或是基于<a href="http://jqueryui.com/themeroller/Jl供的大">http://jqueryui.com/themeroller/Jl供的大</a>
+量范例来实现自己的样式。</p>
+
+<p>在确定了样式之后，jQuery UI会提供一个可下载的构造器，其中包含了我们所需要的组件。它还会处理关于文件依赖的问题，避免下载的微件或交互缺少支持文件。我们需要做的只是下载和解压这个压缩文件。文件解压缩之后，会得到如下的目录结构：</p>
+
+<pre><code>/css/
+/development-bundle/
+/js/
+</code></pre>
+
+<p>development-bundle目录保存了 jQuery UI源代码、范例和文档。如果不需要修改jQuery UI代码，把这个目录删除就可以了，不会有什么问题。一般来说，我们需要在使用jQuery UI微件和交互的页面里从剩余的其他文件中引用主题以及jQuery和jQuery UI：</p>
+
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery-ui-min.css&quot; /&gt;
+&lt;script src=&quot;http://code.jquery.com/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>如果是使用标准范例的主题，就可以利用CDN链接全部这些文件：</p>
+
+<p><link rel="tylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-latest.min.j sMx</script>
+<script src="http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js"></script></p>
+
+<p>个人从官网示例找到的是：</p>
+
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+</code></pre>
+
+<h3 id="交互">交互</h3>
+
+<p>jQuery UI能做一些事情来改善页面元素与用户的交互。</p>
+
+<h4 id="拖和放">拖和放</h4>
+
+<p>使用jQuery UI让一个元素成为能够拖放得再简单不过了,示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        #dragdiv {
+            width: 100px;
+            height: 100px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#dragdiv&quot;).draggable(); //设置元素可以拖放
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt; 这个元素可以在页面上拖放！!&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>利用jQuery UI实现元素的拖和放 为了让某个元素能够接受拖放到它的另一个元素，需要使用droppable()方法。这个方法可以指定用于多个事件，比如可拖动元素被放下、经过可拖动区域或离开可拖动区域。除了要让拖动元素成为可拖动的，还需要把这个新的<code>&lt;div&gt;</code>元素指定为可放置区域,另外，我们给drop和 out事件处理器添加方法，让拖动元素里的文本在它被放下或离开 放置区域时有相应的变化。示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        div {
+            font: 12px normal arial, helvetica;
+        }
+        #dragdiv {
+            width: 150px;
+            height: 50px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #dropdiv {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $('#dragdiv').draggable();
+            $('#dropdiv').droppable({
+                drop: function() { $ ('#dragdiv') .text (&quot;已放下！&quot;);},
+                out: function () { $(&quot;#dragdiv&quot;).text(&quot;再次拿起来！&quot;); }
+            });
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dropdiv&quot;&gt; 这里是放下来的区域！&lt;/div&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt;在页面内拖动此元素！&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="调整大小">调整大小</h4>
+
+<p>使用jQueryUI给矩形元素添加调整大小的手柄也是很容易的:</p>
+
+<pre><code>$('#resizable').resizable();
+</code></pre>
+
+<p>作为一个示范，我们可以把上面的放置区域以命令链的形式添加resizable()方法:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        div {
+            font: 12px normal arial, helvetica;
+        }
+        #dragdiv {
+            width: 150px;
+            height: 50px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #dropdiv {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $('#dragdiv').draggable();
+            $('#dropdiv').droppable({
+                drop: function() { $ ('#dragdiv') .text (&quot;已放下！&quot;);},
+                out: function () { $(&quot;#dragdiv&quot;).text(&quot;再次拿起来！&quot;); }
+            }).resizable();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dropdiv&quot;&gt; 这里是放下来的区域！&lt;/div&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt;在页面内拖动此元素！&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="排序">排序</h4>
+
+<p>使用sortable()方法可以把元素添加到列表，并且让列表可以进行排序:</p>
+
+<pre><code>$(&quot;#sortMe&quot;).sortable();
+</code></pre>
+
+<p>下面的示例展示了如何对一个无序列表元素使用这个方法：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#sortMe&quot;).sortable();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul id=&quot;sortMe&quot;&gt;
+        &lt;li&gt;我是一&lt;/li&gt;
+        &lt;li&gt;我是二&lt;/li&gt;
+        &lt;li&gt;我是三&lt;/li&gt;
+        &lt;li&gt;我是四&lt;/li&gt;
+        &lt;li&gt;我是五&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span&gt;列表元素可拖动！&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="使用微件">使用微件</h3>
+
+<p>微件是一种界面元素，在提供方便功能的同时，对于程序的影响保持在最小程度。</p>
+
+<h4 id="可折叠控件">可折叠控件</h4>
+
+<p>可折叠控件让用户在一组div元素里可以一次只展开一个，而其他的保持在只显示标题的状态。首先需要在语义层添加数据，方法是使用多个标题和内容窗格：</p>
+
+<pre><code>&lt;div id='accordion'&gt;
+&lt;h3&gt;&lt;a href=&quot;&quot;&gt;First header&lt;/a&gt;&lt;/h3&gt; 
+&lt;div&gt; First content&lt;/div&gt;
+&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Second header&lt;/a&gt;&lt;/h3&gt; 
+&lt;div&gt;Second content&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>然后在外层容器元素上调用accordionO方法来激活折叠控件：</p>
+
+<pre><code>&lt;script&gt;
+    $(function () {
+        $(&quot;#accordion&quot;).accordion();
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>下面是个示例，展示一家餐馆的午餐菜品在折叠控件的不同部分展示：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#accordion&quot;).accordion();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;从下列菜单选项中选择：&lt;/h2&gt;
+    &lt;div id=&quot;accordion&quot;&gt;
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;开胃小吃&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;蛤蜊浓汤&lt;/li&gt;
+                &lt;li&gt;火腿鳄梨沙拉&lt;/li&gt;
+                &lt;li&gt;填馅蘑菇&lt;/li&gt;
+                &lt;li&gt;鸡肝酱&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt; 
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;主食&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;苏格兰鲑鱼&lt;/li&gt;
+                &lt;li&gt;蔬菜千层面&lt;/li&gt;
+                &lt;li&gt;牛肉肾馅饼&lt;/li&gt;
+                &lt;li&gt;烤鸡&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt; 
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;饭后甜点&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;巧克力圣代&lt;/li&gt;
+                &lt;li&gt;柠檬冰沙&lt;/li&gt;
+                &lt;li&gt;水果沙拉&lt;/li&gt;
+                &lt;li&gt;草莓芝士蛋糕&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="日期拾取器">日期拾取器</h4>
+
+<p>假设下面这个字段是要输入日期的：</p>
+
+<pre><code>&lt;input type=&quot;text&quot; id=&quot; datepicker&quot; /&gt;
+</code></pre>
+
+<p>只需一行代码就可以给这个字段添加日期拾取器：</p>
+
+<pre><code>$(function () {
+        $(&quot;#datepicker&quot;).datepicker();
+    });
+</code></pre>
+
+<h4 id="选项卡">选项卡</h4>
+
+<p>要达到这种节省空间的目的除了可折叠控件，还有另一种方法，就是使用选项卡界面。示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#tabs&quot;).tabs();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;tabs&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-1&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-2&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-3&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt; 
+        &lt;div id=&quot;tabs-1&quot;&gt;
+            &lt;p&gt;Welcome to our online store....&lt;/p&gt;
+        &lt;/div&gt; 
+        &lt;div id=&quot;tabs-2&quot;&gt;
+        &lt;p&gt;We've been selling widgets for 5 years ...&lt;/p&gt;
+        &lt;/div&gt; 
+        &lt;div id=&quot;tabs-3&quot;&gt;
+            &lt;p&gt;We sell all kinds of widgets ...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="小结-2">小结</h3>
+
+<p>本章介绍了如何利用jQuery UI配合jQuery建立灵活的用户界面，如何利用ThemeRoller应用设置界面元素的整体风格，可以看到给页面添加交互和微件是多么地轻松。我们还能对界面元素进一步定制，这里介绍的界面和微件都使用了它们的默认设置，而它们实际上有大量的定制选项，可以根据我们的需要进行设置。<a href="http://docs.jquery.com/UI/提供了大量的文档和范例。">http://docs.jquery.com/UI/提供了大量的文档和范例。</a></p>
+
+<p>让页面上的其他元素与jQuery UI生成的元素具有同样的样式：当jQuery U I生成装饰效果时，它会把很多的类应用于新创建的元素。这些类对应 于jQuery UI CSS框架里的CSS声明。每一个微件的详细说明请见jQuery UI文档。</p>
+
+<h2 id="ajax-和-jquery">Ajax 和 jQuery</h2>
+
+<p>Ajax是什么，它如何提高用户体验：</p>
+
+<p>JavaScript是客户端脚本语言，本书前面介绍的全部范例都是客户端编程。Ajax允许与后台的服务器通信，并且不需要执行页面刷新就能够将结果显示到页面上。这就使得你能够创建与用户平滑交互的页面。在本章中，我们将学习支持Ajax的底层技 术，以及如何使用jQuery使得整个过程漂亮而简单。</p>
+
+<h3 id="ajax解析">Ajax解析</h3>
+
+<p>到目前为止，我们介绍的都是关于站点用户界面的传统页面模型。在用户与这种站点互动时，每个页面包含文本、图像、数据输入表单等，依次展现。每个页面都得单独处理，才能跳转到下一个页面。举例来说，在填写表单的字段时，我们会根据需要进行编辑，因为知道在最终提交之前，数据不会被发送到服务器。</p>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript25.jpg" alt="JavaScript25" /></p>
+
+<p>上面的图展示了这种互动过程。在提交表单或单击链接之后，浏览器要进行屏幕刷新,才能显示由服务器发送的新页面或修改后的页面。符合这种模型的交互具有一些缺点。首先，每个新页面或修改页面的加载都会有明显延时，这会影响用户对于应用程序“流畅”运行的感觉。而且，即使新页面与前一个页面的内容几乎是相同的，每次也都需要加载“整个”页面。站点里很多页面的共同元素，比如标题、面脚、导航栏，可能会在页面数据里占据很大的比例。这种不必要的数据下载会浪费带宽，而且会使每个新页面的加载延时恶化。</p>
+
+<p>我们希望耗时的计算过程在后台安静地运行，而显示内容仍然保留在屏幕上，界面元素依旧能对用户的指令产生响应。</p>
+
+<h4 id="ajax-入门">Ajax 入门</h4>
+
+<p>Ajax能够实现上述在桌面应用程序中很常见的功能，它在Web页面与服务器之间建立了 一个额外的“处理层”。</p>
+
+<p>这个“处理层”通常称为Ajax引擎或Ajax框架。它解释来自用户的请求，在后台以异步方式“安静”地处理服务器通信。这意味着对于用户操作,服务器请求与响应不再需要同步一致了，而只是在便于用户使用或程序正确操作需要时才发生；浏览器不会停止响应来等服务器完成对最后一个请求的处理，而是会允许用户在当前页面浏览、单击和输入数据。页面上需要根据服务器响应进行修改的元素也由Ajax 处理，这是在页面保持可用状态过程中动态进行的。下图这种交互方式的示意。
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript26.jpg" alt="JavaScript26" /></p>
+
+<h4 id="xmlhttprequest对象">XMLHttpRequest对象</h4>
+
+<p>当用户单击页面上的链接或是提交一个表单时，就向服务器发送了一个HTML请求，得到的响应是一个新页面或修改过的页面。然而，为了能让Web程序实现异步工作，必须使用一种方式给服务器发送HTTP请求而不必显示新页面。</p>
+
+<p>利用XMLHttpRequest对象就可以实现这种方式。它能够建立与服务器的连接，发送HTTP请求而不需要加载相应的页面。出于安全的考虑，XMLHttpRequest对象一般只能调用与当前页面同一个域里的URL,而不能直接调用远程服务器。</p>
+
+<h4 id="不同浏览器的不同规则">不同浏览器的不同规则</h4>
+
+<p>对于大多数本身支持XMLHttpRequest对象的浏览器(比如Firefox、Opera以及较新版本的IE)来说，创建它的实例是很直接的，比如下面这条语句就会创建名为request的实例：</p>
+
+<pre><code>var request = new XMLHttpRequest();
+</code></pre>
+
+<p>在一些早期版本的IE里，为了达到同样的目的，需要创建一个ActiveX对象，如下所示:</p>
+
+<pre><code>var request = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre>
+
+<p>与前面一样，这也是把新对象的名称设置为requesto更复杂的是，有些IE版本安装了不同版本的XML解析器，这时就要使用如下的指令：</p>
+
+<pre><code>var request = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+</code></pre>
+
+<h4 id="方法和属性">方法和属性</h4>
+
+<p>在创建了 XMLHttpRequest对象之后，现在来看看它的属性和方法，如下表所示：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">onreadystatechange</td>
+<td align="left">当对象的readyState属性改变时，调用哪个事件处理器</td>
+</tr>
+
+<tr>
+<td align="center">readyState</td>
+<td align="left">以整数形式反映请求的状态，0=未初始化，1=正在加载，2=加载完成，3=交互，4=完成。</td>
+</tr>
+
+<tr>
+<td align="center">responseText</td>
+<td align="left">以字符串形式从服务器返回的数据</td>
+</tr>
+
+<tr>
+<td align="center">responseXML</td>
+<td align="left">以文档对象形式从服务器返回的数据</td>
+</tr>
+
+<tr>
+<td align="center">status</td>
+<td align="left">服务器返回的HTTP状态代码</td>
+</tr>
+
+<tr>
+<td align="center">statusText</td>
+<td align="left">服务器返回的解释短语</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">abort()</td>
+<td align="left">停止当前请求</td>
+</tr>
+
+<tr>
+<td align="center">getAllResponseHeaders()</td>
+<td align="left">以字符串形式返回全部标题</td>
+</tr>
+
+<tr>
+<td align="center">getResponseHeader(x)</td>
+<td align="left">以字符串形式返回标题X的值</td>
+</tr>
+
+<tr>
+<td align="center">open(&lsquo;method&rsquo;,&lsquo;URL&rsquo;, &lsquo;a&rsquo;)</td>
+<td align="left">指定HTTP方法（GET或POST）、目标URL和处理请求的方式（a=true, 默认，表示异步；a=false，表示同步）</td>
+</tr>
+
+<tr>
+<td align="center">send(content)</td>
+<td align="left">发送请求。对于POST数据是可选的</td>
+</tr>
+
+<tr>
+<td align="center">setRequestHeader(&lsquo;x&rsquo;,&lsquo;y&rsquo;)</td>
+<td align="left">设置“参数=值”对（x=y）, 把它赋予与请求一起发送的标题</td>
+</tr>
+</tbody>
+</table>
+
+<p>使用这些方法和属性建立函数，最终构成我们的Ajax程序。</p>
+
+<h4 id="与服务器通信">与服务器通信</h4>
+
+<p>在传统的Web页面中，当你通过一个超链接或一次表单提交发送了一个服务器请求，服务器接受该请求，执行所需的任何服务器端过程，并且随后为你提供一个新的页面，其中带有与你所执行的操作相对应的内容。当这个过程发生的时候，用户界面实际上是冻结的。当服务器完成其任务的时候，你会看到浏览器中好像有了一个全新的或重新访问的页面。</p>
+
+<p>然而，对于异步的服务器请求，这样的通信实际上是在后台发生的，请求的完成并不一定要和屏幕刷新或新页面的加载同步进行。因此，必须想其他办法才能搞清楚服务器如何处理你的请求。XMLHttpRequest对象有一个方便的属性，能够报告服务器请求的进程。你可以使用JavaScript程序来查看这个属性，以判定服务器完成其任务到了哪一步了，并且结果也是可供你使用的。因此，Ajax应用必须包含一个程序来监控请求的状态并执行相应的操作。</p>
+
+<h4 id="在服务器端发生了什么">在服务器端发生了什么</h4>
+
+<p>对于服务器端脚本来说，来自XMLHttpRequest对象的通信只不过是另一个HTTP请求而已。街ax应用程序对于服务器端是何种语言或操作环境知之甚少。只要客户端Ajax层接受到来自服务器的及时的、格式正确的HTTP请求，就可以了。</p>
+
+<h4 id="处理服务器响应">处理服务器响应</h4>
+
+<p>一旦注意到一个异步请求已经成功地完成了，你就可以使用服务器所返回的信息了。Ajax允许这些信息以多种格式返回给你，包括ASCII文本和XML数据。根据应用程序的特性，你可以随后在当前页面之中转换、显示或处理这些信息。还有更容易的方法，不是吗？好在，有很多的JavaScript库做了很好的工作，将这些相当复杂的过程包装到易于使用的函数和方法之中。在下面我们将看到jQuery库是如何使得编写Ajax脚本 变得很轻松容易的。</p>
+
+<h3 id="使用jquery实现ajax">使用jQuery实现Ajax</h3>
+
+<p>由于不同浏览器以不同方式实现XMLHttpRequest对象，Ajax编程显得有些复杂。好在jQuery解决了这些问题，让我们可以用很少的代码就可以编写Ajax程序。jQuery包含不少执行Ajax对服务器调用的方法，这里介绍其中最常用的一些。</p>
+
+<p>如果只是需要从服务器获取一个文档并在页面元素里显示它，那么只需要使用load()方法就可以了。比如下面的代码段会获取newContent.html,并且把它的内容添加到id为&rdquo;elem&rdquo;的元素：</p>
+
+<pre><code>$(function () {
+        $(&quot;#elem&quot;).load(&quot;newContent.html&quot;);
+    });
+</code></pre>
+
+<p>在使用load()方法时，除了指定URL外，还可以传递一个选择符，从而只返回相应的页面内容：</p>
+
+<pre><code>$(function () {
+        $(&quot;#elem&quot;).load(&quot;newContent.html #info&quot;);
+    });
+</code></pre>
+
+<p>上面的范例在URL之后添加了一个jQuety选择符，中间以空格分隔。这样就会返回选择符指定的容器里的内容，本例中，就是id为&rdquo;info&rdquo;的元素。后面的可选的callback参数规定当load()方法完成后所要允许的回调函数。回调函数可以设置不同的参数：</p>
+
+<ul>
+<li>responseTxt - 包含调用成功时的结果内容</li>
+<li>statusTXT - 包含调用的状态</li>
+<li>xhr - 包含 XMLHttpRequest 对象</li>
+</ul>
+
+<p>下面的例子会在 load() 方法完成后显示一个提示框。如果 load() 方法已成功，则显示“外部内容加载成功！”，而如果失败，则显示错误消息：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$(&quot;#div1&quot;).load(&quot;demo_test.txt&quot;,function(responseTxt,statusTxt,xhr){
+    if(statusTxt==&quot;success&quot;)
+    alert(&quot;外部内容加载成功！&quot;);
+    if(statusTxt==&quot;error&quot;)
+    alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);
+});
+});
+</code></pre>
+
+<p>如果是从表单字段获取数据,jQuery还提供了serialize()方法，能够对表单 数据进行序列化：</p>
+
+<pre><code>var formdata = $('#forml').serialize(); 
+</code></pre>
+
+<p>为了弥补load()方法的简单功能，jQuery还提供了发送GET和POST请求的方法。这两个方法很类似，只是调用不同的请求类型而已。调用这两个方法时，不需要选择某个jQuery对象(比如某个或一组页面元素)，而是直接调用：$.get()或$.post()在最简单的形式中，它们只需要一个参数，就是目标URL。通常情况下，我们还需要发送一些数据，它们是以&rdquo;参数/值&rdquo;对的形式出现的，以JSON风格的字符串作为数据格式。</p>
+
+<p>大多数情况下，我们会对返回的数据进行一些处理，为此还需要把回调函数作为参数:</p>
+
+<pre><code>$.get(&quot;serverScript.php&quot;,
+        { paraml: &quot;valuel&quot;, param2: &quot;nvalue2&quot; },
+        function (data) {
+            alert(&quot;Server responded: &quot; + data);
+        });
+</code></pre>
+
+<p>post()方法的语法基本上是相同的：</p>
+
+<pre><code> $.post(&quot;serverScript.php&quot;,
+        { paraml: &quot;valuel&quot;, param2: &quot;nvalue2&quot; },
+        function (data) {
+            alert(&quot;Server responded: &quot; + data);
+        });
+</code></pre>
+
+<p>ajax()方法具有很大的灵活性，几乎可以设置关于Ajax调用及如何处理响应的各个方面。详细的介绍请见 <a href="http://api.jquery.com/jQuery.ajax/的文档。">http://api.jquery.com/jQuery.ajax/的文档。</a></p>
+
+<p>用jQuery实现简单的Ajax表单提交,并实现如下操作：</p>
+
+<ul>
+<li>检查并确保两个输入字段都有内容。</li>
+<li>利用HTTP POST通过Ajax提交表单。</li>
+<li>使服务器返回的数据显示在页面的<div>元素里。</li>
+</ul>
+
+<p>为了检查两个输入字段都有内容，只需要使用如下的函数：</p>
+
+<pre><code>function checkFields(){ 
+            return ($(&quot;#name&quot;).val() &amp;&amp; $ (&quot;#email&quot;).val());
+        }
+</code></pre>
+
+<p>当两个输入字段的value属性都包含一些文本时，这个函数才会返回true,只要有任何一 个字段是空的，空字段就会解释为false,而 false的逻辑“与”操作的结果一定是false。</p>
+
+<p>接下来，利用jQuery的submit()事件处理器检测表单提交动作。如果函数checkFields()返回false,默认操作是取消提交：如果返回true,jQuery会对数据进行序列化，并且向服务器脚本发送一个post()请求。jQuery的serialize()方法可以获取表单信息，进行序列化，满足Ajax调用的需要。在这个范例中，服务器脚本test.php并没有什么实际操作，只是把它收到的信息调整下格式，以HTML形式返回：</p>
+
+<pre><code>&lt;?php
+echo &quot;Name:&quot; . $_REQUEST['name'] . &quot;&lt;br /&gt;Email: &quot; . $_REQUEST['email'];
+?&gt;
+</code></pre>
+
+<p>程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $ (document).ready(function(){ 
+            function checkFields(){ 
+                return ($(&quot;#name&quot;).val() &amp;&amp; $ (&quot;#email&quot;).val());
+            }
+
+            $ (&quot;#forml&quot;).submit(function(){ 
+                if(checkFields()){ 
+                    $.post( 'test.php', $ (&quot;#forml&quot;).serialize(), 
+                        function(data){
+                        //最后，回调函数在页面上显示返回的内容：
+                            $ (&quot;#divl&quot;).html(data);
+                        });
+                }
+                else alert (&quot;Please fill in name and email fields !&quot;); 
+                return false;
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot;&gt;
+        Name：&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;&gt;&lt;br /&gt; 
+        Email ：&lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&lt;br /&gt; 
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; id=&quot;submit&quot; value=&quot;提交表单&quot; 〉&gt;
+    &lt;/form&gt; 
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>额外示例，通过 AJAX 加载一段文本，test.txt的HTML 代码：</p>
+
+<pre><code>&lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;Let AJAX change this text&lt;/h2&gt;&lt;/div&gt;
+&lt;button id=&quot;b01&quot; type=&quot;button&quot;&gt;Change Content&lt;/button&gt;
+</code></pre>
+
+<p>全部程序清单：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(document).ready(function () {
+            $(&quot;#b01&quot;).click(function () {
+                htmlobj = $.ajax({ url: &quot;/Resources/test.txt&quot;, async: false });
+                $(&quot;#myDiv&quot;).html(htmlobj.responseText);
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;通过 AJAX 改变文本&lt;/h2&gt;&lt;/div&gt;
+    &lt;button id=&quot;b01&quot; type=&quot;button&quot;&gt;改变内容&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="篇外之一get对比post">篇外之一GET对比POST</h3>
+
+<p>什么是HTTP？超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。HTTP的工作方式是客户机与服务器之间的请求-应答协议。web浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。</p>
+
+<p>两种最常用的HTTP方法是：GET和POST。GET基本上用于从服务器获得（取回）数据。注释：GET方法可能返回缓存数据。POST也可用于从服务器获取数据。不过，POST方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+
+<ul>
+<li>GET - 从指定的资源请求数据</li>
+<li>POST - 向指定的资源提交要处理的数据</li>
+</ul>
+
+<p>GET方法，请注意，查询字符串（名称/值对）是在 GET 请求的 URL 中发送的：</p>
+
+<pre><code>/test/demo_form.asp?name1=value1&amp;name2=value2
+</code></pre>
+
+<p>有关 GET 请求的其他一些注释：</p>
+
+<ul>
+<li>GET 请求可被缓存</li>
+<li>GET 请求保留在浏览器历史记录中</li>
+<li>GET 请求可被收藏为书签</li>
+<li>GET 请求不应在处理敏感数据时使用</li>
+<li>GET 请求有长度限制</li>
+<li>GET 请求只应当用于取回数据</li>
+</ul>
+
+<p>POST方法,请注意，查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的：</p>
+
+<pre><code>POST /test/demo_form.asp HTTP/1.1
+Host: w3schools.com
+name1=value1&amp;name2=value2
+</code></pre>
+
+<p>有关 POST 请求的其他一些注释：</p>
+
+<ul>
+<li>POST 请求不会被缓存</li>
+<li>POST 请求不会保留在浏览器历史记录中</li>
+<li>POST 不能被收藏为书签</li>
+<li>POST 请求对数据长度没有要求</li>
+</ul>
+
+<p>比较 GET 与 POST：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">GET</th>
+<th align="left">POST</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">后退按钮/刷新</td>
+<td align="left">无害</td>
+<td align="left">数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</td>
+</tr>
+
+<tr>
+<td align="left">书签</td>
+<td align="left">可收藏为书签</td>
+<td align="left">不可收藏为书签</td>
+</tr>
+
+<tr>
+<td align="left">缓存</td>
+<td align="left">能被缓存</td>
+<td align="left">不能缓存</td>
+</tr>
+
+<tr>
+<td align="left">编码类型</td>
+<td align="left">application/x-www-form-urlencoded</td>
+<td align="left">application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</td>
+</tr>
+
+<tr>
+<td align="left">历史</td>
+<td align="left">参数保留在浏览器历史中。</td>
+<td align="left">参数不会保存在浏览器历史中。</td>
+</tr>
+
+<tr>
+<td align="left">对数据长度的限制</td>
+<td align="left">是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。</td>
+<td align="left">无限制。</td>
+</tr>
+
+<tr>
+<td align="left">对数据类型的限制</td>
+<td align="left">只允许 ASCII 字符。</td>
+<td align="left">没有限制。也允许二进制数据。</td>
+</tr>
+
+<tr>
+<td align="left">安全性</td>
+<td align="left">与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET ！</td>
+<td align="left">POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。</td>
+</tr>
+
+<tr>
+<td align="left">可见性</td>
+<td align="left">数据在 URL 中对所有人都是可见的。</td>
+<td align="left">数据不会显示在 URL 中。</td>
+</tr>
+</tbody>
+</table>
+
+<p>其他 HTTP 请求方法:
+下面的表格列出了其他一些 HTTP 请求方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">HEAD</td>
+<td align="left">与 GET 相同，但只返回 HTTP 报头，不返回文档主体。</td>
+</tr>
+
+<tr>
+<td align="left">PUT</td>
+<td align="left">上传指定的 URI 表示。</td>
+</tr>
+
+<tr>
+<td align="left">DELETE</td>
+<td align="left">删除指定资源。</td>
+</tr>
+
+<tr>
+<td align="left">OPTIONS</td>
+<td align="left">返回服务器支持的 HTTP 方法。</td>
+</tr>
+
+<tr>
+<td align="left">CONNECT</td>
+<td align="left">把请求连接转换到透明的 TCP/IP 通道。</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="篇外之二w3school上面的jquery-ajax-get-和-post-方法诠释">篇外之二W3school上面的jQuery - AJAX get() 和 post() 方法诠释</h3>
+
+<p>jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。</p>
+
+<pre><code>GET - 从指定的资源请求数据
+POST - 向指定的资源提交要处理的数据
+</code></pre>
+
+<p>GET 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。POST 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+
+<p>jQuery $.get() 方法通过 HTTP GET 请求从服务器上请求数据。语法：</p>
+
+<pre><code>$.get(URL,callback);
+</code></pre>
+
+<p>必需的 URL 参数规定您希望请求的 URL。可选的 callback 参数是请求成功后所执行的函数名。下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$.get(&quot;demo_test.asp&quot;,function(data,status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+});
+});
+</code></pre>
+
+<p>$.get() 的第一个参数是我们希望请求的 URL（&rdquo;demo_test.asp&rdquo;）。第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。提示：这个 ASP 文件 (&ldquo;demo_test.asp&rdquo;) 类似这样：</p>
+
+<pre><code>&lt;%
+response.write(&quot;This is some text from an external ASP file.&quot;)
+%&gt;
+</code></pre>
+
+<p>jQuery $.post() 方法
+$.post() 方法通过 HTTP POST 请求从服务器上请求数据。语法：</p>
+
+<pre><code>$.post(URL,data,callback);
+</code></pre>
+
+<p>必需的URL参数规定您希望请求的URL。可选的data参数规定连同请求发送的数据。可选的callback参数是请求成功后所执行的函数名。下面的例子使用$.post() 连同请求一起发送数据：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$.post(&quot;demo_test_post.asp&quot;,
+{
+    name:&quot;Donald Duck&quot;,
+    city:&quot;Duckburg&quot;
+},
+function(data,status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+});
+});
+</code></pre>
+
+<p>$.post()的第一个参数是我们希望请求的URL(&ldquo;demo_test_post.asp&rdquo;)。然后我们连同请求（name和city）一起发送数据。&rdquo;demo_test_post.asp&rdquo;中的ASP脚本读取这些参数，对它们进行处理，然后返回结果。第三个参数是回调函数。第一个回调参数存有被请求页面的内容，而第二个参数存有请求的状态。</p>
+
+<p>提示：这个 ASP 文件 (&ldquo;demo_test_post.asp&rdquo;) 类似这样：</p>
+
+<pre><code>&lt;%
+dim fname,city
+fname=Request.Form(&quot;name&quot;)
+city=Request.Form(&quot;city&quot;)
+Response.Write(&quot;Dear &quot; &amp; fname &amp; &quot;. &quot;)
+Response.Write(&quot;Hope you live well in &quot; &amp; city &amp; &quot;.&quot;)
+%&gt;
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/javascript/">JavaScript</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" class="leancloud_visitors" data-flag-title="JavaScript入门经典第6版笔记(下)">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" data-tooltip="JavaScript入门经典第6版笔记(上)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" data-tooltip="JavaScript入门经典第6版笔记(上)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F09%2Fjavascript%25E5%2585%25A5%25E9%2597%25A8%25E7%25BB%258F%25E5%2585%25B8%25E7%25AC%25AC6%25E7%2589%2588%25E7%25AC%2594%25E8%25AE%25B0%25E4%25B8%258B%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F09%2Fjavascript%25E5%2585%25A5%25E9%2597%25A8%25E7%25BB%258F%25E5%2585%25B8%25E7%25AC%25AC6%25E7%2589%2588%25E7%25AC%2594%25E8%25AE%25B0%25E4%25B8%258B%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F09%2Fjavascript%25E5%2585%25A5%25E9%2597%25A8%25E7%25BB%258F%25E5%2585%25B8%25E7%25AC%25AC6%25E7%2589%2588%25E7%25AC%2594%25E8%25AE%25B0%25E4%25B8%258B%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">只要坚持希望不气馁，生活迟早会让我们变得无所不能。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/09\/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B\/';
+          
+            this.page.identifier = '\/2019\/09\/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
