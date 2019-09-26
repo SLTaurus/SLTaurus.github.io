@@ -341,6 +341,64 @@
 <li><a href="#篇外之二w3school上面的jquery-ajax-get-和-post-方法诠释">篇外之二W3school上面的jQuery - AJAX get() 和 post() 方法诠释</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#高级注题">高级注题</a>
+<ul>
+<li><a href="#读取和写入cookie">读取和写入cookie</a>
+<ul>
+<li><a href="#什么是-cookie">什么是 cookie</a>
+<ul>
+<li><a href="#cookie的局限">cookie的局限</a></li>
+</ul></li>
+<li><a href="#document-cookie-属性">document.cookie 属性</a>
+<ul>
+<li><a href="#数据的编码和解码">数据的编码和解码</a></li>
+</ul></li>
+<li><a href="#cookie-组成">cookie 组成</a></li>
+<li><a href="#编写-cookie">编写 cookie</a></li>
+<li><a href="#编写cookie的函数">编写cookie的函数</a></li>
+<li><a href="#读取cookie">读取cookie</a></li>
+<li><a href="#删除-cookie">删除 cookie</a></li>
+<li><a href="#在一个cookie里设置多个值">在一个cookie里设置多个值</a></li>
+</ul></li>
+<li><a href="#javascript新功能">JavaScript新功能</a>
+<ul>
+<li><a href="#类">类</a></li>
+<li><a href="#箭头函数">箭头函数</a></li>
+<li><a href="#模块">模块</a></li>
+<li><a href="#使用let和const">使用let和const</a></li>
+<li><a href="#模板字符串">模板字符串</a></li>
+<li><a href="#使用for-of访问数组">使用for-of访问数组</a></li>
+<li><a href="#小结-3">小结</a></li>
+</ul></li>
+<li><a href="#使用框架">使用框架</a>
+<ul>
+<li><a href="#软件框架">软件框架</a>
+<ul>
+<li><a href="#为何要使用框架">为何要使用框架</a></li>
+<li><a href="#框架和库不同">框架和库不同</a></li>
+</ul></li>
+<li><a href="#模型-视图-控制器-mvc-架构">模型-视图-控制器（MVC）架构</a>
+<ul>
+<li><a href="#模型">模型</a></li>
+<li><a href="#视图">视图</a></li>
+<li><a href="#控制器">控制器</a></li>
+</ul></li>
+<li><a href="#针对webapp使用mvc框架">针对WebAPP使用MVC框架</a></li>
+<li><a href="#angularjs-框架">AngularJS 框架</a>
+<ul>
+<li><a href="#angularjs-概览">AngularJS 概览</a></li>
+<li><a href="#在页面中包含angularjs">在页面中包含AngularJS</a></li>
+<li><a href="#用ng-指令扩展html">用ng-指令扩展HTML</a></li>
+<li><a href="#作用域">作用域</a></li>
+<li><a href="#指令">指令</a></li>
+<li><a href="#表达式">表达式</a></li>
+<li><a href="#过滤器">过滤器</a></li>
+</ul></li>
+<li><a href="#构建一个angularjs应用程序">构建一个AngularJS应用程序</a></li>
+<li><a href="#小结-4">小结</a></li>
+</ul></li>
+<li><a href="#web页面之外的javascript">Web页面之外的JavaScript</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -602,6 +660,30 @@ $(&quot;:checked&quot;);      //选中状态的选择框或单选钮
 
 <pre><code>$(&quot;#elem&quot;).attr(&quot;title&quot;,&quot;This is the new title&quot;);
 </code></pre>
+
+<p><strong>附加：</strong></p>
+
+<p>val() 方法返回或设置被选元素的值。元素的值是通过 value 属性设置的。其中有部分元素没有value，该方法大多用于 input 元素。如果该方法未设置参数，则返回被选元素的当前值。</p>
+
+<pre><code>$(&quot;#name&quot;).val()     //获取id=&quot;name&quot;的value值
+$(&quot;#name&quot;).val(value)  //为id=&quot;name&quot;的元素的value赋值，value表示你赋予的值
+</code></pre>
+
+<p>html()方法返回或设置被选元素的内容(innerHTML)。如果该方法未设置参数，则返回被选元素的当前内容。当使用该方法返回一个值时，它会返回第一个匹配元素的内容。当使用该方法设置一个值时，它会覆盖所有匹配元素的内容。</p>
+
+<pre><code>$(&quot;#name&quot;).html() //获取第一个id=name的内容
+$(&quot;#name&quot;).html(&quot;需要赋予的值&quot;) 
+</code></pre>
+
+<p>attr() 方法设置或返回被选元素的属性值。根据该方法不同的参数，其工作方式也有所差异。</p>
+
+<pre><code>$(&quot;name&quot;).attr(&quot;attribute&quot;); //返回被选元素的属性值。
+$(&quot;name&quot;).attr(attribute,value)； //设置被选元素的属性和值。
+</code></pre>
+
+<p>区别：
++ val()一般用在input上，val主要运用于表单元素上，而不用在其他元素，用来获取input或者是select的值（但我用val给select赋值时无法显示，不知道为什么）。
++ html()和text()、attr()可用在多种元素上，但是html()相当于依据源代码返回，也就是在返回的内容中会包含各种tag，而text()则相当于是依据页面显示返回，返回的内容是出去各种tag之间的内容。</p>
 
 <h3 id="显示和隐藏元素">显示和隐藏元素</h3>
 
@@ -1203,7 +1285,7 @@ jQuery U I为我们提供了：</p>
 
 <p>Ajax是什么，它如何提高用户体验：</p>
 
-<p>JavaScript是客户端脚本语言，本书前面介绍的全部范例都是客户端编程。Ajax允许与后台的服务器通信，并且不需要执行页面刷新就能够将结果显示到页面上。这就使得你能够创建与用户平滑交互的页面。在本章中，我们将学习支持Ajax的底层技 术，以及如何使用jQuery使得整个过程漂亮而简单。</p>
+<p>Ajax是 Asynchronous JavaScript And XML的缩写。实际上，Ajax并不仅限于只是返回XML数据。JavaScript是客户端脚本语言，本书前面介绍的全部范例都是客户端编程。Ajax允许与后台的服务器通信，并且不需要执行页面刷新就能够将结果显示到页面上。这就使得你能够创建与用户平滑交互的页面。在本章中，我们将学习支持Ajax的底层技 术，以及如何使用jQuery使得整个过程漂亮而简单。</p>
 
 <h3 id="ajax解析">Ajax解析</h3>
 
@@ -1730,6 +1812,1069 @@ Response.Write(&quot;Dear &quot; &amp; fname &amp; &quot;. &quot;)
 Response.Write(&quot;Hope you live well in &quot; &amp; city &amp; &quot;.&quot;)
 %&gt;
 </code></pre>
+
+<h1 id="高级注题">高级注题</h1>
+
+<h2 id="读取和写入cookie">读取和写入cookie</h2>
+
+<p>前面介绍的JavaScript技术还不能把信息从一个页面传递给另一个页面，而cookie提供了一种便捷的方式，能够在用户的计算机上保存少量数据并且远程获得它们，从而让网站可以保存一些细节信息，比如用户的习惯设置或是上一次访问网站的时间。这里将介绍如何使用JavaScript创建、保存、获取和删除cookie。</p>
+
+<h3 id="什么是-cookie">什么是 cookie</h3>
+
+<p>把Web页面加载到浏览器所使用的HTTP是一种“无状态”协议，也就是说，当服务器把页面发送给浏览器之后，它就认为事务完成了，并不保存任何信息。这给在浏览器会话期间（或是在会话之间）维持某种连续性带来了困难，比如记录用户已经访问或下载过哪些内容，或是记录用户在私有区域的登录状态。</p>
+
+<p>cookie就是解决这个问题的一个途径。举例来说，cookie可以记录用户的最后一次访问，保存用户偏好设置的列表，或是当用户继续购物时保存购物车里的物品。在正确使用的情况下，cookie能够改善站点的用户体验。cookie本身是一些短小的信息串，能够由页面保存在用户的计算机上，然后可以被其他 页面读取。cookie 一般都设置为在一定时间后失效。</p>
+
+<p><strong>注意：很多用户不允许站点在自己的计算机上保存cookie,所以在编程时注意不要让站点完全依赖于它们。有人不喜欢cookie,通常的原因是有些站点把cookie作为一种广告手 段，利用它们追踪用户的在线行为，从而进行有针对性的广告。但这也是一 个范例，说明了为什么要使用cookie以及将它用于什么领域。</strong></p>
+
+<h4 id="cookie的局限">cookie的局限</h4>
+
+<p>浏览器对于能够保存的cookie数量有所限制，通常是几百个或多一点。一般情况下，每个域名20个cookies是允许的，而每个域最多能保存4KB的cookie。</p>
+
+<p>除了大小限制可能导致的问题，有很多原因都可能导致硬盘上的cookie消失，比如到达有效期限了，或是用户清理cookie信息了，或是换用其他浏览器了。因此，永远都不应该使用cookie保存重要数据，而且在编写代码时一定要考虑到不能获取所期望cookie时的情况。</p>
+
+<h3 id="document-cookie-属性">document.cookie 属性</h3>
+
+<p>JavaScript使用document对象的cookie属性存储和获取cookie。每个cookie基本上就是一个由成对的名称和值组成的字符串，像下面这样：</p>
+
+<pre><code>username=sam
+</code></pre>
+
+<p>当页面加载到浏览器里时，浏览器会收集与页面相关的全部cookie,放到类似字符串的document.cookie属性里。在这个属性里，每个cookie是以分号分隔的：</p>
+
+<pre><code>username=sam;location=USA;status=ful丄member;
+</code></pre>
+
+<p><strong>将document.cookie称作&rdquo;类似字符串&rdquo;的属性，因为它并不是真正的字符串，只是在提取cookie信息时，这个属性的表现像个字符串而已。</strong></p>
+
+<h4 id="数据的编码和解码">数据的编码和解码</h4>
+
+<p>某些字符不能在cookie里使用，包括分号、逗号及空白符号（比如空格和制表符）。在把数据存储到cookie之前，需要对数据进行编码，以便实现正确的存储。</p>
+
+<p>在存储信息之前，使用JavaScript的escape()函数进行编码，而获得原始的cookie数据时就使用相应的unescape()函数进行解码。escape()函数把字符串里任何非ASCII字符都转换为相应的2位或4位十六进制格式，比如空格转换为％20, &amp;转换为％26。举例来说，下面的代码会输出变量str里保存的原始字符串及escape()编码以后的结果：</p>
+
+<pre><code>var str = 'Here is a (short) piece of text.'; 
+document.write(str + '&lt;br/&gt;' + escape(str));
+</code></pre>
+
+<p>其中空格被表示为％20 ,左括号是％28 ,右括号是％29。除了*、@ 、-、_、+、.、/之外的特殊符号都会被编码。</p>
+
+<h3 id="cookie-组成">cookie 组成</h3>
+
+<p>document.cookie里的信息看上去就像是由成对的名称和值组成的字符串，每一对数据的形式是：</p>
+
+<pre><code>name = value;
+</code></pre>
+
+<p>但实际上，每个cookie还包含其他一些相关信息，下面来分别介绍。</p>
+
+<p>cookieName和cookieValue就是在cookie字符串里看到的name=value里的名称与值。</p>
+
+<p>domain属性向浏览器指明cookie属于哪个域。这个属性是可选的，在没有指定时，默认值是设置cookie的页面所在的域。这个属性的作用在于控制子域对cookie的操作。举例来说，如果其设置为www.example.com,那么子域code.example.com里的页面就不能读取这个cookie。但如果domain属性设置为example.com,那么code.example.com里的页面就能访问这个cookie了。但是，不能把domain属性设置为页面所在域之外的域。</p>
+
+<p>path属性指定可以使用cookie的目录。如果只想让目录documents里的页面设置cookie的值，就把path设置为/documentso 这个属性是可选的，常用的默认路径是/,表示cookie可 以在整个域里使用。</p>
+
+<p>secure属性是可选的，而且几乎很少使用。它表示浏览器在把cookie发送给服务器时， 是否应该使用SLL安全标准。</p>
+
+<p>expires：每个cookie都有个失效日期，过期就自动删除了。expires属性要以UTC时间表示。如果没有设置这个属性，cookie的生命期就和当前浏览器会话一样长，会在浏览器关闭时自动删除。</p>
+
+<h3 id="编写-cookie">编写 cookie</h3>
+
+<p>要编写新的cookie,只要把包含所需属性的值赋予document.cookie就可以了:</p>
+
+<pre><code>document.cookie = &quot;username=sam;expires=15/06/2013 00:00:00&quot;;
+</code></pre>
+
+<p>使用JavaScript的 Date对象可以避免手工输入日期和时间格式：</p>
+
+<pre><code>var cookieDate = new Date ( 2013, 05, 15 ); 
+document.cookie = &quot;username=sam;expires=&quot; + cookieDate.toUTCString();
+</code></pre>
+
+<p>注意到这里使用了 cookieDate.toUTCString();而不是 cookieDate.toString();, 这是因为cookie的时间要以UTC格式设置。</p>
+
+<p>在实际编写代码时，应该用escape()函数来确保在给cookie赋值时不会有非法字符：</p>
+
+<pre><code>var cookieDate = new Date ( 2013, 05, 15 );         
+var user = &quot;Sam Jones&quot;;
+document.cookie = &quot;username=&quot; + escape(user) +&quot;; expires=&quot; + cookieDate.toUTCString();
+</code></pre>
+
+<h3 id="编写cookie的函数">编写cookie的函数</h3>
+
+<p>很自然就会想到编写一个函数专门用于生成cookie,完成编码和可选属性的组合操作。程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        function createCookie(name, value, days, path, domain, secure) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = date.toGMTString();
+            }
+            else
+                var expires = &quot;&quot;;
+            cookieString = name + &quot;=&quot; + escape(value);
+            if (expires)
+                cookieString += &quot;; expires=&quot; + expires;
+            if (path)
+                cookieString += &quot;;path =&quot; + escape(path);
+            if (domain)
+                cookieString += &quot;; domain=&quot; + escape(domain);
+            if (secure)
+                cookieString += &quot; secure&quot;;
+            document.cookie = cookieString;
+        }
+
+        createCookie(&quot;username&quot;, &quot;tom&quot;, 5);
+        createCookie(&quot;location&quot;, &quot;USA&quot;, 5);
+        createCookie(&quot;status&quot;, &quot;fullmember&quot;, 5);
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Check the cookies for this domain using your browser tools・
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>这个函数执行的操作是相当直观的，name和value参数组合得到&rdquo;name=value&rdquo;,其中的value还经过编码以避免非法字符。在处理有效期时，使用的参数不是具体日期，而是cookie有效的天数。函数根据这个天 数生成有效的日期字符串。其他属性都是可选的，如果设置了，就会附加到组成cookie的字符串里。</p>
+
+<p><strong>这个函数每次被调用时，就会给document.cookie设置新值，但新值不会覆盖现有的值，而是把新值附加到原有值。正如前面所说的，document.cookie有时显得像个字符串，但又的确不是字符串。</strong></p>
+
+<h3 id="读取cookie">读取cookie</h3>
+
+<p>读取cookie值的过程在很大程度上是依赖于split()这个函数。split()函数以参数指定的字符作为分隔符，把分解的结果保存到数组里：</p>
+
+<pre><code>myString = &quot;John#Paul#George#Ringo&quot;; 
+var myArray = myString.split('#');
+</code></pre>
+
+<p>上述语句会把字符串myString在每个&rdquo;#&ldquo;位置进行切割，分解为一系列单独的部分。myArray[0]会保存&rdquo;John&rdquo;，myArray[l]保存&rdquo;Paul&rdquo;，以此类推。在document.cookie里，每个cookie都是以&rdquo;;&ldquo;分隔的，显然我们就应该使用这个符号来分解document.cookie返回的字符串：</p>
+
+<pre><code>var crumbs = document.cookie.split(';');
+</code></pre>
+
+<p>我们要获得特定名称的cookie,所以接下来要对数组crumbs进行搜索，得到特定的name=部分。然后使用indexOf()和substring()返回cookie值的部分，再通过unescape()函数进行解码，得到cookie值：</p>
+
+<pre><code> function getCookie(name) {
+        var nameEquals =  name + &quot;=&quot;;
+        var crumbs = document.cookie.split('; ');
+        for (var i = 0; i &lt; crumbs.length; i++) {
+            var crumb = crumbs[i];
+            if (crumb.indexOf(nameEquals) == 0) {
+                return unescape(crumb.substring(nameEquals.length, crumb.length));
+            }
+        }
+        return null;
+    }
+</code></pre>
+
+<p><strong>注意是<code>var crumbs = document.cookie.split('; ');</code>split()函数的参数是&rsquo;; &lsquo;,在;号之后有个空格。</strong>
+测试用程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        function createCookie(name, value, days, path, domain, secure) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = date.toGMTString();
+            }
+            else
+                var expires = &quot;&quot;;
+            var cookieString = name + &quot;=&quot; + escape(value);
+            if (expires)
+                cookieString += &quot;; expires=&quot; + expires;
+            if (path)
+                cookieString += &quot;;path =&quot; + escape(path);
+            if (domain)
+                cookieString += &quot;; domain=&quot; + escape(domain);
+            if (secure)
+                cookieString += &quot; secure&quot;;
+            document.cookie = cookieString;
+        }
+
+        createCookie('username', &quot;tom&quot;, 5);
+        createCookie('location', &quot;USA&quot;, 5);
+        createCookie('status', &quot;fullmember&quot;, 5);
+
+        function getCookie(name) {
+            var nameEquals =  name + &quot;=&quot;;
+            var crumbs = document.cookie.split('; ');
+            for (var i = 0; i &lt; crumbs.length; i++) {
+                var crumb = crumbs[i];
+                if (crumb.indexOf(nameEquals) == 0) {
+                    return unescape(crumb.substring(nameEquals.length, crumb.length));
+                }
+            }
+            return null;
+        }
+
+        function btnClick() {
+            $(&quot;span&quot;).html(document.cookie);
+            var name = $('#input1').val();
+            alert(getCookie(name));
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;span&gt;测试用例&lt;/span&gt;&lt;br /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;input1&quot; /&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; onclick=&quot;btnClick()&quot; value=&quot;获取cookie&quot;/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="删除-cookie">删除 cookie</h3>
+
+<p>要想删除一个cookies,只需要把它的失效日期设置为今天以前的日期，浏览器就会认为它已经失效了，从而删除它。即使在脚本里删除了cookie,某些浏览器的有些版本也会把cookie维持到重新启动浏览器。如果cookie是否被删除是程序运行的条件，就应该使 用 getCookie来测试被删除的cookie,确保它的确不存在了。</p>
+
+<pre><code>function deleteCookie(name) {
+        createCookie(name, &quot;&quot;, -1);
+    }
+</code></pre>
+
+<p>利用前面介绍的知识，我们来建立一些页面体验cookie操作。首先，把createCookie()、getCookie()和deleteCookie()函数集中到一个JavaScript文件里,保存为cookies.js。
+cookies.js程序清单如下：</p>
+
+<pre><code>function createCookie(name, value, days, path, domain, secure) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = date.toGMTString();
+    }
+    else
+        var expires = &quot;&quot;;
+    var cookieString = name + &quot;=&quot; + escape(value);
+    if (expires)
+        cookieString += &quot;; expires=&quot; + expires;
+    if (path)
+        cookieString += &quot;;path =&quot; + escape(path);
+    if (domain)
+        cookieString += &quot;; domain=&quot; + escape(domain);
+    if (secure)
+        cookieString += &quot; secure&quot;;
+    document.cookie = cookieString;
+}
+
+function getCookie(name) {
+    var nameEquals = name + &quot;=&quot;;
+    var crumbs = document.cookie.split('; ');
+    for (var i = 0; i &lt; crumbs.length; i++) {
+        var crumb = crumbs[i];
+        if (crumb.indexOf(nameEquals) == 0) {
+            return unescape(crumb.substring(nameEquals.length, crumb.length));
+        }
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    createCookie(name, &quot;&quot;, -1);
+}
+</code></pre>
+
+<p>第一个页面cookietest.html程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+    &lt;/style&gt;
+    &lt;script src=&quot;Resources/cookies.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        window.onload = function() { 
+            var cookievalue = prompt(&quot;Cookie Value:&quot; ); 
+                createCookie(&quot;myCookieData&quot;, cookievalue);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;cookietest2.html&quot;&gt;Go to Cookie Test Page 2&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>第二个页面cookietest2.html程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+    &lt;/style&gt;
+    &lt;script src=&quot;Resources/cookies.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        window.onload = function() { 
+            var cookievalue = prompt(&quot;Cookie Value:&quot; ); 
+                createCookie(&quot;myCookieData&quot;, cookievalue);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;cookietest2.html&quot;&gt;Go to Cookie Test Page 2&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>cookietest.htm1页面输入cookie值，用链接跳转到页面二，页面二在载入的时候将输入的cookie的值显示在页面。</p>
+
+<h3 id="在一个cookie里设置多个值">在一个cookie里设置多个值</h3>
+
+<p>每个cookie包含一对&rdquo;name=value&rdquo;,如果需要保存多个数据，比如用户的姓名、年龄和会员号，就需要三个不同的cookies。然而稍微动一点脑筋，就可以用一个cookie保存这三个值。方法是把需要的值组成一个字符串，让它成为要保存在cookie里的值。通过这种方式，可以避免使用三个单独的cookies,而是只用一个就保存这三部分数据。为了以后分解其中的信息，要在这个字符串里放置特殊字符(所谓的“定界符”)来分隔不同的数据：</p>
+
+<pre><code>var userdata = &quot;Sandy | 26 | A23679&quot;;
+createCookie (&quot;user&quot;,userdata);
+</code></pre>
+
+<p>这里使用作为定界符。稍后需要读取cookie值时，可以依据它来分割并得到各部分数据：</p>
+
+<pre><code>var myUser = getCookie(&quot;user&quot;); 
+var myUserArray = myUser.split('I'); 
+var name = myUserArray[0]; 
+var age = myUserArray[1]; 
+var memNo = myUserArray[2];
+</code></pre>
+
+<p>有些浏览器要求cookies的数量不能超过20 ,如果用一个cookie保存多个数值，可以在一定程度上打破这种限制。但是cookies信息总体不能超过4KB是不能改变的。</p>
+
+<p>在使用一个cookie保存多个值时，能否使用任意字符作为定界符？</p>
+
+<p>不能使用可能出现在编码数据里的字符(除非那个字符也当作定界符)，也不能使用等号(=)或分号(;).因为它们用于组成&rdquo;name=value&rdquo;和分隔多对数据。另外，cookies一般不能包含空白和逗号，所以它们也不能当作分界符。</p>
+
+<p>cookies安全吗？</p>
+
+<p>cookies的安全问题经常会被提及，但这种担心大多是没有根据的。cookies能够帮助站长和广告商追踪用户的浏览习惯，他们可以(也的确)利用这些信息在用户访问的页面上有目的地投放广告和提示信息。但是，只使用cookies,他们不能获得用户的个人信息，也不能访问用户计算机硬盘上的其他内容。</p>
+
+<h2 id="javascript新功能">JavaScript新功能</h2>
+
+<h3 id="类">类</h3>
+
+<p>在我们介绍了 OOP,并且介绍了如何创建和操作对象的例子，包括如下这个例子：</p>
+
+<pre><code>function Car(Color, Year, Make, Miles) {
+        this.color = Color;
+        this.year = Year;
+        this.make = Make;
+        this.odometerReading = Miles;
+        this.setOdometer = function (newMiles) {
+            this.odometerReading = newMiles;
+        }
+    }
+</code></pre>
+
+<p>如果你是从其他语言转而学习JavaScript的，你可能已经熟悉了类这个概念了。类是对象的一种表示：</p>
+
+<pre><code>class Car {
+        constructor(Color, Year, Make, Miles) { 
+            this.color = Color; 
+            this.year = Year; 
+            this.make = Make; 
+            this.odometerReading = Miles;
+        }
+        setOdometer(newMiles) {
+            this.odometerReading = newMiles;
+        }
+    }
+</code></pre>
+
+<p>这一语法也允许你扩展类，从而创建一个新的类以继承其父类的属性。如下面的示例所示：</p>
+
+<pre><code>class Sportscar extends Car { 
+        constructor(Color, Year, Make, Miles) { 
+            super(Color, Year, Make, Miles); 
+            this.doors = 2;
+        }
+    }
+</code></pre>
+
+<p>这里，我们在构造方法中使用了关键字super,以允许调用一个父类的构造方法并继承其所有的属性。实际上，这只是语法糖，就像你在前面所学到的，使用了类的所有内容都可以在函数或原型中覆盖。然而，这种方法使得代码更容易和其他的流行语言兼容，并且也更容易阅读。</p>
+
+<h3 id="箭头函数">箭头函数</h3>
+
+<p>箭头函数(=&gt;)是一个匿名函数的一种简写式的语法</p>
+
+<pre><code>param =&gt; statements or expression
+</code></pre>
+
+<p>让我们来进一步说明：</p>
+
+<ul>
+<li>param—一个或多个参数的名称。如果该函数没有参数，需要使用()表明。对于只有一个参数的情况，则不需要使用括号。</li>
+
+<li><p>语句或表达式—需要用花括号括起来的多条语句。然而，单个的表达式并不需要花括号。这个表达式也就是该函数的返回值。</p>
+
+<p>var overTen = x=&gt; x &gt; 10 ? 10 : x;
+overTen (8) ; // 返回 8
+overTen (12) ; // 返回 10</p></li>
+</ul>
+
+<p>注意，关键字function并不是必须的，圆括号也可以省略，因为这里只有一个参数。如下的示例有两个参数：</p>
+
+<pre><code>var higher = (x, y) =&gt; { 
+         if (x &gt; y) { 
+            return x;
+         } else { 
+            return y;
+        }
+    }
+</code></pre>
+
+<p>也是为了更容易编写，箭头函数还有一项功能，即它们从包含者中继承了this的值。当使用对象的时候，这真的是很方便。而在此之前，我们需要将this赋值给一个变量，从而将其传递到一个函数中，如下所示：</p>
+
+<pre><code>function myObject() {
+        this.height = 13;
+        var self = this;
+        setTimeout(function(){
+            console.log(self.height);
+        }, 5000)
+    }
+var o = new myObject ();       
+</code></pre>
+
+<p>在前面的例子中，我们不可以直接这样使用：</p>
+
+<pre><code>console.log(this.height);
+</code></pre>
+
+<p>因为this将会引用其直接包含者，在这里，就是fiveSecondsLater()函数。然而，通过使 用箭头函数，就可以避免使用self这样的变量：</p>
+
+<pre><code>function myObject() {
+        this.height = 13;
+
+        setTimeout(() =&gt; {
+            console.log(this.height);
+        }, 5000)
+    }
+var o = new myObject ();      
+</code></pre>
+
+<h3 id="模块">模块</h3>
+
+<p>随着JavaScript应用程序变得越来越复杂，需要有一种方法使得在一个文件中声明的对象能够在其他文件中可用。通过这种方法，可以以模块的方式来编写较大的对象。默认情况下，在一个文件中声明的任何内容，在该文件之外都是不可用的。然而在ECMAScript 6 中, 可以使用export关键字使其变得可用。如下是导出一个类的示例：</p>
+
+<pre><code>//这段代码位于filel.js中
+export default function Car(Color, Year, Make, Miles) {
+    this.color = Color;
+    this.year = Year;
+    this.make = Make;
+    this.odometerReading = Miles;
+    this.setOdometer = function (newMiles) {
+        this.odometerReading = newMiles;
+    }
+}
+// 这个对象可以由其他的文件导入
+</code></pre>
+
+<p>在接收的文件中：</p>
+
+<pre><code>import Car from './file1';
+var ferrari = new Car('red', 1981, 'dino', 75500);
+</code></pre>
+
+<h3 id="使用let和const">使用let和const</h3>
+
+<p>在ECMAScript6之前，JavaScript只有两类作用域，即函数作用域和全局作用域(我们前面学习过，作用域取决于在代码中的何处使用var关键字来声明变量)。当从其他的语言转而使用JavaScript语言的时候，令众多的开发者沮丧的是，JavaScript缺乏所谓的块作用域，该作用域决定了一个变量只能够在其定义所在的语句块之中访问(块是指一对花括号之中的所有内容)。</p>
+
+<p>新的关键字let允许你声明一个变量，并将其作用域限定为声明它的块、语句或表达式。相反，var关键字定义了一个变量，它要么是全局变量，要么是整个函数中的局部变量， 而不考虑块作用域：</p>
+
+<pre><code>function myFunc() {
+    {
+        let x;
+        if (y == 0) {
+            //这没问题，x拥有块作用域
+            let x = &quot;inner&quot;;
+        }
+        //这是个错误，x已经在块中声明过了
+        let x = &quot;outer&quot;;
+    }
+}
+</code></pre>
+
+<p>const声明创建一个常量，这是一个只读的、命名的变量。不能使用重新赋值的方式修改一个常量的值，随后也不能重新声明一个常量。使用const关键字声明的值不能够重新初始化、重新声明或重新 赋值。</p>
+
+<pre><code>function myFunc() {
+    {
+        const x = &quot;foo&quot;;
+        //这是个错误，X是一个常量，不能重新定义
+        x = &quot;bar&quot;;
+    }
+}
+</code></pre>
+
+<h3 id="模板字符串">模板字符串</h3>
+
+<p>模板字符串帮助构建字符串，它类似于Perl或Python等其他语言中的字符串插值的功能。</p>
+
+<pre><code>var name = &quot;John&quot;;
+var course = &quot;Mathematics III&quot;;
+var myString = `Hello ${name}, welcome to ${course}.`;
+alert(myString);
+</code></pre>
+
+<p>也可以替换较为复杂一些的表达式：</p>
+
+<pre><code>var total = 20;
+var tax = 4;
+msg = 'Total is ${totai} (or ${total + tax}, including tax)';
+alert(msg) ; // &quot;Total is 20 (or 24, including tax)&quot;
+</code></pre>
+
+<blockquote>
+<p>参考<a href="https://blog.csdn.net/zwt_guiji/article/details/81979299">
+模板字符串（）的用途</a></p>
+
+<p>模板字符串是在ES6中兴起，个人感觉非常有用：用反引号(`)标识，它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。请看下方截图代码从而可知其模板字符串的强大：
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript27.jpg" alt="JavaScript27" /></p>
+
+<p>下面代码中，模板字符串都是用反引号表示，如果在模板字符串中需要使用反引号，则前面需要用反斜杠转义。</p>
+
+<pre><code>// 普通字符串
+var stringDemo = `In JavaScript '\n' is a line-feed.`
+alert(stringDemo);
+
+// 多行字符串
+var stringDemo =`In JavaScript this is
+not legal.`
+alert(stringDemo);
+
+// 字符串中嵌入变量
+var name = &quot;Bob&quot;, time = &quot;today&quot;;
+var stringDemo = `Hello ${name}, how are you ${time}?`   // Hello Bob, how are you today?
+alert(stringDemo);
+
+var greeting = `\`Yo\` World!`; // `Yo` World! 需要用到`的时候需要用反斜杠转义
+alert(stringDemo);
+</code></pre>
+
+<p>如果使用模板字符串表示多行字符串，则所有的空格、缩进和换行都会被保留在输出中。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script&gt;
+        function btnClick() {
+            $('#list').html(`
+            &lt;ul&gt;
+            &lt;li&gt;first&lt;/li&gt;
+            &lt;li&gt;second&lt;/li&gt;
+            &lt;/ul&gt;
+            `);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;list&quot;&gt;&lt;/div&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;btnClick()&quot;&gt;测试用例&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>模板字符串中嵌入变量，要将变量名写在${}之中。大括号内可以放入任意的JavaScript表达式，可以进行运算，以及引入对象属性。</p>
+
+<pre><code>var x = 1, y = 2;
+`${x} + ${y} = ${x + y}`;// &quot;1 + 2 = 3&quot;       
+`${x} + ${y * 2} = ${x + y * 2}`;// &quot;1 + 4 = 5&quot;
+var obj = { x: 1, y: 2 };
+`${obj.x + obj.y}`// &quot;3&quot;
+</code></pre>
+
+<p>模板字符串之中还可以调用函数。</p>
+
+<pre><code>function func() {
+    return 'Hello';
+}
+alert(`${func()} World`);// &quot;Hello World&quot;
+</code></pre>
+
+<p>如果大括号中的值不是字符串，则将按照一般的规则转换为字符串。如，若大括号中是一个对象，则将默认调用对象的toString方法，把对象转换为字符串。如果模板字符串中的变量没有声明，则会报错。</p>
+
+<pre><code>// 变量place没有声明
+var msg = `Hello, ${place}`;
+// ReferenceError: place is not defined
+</code></pre>
+
+<p>模板字符串之间还可以进行嵌套。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script&gt;
+        function btnClick() {
+            var tmpl = addrs =&gt; `
+            &lt;table&gt;
+            ${addrs.map(addr =&gt; `
+            &lt;tr&gt;&lt;td&gt;${addr.first}&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;${addr.last}&lt;/td&gt;&lt;/tr&gt;
+            `).join('')}
+            &lt;/table&gt;
+            `;
+            alert(tmpl([{ first: 'a', last: 'b' }]));
+            $('#list').html(tmpl([{ first: 'a', last: 'b' }]));
+        }
+        // output:
+        /*&quot;
+        &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;a&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;b&lt;/td&gt;&lt;/tr&gt;
+        &lt;/table&gt;
+        &quot;*/
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;list&quot;&gt;&lt;/div&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;btnClick()&quot;&gt;测试用例&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>如果需要引用模板字符串本身，在需要时执行，可以像下面这样写。</p>
+
+<pre><code>// 写法一
+var str = 'return ' + '`Hello ${name}!`';
+var func = new Function('name', str);
+func('Amy');    // &quot;Hello Amy!&quot;
+
+// 写法二
+var str = '(name) =&gt; `Hello ${name}!`';
+var func = eval.call(null, str);
+func('Amy');    // &quot;Hello Amy!&quot;
+</code></pre>
+
+<p>String对象的raw方法:</p>
+
+<p>String.raw方法用来充当模板字符串的处理函数，返回一个除表达式和变量会被替换，其它都保持原样的字符串。String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。</p>
+
+<pre><code>String.raw`Hi\n${2+3}!`;
+// &quot;Hi\n5!&quot;
+String.raw`Hi\u000A!`;
+// &quot;Hi\u000A!&quot;
+String.rwa`Hi\\n`;
+// &quot;Hi\\n&quot;
+</code></pre>
+
+<p><strong>标签模板</strong></p>
+
+<p>模板字符串的功能，不仅是上面那些，它还可以紧跟在一个函数后面，该函数将被调用来处理这个模板字符串，这种称为“标签模板”功能(Tagged template)。标签模板函数第一个参数是字符串模板的常量数组，后面的每一个参数为表达式的计算结果，函数名称可以任意指定。下面是一个例子：</p>
+
+<pre><code>var a = 5, b = 10;
+function tag(strings, ...values) {
+    console.log(strings[0]);    // &quot;Hello &quot;
+    console.log(strings[1]);    // &quot; world&quot;
+    console.log(strings[2]);    // &quot;&quot;
+    console.log(values[0]);     // 15
+    console.log(values[1]);     // 50
+    return &quot;Anything&quot;;
+}
+tag`Hello ${a + b} world ${a * b}`;
+// Anything
+</code></pre>
+
+<p>标签模板其它是一种特殊的函数调用形式，“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。上面代码中，模板字符串前面有一个标识名tag，它是一个函数。整个表达式的返回值就是tag函数处理模板字符串后的返回值。函数tag依次会接收到多个参数。tag函数的第一个参数是一个数组，该数组的成员是模板字符串中那些没有变量替换的部分，也就是说，变量替换只发生在数组的第一个成员与第二个成员之间、第二个成员与第三个成员之间，以此类推。tag函数的其他参数，都是模板字符串各个变量被替换的值。本例中，模板字符串含有两个变量，因此tag会接收到value1和value2两个参数。tag函数所有参数的实际值如下：</p>
+
+<ul>
+<li>第一个参数： [‘Hello ‘, ’ world’, ”]</li>
+<li>第二个参数: 3</li>
+<li>第三个参数： 2</li>
+</ul>
+
+<p>也就是说，tag函数实际上是用下面的形式调用：</p>
+
+<pre><code>tag(['Hello ',' world', ''], 3, 2);
+</code></pre>
+</blockquote>
+
+<h3 id="使用for-of访问数组">使用for-of访问数组</h3>
+
+<p>前面了解到JavaScript拥有各种方法来处理数组。除了 while和 for循环， 还可以使用for-ino遗憾的是，这个循环访问一个数组的所有的命名属性，而不只是实际的数组值：</p>
+
+<pre><code>&quot;use strict&quot;;
+let arrl = [6, 5, 7, 9];
+arrl.greeting = &quot;hi&quot;;
+for (var x in arrl) {
+    console.log(x); // 显示&quot;0&quot;, n 1&quot;, &quot;2&quot;, &quot;3n , &quot;greeting&quot;
+}
+</code></pre>
+
+<p>为了解决这个问题，ECMAScript 6 引入了 for-of构造，它只是遍历属性值：</p>
+
+<pre><code>&quot;use strict&quot;;
+let arrl = [6, 5, 7, 9];
+arrl.greeting = &quot;hi&quot;;        
+for (var y of arrl) {
+    console.log(y); // 显示”6”，&quot;5&quot;, ”7&quot;, ”9” 
+}
+</code></pre>
+
+<p>在代码段的前面使用了&rdquo;use strict&rdquo;指令，该指令是ECMAScript 5 中引入的，表示JavaScript应该以严格模式执行，也就是使用一组较为严格的解释器规则，要使用ECMAScript6 的某些功能，当前必须用这种模式。</p>
+
+<h3 id="小结-3">小结</h3>
+
+<p>我们了解了ECMAScript6规范中将会给JavaScript语言带来的一些重要的新的变化。新的语言功能使得JavaScript的语法和其他的主流语言更加一致，同时也使得代码更加简练和易于阅读。</p>
+
+<h2 id="使用框架">使用框架</h2>
+
+<p>如果你已经编写过很多应用程序，那么你很可能会一次又一次地解决同样的编码问题。能够减少这种重新发明轮子事情的一种技术，就是使用软件框架。在这里，我们将会学习一种流行的网络样式，叫作MVC （Model-View-Controller,模型-视图-控制器）框架，并且介绍如何使用Google的 AngularJS针对单页面的JavaScript应用 程序实现这样一种框架。</p>
+
+<h3 id="软件框架">软件框架</h3>
+
+<p>框架的作用是提高你编写软件应用程序的效率，与此同时，为应用程序增强一致性，提高质量和可靠性以及稳定性。选择编写良好和合适的框架，可以给你节省更多的时间，以便你关注自己的应用程序的 独特需求，而不会在应用程序架构上花费太多的宝贵时间。</p>
+
+<h4 id="为何要使用框架">为何要使用框架</h4>
+
+<p>框架帮助你复用此前已经构建和测试过的代码，提高应用程序的可靠性，减少了在应用程序创建中所需的编码和测试工作。由于框架将结构强加于你的应用程序之上，它还鼓励了更好的编程实践。最后，框架通常为你提供一些方法来扩展其功能，以使得它更加适合于你的应用程序的需求。</p>
+
+<h4 id="框架和库不同">框架和库不同</h4>
+
+<p>很多人把软件框架和软件库这两个术语搞混淆了，然而，框架和库之间有一个基本的区别，当你使用一个库的时候，该库中的对象和方法是已经存在的，等待定制应用程序调用它们。要创建应用程序，你需要知道自己的代码中会用到哪些对象和方法。当使用框架的时候，你自己要设计和编写应用程序所使用的对象和方法。框架只是为你提供一个编写它们的一致的结构。</p>
+
+<h3 id="模型-视图-控制器-mvc-架构">模型-视图-控制器（MVC）架构</h3>
+
+<p>MVC软件架构的概念相当简单：将应用程序分为不同的单元，其中的每一个单元分别属于如下几个部分之一。</p>
+
+<h4 id="模型">模型</h4>
+
+<p>模型表示应用程序中处理业务数据和业务逻辑的部分。模型可能是一个单个的对象，或者它也可以是由各种对象所组成的某些结构。</p>
+
+<h4 id="视图">视图</h4>
+
+<p>视图是用于将信息展现给用户的一个模型的表示。它通常充当一个表现过滤器，只是将一个模型中包含的某些方面的数据展示出来，而隐藏另外一些数据。视图向模型请求，以获取需要表现的数据。它也可以通过发送相应的命令，来修改模型中的数据。这样的查询和命令，都必须在模型中由语意定义。</p>
+
+<h4 id="控制器">控制器</h4>
+
+<p>控制器充当用户和应用程序之间的连接，它安排视图在屏幕上显示，或者通过显示菜单、输入字段、按钮或其他的页面元素来读取用户输入。控制器先解释用户输入，然后将其传递给一个或多个视图。MVC框架的各个部分的运作如下图所示。
+<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript28.jpg" alt="JavaScript28" /></p>
+
+<p><strong>真实案例</strong></p>
+
+<p>可以用看电视来比喻一个MVC框架。电视台有各种可用的频道，每个频道包含了不同的数据；这些频道都可以看作是MVC系统中的模型。视图是由电视机的屏幕提供的。你可以使用遙控器（控制器）的功能来和电视机进行交互。</p>
+
+<h3 id="针对webapp使用mvc框架">针对WebAPP使用MVC框架</h3>
+
+<p>MVC架构能够很好地用于Web应用程序中。</p>
+
+<ul>
+<li>模型—页面内容存储在支撑应用程序的模型之中。技术性的细节可能有所不同，文本和图像可能存储在数据库中，而服务器文件则以其他的方式存储，但是，数据融合在一起的规则是相同的，都是作为框架的模型部分进行编码的。</li>
+<li>视图—HTML和CSS给内容添加了一个或多个可视化的显示层，应用这些层面可以给Web应用程序一种特定的外观和样式。我们可以修改内容显示的方式，而根本不需要修改模型中存储的初始的内容。</li>
+<li>控制器—— 控制器元素包含了连接到页面上的交互式元素的程序代码，例如，表单字段、按钮和链接等。这些代码解释用户输入并与模型和视图通信。</li>
+</ul>
+
+<h3 id="angularjs-框架">AngularJS 框架</h3>
+
+<p>AngularJS是 Google开发的一个MVC框架，它能够用来构建架构良好的、易于测试的和可维护的JavaScript Web应用程序。它设计来帮助生成强大的、可靠的、单页面的Web应 用程序。</p>
+
+<h4 id="angularjs-概览">AngularJS 概览</h4>
+
+<p>AngularJS是一个MVC框架，它将你的HTML代码 （对应于MVC范型中的视图）和JavaScript对象绑定起来（MVC中的模型部分）。</p>
+
+<p>这样一来，对于模型做出的任何修改，都会自动更新到页面上。反之亦然，例如，当一个文本字段的内容变化的时候，和字段相关联的模型也会更新。同样的方式，视图中的任何修改，例如用户在一个字段输入了信息，或者单击了一个按钮，都会要求修改相应的模型。</p>
+
+<p>在幕后，AngularJS处理了所有这些逻辑，因此，你不必编写代码来更新页面的HTML代码，或者监听并响应用户事件。</p>
+
+<h4 id="在页面中包含angularjs">在页面中包含AngularJS</h4>
+
+<blockquote>
+<p><a href="https://www.angularjs.net.cn/download/">AngularJS官方中文网</a></p>
+</blockquote>
+
+<p>要使用AngularJS,必须在页面中包含它。最容易的方式就是通过Google的CDN来包含它.AngularJS官网本身采用AngularJS库构建，页面中的AngularJS库通过Google的CDN（内容分发网络）引入，所以国内访问会有问题。国内我们一般推荐是以下CDN.</p>
+
+<p>引入百度CDN:</p>
+
+<pre><code>&lt;script src=&quot;http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>bootcdn:</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>通过上面的引用，你只能使用AngularJS的核心模块,Ng模块。AngularJS还提供了各种功能丰富的模块，如ngRoute，ngAnimate，ngCookies，ngTouch，等等，只要引入相应头文件，在依赖注入你所在的工作模块，则可使用。以下AngularJS个功能模块的CDN，以BootCDN为例。</p>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngAnimate：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-ngAnimate.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-ngAnimate.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>通过依赖管理安装</p>
+
+<pre><code>npm
+bower
+</code></pre>
+
+<h4 id="用ng-指令扩展html">用ng-指令扩展HTML</h4>
+
+<p>AngularJS使用了很多的指令，来帮助你把页面的HTML元素和MVC架构中的模型关联起来。这些指令中的每一个都是以ng-打头的，并且可以添加到任何元素中。</p>
+
+<p>在任何页面中必须包含的关键属性是ng-app,它定义了一个AngularJS应用。你需要将其应用于一个元素，而该元素包含了带有ng-指令的其他页面元素。可以将其应用于页面的<body元素（使得整个页面都成为应用程序的一部分），或者应用于包含应用程序的一个<div>元素：</p>
+
+<pre><code>&lt;body ng-app&gt;
+</code></pre>
+
+<p>当页面加载的时候，AngularJS找到这个元素，并且处理在其子元素上所见到的所有ng-指令。</p>
+
+<p>两个更为重要的ng-指令是ng-model和ng-bindo。ng-model指令把输入字段、选择框、文本字段等HTML控件的值和模型中存储的应用程序数据连接起来。ng-bind指令将MVC模型中的应用程序数据绑定到HTML视图中的元素。示例程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        #output {
+            font: 28px bold helvetica, arial, sans-serif;
+            color: red;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app&gt;
+    &lt;p&gt;Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;/p&gt;
+    &lt;span id=Houtput” ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>只要Web页面加载了，AngularJS就会开始工作。ng-app指令告诉AngularJS,在这个例子中，是页面的<code>&lt;body&gt;</code>元素包含了一个AngularJS应用程序。然后ng-model指令将输入字段中包含的值绑定到变量名称。类似地，ng-bind指令将<code>&lt;span&gt;</code>元素的HTML内容绑定到变量名。通过这种方式，span元素变成了 MVC框架中的一个视图。 现在输入字段中做出的任何修改，都会立即反映到<span>元素中.</p>
+
+<h4 id="作用域">作用域</h4>
+
+<p>作用域是一个对象，它将一个DOM元素（MVC架构中的视图部分）连接到控制器；在MVC的术语中，这个对象变成了模型。</p>
+
+<p>控制器和视图都必须访问作用域模型，因此，作用域可以用于控制器和视图之间的通信。 这个作用域对象将会保存用于视图中的数据和方法。</p>
+
+<p>所有的AngularJS应用程序都有一个$rootScope。这个$rootScope是顶级的作用域，它属于包含了ng-app指令的DOM元素。</p>
+
+<p>当在应用程序中没有设置显式的作用域的时候,SrootScope就是AngularJS用来绑定数据和函数的作用域。前面的示例正是因为这样才能够工作的。</p>
+
+<p>为了更好地了解作用域是如何工作的，让我们将控制器绑定到一个特殊的D0M 元素， 为该元素创建一个作用域，然后与其交互。</p>
+
+<h4 id="指令">指令</h4>
+
+<p>在前面的示例中，我们已经见到过几个指令。在 AngularJS中，指令是连接到一个D0M元素的一个函数，使这个元素能够运行方法、连接到控制器和作用域对象，以及操作DOM。</p>
+
+<p>当一个AngularJS应用程序启动的时候，AngularJS开始遍历DOM（从拥有ng-app属性的DOM元素开始），它将会解析负责收集和运行这些指令的代码。</p>
+
+<p>指令负责实现AngularJS应用程序动态化的所有艰苦工作。我们在前面已经看到过指令的几个示例，包括ng-model和ng-bind指令：</p>
+
+<pre><code>&lt;p&gt;Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;/p&gt;
+&lt;span id=Houtput” ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+<p>AngularJS中还内建了很多默认的指令，我们接下来将会介绍其中的一些。</p>
+
+<h4 id="表达式">表达式</h4>
+
+<p>两对花括号用于包含一个表达式指令：</p>
+
+<pre><code>{{ expression }}
+</code></pre>
+
+<p>AngularJS表达式和JavaScript表达式几乎一样，因为它们都包含字面值、操作符和变量。如下都是有效的AngularJS表达式：</p>
+
+<pre><code>{ { 3 + 9 }}
+{{ quantity * cost }}
+{{ firstName + ” &quot; + lastName }}
+</code></pre>
+
+<p>AngularJS表达式在写该表达式的具体位置解释为数字。</p>
+
+<p>ng-init指令在启动的时候运行，在 AngularJS运行任何应用程序代码之前，它就运行了。使用ng-init指令，你可以在运行任何其他函数之前设置默认的变量。</p>
+
+<p>ng-click指令给一个DOM元素添加一个监听器。当单击该元素的时候，AngularJS将执行该指令中定义的表达式。</p>
+
+<p>ng-repeat指令遍历一个集合，并且为每一个项加载一个模板。它所复制的模板，就是拥有ng-repeat属性的元素。</p>
+
+<pre><code>$scope.departments = [
+    { name: 'Sales' },
+    { name: 'Support'},
+    {name: ' Production'}, 
+    { name: 'Shipping'}
+];
+</code></pre>
+
+<p>可以使用ng-repeat来遍历它们：</p>
+
+<pre><code>&lt;body ng-app ng-init=&quot;departments = [
+        { name: 'Sales' },
+        { name: 'Support'},
+        {name: ' Production'}, 
+        { name: 'Shipping'}];&quot;&gt;
+ &lt;ul&gt;
+     &lt;li ng-repeat=&quot;dept in departments&quot;&gt;{{dept.name }}&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>这里的<li>元素将会复制4 次，以得到发送给视图的列表。</p>
+
+<h4 id="过滤器">过滤器</h4>
+
+<p>过滤器的工作就是从数组中选择元素的一个子集，并且将其当作一个新的数组返回。如下是能够对一个数组做的一些事情：</p>
+
+<ul>
+<li>使用currency,将一个数字格式化为货币的格式。</li>
+<li>使用filter,从数组中选择元素的一个子集。</li>
+<li>使用lowercase,将一个字符串格式化为小写的。</li>
+<li>使用orderBy,根据一个表达式来排序数组。</li>
+<li>使用uppercase,将一个字符串格式化为大写的。</li>
+</ul>
+
+<p>如下是AngularJS中一个过滤器的一般语法：</p>
+
+<pre><code>{{filter_expression | filter:expression:comparator}}
+</code></pre>
+
+<p>下面示例中，将会计算表达式{{netTotal + tax } } ,并且结果将会格式化为货币。</p>
+
+<pre><code>&lt;div ng-app&gt;
+    Total: &lt;input type=&quot;number&quot; ng-model=&quot;netTotal&quot;&gt;
+    Tax: &lt;input type=&quot;number&quot; ng-model=&quot;tax&quot;&gt;
+    &lt;p&gt;Invoice Total = {{netTotal + tax | currency}}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>也可以给任何ng-指令添加一个过滤器，只要使用管道符号(|),后面跟着一个过滤器的说明就可以了：</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li ng-repeat=&quot;dept in departments | filter: uppercase&quot;&gt;{{ dept.name }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h3 id="构建一个angularjs应用程序">构建一个AngularJS应用程序</h3>
+
+<p>现在，我们将所有的知识综合应用，来构建一个基本的AngularJS应用程序。我们先从一个基本的HTML页面开始，它包含一个文本输入字段，用来接收用户输入的搜索字符串，还有一个<code>&lt;div&gt;</code>元素，用来包含带有输入的字符串的搜索结果的一个列表。下面代码中，模板字符串都是用反引号表示，如果在模板字符串中需要使用反引号，则前面需要用反斜杠转义。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        body {
+            background-color: #ddf;
+            font: 16px bold helvetica, arial, sans-serif;
+        }
+        input {
+            padding: 10px;
+        }
+        #list-container {
+            background-color: white;
+            color: #448;
+            border-radius: 25px;
+            border：1px solid black;
+            padding: 25px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body ng-app ng-init=&quot;departments = [
+    { name: 'Sales',contact: 'Marsha Brown'},
+    { name: 'Support',contact: 'Dave Price'},
+    { name: 'Production',contact: 'Grant Wales'},
+    { name: 'Service',contact: ' Sherry Dell'},
+    { name: 'Administration',contact: 'Sally Bennett'},
+    { name: 'Accounting',contact: 'Kim Sutherland'},
+    { name: 'Shipping',contact: ' Sandy Connell'}]&quot;&gt;
+    &lt;p&gt;Search Departments: &lt;input type=&quot;text&quot; placeholder=&quot;Enter search string&quot; ng-model=&quot;searchString&quot;&gt;&lt;/p&gt;
+    &lt;div id=&quot;list-container&quot;&gt;
+        &lt;ul&gt;
+            &lt;li ng-repeat=&quot;dept in departments | filter: searchString&quot;&gt;{{dept.name + &quot;(&quot; + dept.contact + &quot;)&quot;}}&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>我们对页面应用必要的ng-指令：</p>
+
+<p>对<code>&lt;body&gt;</code>元素应用<code>ng-app</code>指令，将该元素定义为这个AngularJS应用程序的容器。对搜索字段应用ng-model指令，将其定义为MVC框架中的一个模型。对搜索结果的列表中的<code>&lt;li&gt;</code>元素应用<code>ng-repeat</code>指令。<code>&lt;li&gt;</code>元素将会对于每个搜索结果都重复一次。我们还使用了<code>ng-init</code>指令来为应用程序设置一些初始数据。在真实的情况中，这一数据更可能是从诸如服务器端数据库这样的外部来源引入的，但在这里，只是为了充当示例。</p>
+
+<p>这就是我们需要做的所有事情! AngularJS负责处理数据绑定，以便当用户输入数据的时候，过滤器能真正地起作用.</p>
+
+<h3 id="小结-4">小结</h3>
+
+<p>我们学习了模型-视图-控制器框架架构的基础知识，并介绍了如何将其应用于Web应用程序。我们还学习了Google的AngularJS框架，并且添加少量代码甚至不添加代码，就使用它构建了一个简单的Web应用。 实际上，对于AngularJS所能做的事情，我们也只是浅尝辄止。不妨访问AngularJS的官方网站<a href="https://www.angularjs.net.cn/以学习更多内容。">https://www.angularjs.net.cn/以学习更多内容。</a></p>
+
+<h2 id="web页面之外的javascript">Web页面之外的JavaScript</h2>
               
             </div>
           </div>
