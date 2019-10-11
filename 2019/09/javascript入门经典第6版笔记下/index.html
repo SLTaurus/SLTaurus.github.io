@@ -428,6 +428,26 @@
 <li><a href="#把代码调整为-代码分离-状态程序清单">把代码调整为“代码分离”状态程序清单</a></li>
 <li><a href="#小结-5">小结</a></li>
 </ul></li>
+<li><a href="#调试代码">调试代码</a>
+<ul>
+<li><a href="#调试简介">调试简介</a>
+<ul>
+<li><a href="#错误类型">错误类型</a></li>
+<li><a href="#选择程序员的编辑器">选择程序员的编辑器</a></li>
+<li><a href="#使用alert-进行简单调试">使用alert()进行简单调试</a></li>
+</ul></li>
+<li><a href="#更高级的调试">更高级的调试</a>
+<ul>
+<li><a href="#控制台">控制台</a></li>
+<li><a href="#分组消息">分组消息</a></li>
+<li><a href="#使用断点停止代码执行">使用断点停止代码执行</a></li>
+<li><a href="#条件性断点">条件性断点</a></li>
+<li><a href="#从代码中启动调试器">从代码中启动调试器</a></li>
+<li><a href="#监视表达式">监视表达式</a></li>
+</ul></li>
+<li><a href="#验证javascript">验证JavaScript</a></li>
+<li><a href="#小结-6">小结</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -3314,6 +3334,203 @@ function telltime() {
 </code></pre>
 
 <p>如果JavaScript功能是开启的，上面这行代码就会把用户转到增强页面。如果浏览器不 支持JavaScript,这行代码就不会执行，用户就会继续查看普通版本的页面。</p>
+
+<h2 id="调试代码">调试代码</h2>
+
+<p>当深入到较为高级的脚本时，我们迟早都会遇到代码出错误的情况。</p>
+
+<p>很多小小的失误都可能导致JavaScript错误，比如开始与结束括号不匹配，变量名称或 关键字输入错误，调用不存在的方法，等等。这里针对诊断错误和修正代码给出了一些简单的提示和建议，以使得你的编程过程更加愉快而有成果。</p>
+
+<h3 id="调试简介">调试简介</h3>
+
+<p>找到并修正bug的过程叫作调试,这可能是开发过程中最需要技巧也最令人沮丧的一步。</p>
+
+<h4 id="错误类型">错误类型</h4>
+
+<p>代码中可能出现的错误通常是如下3种类型之一。</p>
+
+<ul>
+<li>语法错误—— 这包括录入错误和拼写错误、漏掉了引号或错误匹配的引号、漏掉或错误匹配的圆括号或花括号，以及大小写错误。</li>
+<li>运行时错误一 当 JavaScript解释器试图做某些它无法理解的事情的时候所发生的 错误。例如，试图将一个字符串当作一个数值处理，以及试图用一个数除以0。</li>
+<li>程序逻辑错误—— 这种错误并不总是能够生成错误消息，代码可能是完全合法的， 但是脚本不会做你想让它做的事情。这通常是和脚本中的算法或逻辑流程相关的问题。</li>
+</ul>
+
+<h4 id="选择程序员的编辑器">选择程序员的编辑器</h4>
+
+<p>不管你使用什么平台，也不管你选择什么浏览器，选择一个好的编辑器是有用的。尽管使用WindowsNotepad这样的简单的文本编辑器编写代码也是可以的，但一个专业的编辑器会使得编程容易很多。</p>
+
+<p>有很多这样的程序可供使用，往往是根据开源或类似的许可可供免费使用。这里列出一些不需要花钱的编辑器，但是，请根据你的平台、你的工作方式和你的经济情况从中选择适合的一款。</p>
+
+<ul>
+<li>Notepad++ ( Windows)</li>
+<li>JEdit (能够在安装了 Java的任何平台上工作)</li>
+<li>PSPad (Windows)</li>
+<li>JuffEd (Windows、Linux)</li>
+<li>Geany (Windows&gt; Linux)</li>
+</ul>
+
+<p>编辑器提供了很多的功能，但我建议你找一款至少具备如下功能的编辑器：</p>
+
+<ul>
+<li>代码行编号—如果你将JavaScript代码存储到外部文件中的话(并且在可行的情况下，你应该尽可能地这么做)，这一功能特别有用。浏览器的调试程序所生成的任何错误消息中的行号，通常和你在编辑器中打开的源文件中的行号是一致的。</li>
+<li>语法高亮显示—当你熟悉了编辑器的语法高亮显示方案，很多时候，你能够很容易地找到代码中的错误，因为编辑器中的代码“看上去就是错的”。在你所喜欢的编辑程序中，你会感到惊讶的是，自己很快就习惯了关键字、变量、字符串字面值、对象等的颜色。很多编辑器允许你将语法高亮显示的颜色方案修改为你自己喜欢的形式。</li>
+<li>括号匹配一作为查找错误的工具，括号匹配很有用。好的编辑器将会显示成对的、匹配出现的开始和结束括号，而且针对方括号、花括号和圆括号等所有类型的括号都有此功能。当你的代码有几个层级的括号嵌套的时候，很容易会匹配错误。</li>
+<li>代码自动填充和工具提示式的语法帮助—一些编辑器针对命令函数和表达式提供了弹出式的、工具提示式的帮助。这可以节省你的时间，你不必再将目光从编辑器窗口移开以查找外部的参考。</li>
+</ul>
+
+<h4 id="使用alert-进行简单调试">使用alert()进行简单调试</h4>
+
+<p>有时候，你真得只是想要一种简单而快速的方法来读取一个变量的值，或者记录代码执行的顺序。</p>
+
+<p>可能最简单的方法就是在代码中相应的位置插入一条JavaScript alert()语句。假设你 想要知道一个看似没有响应的函数是否真的被调用了，并且如果调用了，是使用什么参数调用的：</p>
+
+<pre><code>function myFunc(a, b) {
+    alert(&quot;myFunc() called・\na: &quot; + a + &quot;\nb: ” + b); 
+    // ...函数其他的代码在这里...
+...}
+</code></pre>
+
+<p>记住，在显示消息中稍微多放置一些信息，而不要只是放置变量值或者一句话的提示，在忙碌的时候，你很可能忘记了 alert()中提及的变量或属性是什么。</p>
+
+<h3 id="更高级的调试">更高级的调试</h3>
+
+<p>在代码中放置alert()调用，作为调试较简短的代码的一种快速而简单的方法是没有问题的。然而这种方法有几个严重的缺点：</p>
+
+<ul>
+<li>在每个对话框上，必须单击“0K” 按钮，才能允许程序继续执行。这可能会令人沮丧，尤其是在处理较长的循环的时候。</li>
+<li>接收到的消息并没有存储到任何的地方，而是当对话框退出的时候就消失了，随后也没有办法再返回来看看所报告的消息。</li>
+<li>在代码正式发布之前，需要回到编辑器中删除掉所有的alert()调用。</li>
+</ul>
+
+<h4 id="控制台">控制台</h4>
+
+<p>好在大多数现代的浏览器都提供了一个JavaScript控制台，它可以用来更加有效地记录 调试消息。在不同的浏览器中，打开控制台的方法也是不同的：</p>
+
+<ul>
+<li>在Internet Explorer中，按下F12键打开Developer Tools。</li>
+<li>要打开Chrome 的Developer Tools和Opera 的Dragonfly Debugger,按下Ctrl+Shift+I。</li>
+<li>在Firefox中，按下F12键打开Firebug extension。</li>
+</ul>
+
+<p>本节中的示例假设你使用前面的调试器中的一种。如果不是的话，你可能必须查看自己的调试器的文档，看看如何执行我所提到的一些任务。在不同的浏览器中，它们展示这些错误的方式也可能有所不同。</p>
+
+<p>使用浏览器的调试工具，错误代码如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Current Date and Time&lt;/title&gt;
+&lt;/head &gt;
+&lt;body&gt;
+    &lt;script&gt;
+        function sayHi() {
+            alert(&quot;Hello!);
+        }
+    &lt;/script&gt;
+    &lt;input type=&quot;button&quot; value=&quot;good&quot; onclick=&quot;sayHi()&quot; /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;bad&quot; onclick=&quot;sayhi()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html &gt;
+</code></pre>
+
+<p>这段代码有两个不同类型的错误。首先在调用alert()方法的时候，参数漏掉了结束的引号。其次，在第2 个按钮的onclickhandler处理器中，它调用了 sayhi(),别忘了，函数名是区 分大小写的，因此实际上并没有定义名为sayhi()的函数。</p>
+
+<p>在 Firefbx中加载该页面，你将会看到预期的两个按钮，一个标签为“good”，另一个标签为&rdquo;bad&rdquo;。二者看上去似乎都没做什么事情。你可以按下Ctrl+Shft+J打开Firefox的 Error Console。</p>
+
+<p>这是一个很有用的开始。Firefox告诉我们，它发现一个不完整的字符串字面值，给出了 行号，甚至显示了该行代码，并且用一个箭头指出了有问题的位置。</p>
+
+<p>改正了错误之后，再次保存文件，我准备再尝试一次。首先，单击了 Error Console具栏上的Clear以清除旧的错误消息，然后重新加载测试页面。</p>
+
+<p>看上去很好。页面再次出现了，并且Error Console保持空白。在标签为“good”的按钮上单击，打开一个预期的alert()对话框，到目前为止，一切正常！</p>
+
+<p>但是，单击了标签为“bad”的按钮的时候，并没有看到任何内容，因此我再次查看了Error Console,Firefox再次指出了问题:&rdquo; sayhi is not defined&rdquo;。现在，我们知道了如何让代码经过完整调试并正确工作。</p>
+
+<p>其他的高级调试，火狐浏览器的话都使用Ctrl+Shft+ I和Ctrl+Shft+J来进行查看就好了，包括断点，还有最知名的方法console.log()。除了 console.log(),还可以利用 console.wam()、console.infb()和 console.error()。这些都会以略微不同的风格在控制台记录消息，以使得你能够全面地了解脚本是如何运行的。</p>
+
+<p>这里我们对于Google Chrome/Chromium中的调试器功能的介绍只是浅尝辄止。要学习更多的内容，<a href="https://developer.chrome.com/devtools/docs/javascript-debugging">https://developer.chrome.com/devtools/docs/javascript-debugging</a> 有一
+个很好的教程，能帮助你入门。</p>
+
+<p>如果你选择Firefox来进行开发工作，安装流行的Firebug extension会使你工作得更好，可以通过<a href="http://getfirebug.conrjavascript">http://getfirebug.conrjavascript</a> 了解它，该扩展拥有很多类似的功能。</p>
+
+<p>使用Microsoft Internet Explorer的用户，可以通过F12Developer Tools来找到关于调试的更多信息(参见 <a href="https://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx</a> )。 Opera则包含了Dragonfly调试工具 ，可以通过 <a href="http://www.opera.com/dragonfly/documentation/">http://www.opera.com/dragonfly/documentation/</a> 来了解它。</p>
+
+<h4 id="分组消息">分组消息</h4>
+
+<p>将控制台调试消息排序分组，使得它们更具有可读性。可以按照你喜欢的方式命名单个的消息组：</p>
+
+<pre><code>function myFunc(a, b) {
+    console.group(&quot;myFunc execution&quot;);
+    console.log(&quot;Executing myFunc()&quot;);
+    if (isNaN(a) || isNaN(b)) {
+        console.warn(&quot;One or more arguments non-numeric&quot;);
+    }
+    console.groupEnd();
+    myOtherFunc(a + b);
+}
+
+function myOtherFunc(c) {
+    console.group(&quot;myOtherFunc execution&quot;);
+    console.log(&quot;Executing myOtherFunc ()&quot;);
+    if (isNaN(c)) {
+        console.info(&quot;Argument is not numeric&quot;);
+    }
+    console.groupEnd();
+    //...函数其他的代码在这里...
+}
+</code></pre>
+
+<p>在这段代码中，我们定义了两个console.group()部分，并且将其命名为与它们所在的函数相关。每一组最后都以一条console.groupEnd()语句结束。当这段代码运行的时候，任何的控制台消息都会按照组来显示。</p>
+
+<h4 id="使用断点停止代码执行">使用断点停止代码执行</h4>
+
+<p>随着脚本变得越来越复杂，你甚至可能会发现，控制台日志消息已经不足以让你有效地进行调试了。要执行更详细的调试，可以在代码中你所关心的位置设置所谓的断点。当代码执行到断点的时候，它会暂停下来，在保持冻结的时间里，你可以查看代码是如何运行的、检查变量值、读取日志消息等。</p>
+
+<p>要在大多数流行的调试器中设置断点，需要打开Scripts面板，其中，将会看到所列岀的代码。在行号上(或者只是在行号的左边)单击，就在该行上设置了一个断点。己经在代码中的第8行上设置了一个断点。执行会在这里停止，并且可以在右边的面板中看到单个的变量的当前的值。可以通过在左边边缘的断点图标上再次单击，从而删除断点。</p>
+
+<h4 id="条件性断点">条件性断点</h4>
+
+<p>有时候，只有当特定的情况发生的时候，暂停代码的执行才是有帮助的。可以通过在左边的列中的断点图标上单击鼠标右键，并且输入一个条件语句，从而设置一个条件性断点。</p>
+
+<p>代码将会持续执行而不会中断，直到满足了该条件，执行就会在该断点停止。只要在断点图标上再次单击鼠标右键，随时可以编辑表达式。</p>
+
+<p>当代码执行在一个断点停止的时候，你可以选择继续代码执行，或者变为每次执行一条语句的单步形式，使用一个代码执行按钮来每次执行一步；通常会有类似VCR的控件出现在调试器顶部的面板中。在大多数的调试器中，具有如下的一些选项：</p>
+
+<ul>
+<li>Continue—继续执行代码，只有到达另一个断点的时候才再次暂停。</li>
+<li>Step Over—执行当前的行，包括执行它所调用的任何函数，然后移动到下一行。</li>
+<li>Step Into—和Step Over一样，移动到下一行，除非该行调用一个函数；如果调用 了函数的话，就进入到该函数的第一行。</li>
+<li>Step Out—离开当前的函数，并且返回到调用该函数的位置。</li>
+</ul>
+
+<h4 id="从代码中启动调试器">从代码中启动调试器</h4>
+
+<p>在 JavaScript代码中设置断点，这也是可以的，而且常常还很有用。我们可以使用关键 词 debugger来做到这一点：</p>
+
+<pre><code>function myFunc(a, b) {
+    if(isNaN(a) || isNaN(b)) {
+        debugger;
+    }
+    // ...函数其他的代码在这里...
+}
+</code></pre>
+
+<p>在这个示例中，只有在条件表达式为真的时候，代码执行才会停止并打开调试器。调试工具也允许你在其他的条件下暂停代码执行，例如，当DOM发生变化的时候，或者检测到一个未捕获的异常的时候，但是，这些更为高级的情况超出了本书的讨论范围。</p>
+
+<h4 id="监视表达式">监视表达式</h4>
+
+<p>监视表达式是一个有效的JavaScript表达式，调试器会持续地计算它，使得其值可供你查看。可以使用任何有效的表达式，范围从一个简单的变量名，到包含了逻辑和算术表达式或调用其他的函数的一个表达式。</p>
+
+<p>可以通过右边的Script标签页，输入一个新的监视表达式( Firefox/Firebug)。</p>
+
+<h3 id="验证javascript">验证JavaScript</h3>
+
+<p>检查JavaScript代码的一种不同的和补充性的方法，就是使用一个验证程序。这将会检查代码是否符合该语言的正确的语法规则。这些验证程序通常会和商业化的JavaScript编辑器绑定到一起，或者你可以直接使用Douglas Crockford开发的 JavaScript Lint,可以通过<a href="http://www.jslint.com/">http://www.jslint.com/</a> 在线使用它。</p>
+
+<p>在这里，只需要简单地将代码粘贴到显示的窗口中，并且单击按钮就可以了。如果程序报告了很多错误的话，也不要太担心，只需要每次查看代码就行了。JSLint会进行非常全面严格的检查，甚至会报告根本不会影响到代码运行的编码风格问题，但这些确实有助改进你的程序。</p>
+
+<h3 id="小结-6">小结</h3>
+
+<p>网上有很多在线的教程，从W3Schools发布的那些教程开始，参见<a href="http://www.w3schools.com/js/js_debugging.aspa">http://www.w3schools.com/js/js_debugging.aspa</a></p>
               
             </div>
           </div>
