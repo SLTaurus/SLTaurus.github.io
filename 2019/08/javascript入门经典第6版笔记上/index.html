@@ -422,18 +422,34 @@
 
 <h2 id="服务器段和客户端编程">服务器段和客户端编程</h2>
 
-<p>文字描述如下：
-<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript1.jpg" alt="JavaScript1" /></p>
+<p>给静态页面添加脚本有两种最基本的方式。</p>
+
+<ul>
+<li>让Web服务器在把页面发送给用户之前执行脚本。这样的脚本可以确定把哪些内容发送给浏览器以显示给用户，比如从在线商店的数据库获取产品价格，在用户登录到站点的私有区域之前核对用户身份，或是从邮箱获取邮件内容。这些脚本通常运行在Web服务器上，而且是在生成请求的页面并提供给用户之前运行的。因此，我们称之为服务器端脚本（server-side scripting）。</li>
+<li>另外一种方式并不是在服务器运行脚本，而是把脚本与页面内容一起发送给用户的浏览器。然后浏览器运行这些脚本，操作已经发送给浏览器的页面内容。这些脚本的主要功能包括动画页面的部分内容，重新安排页面布局，允许用户在页面内拖放元素，验证用户在表单里输入的内容，把用户重定向到其他页面，等等。自然而然, 这些脚本称为客户端脚本（client-side scripting）</li>
+</ul>
+
+<p>有一种很酷的方法可以把来自于服务器端脚本的输出组合到客户端脚本,在后面部分介绍Ajax技术时将会学习这种技术.</p>
 
 <h2 id="dom简介">DOM简介</h2>
 
-<ul>
-<li><p>DOM简介文字描述如下：
-<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript2.jpg" alt="JavaScript2" /></p></li>
+<p>&ldquo;文档对象模型&rdquo;（Document Object Model, DOM）是对文档及其内容的抽象表示。</p>
 
-<li><p>这个层级树的最顶端是浏览器window对象，他是页面的DOM表示中的一切对象的父对象。
-<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript3.jpg" alt="JavaScript3" /></p></li>
+<p>每次浏览器要加载和显示页面时，都需要解释（更专业的术语是“解析”）构成页面的HTML源代码。在解析过程中，浏览器建立一个内部模型来表示文档里的内容，这个模型就是DOM。在浏览器渲染页面的可见内容时，就会引用这个模型。可以使用JavaScript来访问和编辑这个DOM的各个部分，从而改变页面的显示内容和用户交互的方式。</p>
+
+<p>在早期，JavaScript只能对Web页面的某些部分进行最基本的访问，比如访问页面里的图像和表单。一个JavaScript程序所包含的语句，可以选择“页面上第二个表单”，或是“名称为registration的表单”。</p>
+
+<p>Web开发人员有时把这种情形称为0级DOM,以便与W3C的1级DOM向下兼容。0级DOM有时也称为BOM（浏览器对象模型）。从0级DOM开始，W3C逐渐扩展和改善了DOM规范。W3C更大的野心是不仅让DOM能够用于Web页面与JavaScript,也能用于任何编程语言和XML。</p>
+
+<ul>
+<li>这个层级树的最顶端是浏览器window对象，他是页面的DOM表示中的一切对象的父对象。</li>
 </ul>
+
+<p>window对象具有一些子对象，如图所示。图中第一个子对象是document,这也是本书最经常使用的对象。浏览器加载的任何HTML页面都会创建一个document对象，包含全部HTML内容及其他构成页面显示的资源。利用JavaScript以父子对象的形式就可以访 问这些信息。这些对象都具有自己的属性和方法。</p>
+
+<p><img src="https://SLTaurus.github.io/images/JavaScript/JavaScript3.jpg" alt="JavaScript3" /></p>
+
+<p>图中window对象的其他子对象还有location（包含着当前页面URL的详细信息history（包含浏览器以前访问的页面地址）和navigator（包含浏览器类型、版本和兼容的信息）。后面将会更详细地介绍这些对象，其他地方也会使用它们，但目前我们着重于document对象。</p>
 
 <h2 id="script标签">script标签</h2>
 
@@ -444,8 +460,17 @@
 <li>把Javascript代码关联到HTML代码中有两种办法，第一种就是把语句直接包含在HTML文件里，第二种更好的办法是把JavaScript放在单独的的文件，然后利用<code>&lt;script&gt;&lt;/script&gt;</code> 元素的 <code>src</code> 属性来指定文件名，即 <code>&lt;script src = 'mycode.js'&gt;&lt;/script&gt;</code> ，从而把这个文件包含在页面里。</li>
 </ul>
 
-<p>把JavaScript代码保存到单独的文件夹的好处：
-<img src="https://SLTaurus.github.io/images/JavaScript/JavaScript4.jpg" alt="JavaScript" /></p>
+<p>把JavaScript代码保存到单独的文件夹的好处：</p>
+
+<ul>
+<li>当JavaScript代码有更新时，这些更新可以立即作用于使用这个JavaScript文件的页面。这对于JavaScript库是尤为重要的。</li>
+<li>HTML页面的代码可以保持简洁，从而提高易读性和可维护性。</li>
+<li>可以稍微提高一点性能。浏览器会把包含文件进行缓存，当前页面或其他页面再次需要使用这个文件时，就可以使用一个本地副本了。</li>
+</ul>
+
+<p>按照惯例，JavaScript代码文件的名称后缀是.js。但从实际情况来看，代码 NOTE 文件的名称可以使用任何后缀，浏览器都会把其中的内容当作JavaScript来解释。</p>
+
+<p>外部文件中的JavaScript语句不能放到<script>和</script>标签中，也不能使用任何HTML标签，只能是纯粹的JavaScript代码。</p>
 
 <h2 id="函数">函数</h2>
 
