@@ -6,10 +6,28 @@
     <description>Recent content in Categories on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2019 14:46:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 19:52:37 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SqlService</title>
+      <link>https://SLTaurus.github.io/categories/sqlservice/</link>
+      <pubDate>Sun, 13 Oct 2019 19:52:37 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/sqlservice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>https://SLTaurus.github.io/categories/c#/</link>
+      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/c#/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>JavaScript</title>
@@ -35,15 +53,6 @@
       <pubDate>Thu, 22 Aug 2019 17:14:39 +0800</pubDate>
       
       <guid>https://SLTaurus.github.io/categories/markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C#</title>
-      <link>https://SLTaurus.github.io/categories/c#/</link>
-      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
-      
-      <guid>https://SLTaurus.github.io/categories/c#/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,29 @@
     <description>Recent content in Posts on SLTaurus的安全屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2019 14:46:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 19:52:37 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SqlService笔记</title>
+      <link>https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 13 Oct 2019 19:52:37 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>精通CSharp(第六版)</title>
+      <link>https://SLTaurus.github.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</link>
+      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</guid>
+      <description>&lt;p&gt;工欲善其事必先利其器。C#需要记忆的基础汇总下，供时常翻阅查看。感觉暂时不需要的就只记录标题在，如果以后再需要则重新翻阅记录理解。
+#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>JavaScript入门经典第6版笔记(下)</title>
