@@ -3,17 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://SLTaurus.github.io/categories/ado.net/</loc>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/ado.net/</loc>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/2019/10/ado.net/</loc>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://SLTaurus.github.io/categories/</loc>
-    <lastmod>2019-10-13T19:52:37+08:00</lastmod>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://SLTaurus.github.io/post/</loc>
-    <lastmod>2019-10-13T19:52:37+08:00</lastmod>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://SLTaurus.github.io/</loc>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/</loc>
+    <lastmod>2019-10-17T08:13:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/ef6/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/ef6/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/mvc5/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/mvc5/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/categories/sqlservice/</loc>
     <lastmod>2019-10-13T19:52:37+08:00</lastmod>
   </url>
   
@@ -23,27 +73,17 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/sqlservice/</loc>
-    <lastmod>2019-10-13T19:52:37+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-10-13T19:52:37+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/tags/</loc>
-    <lastmod>2019-10-13T19:52:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://SLTaurus.github.io/tags/c#/</loc>
+    <loc>https://SLTaurus.github.io/categories/c#/</loc>
     <lastmod>2019-10-12T15:12:16+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/c#/</loc>
+    <loc>https://SLTaurus.github.io/tags/c#/</loc>
     <lastmod>2019-10-12T15:12:16+08:00</lastmod>
   </url>
   
@@ -98,12 +138,12 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/tags/markdown/</loc>
+    <loc>https://SLTaurus.github.io/categories/markdown/</loc>
     <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/markdown/</loc>
+    <loc>https://SLTaurus.github.io/tags/markdown/</loc>
     <lastmod>2019-08-22T17:14:39+08:00</lastmod>
   </url>
   

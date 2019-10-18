@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EF6 on SLTaurusの玄甲军</title>
+    <link>https://SLTaurus.github.io/tags/ef6/</link>
+    <description>Recent content in EF6 on SLTaurusの玄甲军</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Oct 2019 20:25:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://SLTaurus.github.io/tags/ef6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MVC5&#43;EF6入门完整教程（转）</title>
+      <link>https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/</link>
+      <pubDate>Tue, 15 Oct 2019 20:25:35 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/</guid>
+      <description>&lt;p&gt;ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&amp;rdquo;约定&amp;rdquo;。直接讲这些&amp;rdquo;约定&amp;rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

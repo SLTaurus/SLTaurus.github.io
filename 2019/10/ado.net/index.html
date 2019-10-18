@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="ADO.NET, C#, .NET, 个人博客">
+<meta name="description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。">
+
+
+<meta property="og:description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ADO.NET">
+<meta name="twitter:title" content="ADO.NET">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/10/ado.net/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/10/ado.net/">
+<meta property="og:site_name" content="SLTaurusの玄甲军">
+<meta property="og:description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。">
+<meta name="twitter:description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-17T08:13:30">
+  
+  
+    <meta property="article:modified_time" content="2019-10-17T08:13:30">
+  
+  
+  
+    
+      <meta property="article:section" content="ADO.NET">
+    
+  
+  
+    
+      <meta property="article:tag" content="ADO.NET">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/ado.png">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/ado.png">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>ADO.NET</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/10/ado.net/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">SLTaurusの玄甲军</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      ADO.NET
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-17T08:13:30&#43;08:00">
+        
+  十月 17, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/ado.net">ADO.NET</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#ado-net概要">ADO.NET概要</a></li>
+<li><a href="#ado-net的组成">ADO.NET的组成</a></li>
+<li><a href="#connection连接对象">Connection连接对象</a>
+<ul>
+<li><a href="#连接字符串">连接字符串</a></li>
+<li><a href="#连接到数据库">连接到数据库</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#command对象">Command对象</a></li>
+<li><a href="#dataadapter">DataAdapter</a></li>
+<li><a href="#封装sqlhelper">封装SqlHelper</a>
+<ul>
+<li><a href="#封装sql的实例演示">封装Sql的实例演示</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="ado-net概要">ADO.NET概要</h1>
+
+<p>ADO.NET是.NET框架中的重要组件，主要用于完成C#应用程序访问数据库。</p>
+
+<h1 id="ado-net的组成">ADO.NET的组成</h1>
+
+<p><img src="https://SLTaurus.github.io/images/ADONETConstituent.png" alt="ADONETConstituent" /></p>
+
+<ul>
+<li>System.Data → DataTable，DataSet，DataRow，DataColumn，DataRelation，Constraint，DataColumnMapping，DataTableMapping</li>
+<li>System.Data.Coummon → 各种数据访问类的基类和接口</li>
+<li>System.Data.SqlClient → 对Sql Server进行操作的数据访问类</li>
+</ul>
+
+<p>主要有：</p>
+
+<ul>
+<li>SqlConnection            → 数据库连接器</li>
+<li>SqlCommand               → 数据库命名对象</li>
+<li>SqlCommandBuilder        → 生存SQL命令</li>
+<li>SqlDataReader            → 数据读取器</li>
+<li>SqlDataAdapter           → 数据适配器，填充DataSet</li>
+<li>SqlParameter             → 为存储过程定义参数</li>
+<li>SqlTransaction           → 数据库事物</li>
+</ul>
+
+<h1 id="connection连接对象">Connection连接对象</h1>
+
+<p>Connection对象也称为数据库连接对象，Connection对象的功能是负责对数据源的连接。所有Connection对象的基类都是DbConnection类。</p>
+
+<h2 id="连接字符串">连接字符串</h2>
+
+<p>基本语法：数据源(Data Source)+数据库名称(Initial Catalog)+用户名(User ID)+密码(Password)</p>
+
+<p><strong>SQL Server连接字符串：</strong></p>
+
+<p>标准安全连接：</p>
+
+<pre><code>Data Source=.;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;Trusted_Connection=False;
+</code></pre>
+
+<p>可信连接：</p>
+
+<pre><code>Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=SSPI;
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>Server=myServerAddress;Database=myDatabase;Trusted_Connection=True; 
+</code></pre>
+
+<p><strong>Access连接字符串：</strong></p>
+
+<pre><code>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\myDatabase.mdb;User Id=admin;Password=;
+</code></pre>
+
+<p><strong>MySQL连接字符串：</strong></p>
+
+<pre><code>Server=myServerAddress;Database=myDatabase;Uid=myUsername;Pwd=myPassword;
+</code></pre>
+
+<p><strong>DB2连接字符串：</strong></p>
+
+<pre><code>Server=myAddress:myPortNumber;Database=myDatabase;UID=myUsername;PWD=myPassword;
+</code></pre>
+
+<p><strong>Oracle连接字符串：</strong></p>
+
+<pre><code>Data Source=TORCL;User Id=myUsername;Password=myPassword; 
+</code></pre>
+
+<p>在VS中获得连接字符串并连接到数据库：工具-&gt;连接到数据库，也可以方便的获取连接字符串。</p>
+
+<h2 id="连接到数据库">连接到数据库</h2>
+
+<p>对象Connection主要是用于连接到数据库的。</p>
+
+<p>Connection常用属性：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ConncetionString</td>
+<td align="left">获取或设置用于打开数据库的字符串</td>
+</tr>
+
+<tr>
+<td align="left">ConnectioTimeout</td>
+<td align="left">获取在尝试建立连接时终止尝试并生成错误之前所等待的时间</td>
+</tr>
+
+<tr>
+<td align="left">DataBase</td>
+<td align="left">获取当前数据库，或者连接打开后要使用的数据名称</td>
+</tr>
+
+<tr>
+<td align="left">DataSource</td>
+<td align="left">获取连接的数据库服务器的名称</td>
+</tr>
+
+<tr>
+<td align="left">State</td>
+<td align="left">数据库连接状态</td>
+</tr>
+</tbody>
+</table>
+
+<p>Connection常用方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Open</td>
+<td align="left">打开数据库连接</td>
+</tr>
+
+<tr>
+<td align="left">Close</td>
+<td align="left">关闭数据库连接</td>
+</tr>
+
+<tr>
+<td align="left">Dispose</td>
+<td align="left">释放Connection使用的所有资源</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="示例">示例</h2>
+
+<p><strong>创建数据库与表：</strong>
+提前准备好数据库，后面使用：</p>
+
+<pre><code>--创建数据库
+create database ExampleInfo
+--创建学生表
+create table StudentTable(
+Sid int not null primary key identity,
+Sname varchar(50),
+Sage datetime,
+Ssex nvarchar(10)
+)
+insert into StudentTable(Sname,Sage,Ssex) values ('王昭君',18,'女'),('貂蝉',18,'女'),('韩信',18,'男'),
+('李白',20,'男'),('蔡文姬',19,'女'),('后裔',19,'男'),('伽罗',19,'女')
+
+--创建课程表
+create table CourseTable(
+Cid int not null primary key identity,
+Cname varchar(50),
+Tid int
+)
+insert into CourseTable(Cname,Tid) values ('语文',1),('数学',3),('英语',5),
+('物理',4),('化学',6),('生物',5),('地理',2)
+
+--创建教师表
+create table TeacherTable(
+Tid int not null primary key identity,
+Tname varchar(50)
+)
+
+insert into TeacherTable(Tname) values ('诸葛亮'),('黄总'),('老夫子'),('墨子'),('女娲'),('伏羲')
+
+--创建一张学生课程表
+create table SCTable(
+Sid int,
+Cid int,
+Score int,
+foreign Key (Sid) REFERENCES StudentTable(Sid),
+foreign Key (Cid) REFERENCES CourseTable(Cid)
+)
+
+insert into SCTable (Sid,Cid,Score) values (1,1,80),(1,2,89),(1,3,88),(1,4,87),(1,5,78),
+(1,6,48),(1,7,87),(2,1,55),(2,2,77),(2,4,99),(2,5,89),(2,6,15),(3,1,88),(3,2,77),(3,3,78),(3,4,75),(3,5,67),
+(3,6,89),(3,7,88),(4,1,78),(4,4,98),(4,5,89),(4,6,78),(4,7,79),(5,1,77),(5,2,85),(5,3,82),(5,5,76),
+(5,6,95),(6,1,94),(6,4,48),(7,1,58),(7,2,88),(7,4,75),
+(7,6,84),(7,7,99)
+</code></pre>
+
+<p><strong>连接到数据</strong>
+创建连接对象，打开数据:</p>
+
+<pre><code>这是一个使用模板
+//编写连接字符串
+String constr = &quot;Data Source = .;Initial Catalog = ExampleInfo;Integrated Security = True&quot;
+//创建连接对象
+using(SqlConnection conn = new Sqlnnection(Constr))
+{　
+    // 当在某个代码段中使用了类的实例，而希望无论因为什么原因，只要离开了这个代码段就自动调用这个类实例的Dispose
+    //要达到这样的目的，用try...catch来捕捉异常也是可以的，但用using也很方便。　　　
+    //写Sql语句 
+    //创建command对象
+    //打开数据
+    //执行
+}
+</code></pre>
+
+<h1 id="command对象">Command对象</h1>
+
+<p>Command对象也称为数据库命令对象，Command对象主要执行包括添加、删除、修改及查询数据的操作的命令。也可以用来执行存储过程。用于执行存储过程时需要将Command对象的CommandType 属性设置为CommandType.StoredProcedure，默认情况下CommandType 属性为CommandType.Text，表示执行的是普通SQL语句。</p>
+
+<p><strong>Command对象常用的属性:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">CommandType</td>
+<td align="left">获取要执行命令的类型</td>
+</tr>
+
+<tr>
+<td align="left">CommandText</td>
+<td align="left">获取或者设置要对数据源执行的SQL语句或存储过程或表名</td>
+</tr>
+
+<tr>
+<td align="left">Conncetion</td>
+<td align="left">获取或设置这个Command使用的Connection对象的名称</td>
+</tr>
+
+<tr>
+<td align="left">Parameters</td>
+<td align="left">获取Command对象需要使用的参数集合</td>
+</tr>
+
+<tr>
+<td align="left">Transaction</td>
+<td align="left">获取或设置将在其中执行的SqlTransaction</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>这是一个Command使用模板
+//编写连接字符串
+String constr = &quot;Data Source = .;Initial Catalog = ExampleInfo;Integrated Security = True&quot;
+//创建连接对象
+using(SqlConnection conn = new Sqlnnection(Constr))
+{
+    //写Sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    using(SqlCommand cmd = new Command(sql,conn))
+    {
+        //打开数据
+        conn.Open();
+        //执行   
+　　　　.... 
+    }
+}
+</code></pre>
+
+<p>**Command主要有三个方法： **</p>
+
+<ul>
+<li>ExecuteNonQuery() 执行一个SQL语句，返回受影响的行数，这个方法主要用于执行对数据库执行增加、更新、删除操作，注意查询的时候不是调用这个方法。用于完成insert，delete，update操作。</li>
+<li>ExecuteScalar() 从数据库检索单个值。这个方法主要用于统计操作。ExecuteScalar()这个方法是针对SQL语句执行的结果是一行一列的结果集，这个方法只返回查询结果集的第一行第一列。executeScalar主要用于查询单行单列的值，如聚合函数（count,max,min,avg,sum）。</li>
+<li>ExecuteReader()用于实现只进只读的高效数据查询。ExecuteReader：返回一个SqlDataReader对象，可以通过这个对象来检查查询结果，它提供了只进只读的执行方式，即从结果中读取一行之后，移动到另一行，则前一行就无法再用。有一点要注意的是执行之后，要等到手动去调用Read()方法之后，DataReader对象才会移动到结果集的第一行，同时此方法也返回一个Bool值，表明下一行是否可用，返回True则可用，返回False则到达结果集末尾。</li>
+</ul>
+
+<p><strong>实例展示</strong>
+ExecuteNonQuery()用于执行非select语句，比如增删改，它会返回影响的行数:</p>
+
+<pre><code>//创建连接字符串
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;insert into StudentTable (Sname,Sage,Ssex) values ('露娜',16,'女')&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //打开数据库
+        conn.Open();
+        //执行数据语句的command方法
+        int x = cmd.ExecuteNonQuery();  //返回的是受影响的行数
+        if (x &gt; 0)
+        {
+            MessageBox.Show(&quot;插入成功&quot;);
+        }
+        else
+        {
+            MessageBox.Show(&quot;插入失败&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p>ExecuteScalar()通常用来执行SELECT查询命令，返回第一行第一列值，所以都是用来执行带有Count() 或者是Sum()函数的数据库SQL语句:</p>
+
+<pre><code>//创建连接字符串
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    string sql = &quot;select Count(*) from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //打开数据库
+        conn.Open();
+        //执行数据语句的command方法
+        object x = cmd.ExecuteScalar();
+        MessageBox.Show(x.ToString());
+
+    }
+}
+</code></pre>
+
+<p>ExecuteReader()通常是和DataReader一起使用的，这块再聊下DataReader。DataReader是一个简单的数据集，DataReader对象的常用属性如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Connection</td>
+<td align="left">获取与DataReader关联的Conncetion对象</td>
+</tr>
+
+<tr>
+<td align="left">HasRows</td>
+<td align="left">判断数据库中是否有数据</td>
+</tr>
+
+<tr>
+<td align="left">FieldCount</td>
+<td align="left">获取当前行的列数</td>
+</tr>
+
+<tr>
+<td align="left">IsClosed</td>
+<td align="left">是否已关闭DataReader实例，是一个bool值</td>
+</tr>
+
+<tr>
+<td align="left">Item</td>
+<td align="left">获取指定列的以本机的格式表示的值</td>
+</tr>
+</tbody>
+</table>
+
+<p>DataReader对象的常用方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ISDBNull</td>
+<td align="left">获取一个值，判断是否是空值</td>
+</tr>
+
+<tr>
+<td align="left">Read</td>
+<td align="left">使DataReader对象指向下一条记录</td>
+</tr>
+
+<tr>
+<td align="left">NextResult</td>
+<td align="left">使数据读取器前进到下一个结果</td>
+</tr>
+
+<tr>
+<td align="left">Close  关闭DataReader</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">Get</td>
+<td align="left">用来读取数据集的当前行的某一列的数据</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建Command对象
+    using (SqlCommand comm = new SqlCommand(sql, conn))
+    {//打开数据库
+        conn.Open();
+        //创建DataReader对象
+        using (SqlDataReader reader = comm.ExecuteReader())
+        {
+            if (reader.HasRows)  //如果有数据，一条一条去读数据
+            {
+                //reader.Read() 向后移动一条数据（因为默认指向-1,就是开始时候不指向任何数据），有数据就会返回true
+                while (reader.Read())
+                {
+                    if (reader[&quot;Sname&quot;] != DBNull.Value)
+                        MessageBox.Show(reader[&quot;Sname&quot;].ToString());
+                    //获取其他属性
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<h1 id="dataadapter">DataAdapter</h1>
+
+<p>DataAdapter表示一组SQL命令和一个数据库连接，它们用于填充 DataSet和更新数据源。DataAdapter的属性：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">SelectCommand</td>
+<td align="left">引用从数据源中检索行的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">InsertCommand</td>
+<td align="left">引用将插入的行从DataSet写入数据源的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">UpdateCommand</td>
+<td align="left">引用将修改的行从DataSet写入数据源的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">DeleteCommand</td>
+<td align="left">引用从数据源中删除行的Command对象</td>
+</tr>
+</tbody>
+</table>
+
+<p>DataAdapter的方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Fill</td>
+<td align="left">使用SqlDataAdapter（或OleDbDataAdapter）的这个方法，从数据源增加或刷新行，并将这些行放到DataSet表中。Fill方法调用SelectCommand属性所指定的SELECT语句</td>
+</tr>
+
+<tr>
+<td align="left">Update</td>
+<td align="left">使用DataAdapter对象的这个方法，将DataSet表的更改传送到相应的数据源中。该方法为DataSet的DataTable中每一指定的行调用相应的INSERT、UPDATE或DELETE命令</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //创建一个DataTable对象
+        DataTable ds = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            //打开数据库
+            conn.Open();
+            adapter.Fill(ds);
+        }
+        //绑定dataGridView控件
+        this.dataGridView1.DataSource = ds;
+    }
+}
+</code></pre>
+
+<p>也可以把datatable改为dataset：</p>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //创建一个DataTable对象
+        DataSet ds = new DataSet();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            //打开数据库
+            conn.Open();
+            adapter.Fill(ds);
+        }
+        //绑定dataGridView控件
+        this.dataGridView1.DataSource = ds.Tables[0];
+    }
+}
+</code></pre>
+
+<h1 id="封装sqlhelper">封装SqlHelper</h1>
+
+<p>如果不封装的话，我们每写一次查询就要写一次连接字符串，连接对象等等，如果一个程序当中有n个，就要写n此。那么不如将其封装起来，可以直接调用。我们只用提供sql语句和参数就可以了。</p>
+
+<pre><code>public class SqlHelper
+{
+    private static readonly string constr = ConfigurationManager.ConnectionStrings[&quot;sqlConnection&quot;].ConnectionString;
+    /// &lt;summary&gt;
+    /// 执行增删改的方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static int ExecuteNonQuery(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    cmd.Parameters.AddRange(paras);
+                }
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询，返回单个值方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static object ExecuteScalar(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand comm = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    comm.Parameters.AddRange(paras);
+                }
+                conn.Open();
+                return comm.ExecuteScalar();
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回SqlDataReader
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand comm = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    comm.Parameters.AddRange(paras);
+                }
+                try
+                {
+                    conn.Open();
+                    return comm.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                }
+                catch
+                {
+                    conn.Close();
+                    conn.Dispose();
+                    throw;
+                }
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回DataTable
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static DataTable ExecuteDataTable(string sql, params SqlParameter[] paras)
+    {
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            if (paras != null)
+            {
+                adapter.SelectCommand.Parameters.AddRange(paras);
+            }
+            adapter.Fill(dt);
+        }
+        return dt;
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回DataTable
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static DataSet ExecuteDataSet(string sql, params SqlParameter[] paras)
+    {
+        DataSet ds = new DataSet();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            if (paras != null)
+            {
+                adapter.SelectCommand.Parameters.AddRange(paras);
+            }
+            adapter.Fill(ds);
+        }
+        return ds;
+    }
+}
+</code></pre>
+
+<h2 id="封装sql的实例演示">封装Sql的实例演示</h2>
+
+<p>实例演示如下：</p>
+
+<pre><code>string Sname = textBox1.Text.Trim();         //Trim() 移除多余的空格
+string Sage = textBox2.Text.Trim();
+string Ssex = textBox3.Text.Trim();
+string sql = &quot;insert into StudentTable(Sname,Sage,Ssex) values (@Sname,@Sage,@Ssex)&quot;;
+//这里是创建参数，更加的安全，防止不法人员注入sql语句，造成错误
+SqlParameter[] paras = new SqlParameter[] { 
+        new SqlParameter(&quot;@Sname&quot;,SqlDbType.NVarChar,50){Value = Sname},
+        new SqlParameter(&quot;@Sage&quot;,SqlDbType.NVarChar,50){Value = Sage},
+        new SqlParameter(&quot;@Ssex&quot;,SqlDbType.NVarChar,50){Value = Ssex}
+};
+//因为执行的是插入操作，所以调用ExecuteNonQuery
+int x = SqlHelper.ExecuteNonQuery(sql,paras);
+if (x &gt; 0)
+{
+    MessageBox.Show(&quot;新增成功&quot;);
+    //成功的同时，重新加载表格中的数据
+    LoadDate();
+}
+else 
+{
+    MessageBox.Show(&quot;新增失败&quot;);
+}
+</code></pre>
+
+<p>其他的方法使用也类似。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/ado.net/">ADO.NET</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/10/ado.net/" class="leancloud_visitors" data-flag-title="ADO.NET">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/" data-tooltip="MVC5&#43;EF6入门完整教程（转）">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/" data-tooltip="MVC5&#43;EF6入门完整教程（转）">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/ado.net/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fado.net%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fado.net%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fado.net%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/10\/ado.net\/';
+          
+            this.page.identifier = '\/2019\/10\/ado.net\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

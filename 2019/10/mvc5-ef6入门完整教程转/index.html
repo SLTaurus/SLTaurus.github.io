@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="MVC5, C#, .NET, 个人博客">
+<meta name="description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。">
+
+
+<meta property="og:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC5&#43;EF6入门完整教程（转）">
+<meta name="twitter:title" content="MVC5&#43;EF6入门完整教程（转）">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+<meta property="og:site_name" content="SLTaurusの玄甲军">
+<meta property="og:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。">
+<meta name="twitter:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-15T20:25:35">
+  
+  
+    <meta property="article:modified_time" content="2019-10-15T20:25:35">
+  
+  
+  
+    
+      <meta property="article:section" content="MVC5">
+    
+      <meta property="article:section" content="EF6">
+    
+  
+  
+    
+      <meta property="article:tag" content="MVC5">
+    
+      <meta property="article:tag" content="EF6">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/mvcEf.png">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/mvcEf.png">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>MVC5&#43;EF6入门完整教程（转）</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">SLTaurusの玄甲军</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      MVC5&#43;EF6入门完整教程（转）
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-15T20:25:35&#43;08:00">
+        
+  十月 15, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/mvc5">MVC5</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/ef6">EF6</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#mvc5-ef6-入门完整教程一-第0课-从0开始">MVC5 + EF6 入门完整教程一 第0课 从0开始</a>
+<ul>
+<li><a href="#文章提纲">文章提纲</a></li>
+<li><a href="#概述">概述</a></li>
+<li><a href="#核心概念介绍">核心概念介绍</a></li>
+<li><a href="#从空白开始-建立一个基本框架详细步骤">从空白开始，建立一个基本框架详细步骤</a>
+<ul>
+<li><a href="#新建项目">新建项目</a></li>
+<li><a href="#添加一个示例">添加一个示例</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+<li><a href="#mvc5-ef6-入门完整教程二-从前端的ui开始">MVC5 + EF6 入门完整教程二 从前端的UI开始</a>
+<ul>
+<li><a href="#文章提纲-1">文章提纲</a></li>
+<li><a href="#概述-1">概述</a></li>
+<li><a href="#重要概念介绍">重要概念介绍</a></li>
+<li><a href="#建立-注册-登录-ui详细步骤">建立 注册/登录 UI详细步骤</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<blockquote>
+<p>引用自Tozhang同学的博文：<a href="https://www.cnblogs.com/zhang1f/p/11118800.html">MVC5 + EF6 入门完整教程</a>，这里仅作记录和参考、笔记。</p>
+
+<h1 id="mvc5-ef6-入门完整教程一-第0课-从0开始">MVC5 + EF6 入门完整教程一 第0课 从0开始</h1>
+
+<h2 id="文章提纲">文章提纲</h2>
+</blockquote>
+
+<ul>
+<li>概述</li>
+<li>核心概念介绍</li>
+<li>从空白开始，建立一个基本框架详细步骤</li>
+</ul>
+
+<h2 id="概述">概述</h2>
+
+<ul>
+<li>本系列文章及文章中的例子主要基于微软官方文档</li>
+<li>使用工具 : VS2013 + MS SQL 2012</li>
+<li>开始主要讲解MVC + EF搭配使用，后续同样也会提供MVC + ADO.NET的实现方案</li>
+</ul>
+
+<h2 id="核心概念介绍">核心概念介绍</h2>
+
+<p>MVC，Model – View – Controller 的简写，Model 封装业务逻辑相关的数据及对数据的处理方法，View 向用户提供交互界面，Controller 负责控制Model和View。
+看下面这张图。目前只要理解这一个概念就可以了，下面就开始建一个空框架，从做中学。</p>
+
+<p><img src="https://SLTaurus.github.io/images/mvcEf.png" alt="mvcEf.png" /></p>
+
+<h2 id="从空白开始-建立一个基本框架详细步骤">从空白开始，建立一个基本框架详细步骤</h2>
+
+<h3 id="新建项目">新建项目</h3>
+
+<p>新建ASP.NETWeb项目,模板要选Empty，如果直接选MVC会产生多余代码。</p>
+
+<p>首先，简单介绍下其中的RouteConfig.cs文件。打开Global.asax, 注意到在程序启动的时候注册了路由规则：</p>
+
+<pre><code>    protected void Application_Start()
+    {
+        AreaRegistration.RegisterAllAreas();
+        //注册了路由器规则
+        RouteConfig.RegisterRoutes(RouteTable.Routes);
+    }
+</code></pre>
+
+<p>打开RouteConfig.cs文件，注意到里面有个静态方法，这就是映射路由的控制，这个方法定义了路由规则：</p>
+
+<pre><code>    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute(&quot;{resource}.axd/{*pathInfo}&quot;);
+
+        routes.MapRoute(
+            name: &quot;Default&quot;,
+            url: &quot;{controller}/{action}/{id}&quot;,
+            defaults: new { controller = &quot;Home&quot;, action = &quot;Index&quot;, id = UrlParameter.Optional }
+        );
+    }
+</code></pre>
+
+<p>其中：url: &ldquo;{controller}/{action}/{id}&ldquo;定义了URL的格式。</p>
+
+<h3 id="添加一个示例">添加一个示例</h3>
+
+<p><strong>添加Controller</strong></p>
+
+<p>先不管Model, 我们先创建Controller和View。控制器必须以Controller结尾（这是ASP.NET MVC的一个约定）。后续文章会讲用户登录的例子，选择MVC5控制器-空，所以这里先建一个AccountController。</p>
+
+<p>我们打开新建的AccountController.cs看下，自动生成了一个方法。</p>
+
+<pre><code>    public ActionResult Index()
+    {
+        return View();
+    }
+</code></pre>
+
+<p>我们称这个Index为一个Action，返回类型为ActionResult。可以看到，这个Action返回了一个View, 我们现在来建立这个View。</p>
+
+<p><strong>添加View</strong>
+添加View有两种方法，一种是直接在Views文件夹下添加（右键View\Account文件夹下添加）。另外一种是通过Controller中的Action来添加。这次我们采用后一种方法。打开AccountController, 右键Index方法，添加视图，去掉勾选使用布局页。</p>
+
+<p>这样就添加了一个和特定的Controller和Action（这里指AccountController和Index）相对应的View(Views\Account\Index.cshtml)</p>
+
+<p>这个View就是最终显示的前端页面，我们在Body里面添加一行字，右键Index.cshtml，在浏览器中查看可以看到熟悉的HTML界面了。</p>
+
+<p>注意浏览器中的地址 xx/Account/Index，这个地址与开头的路由规则（url: &ldquo;{controller}/{action}/{id}&ldquo;）就对应了起来，应该很容易理解吧。</p>
+
+<p>典型的一个执行过程：</p>
+
+<ul>
+<li>网址路由比对。</li>
+<li>如成功，执行相应的Controller与Action。</li>
+<li>执行相应的View并返回结果。</li>
+</ul>
+
+<p>记住这个过程。后面的过程都会在这个简单的过程中进行扩展。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>MVC比之前的WebForm开发方式做了很大改变，分离更彻底。本次文章主要是让大家建立ASP.NET MVC的基本观念，下篇文章主要介绍View的UI设计，介绍一些重点的HtmlHelper, 从前端开始容易看到效果。</p>
+
+<h1 id="mvc5-ef6-入门完整教程二-从前端的ui开始">MVC5 + EF6 入门完整教程二 从前端的UI开始</h1>
+
+<p>MVC分离的比较好，开发顺序没有特别要求，先开发哪一部分都可以，这次我们主要讲解前端UI的部分。</p>
+
+<p>ASP.NET MVC抛弃了WebForm的一些特有的习惯，例如服务器端控件，ViewState这些东西，让Web回归原始的状态，Web是什么样子就是什么样子。而谈到一个Web Application的UI，涉及到的无非就是html、css、 js这些东西。</p>
+
+<h2 id="文章提纲-1">文章提纲</h2>
+
+<ul>
+<li>概述</li>
+<li>重要概念介绍</li>
+<li>建立 注册/登录UI步骤</li>
+</ul>
+
+<h2 id="概述-1">概述</h2>
+
+<p>一般来说，有两块功能是每个系统都要使用的，一个是 用户注册/登录，一个是Table的CRUD。最近四篇文章的规划：</p>
+
+<ul>
+<li>本次会先做简单的注册/登录UI</li>
+<li>结合EF完成注册/登录的功能</li>
+<li>以Table的CRUD为例子，展开讲解EF （code first方式）</li>
+<li>借助bootstrap加入页面样式，补充其他功能，将前面的代码扩展成一个开发的基础框架</li>
+</ul>
+
+<h2 id="重要概念介绍">重要概念介绍</h2>
+
+<ul>
+<li>View的存放位置约定</li>
+<li>Action Method Selector</li>
+</ul>
+
+<p>应用在Controller的Action上，以帮助选择适当的Action，文中以 [HttpPost] 举例：</p>
+
+<ul>
+<li>ViewBag，在View和Controller中传递数据的一种方式 (类似的方式还有ViewData、TempData), 掌握通过ViewBag在View和Controller中传递数据。</li>
+<li>HtmlHelper ，通过View的Html属性调用，文中以Html.BeginForm为例。</li>
+</ul>
+
+<h2 id="建立-注册-登录-ui详细步骤">建立 注册/登录 UI详细步骤</h2>
+
+<p>本次我们将会新建用户 注册/登录 的两个页面。打开Controller\AccountController.cs ，仿照已有的Index, 添加两个Action。添加这Action有两种方法：</p>
+
+<ul>
+<li>通过手打或粘贴复制，</li>
+<li>右键，插入代码段（或ctrl k, x）ASP.NET MVC4  mvcaction4(或mvcpostaction4)。</li>
+</ul>
+
+<p><strong>添加Action相应的View</strong>
+根据上一步中添加的Action, 添加相关View: Login.cshtml, Register.cshtml。添加方法详见上篇文章，不再重复讲解。</p>
+
+<p>这里再说明下View的存放位置约定。记住下面三句话：</p>
+
+<ul>
+<li>所有的View都放在Views文件夹</li>
+<li>Views文件夹创建了一系列与Controller同名的子文件夹</li>
+<li>各子文件夹内存放与Action同名的cshtml文件（对应的View文件）</li>
+</ul>
+
+<p><strong>完成登录界面UI</strong>
+我们把Login.cshtml就当做一个静态html页面，完成登录界面的UI。大家可以把cshtml理解成原来的aspx和html的混合体：</p>
+
+<ul>
+<li>利用了aspx的优点，方便和后台交互。</li>
+<li>利用了html的优点，语法简洁（HtmlHelper）。</li>
+</ul>
+
+<p>到bootstrap上复制个<a href="http://getbootstrap.com/css/#forms">登录界面html</a>，放到Login.cshtml 的body的div中。为了减少干扰项，我们不加任何样式, 项目全部结束后再进行页面美化。</p>
+
+<pre><code>&lt;form class=&quot;form-horizontal&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;inputEmail3&quot; class=&quot;col-sm-2 control-label&quot;&gt;Email&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;inputEmail3&quot; placeholder=&quot;Email&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;inputPassword3&quot; class=&quot;col-sm-2 control-label&quot;&gt;Password&lt;/label&gt;
+        &lt;div class=&quot;col-sm-10&quot;&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;inputPassword3&quot; placeholder=&quot;Password&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;div class=&quot;checkbox&quot;&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;checkbox&quot;&gt; Remember me
+                &lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Sign in&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/mvc5/">MVC5</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/ef6/">EF6</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/" class="leancloud_visitors" data-flag-title="MVC5&#43;EF6入门完整教程（转）">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" data-tooltip="SqlService笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/ado.net/" data-tooltip="ADO.NET">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" data-tooltip="SqlService笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/ado.net/" data-tooltip="ADO.NET">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc5-ef6%25E5%2585%25A5%25E9%2597%25A8%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E8%25BD%25AC%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc5-ef6%25E5%2585%25A5%25E9%2597%25A8%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E8%25BD%25AC%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc5-ef6%25E5%2585%25A5%25E9%2597%25A8%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E8%25BD%25AC%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/10\/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC\/';
+          
+            this.page.identifier = '\/2019\/10\/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
