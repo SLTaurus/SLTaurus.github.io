@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>subcategory on SLTaurus的安全屋</title>
+    <title>subcategory on SLTaurusの玄甲军</title>
     <link>https://SLTaurus.github.io/categories/subcategory/</link>
-    <description>Recent content in subcategory on SLTaurus的安全屋</description>
+    <description>Recent content in subcategory on SLTaurusの玄甲军</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2019 15:12:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 16:30:26 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/categories/subcategory/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ProficientCSharp</title>
-      <link>https://SLTaurus.github.io/2019/10/proficientcsharp/</link>
-      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      <title>Reflection</title>
+      <link>https://SLTaurus.github.io/2019/10/reflection/</link>
+      <pubDate>Fri, 18 Oct 2019 16:30:26 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/2019/10/proficientcsharp/</guid>
+      <guid>https://SLTaurus.github.io/2019/10/reflection/</guid>
       <description>&lt;p&gt;#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
     </item>
     
