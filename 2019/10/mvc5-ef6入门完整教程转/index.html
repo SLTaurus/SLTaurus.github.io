@@ -53,8 +53,8 @@
 
 
 
-  <meta property="og:image" content="https://SLTaurus.github.io/images/mvcEf.png">
-  <meta property="twitter:image" content="https://SLTaurus.github.io/images/mvcEf.png">
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
 
 
   <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
@@ -286,6 +286,11 @@
 <li><a href="#重要概念介绍">重要概念介绍</a></li>
 <li><a href="#建立-注册-登录-ui详细步骤">建立 注册/登录 UI详细步骤</a></li>
 </ul></li>
+<li><a href="#mvc5-ef6完整入门教程三">MVC5+EF6完整入门教程三</a>
+<ul>
+<li><a href="#概述-要点">概述 &amp; 要点</a></li>
+<li><a href="#详细步骤">详细步骤：</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -487,6 +492,147 @@
     &lt;/div&gt;
 &lt;/form&gt;
 </code></pre>
+
+<p>右键浏览器 View page source, 发现多了VS Browser Link废代码，我们将它禁用掉。打开web.config添加如下代码，再去浏览器查看源代码，可以看到纯净的html了:</p>
+
+<pre><code>&lt;appSettings&gt;
+    &lt;add key=&quot;vs:EnableBrowserLink&quot; value=&quot;false&quot;/&gt;
+&lt;/appSettings&gt;
+</code></pre>
+
+<p><strong>将前端的数据传递到Controller中去</strong>
+填写表单，Controller获取表单数据，进一步操作（例如去数据库比对，通过后获取用户身份跳转到指定页面）。</p>
+
+<p>首先我们先去AccountController.cs中创建一个Login同名的Action来接受表单提交的数据：</p>
+
+<pre><code>[HttpPost]
+public ActionResult Login(FormCollection fc)
+{
+    return View();
+}
+</code></pre>
+
+<p>注意新添加的Action中增加了一个[HttpPost] ，表示这个Action只会接受http post请求。ASP.NET MVC提供了Action Method Selector, HttpPost就是其中之一。（后续文章中会专门有一篇讲解这些Selector）。</p>
+
+<p>HttpPost属性典型的应用场景：涉及到需要接受客户端窗口数据的时候，创建一个用于接收HTTP Get请求的Action, 用于显示界面, 提供给用户填写数据；另一个同名Action则应用[HttpPost]属性，用于接收用户发来的数据，完成对应的功能。</p>
+
+<p><strong>打开Login.cshtml, 修改form，为后端接收数据做准备。</strong></p>
+
+<p>先在form标签内增加两个属性action, method。对于form中的method（默认是get），通常情况下, get用于简单的读取数据操作，post用于写数据操作。</p>
+
+<p>在input元素下添加name属性，设置成和id一样的值，服务器端需要通过name来取值：</p>
+
+<pre><code>&lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;inputEmail3&quot; name=&quot;inputEmail3&quot; placeholder=&quot;Email&quot;&gt;
+&lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;inputPassword3&quot; name=&quot;inputPassword3&quot; placeholder=&quot;Password&quot;&gt;
+</code></pre>
+
+<p>打开AccountController.cs，修改[HttpPost]的Login Action用于接收数据：</p>
+
+<pre><code>public ActionResult Login()
+{
+    ViewBag.LoginState = &quot;登录前。。。&quot;;
+    return View();
+}
+
+[HttpPost]
+public ActionResult Login(FormCollection fc)
+{
+    //获取表单数据
+    string email = fc[&quot;inputEmail3&quot;];
+    string password = fc[&quot;inputPassword3&quot;];
+    //进行下一步处理，这里先改下文字
+    ViewBag.LoginState = email + &quot;登录前。。。&quot;;
+
+    return View();
+}
+</code></pre>
+
+<p>为了区分登录前后，我们通过ViewBag传递一个登录状态过去，前台同样加个文字标识：</p>
+
+<pre><code>&lt;div id=&quot;loginState&quot;&gt;
+    @ViewBag.LoginState
+&lt;/div&gt;
+</code></pre>
+
+<p><strong>优化：使用第一个HtmlHelper</strong>
+ 我们对Login.cshtml中的form做一点改良，action的位置是固定的，这样的话部署发生变化时有可能地址会不可用（如放在IIS根目录下和虚拟目录下是不同的）。</p>
+
+<pre><code>&lt;body&gt;
+    &lt;div id=&quot;loginState&quot;&gt;
+        @ViewBag.LoginState
+    &lt;/div&gt;
+    @*&lt;form action=&quot;/account/login&quot; method=&quot;post&quot; class=&quot;form-horizontal&quot; role=&quot;form&quot;&gt;*@
+    @using (Html.BeginForm(&quot;Login&quot;, &quot;Account&quot;, FormMethod.Post))
+    { 
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;inputEmail3&quot; class=&quot;col-sm-2 control-label&quot;&gt;Email&lt;/label&gt;
+            &lt;div class=&quot;col-sm-10&quot;&gt;
+                &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;inputEmail3&quot; name=&quot;inputEmail3&quot; placeholder=&quot;Email&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;inputPassword3&quot; class=&quot;col-sm-2 control-label&quot;&gt;Password&lt;/label&gt;
+            &lt;div class=&quot;col-sm-10&quot;&gt;
+                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;inputPassword3&quot; name=&quot;inputPassword3&quot; placeholder=&quot;Password&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+                &lt;div class=&quot;checkbox&quot;&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;checkbox&quot;&gt; Remember me
+                    &lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;div class=&quot;col-sm-offset-2 col-sm-10&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Sign in&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    }
+    @*&lt;/form&gt;*@
+&lt;/body&gt;
+</code></pre>
+
+<p>运行，到浏览器中查看源代码，可以看到生成的源代码和原来一样。同样的，完成注册界面UI（类似登录界面，步骤略）。</p>
+
+<p><strong>总结</strong>
+ 通过开发了一个最基本的登录界面，介绍了如何从Controller中获取表单数据。因本次示例比较简单，还不需要用到HtmlHelper，下篇文章会通过model自动生成数据库，完成整个功能。</p>
+
+<h1 id="mvc5-ef6完整入门教程三">MVC5+EF6完整入门教程三</h1>
+
+<p>学完本篇文章，你将会掌握基于EF数据模型的完整开发流程，本次将会完成EF数据模型的搭建和使用，基于这个模型，将之前的示例添加数据库查询验证功能。</p>
+
+<h2 id="概述-要点">概述 &amp; 要点</h2>
+
+<ul>
+<li>EF架构图</li>
+<li>新建基于EF的Data Model的约定</li>
+<li>关于ORM的重要概念，和传统方式开发的区别</li>
+<li>EF开发的整体过程</li>
+</ul>
+
+<h2 id="详细步骤">详细步骤：</h2>
+
+<ul>
+<li>新建文件夹，规划好代码摆放位置</li>
+<li>创建相关类 (Data Model)</li>
+<li>创建 Database Context</li>
+<li>创建Initializer, 使用EF初始化数据库，插入示例数据</li>
+<li>完成数据库查询验证</li>
+</ul>
+
+<p><strong>新建文件夹，规划好代码摆放位置</strong>
+根目录下新建一个 ViewModels文件夹。</p>
+
+<p>Models文件夹里面存放对应于数据库表的实体，View中需要显示的数据和Models中实体模型不一定能对应上， 因此需要专门给View使用的自定义数据模型，我们称之为ViewModel , 放在ViewModels文件夹里面。</p>
+
+<p>根目录下新建一个DAL 文件夹，DAL 放置数据访问相关类，本文中放AccountContext.cs, AccountInitializer.cs。</p>
+
+<p><strong>创建相关类(Data Model)</strong></p>
+
+<p>为了更加贴近真实情况，我们针对用户建立三个相关的类，SysUser, SysRole, SysUserRole，这是用户权限管理RBAC (Role – Based Access Control)的一个典型模型, 更复杂的模型都可以在这个基础上进行扩展。</p>
               
             </div>
           </div>

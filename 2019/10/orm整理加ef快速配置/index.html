@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="ORM, C#, .NET, 个人博客">
+<meta name="description" content="对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&ndash;“虚拟对象数据库”。">
+
+
+<meta property="og:description" content="对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&ndash;“虚拟对象数据库”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ORM整理加EF快速配置">
+<meta name="twitter:title" content="ORM整理加EF快速配置">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&ndash;“虚拟对象数据库”。">
+<meta name="twitter:description" content="对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&ndash;“虚拟对象数据库”。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-22T08:46:45">
+  
+  
+    <meta property="article:modified_time" content="2019-10-22T08:46:45">
+  
+  
+  
+    
+      <meta property="article:section" content="ORM">
+    
+      <meta property="article:section" content="EF">
+    
+  
+  
+    
+      <meta property="article:tag" content="ORM">
+    
+      <meta property="article:tag" content="EF">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/ORM.png">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/ORM.png">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>ORM整理加EF快速配置</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      ORM整理加EF快速配置
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-22T08:46:45&#43;08:00">
+        
+  十月 22, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/orm">ORM</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/ef">EF</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&ndash;“虚拟对象数据库”。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#概念">概念</a>
+<ul>
+<li><a href="#orm的优点">ORM的优点：</a></li>
+<li><a href="#orm的缺点">ORM的缺点：</a></li>
+<li><a href="#使用orm的情况">使用ORM的情况：</a></li>
+<li><a href="#总结">总结：</a></li>
+</ul></li>
+<li><a href="#net常见的主流orm框架">.NET常见的主流ORM框架</a></li>
+<li><a href="#实现简单的映射">实现简单的映射</a></li>
+<li><a href="#entity-framework的概念及搭建">Entity Framework的概念及搭建</a>
+<ul>
+<li><a href="#概念-1">概念</a></li>
+<li><a href="#ef搭建">EF搭建</a>
+<ul>
+<li><a href="#来自数据库的ef设计器">来自数据库的EF设计器</a></li>
+<li><a href="#code-first到现有数据库">Code First到现有数据库</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="概念">概念</h1>
+
+<p><strong>为什么会出现ORM思想？</strong></p>
+
+<p>几乎所有的程序里面，都存在对象和关系数据库。在业务逻辑层和用户界面层中，我们是面向对象的。当对象信息发生变化的时候，我们需要把对象的信息保存在关系数据库中。</p>
+
+<p>以MVC分层模式为例。Model作为数据承载实体，在用户界面和业务逻辑层之间，数据以面向对象的形式传递；而当我们需要通过Controller分发请求把数据持久化的时候，我们就遇到了内存中的对象如何持久化成关系数据库中存储的一条实际数据记录的问题。</p>
+
+<p>面向对象是从软件工程的基本原则，即封装，继承，多态的基础上发展起来的，而关系型数据库则是从数学理论的基础上发展起来的，两者之间是不匹配的。所有就出现了ORM，以项目中间件的形式实现数据在不同场景下的数据关系映射，而对象关系映射就是这样一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。在其基础上诞生很多对象和关系之间的映射框架，也即O/R mapping技术。</p>
+
+<p><strong>什么是ORM？</strong></p>
+
+<p>ORM的全称是：Object Relational Mapping（对象、关系、映射）。简单的说，orm是通过使用描述对象和数据之间映射的元数据，用于实现面向对象编程语言里不同类型系统的数据之间的转换。</p>
+
+<p>ORM需要解决的问题是，能否把对象的数据直接保存到数据库中，又能否直接从数据库中拿到一个对象？要想做到上面两点，则必须要有映射关系。</p>
+
+<p>所以ORM的主要作用是在关系型数据库和业务实体对象之前作一个映射，这样，我们在具体的操作业务对象的时候，就不需要再去和复杂的SQL语句打交道，只需简单的操作对象的属性和方法。而达到的效果就是我们直接创建实体对象，就在数据库对应的表中添加了一条记录，我们操作这个实体对象的属性和方法，就完成了对数据库中对应的表的增删改查。</p>
+
+<p>ORM方法论基于三个核心原则：</p>
+
+<ul>
+<li>简单：以最基本的形式建模数据。</li>
+<li>传达性：数据库结构被任何人都能理解的语言文档化。</li>
+<li>精确性：基于数据模型创建正确标准化的结构。</li>
+</ul>
+
+<h2 id="orm的优点">ORM的优点：</h2>
+
+<ul>
+<li>方便的使用面向对象，语句清晰（Lambda表达式）。</li>
+<li>一定程度方便重构数据层，比如改表名，字段名等。</li>
+<li>提高了开发效率，隐藏了数据访问细节。“封闭”的通用数据库交互是 ORM 的核心。他使得我们的通用数据库交互变得简单易行，并且完全不用考虑 SQL 语句，能够像操作对象一样从数据库中获取数据。</li>
+<li>ORM使我们构造固化数据结构变得简单易行。在ORM诞生前，我们需要将我们的对象模型转化为一条一条的SQL语句，通过直连或是DB helper在关系数据库构造我们的数据库体系。而现在，基本上所有的ORM框架都提供了通过对象模型构造关系数据库结构的功能。</li>
+</ul>
+
+<h2 id="orm的缺点">ORM的缺点：</h2>
+
+<ul>
+<li>在对对象做持久化时，ORM一般会持久化所有的属性，有时候这是不希望的。</li>
+<li>牺牲程序的执行效率和会固定思维模式，降低了开发的灵活性，ORM难以实现过于复杂的查询。虽然可以实现，但是需要花费很大的代价。</li>
+<li>无可避免的，自动化意味着映射和关联管理，代价是牺牲性能。现在的各种 ORM 框架都在尝试使用各种方法来减轻性能上的损失，如懒加载技术、缓存技术等。</li>
+<li>在我们开发系统时，一般都有性能问题。性能问题主要产生在算法不正确和与数据库不正确的使用上。ORM所生成的代码一般不太可能写出很高效的算法，在数据库应用上更有可能会被误用，主要体现在对持久对象的提取和和数据的加工处理上，如果用上了ORM,程序员很有可能将全部的数据提取到内存对象中，然后再进行过滤和加工处理，这样就容易产生性能问题。</li>
+</ul>
+
+<h2 id="使用orm的情况">使用ORM的情况：</h2>
+
+<p>尽量使用ORM，除了含子查询的复杂语句，不过大流量下的网站最好不要写这种复杂SQL，当然这也只是一个原则，所以反过来说也可以，不过以下几个场景用ORM的好处是很明显的：</p>
+
+<ul>
+<li>Model对象不确定的时候，使用多态的方式去处理不同实例的相同操作。</li>
+<li>语句结构不确定的时候，比如根据不同的情况Where子句不一样的时候，采用if的代码结构去控制ORM方法的使用比拼接SQL语句要清晰的多。</li>
+<li>设置钩子函数，比如分页里面，拿分页数据同时要count数据，那么就可以在Model里面插入这个算count的钩子函数（包括缓存逻辑）。</li>
+</ul>
+
+<h2 id="总结">总结：</h2>
+
+<p>但ORM是一种工具，工具确实能解决一些重复简单的劳动，这是不可否认的。但我们不能指望工具能一劳永逸的解决所有问题，有些问题还是需要特殊处理的，但需要特殊处理的部分对绝大多数的系统应该是很少的。</p>
+
+<h1 id="net常见的主流orm框架">.NET常见的主流ORM框架</h1>
+
+<p><strong>SqlSugar</strong></p>
+
+<p>是国人开发者开发的一款基于.NET的ORM框架，是可以运行在.NET 4.+ &amp; .NET CORE的高性能、轻量级 ORM框架，众多.NET框架中最容易使用的数据库访问技术。</p>
+
+<p>特点：</p>
+
+<ul>
+<li>开源、免费国内开发者开发、维护；</li>
+<li>支持.NET Core；</li>
+<li>支持主流数据库，如：SQL Server,MySql,Oracle,Sqlite等；</li>
+<li>维护更新及时；</li>
+</ul>
+
+<p>推荐等级：四星。</p>
+
+<hr />
+
+<p><strong>PetaPoco：</strong></p>
+
+<p>轻量的POCO对象和数据库映射的ORM框架。</p>
+
+<p>特点：</p>
+
+<ul>
+<li>开源、免费；</li>
+</ul>
+
+<p>推荐等级：四星。</p>
+
+<hr />
+
+<p><strong>linq2db：</strong></p>
+
+<p>linq2db也是一款快速、轻量、类型安全的POCO对象和数据库映射的ORM框架。从构架上来说，linq2db是对比如：Dapper、PetaPoco这个的微ORM的进一步封装，但它不像Entity Framework那样笨重。它没有实现状态跟踪，需要自己处理实体的状态更改等。</p>
+
+<p>推荐等级：四星。</p>
+
+<hr />
+
+<p><strong>Dos.ORM</strong></p>
+
+<p>Dos.ORM（原Hxj.Data）于2009年发布，2015年正式开源。在开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，同时参考EF的Lambda语法进行大量扩展。该组件已在数百个成熟项目中应用。</p>
+
+<p>特点：</p>
+
+<ul>
+<li>开源、免费；</li>
+<li>上手简单，0学习成本；</li>
+<li>支持大量Lambda表达式写法；</li>
+<li>体积小，不到150kb，仅一个dll；</li>
+<li>国产ORM支持度最高，开源中国ORM排行前三；</li>
+<li>功能强大高性能，使用方便，按照sql书写习惯编写C#.NET代码；</li>
+<li>完美支持Sql Server(2000至最新版),MySql,Oracle,Access,Sqlite等数据库；</li>
+<li>不需要像NHibernate的XML配置，不需要像EF的各种数据库连接驱动遵循MIT开源协议，除不允许改名，其它随意定制修改；</li>
+</ul>
+
+<p>推荐等级：三星。</p>
+
+<hr />
+
+<p><strong>ServiceStack.OrmLite</strong></p>
+
+<p>ServiceStack.OrmLite的目标是提供一种方便，无干扰，无配置的RDBMS无关类型的封装，与SQL保持高度的契合，展现直观的API，可以生成可预测的SQL。ServiceStack.OrmLite的宗旨：Fast, Simple, Typed ORM for .NET。</p>
+
+<p>特点：</p>
+
+<ul>
+<li>开源、收费（免费版只支持单个库10张表）</li>
+</ul>
+
+<p>推荐等级：三星。</p>
+
+<hr />
+
+<p><strong>Entity Framework(EF)</strong></p>
+
+<p>ADO.NET Entity Framework 是微软以 ADO.NET 为基础所发展出来的对象关系对应 (O/R Mapping) 解决方案。该框架曾经为.NET Framework的一部分，但version 6之后从.NET Framework分离出来。</p>
+
+<p>推荐等级：三星。</p>
+
+<hr />
+
+<p><strong>NHibernate</strong></p>
+
+<p>NHibernate是一个面向.NET环境的对象/关系数据库映射工具。对象/关系数据库映射（object/relational mapping，ORM）这个术语表示一种技术，用来把对象模型表示的对象映射到基于SQL的关系模型数据结构中去。</p>
+
+<p>特点：</p>
+
+<ul>
+<li>开源、免费批量写入批量读/多重查询特性；</li>
+<li>批量的集合加载带有lazy=&ldquo;extra&rdquo;的集合集合过滤器和分页集合二级缓存（实际上NH的二级缓存貌似也很简单？）集成和扩展性代码自动生成，减少代码和sql的开发量，使开发人员摆脱开sql，ado.net和事务，缓存等底层；</li>
+</ul>
+
+<p>推荐等级：三星。</p>
+
+<hr />
+
+<p><strong>MassiveMassive：</strong></p>
+
+<p>小巧，动态的微ORM框架。</p>
+
+<p>推荐等级：三星。</p>
+
+<h1 id="实现简单的映射">实现简单的映射</h1>
+
+<p>实现的核心条件：</p>
+
+<ul>
+<li>将对象的名称解析成数据表的名称（也可以用Attribute进行标识，就不要表名和对象名称一致了）</li>
+<li>将对象的属性解析成SQL语句中，对应fileds部分（也就是列名）</li>
+<li>将对象的属性值解析成SQL语句中，对应的values部分（记录值）</li>
+</ul>
+
+<p>基本方法是：</p>
+
+<ul>
+<li>利用反射找到对应属性的特性，进行过滤，最后筛选出我们需要的属性（使用Attribute对字段进行标识）</li>
+<li>获取对象属性值，区分不同的数据类型，有些数据类型（如String）需要在SQL语句中用单引号</li>
+<li>将属性名称、属性值拼接到SQL语句中，调用数据访问类进行执行。</li>
+</ul>
+
+<p>注：反射，是通过一个对象，动态的找到各个属性、属性值、方法或程序集相关信息。</p>
+
+<p><strong>1.准备数据库表dbo.Dog和相关类Dog：</strong>
+<img src="https://SLTaurus.github.io/images/ORMDog.png" alt="ORMDog" /></p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ORMTest
+{
+    class Dog
+    {
+        [Identify]
+        public int Id { set; get; }
+        public string Name { set; get; }
+        public int Age { set; get; }
+        public DateTime BirthDay { set; get; }
+        public void Beak()
+        {
+        }
+    }
+    /// &lt;summary&gt;
+    /// 标识列
+    /// &lt;/summary&gt;
+    public class Identify : Attribute
+    {       
+    }
+}
+</code></pre>
+
+<p>这里需要注意的是：</p>
+
+<ul>
+<li>表名称和类名相同。</li>
+<li>数据表列名和类字段对应，ORM只负责完全对应并形成映射的关系，也就是说数据库里有些列在类里面没有相应的字段不做映射。</li>
+<li>但是类里面的字段，如果数据库里面没有，必须做特殊标识，否则数据库写入失败。</li>
+<li>代码中的[Indentify]是自定义特性，表示Dog类中的Id字段是标识列。</li>
+</ul>
+
+<p><strong>2.准备数据库类，用来执行SQL语句：</strong></p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace ORMTest
+{
+    class SQLHelper
+    {
+        //实现数据库的增、删、改、查
+        private static string conStr = System.Configuration.ConfigurationManager.ConnectionStrings[&quot;conStr&quot;].ConnectionString;
+
+        /// &lt;summary&gt;
+        /// 执行增删改，返回受影响的行数
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public static int ExecuteNonQuery(string sql)
+        {
+            int n = -1;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    n = cmd.ExecuteNonQuery();
+                }
+            }
+            return n;
+        }
+    }
+}
+</code></pre>
+
+<p><strong>3.编写ORM类：</strong></p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Reflection;
+
+namespace ORMTest
+{
+    class ORM
+    {
+        /// &lt;summary&gt;
+        /// 根据一个object类型的实体对象，生成insert类型的SQL语句，并提交到数据库
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;model&quot;&gt;&lt;/param&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public static int SaveObject(object model)
+        {
+            int n = -1;
+            //【1】获取实体对象的属性数组（包括属性名称、属性类型、以及属性对应的特性）
+            PropertyInfo[] proArray = model.GetType().GetProperties();
+            //PropertyInfo[] proArray = typeof(T).GetProperties();//通过泛型来获取对象属性
+
+            //【2】获取标识列的名称（实际开发中，还要把非映射属性过滤掉...可以考虑获取数据库表结构）
+            string[] unmappedAttr = new string[] { &quot;Identify&quot; };//需要进行过滤的特性
+            string[] identityColumnName = GetColumnNameByAttribute(proArray, unmappedAttr);
+
+            //【3】根据属性和属性值组合成SQL语句（注意把过滤的字段排除）,
+            //$是C#6.0新特性，在VS2013中不能使用，在VS2015可以使用
+            StringBuilder sqlFiled = new StringBuilder(String.Format(&quot;insert into {0}(&quot;, model.GetType().Name));
+            StringBuilder sqlValues = new StringBuilder(&quot; values (&quot;);
+
+            //循环遍历所有反射到的属性名称和属性值
+            foreach (PropertyInfo item in proArray)
+            {
+                //3.1 过滤点不需要的字段
+                if (identityColumnName.Contains(item.Name)) continue;
+
+                //3.2 过滤值为null的属性
+                string columnValue = item.GetValue(model, null) + &quot;&quot;;//获取当前属性值
+                if (columnValue == null) continue;//如果这个字段的值为null，则对应数据库的值一定为null，所以，不需要将这些字段拼接到sql语句中
+
+                //3.3 针对时间，我们要做特殊处理（因为用null无法监测到的）（比如日期可能不是标准格式，日期可能也不是合法的）
+                if (item.PropertyType.Name.Equals(&quot;DateTime&quot;))
+                {
+                    columnValue = columnValue.ToString();//数据库的DateTime类型和C#有所区别，所以这里已字符串写入，给数据库自动转换
+                    columnValue = String.Format(&quot;'{0}'&quot;, columnValue);
+                }
+                //3.4 拼接sql
+                if (item.PropertyType.Name.Equals(&quot;String&quot;))
+                {
+                    columnValue = String.Format(&quot;'{0}'&quot;, columnValue);
+                }
+                sqlFiled.Append(item.Name + &quot;,&quot;);
+                sqlValues.Append(columnValue + &quot;,&quot;);
+            }            
+            //【4】修改SQL语句
+            sqlFiled.Replace(',', ')', sqlFiled.Length - 1, 1);
+            sqlValues.Replace(',', ')', sqlValues.Length - 1, 1);
+            string sql = sqlFiled.ToString() + sqlValues.ToString();
+            n = SQLHelper.ExecuteNonQuery(sql);//执行sql语句
+            return n;
+        }
+
+        /// &lt;summary&gt;
+        /// 根据特定特性名称，过滤非映射字段
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;proArray&quot;&gt;字段名&lt;/param&gt;
+        /// &lt;param name=&quot;attributeName&quot;&gt;特性名称&lt;/param&gt;
+        /// &lt;returns&gt;具有特定属性标识的字段&lt;/returns&gt;
+        public static string[] GetColumnNameByAttribute(PropertyInfo[] proArray, string[] attributeName)
+        {
+            List&lt;string&gt; listIllegalName = new List&lt;string&gt;();//非映射字段
+            foreach (PropertyInfo p in proArray)
+            {
+                object[] tableNameAtrrs = p.GetCustomAttributes(false);//获取特性
+                foreach (object obj in tableNameAtrrs)
+                {
+                    Attribute attr = (Attribute)obj;
+                    Type typeid = (Type)attr.TypeId;
+                    string typeName = typeid.Name;
+                    if (attributeName.Contains(typeName))
+                    {
+                        listIllegalName.Add(p.Name);
+                        break;
+                    }
+                }
+            }
+            return listIllegalName.ToArray();
+        }
+    }
+}
+</code></pre>
+
+<p>这里仅实现将对象实例写入数据库，实现数据持久化，其他数据库增、删、改、查都类似。</p>
+
+<p><strong>4.编写测试代码：</strong></p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ORMTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //ORM框架测试
+            int dogCount = 1;
+            Dog dog = new Dog();
+            Random rd = new Random();
+            while (dogCount &lt;= 100)
+            {
+                dog.Id = dogCount;
+                dog.Name = &quot;Jack-&quot; + dogCount;
+                DateTime now = DateTime.Now;
+                DateTime birthDay = new DateTime(rd.Next(2000,now.Year),rd.Next(1,12),rd.Next(1,28));
+                dog.BirthDay = birthDay;
+                dog.Age = now.Year - birthDay.Year;
+                ORM.SaveObject(dog);
+                dogCount++;
+            }           
+        }
+    }
+}
+</code></pre>
+
+<h1 id="entity-framework的概念及搭建">Entity Framework的概念及搭建</h1>
+
+<h2 id="概念-1">概念</h2>
+
+<p><strong>什么是EF？</strong></p>
+
+<p>ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。</p>
+
+<p><strong>三种编程模型：</strong></p>
+
+<ul>
+<li>数据库优先开发模式(Database First Development)</li>
+<li>模型优先开发模式(Model First Development)</li>
+<li>代码优先开发模式(Code First Development)</li>
+</ul>
+
+<p>EF优点：</p>
+
+<ul>
+<li>支持跨数据库，修改配置文件就可以</li>
+<li>使用linq语句，提高开发效率。但在进行复杂的查询时，EF表现不太好</li>
+</ul>
+
+<h2 id="ef搭建">EF搭建</h2>
+
+<h3 id="来自数据库的ef设计器">来自数据库的EF设计器</h3>
+
+<p>打开VS，随便新建一个项目，MVC、Webform均可。项目创建完成后，右键—项目路径，选择“添加”—“新建项”。点击“数据”—“ADO.NET实体数据模型”—“添加”，名称根据项目或习惯命名即可：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate.jpg" alt="ORMDog" /></p>
+
+<p>点击“来自数据库的EF设计器”——“下一步”。点击“新建连接”，连接完成数据库，根据情况选择“是”或“否”，然后依次点击“下一步”。如图：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate6.jpg" alt="ORMDog" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFNewCreate2.jpg" alt="ORMDog" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFNewCreate3.jpg" alt="ORMDog" /></p>
+
+<p>此时，生成关系图，如下：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate4.jpg" alt="ORMDog" /></p>
+
+<p>在解决方案下可以查看到 .edmx 文件，如图：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate5.jpg" alt="ORMDog" /></p>
+
+<p>简单的查询：</p>
+
+<pre><code>[HttpPost]
+public ActionResult Index(FormCollection fc)
+{
+    string name = fc[&quot;StudentName&quot;];
+    using (ExampleInfoEntities entity = new ExampleInfoEntities())
+    {
+        StudentTable student = entity.StudentTable.Where(s =&gt; s.Sname == name).FirstOrDefault();
+    }
+    return View();
+}
+</code></pre>
+
+<p>简单的修改语句：</p>
+
+<pre><code>[HttpPost]
+public ActionResult Index(FormCollection fc)
+{
+    string name = fc[&quot;StudentName&quot;];
+    string newName = fc[&quot;newName&quot;];
+    using (ExampleInfoEntities entity = new ExampleInfoEntities())
+    {
+        StudentTable student = entity.StudentTable.Where(s =&gt; s.Sname == name).FirstOrDefault();
+        student.Sname = newName;
+        entity.Entry(student).State = System.Data.Entity.EntityState.Modified;
+        if (entity.SaveChanges() &gt; 0)
+        {
+            ViewBag.ModifyResult = &quot;修改成功！&quot;;
+        }
+        else
+        {
+            ViewBag.ModifyResult = &quot;修改失败！&quot;;
+        }
+
+    }
+    return View();
+}
+</code></pre>
+
+<h3 id="code-first到现有数据库">Code First到现有数据库</h3>
+
+<p>前面步骤和来自数据库的EF设计器的基本一致，只需要在如下位置选择不同的选项
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate7.jpg" alt="" /></p>
+
+<p>生成文件也不相同，生成了上下文SogalSyncERPContext和多个模型类，如图所示
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate8.jpg" alt="" /></p>
+
+<p>SogalSyncERPContext派生上下文代码如下：</p>
+
+<p>namespace EFDemo
+{
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;</p>
+
+<pre><code>public partial class SogalSyncERPContext : DbContext
+{
+    public SogalSyncERPContext()
+        : base(&quot;name=SogalSyncERPContext&quot;)
+    {
+    }
+
+    public virtual DbSet&lt;SyncSplitQueue&gt; SyncSplitQueue { get; set; }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;SyncSplitQueue&gt;()
+            .Property(e =&gt; e.EmailCode)
+            .IsUnicode(false);
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>模型类之一代码如下：</p>
+
+<pre><code>namespace EFDemo
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table(&quot;SyncSplitQueue&quot;)]
+    public partial class SyncSplitQueue
+    {
+        public int Id { get; set; }
+
+        public int OrderId { get; set; }
+
+        [StringLength(50)]
+        public string OrderNo { get; set; }
+
+        public int? OrderType { get; set; }
+
+        [StringLength(100)]
+        public string TrackNumber { get; set; }
+
+        [StringLength(100)]
+        public string Approver { get; set; }
+
+        public int ProcessCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public DateTime CreatedDateTime { get; set; }
+
+        public DateTime? ProcessDateTime { get; set; }
+
+        public string MRPCheckInfo { get; set; }
+
+        [StringLength(50)]
+        public string EmailCode { get; set; }
+
+        public bool? IsCheck { get; set; }
+
+        [StringLength(50)]
+        public string TeamLeader { get; set; }
+
+        [StringLength(50)]
+        public string LockBodyMember { get; set; }
+
+        public int SystemType { get; set; }
+
+        public int? Times { get; set; }
+
+        public string ErrorExclude { get; set; }
+
+        public int? ProductOrgId { get; set; }
+    }
+}
+</code></pre>
+
+<p>新增、修改、删除和Code First到现有数据库的一模一样，代码如下：</p>
+
+<pre><code>using (SogalSyncERPContext db = new SogalSyncERPContext())
+{
+    //新增
+    SyncSplitQueue queue = db.SyncSplitQueue.Where(s =&gt; s.Id == 168178).FirstOrDefault();
+    queue.CreatedDateTime = DateTime.Now;
+    queue.Approver = &quot;EF测试&quot;;
+    queue.ProcessDateTime = DateTime.Now;
+    queue.ProcessCode = 7;
+    db.SyncSplitQueue.Add(queue);
+    db.SaveChanges();
+
+    //修改，修改的是新增的行，不是一开始查询出来的行
+    queue.Approver = &quot;修改测试&quot;;
+    db.Entry(queue).State = System.Data.Entity.EntityState.Modified;
+    db.SaveChanges();
+
+    //删除，删除的是新增的行，不是一开始查询出来的行
+    db.SyncSplitQueue.Remove(queue);
+    db.SaveChanges();
+}
+</code></pre>
+
+<p>如果还有不理解的，可以参考<a href="https://docs.microsoft.com/zh-cn/ef/ef6/modeling/">官方文档</a>。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/orm/">ORM</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/ef/">EF</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="ORM整理加EF快速配置">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" data-tooltip="反射整理之日常用途">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" data-tooltip="反射整理之日常用途">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Form%25E6%2595%25B4%25E7%2590%2586%25E5%258A%25A0ef%25E5%25BF%25AB%25E9%2580%259F%25E9%2585%258D%25E7%25BD%25AE%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Form%25E6%2595%25B4%25E7%2590%2586%25E5%258A%25A0ef%25E5%25BF%25AB%25E9%2580%259F%25E9%2585%258D%25E7%25BD%25AE%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Form%25E6%2595%25B4%25E7%2590%2586%25E5%258A%25A0ef%25E5%25BF%25AB%25E9%2580%259F%25E9%2585%258D%25E7%25BD%25AE%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/10\/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE\/';
+          
+            this.page.identifier = '\/2019\/10\/orm%E6%95%B4%E7%90%86%E5%8A%A0ef%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
