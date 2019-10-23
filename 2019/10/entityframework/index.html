@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="EF, C#, .NET, 个人博客">
+<meta name="description" content="ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。">
+
+
+<meta property="og:description" content="ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EntityFramework">
+<meta name="twitter:title" content="EntityFramework">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/10/entityframework/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/10/entityframework/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。">
+<meta name="twitter:description" content="ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-23T08:25:23">
+  
+  
+    <meta property="article:modified_time" content="2019-10-23T08:25:23">
+  
+  
+  
+    
+      <meta property="article:section" content="EF">
+    
+      <meta property="article:section" content="ORM">
+    
+  
+  
+    
+      <meta property="article:tag" content="EF">
+    
+      <meta property="article:tag" content="ORM">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/EF/EF.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/EF/EF.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>EntityFramework</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/10/entityframework/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      EntityFramework
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-23T08:25:23&#43;08:00">
+        
+  十月 23, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/ef">EF</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/orm">ORM</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#概念">概念</a></li>
+<li><a href="#ef搭建">EF搭建</a>
+<ul>
+<li><a href="#来自数据库的ef设计器">来自数据库的EF设计器</a>
+<ul>
+<li><a href="#创建应用程序">创建应用程序</a></li>
+<li><a href="#反向工程模型">反向工程模型</a></li>
+<li><a href="#读取-写入数据">读取&amp;写入数据</a></li>
+<li><a href="#处理数据库更改">处理数据库更改</a></li>
+</ul></li>
+<li><a href="#code-first到现有数据库">Code First到现有数据库</a>
+<ul>
+<li><a href="#查询-修改和删除数据">查询、修改和删除数据</a></li>
+<li><a href="#数据库更改更新模型">数据库更改更新模型：</a></li>
+</ul></li>
+<li><a href="#先定义模型后生成数据库">先定义模型后生成数据库</a></li>
+<li><a href="#ef深入了解">EF深入了解</a>
+<ul>
+<li><a href="#惰性加载-lazy-loading">惰性加载（Lazy Loading）</a></li>
+<li><a href="#显式加载-explicit-loading">显式加载（Explicit Loading）</a></li>
+<li><a href="#预先加载-eager-loading">预先加载（Eager Loading）</a></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="概念">概念</h1>
+
+<p><strong>什么是EF？</strong></p>
+
+<p>ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。</p>
+
+<p><strong>三种编程模型：</strong></p>
+
+<ul>
+<li>数据库优先开发模式(Database First Development)</li>
+<li>模型优先开发模式(Model First Development)</li>
+<li>代码优先开发模式(Code First Development)</li>
+</ul>
+
+<p>EF优点：</p>
+
+<ul>
+<li>支持跨数据库，修改配置文件就可以</li>
+<li>使用linq语句，提高开发效率。但在进行复杂的查询时，EF表现不太好</li>
+</ul>
+
+<h1 id="ef搭建">EF搭建</h1>
+
+<blockquote>
+<p>非常具体的还可以参考<a href="https://docs.microsoft.com/zh-cn/ef/ef6/modeling/">官方文档</a>。</p>
+</blockquote>
+
+<h2 id="来自数据库的ef设计器">来自数据库的EF设计器</h2>
+
+<h3 id="创建应用程序">创建应用程序</h3>
+
+<p>打开VS，随便新建一个项目，MVC、Webform均可。项目创建完成后，右键—项目路径，选择“添加”—“新建项”。点击“数据”—“ADO.NET实体数据模型”—“添加”，名称根据项目或习惯命名即可：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate.jpg" alt="ORMDog" /></p>
+
+<h3 id="反向工程模型">反向工程模型</h3>
+
+<p>点击“来自数据库的EF设计器”——“下一步”。点击“新建连接”，连接完成数据库，根据情况选择“是”或“否”，然后依次点击“下一步”。如图：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate6.jpg" alt="ORMDog" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFNewCreate2.jpg" alt="ORMDog" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFNewCreate3.jpg" alt="ORMDog" /></p>
+
+<p>此时，生成关系图，如下：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate4.jpg" alt="ORMDog" /></p>
+
+<p>在解决方案下可以查看到 .edmx 文件，如图：
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate5.jpg" alt="ORMDog" /></p>
+
+<h3 id="读取-写入数据">读取&amp;写入数据</h3>
+
+<pre><code>string name = &quot;露娜&quot;;
+string newName = &quot;后裔&quot;;
+using (ExampleInfoContext db = new ExampleInfoContext())
+{
+    //展示数据
+    var showStudent = from s in db.StudentTable
+                      where s.Sname == name
+                      select s;
+    foreach (var item in showStudent)
+    {
+        ViewBag.NewStudentName += item.Sname + &quot;,&quot;;
+    }
+
+    //新增数据
+    var addStudent = new StudentTable { Sid = 1100, Sname = &quot;肖明&quot;, Ssex = &quot;男&quot; };
+    db.StudentTable.Add(addStudent);
+    db.SaveChanges();
+
+    //修改数据
+    var student = (from s in db.StudentTable
+                   where s.Sname == name
+                   select s).FirstOrDefault();
+    student.Sname = newName;
+    db.Entry(student).State = System.Data.Entity.EntityState.Modified;
+    if (db.SaveChanges() &gt; 0)
+    {
+        ViewBag.ModifyResult = &quot;修改成功！&quot;;
+    }
+    else
+    {
+        ViewBag.ModifyResult = &quot;修改失败！&quot;;
+    }
+
+    //删除数据
+    var removeStudent = db.StudentTable.Where(s =&gt; s.Sname == newName).FirstOrDefault();
+    db.StudentTable.Remove(removeStudent);
+    db.SaveChanges();
+}
+</code></pre>
+
+<h3 id="处理数据库更改">处理数据库更改</h3>
+
+<p>现在，需要对数据库架构进行一些更改，我们进行这些更改时，我们还需要更新模型以反映这些更改：</p>
+
+<ul>
+<li>在 EF 设计器中右键单击模型的空白点，然后选择 &ldquo;从数据库更新模型 &hellip;&ldquo;，这将启动更新向导。</li>
+<li>在更新向导的 &ldquo;添加&rdquo; 选项卡上，选中 &ldquo;表&rdquo; 旁边的框，这表示要从架构中添加任何新表。 @no__t 0The 刷新 &ldquo;选项卡显示模型中的所有现有表，这些表将在更新过程中检查更改。删除选项卡显示已从架构中删除的所有表，并将作为更新的一部分从模型中删除。这两个选项卡上的信息是自动检测的，并仅供参考，无法更改任何设置。 *</li>
+<li>在更新向导中单击 &ldquo;完成&rdquo;。</li>
+</ul>
+
+<p>操作如图所示：</p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFUpdateModel.jpg" alt="EFUpdateModel" /></p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFUpdateModel2.jpg" alt="EFUpdateMode2" /></p>
+
+<p>生成下项目，新增的表就可以显示出来：</p>
+
+<p><img src="https://SLTaurus.github.io/images/EF/EFUpdateModel3.jpg" alt="EFUpdateMode2" /></p>
+
+<h2 id="code-first到现有数据库">Code First到现有数据库</h2>
+
+<p>前面步骤和来自数据库的EF设计器的基本一致，只需要在如下位置选择不同的选项
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate7.jpg" alt="" /></p>
+
+<p>生成文件也不相同，生成了上下文SogalSyncERPContext和多个模型类，如图所示
+<img src="https://SLTaurus.github.io/images/EF/EFNewCreate8.jpg" alt="" /></p>
+
+<p>SogalSyncERPContext派生上下文代码如下：</p>
+
+<p>namespace EFDemo
+{
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;</p>
+
+<pre><code>public partial class SogalSyncERPContext : DbContext
+{
+    public SogalSyncERPContext()
+        : base(&quot;name=SogalSyncERPContext&quot;)
+    {
+    }
+
+    public virtual DbSet&lt;SyncSplitQueue&gt; SyncSplitQueue { get; set; }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;SyncSplitQueue&gt;()
+            .Property(e =&gt; e.EmailCode)
+            .IsUnicode(false);
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>模型类之一代码如下：</p>
+
+<pre><code>namespace EFDemo
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table(&quot;SyncSplitQueue&quot;)]
+    public partial class SyncSplitQueue
+    {
+        public int Id { get; set; }
+
+        public int OrderId { get; set; }
+
+        [StringLength(50)]
+        public string OrderNo { get; set; }
+
+        public int? OrderType { get; set; }
+
+        [StringLength(100)]
+        public string TrackNumber { get; set; }
+
+        [StringLength(100)]
+        public string Approver { get; set; }
+
+        public int ProcessCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public DateTime CreatedDateTime { get; set; }
+
+        public DateTime? ProcessDateTime { get; set; }
+
+        public string MRPCheckInfo { get; set; }
+
+        [StringLength(50)]
+        public string EmailCode { get; set; }
+
+        public bool? IsCheck { get; set; }
+
+        [StringLength(50)]
+        public string TeamLeader { get; set; }
+
+        [StringLength(50)]
+        public string LockBodyMember { get; set; }
+
+        public int SystemType { get; set; }
+
+        public int? Times { get; set; }
+
+        public string ErrorExclude { get; set; }
+
+        public int? ProductOrgId { get; set; }
+    }
+}
+</code></pre>
+
+<h3 id="查询-修改和删除数据">查询、修改和删除数据</h3>
+
+<p>如上文的读取和写入操作，这里不再赘述。</p>
+
+<h3 id="数据库更改更新模型">数据库更改更新模型：</h3>
+
+<p>&ldquo;Code First 到数据库&rdquo; 向导旨在生成一组可以进行调整和修改的起始点。 如果数据库架构发生更改，则可以手动编辑类，<strong>也可以执行其他反向工程来覆盖类</strong>。</p>
+
+<h2 id="先定义模型后生成数据库">先定义模型后生成数据库</h2>
+
+<p>还有先定义模型，然后生成数据库的操作。他们只需要在创建ADO.NET实体数据模型时候，选择空model，然后根据提示做相应的配置，最后在模型图像界面右击，选择从模型生成数据库就可以了。具体请查看官方文档，这里因为很少进行这样的操作，所以大致介绍下就不再赘述了。</p>
+
+<h2 id="ef深入了解">EF深入了解</h2>
+
+<h3 id="惰性加载-lazy-loading">惰性加载（Lazy Loading）</h3>
+
+<p>默认情况下，EF会使用惰性加载方式加载数据，即ctx.Configuration.LazyLoadingEnabled=true;在下面的代码中，外层循环会执行一次查询，并将返回的结果存放在变量q中。而内层循环会在每一次循环过程中独立进行查询，所以，如果数据库表Teacher中有100条记录而Course有1000条记录，那么整个过程将产生1001次查询。</p>
+
+<pre><code>using (var ctx = new SchoolDBEntities())
+{
+    var q = from t in ctx.Teachers
+            select t;
+
+    foreach (var teacher in q)
+    {
+        Console.WriteLine(&quot;Teacher : {0}&quot;, teacher.TeacherName);
+        Console.WriteLine(&quot;Respective Courses...&quot;);
+
+        foreach (var course in teacher.Courses)
+        {
+            Console.WriteLine(&quot;Course name : {0}&quot;, course.CourseName);
+        }
+
+        Console.WriteLine();
+        Console.ReadKey();
+    }
+}
+</code></pre>
+
+<p>在上面的代码中，对表Teacher只进行了一次查询，由于该表只有8条记录，于是在内层循环中又分别产生了8次对表Course的查询。</p>
+
+<p>在某些场合下，这种情况是可以接受的。你完全可以根据需要来控制内层循环何时显示加载数据，或者根本不加载数据。但是，在分层结构的应用程序中，上述代码结构并不适用，因为内层循环需要依赖于外层的Context，也就是说它们是在同一个数据库上下文中完成的，如果尝试将内层循环的代码移到外面或者其它类中，则它将获取不到任何数据。</p>
+
+<h3 id="显式加载-explicit-loading">显式加载（Explicit Loading）</h3>
+
+<p>如果你想人为控制惰性加载的行为，可以尝试使用下面的代码。首先需要手动关闭EF的惰性加载，通过代码ctx.Configuration.LazyLoadingEnabled = false;来完成。</p>
+
+<pre><code>using (var ctx = new SchoolDBEntities())
+{
+    ctx.Configuration.LazyLoadingEnabled = false;
+
+    var q = from t in ctx.Teachers
+            select t;
+
+    foreach (var teacher in q)
+    {
+        Console.WriteLine(&quot;Teacher : {0}&quot;, teacher.TeacherName);
+        Console.WriteLine(&quot;Respective Courses...&quot;);
+
+        // Conditionally load the child data
+        if (true)
+        {
+            //高亮部分
+            ctx.Entry(teacher).Collection(c =&gt; c.Courses).Load();
+        }
+
+        foreach (var course in teacher.Courses)
+        {
+            Console.WriteLine(&quot;Course name : {0}&quot;, course.CourseName);
+        }
+
+        Console.WriteLine();
+        Console.ReadKey();
+    }
+}
+</code></pre>
+
+<p>注意内层循环只有在上面高亮显示部分的代码执行之后才会获取到数据，否则返回结果为0。通过添加判断条件，我们可以对数据加载方式进行控制，从而有效地减少程序与数据库交互的次数。大多数情况下，我们从数据库获取到的数据并不都是有用的，如果每次只有很少一部分数据有用，那么我们为什么不过滤掉那些无用的数据从而尽量较少数据交互的次数呢？</p>
+
+<h3 id="预先加载-eager-loading">预先加载（Eager Loading）</h3>
+
+<p>如果你想让所有数据全部一次性加载到内存中，那么你需要使用.Include(Entity)方法。看下面的代码:</p>
+
+<pre><code>using (var ctx = new SchoolDBEntities())
+{
+    //数据全部一次性加载到内存
+    var q = from t in ctx.Teachers.Include(&quot;Courses&quot;)
+            select t;
+
+    foreach (var teacher in q)
+    {
+        Console.WriteLine(&quot;Teacher : {0}&quot;, teacher.TeacherName);
+        Console.WriteLine(&quot;Respective Courses...&quot;);
+
+        foreach (var course in teacher.Courses)
+        {
+            Console.WriteLine(&quot;Course name : {0}&quot;, course.CourseName);
+        }
+
+        Console.WriteLine();
+        Console.ReadKey();
+    }
+}
+</code></pre>
+
+<p>如果你查看SQl Server Profiler中的跟踪信息，你会发现只有一次数据交互过程，即程序只通过一次查询便获取到了所有需要的数据。在分层结构中，该方法是最容易的，我们可以将数据库底层获取到的结果返回给上层，它不具有任何依赖项。同时，它也可以减少程序与数据库的交互次数。不过仍然有缺点，那就是如果数据量较大，一次性将所有数据载入内存往往并不是最明智的选择。.Include(Entity)方法允许级联使用，你可以预先加载具有多层级结构的数据。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>就像前面所说，选择什么样的数据加载方式需要因时而异，每一种数据加载方式都有它存在的意义，但目的只有一个，那就是以最少的代价获取到需要的数据。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/ef/">EF</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/orm/">ORM</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/10/entityframework/" class="leancloud_visitors" data-flag-title="EntityFramework">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86/" data-tooltip="ORM整理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/orm%E6%95%B4%E7%90%86/" data-tooltip="ORM整理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/entityframework/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fentityframework%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fentityframework%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fentityframework%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/10\/entityframework\/';
+          
+            this.page.identifier = '\/2019\/10\/entityframework\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
