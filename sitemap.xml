@@ -18,12 +18,12 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/tags/orm/</loc>
+    <loc>https://SLTaurus.github.io/categories/orm/</loc>
     <lastmod>2019-10-22T08:46:45+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/orm/</loc>
+    <loc>https://SLTaurus.github.io/tags/orm/</loc>
     <lastmod>2019-10-22T08:46:45+08:00</lastmod>
   </url>
   
@@ -83,22 +83,22 @@
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/categories/ef6/</loc>
-    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://SLTaurus.github.io/tags/ef6/</loc>
     <lastmod>2019-10-15T20:25:35+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://SLTaurus.github.io/tags/mvc5/</loc>
+    <loc>https://SLTaurus.github.io/categories/ef6/</loc>
     <lastmod>2019-10-15T20:25:35+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://SLTaurus.github.io/categories/mvc5/</loc>
+    <lastmod>2019-10-15T20:25:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://SLTaurus.github.io/tags/mvc5/</loc>
     <lastmod>2019-10-15T20:25:35+08:00</lastmod>
   </url>
   
