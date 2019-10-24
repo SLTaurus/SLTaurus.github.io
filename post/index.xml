@@ -48,12 +48,12 @@
     </item>
     
     <item>
-      <title>MVC5&#43;EF6入门完整教程（转）</title>
-      <link>https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/</link>
+      <title>MVC整理</title>
+      <link>https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/</link>
       <pubDate>Tue, 15 Oct 2019 20:25:35 +0800</pubDate>
       
-      <guid>https://SLTaurus.github.io/2019/10/mvc5-ef6%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E8%BD%AC/</guid>
-      <description>&lt;p&gt;ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&amp;rdquo;约定&amp;rdquo;。直接讲这些&amp;rdquo;约定&amp;rdquo;会让人困惑，而且东西太多容易忘记。和微软官方教程不同，笔者尽量不用脚手架，从空白框架开始，一步一步添加功能，每次添加的东西刚好够用，让大家能真正能用起来，理解每一个过程。&lt;/p&gt;</description>
+      <guid>https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&amp;rdquo;约定&amp;rdquo;。直接讲这些&amp;rdquo;约定&amp;rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。&lt;/p&gt;</description>
     </item>
     
     <item>

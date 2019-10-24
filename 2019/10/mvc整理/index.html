@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="MVC5, C#, .NET, 个人博客">
+<meta name="description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。">
+
+
+<meta property="og:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC整理">
+<meta name="twitter:title" content="MVC整理">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。">
+<meta name="twitter:description" content="ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-15T20:25:35">
+  
+  
+    <meta property="article:modified_time" content="2019-10-15T20:25:35">
+  
+  
+  
+    
+      <meta property="article:section" content="MVC">
+    
+  
+  
+    
+      <meta property="article:tag" content="MVC">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>MVC整理</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      MVC整理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-15T20:25:35&#43;08:00">
+        
+  十月 15, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/mvc">MVC</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&rdquo;约定&rdquo;。直接讲这些&rdquo;约定&rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#概念">概念</a>
+<ul>
+<li><a href="#entity-framework-6">Entity Framework 6:</a>
+<ul>
+<li><a href="#ef数据查询">EF数据查询</a></li>
+<li><a href="#ef数据更新">EF数据更新</a></li>
+<li><a href="#ef数据添加-删除">EF数据添加/删除</a></li>
+</ul></li>
+<li><a href="#与htmlhelper搭配使用强类型显示数据展示">与HtmlHelper搭配使用强类型显示数据展示</a></li>
+</ul></li>
+<li><a href="#整体规则">整体规则</a>
+<ul>
+<li><a href="#添加controller">添加Controller</a></li>
+<li><a href="#添加action">添加Action</a></li>
+<li><a href="#添加view">添加View</a></li>
+</ul></li>
+<li><a href="#路由规则">路由规则</a></li>
+<li><a href="#viewdata-viewbag-tempdata-session的区别与联系">ViewData、ViewBag、TempData、Session的区别与联系</a>
+<ul>
+<li><a href="#viewdata">ViewData：</a></li>
+<li><a href="#viewbag">ViewBag</a></li>
+<li><a href="#tempdata">TempData</a></li>
+<li><a href="#session">Session</a></li>
+</ul></li>
+<li><a href="#htmlhelper">HtmlHelper</a>
+<ul>
+<li><a href="#actionlink">ActionLink</a></li>
+<li><a href="#routelink">RouteLink</a></li>
+<li><a href="#input控件">Input控件</a>
+<ul>
+<li><a href="#textbox">TextBox</a></li>
+<li><a href="#hidden">Hidden</a></li>
+<li><a href="#password">Password</a></li>
+<li><a href="#checkbox">CheckBox</a></li>
+<li><a href="#radiobutton">RadioButton</a></li>
+</ul></li>
+<li><a href="#列表框">列表框</a>
+<ul>
+<li><a href="#dropdownlist">DropDownList</a></li>
+<li><a href="#listbox">ListBox</a></li>
+</ul></li>
+<li><a href="#添加属性">添加属性</a></li>
+<li><a href="#form表单">Form表单</a></li>
+<li><a href="#使用tagbuilder创建自定义标签">使用TagBuilder创建自定义标签</a></li>
+<li><a href="#强类型htmlhelper">强类型HtmlHelper</a></li>
+<li><a href="#labelfor数据标签">LabelFor数据标签</a></li>
+<li><a href="#displayfor-和-editorfor显示和编辑model数据">DisplayFor 和 EditorFor显示和编辑Model数据</a></li>
+<li><a href="#思考题">思考题</a></li>
+</ul></li>
+<li><a href="#配置">配置</a></li>
+</ul>
+</nav>
+
+<blockquote>
+<p>引用自Tozhang同学博文的教程：<a href="https://www.cnblogs.com/zhang1f/p/11118800.html">MVC5 + EF6 入门完整教程</a>，这里仅作记录和参考、笔记。</p>
+</blockquote>
+
+<h1 id="概念">概念</h1>
+
+<p>MVC，Model – View – Controller 的简写，Model 封装业务逻辑相关的数据及对数据的处理方法，View 向用户提供交互界面，Controller 负责控制Model和View。
+看下面这张图。目前只要理解这一个概念就可以了，下面就开始建一个空框架，从做中学。</p>
+
+<p><img src="https://SLTaurus.github.io/images/mvcEf.png" alt="mvcEf.png" /></p>
+
+<h2 id="entity-framework-6">Entity Framework 6:</h2>
+
+<p>实体框架 6 (EF6) 是经试验和测试的关系映射器 (O/RM)，适用于 .NET 的对象，其功能和稳定性经过了多年的开发和调试。</p>
+
+<p>作为 O/RM，EF6 降低了关系方面和面向对象的方面之间的阻抗不匹配，使开发人员能够使用表示应用程序域的强类型 .NET 对象来编写应用程序，该应用程序可与存储在关系数据库中的数据交互，同时使开发人员无需再编写大部分的数据访问“管道”代码。</p>
+
+<p>EF6 可实现许多热门 O/RM 功能：</p>
+
+<ul>
+<li>不依赖于任何 EF 类型的 POCO 实体类的映射;</li>
+<li>自动更改跟踪;</li>
+<li>标识解析和工作单元;</li>
+<li>预先、延迟和显式加载;</li>
+<li>使用 LINQ（语言集成查询）转换强类型查询;</li>
+<li>丰富的映射功能，可支持：一对一、一对多和多对多关系;继承（每个层次结构一张表、每个类型一张表和每个具体类一张表）;复杂类型;存储过程;</li>
+<li>通过可视化设计器创建实体模型;</li>
+<li>通过编写代码创建实体模型的“Code First”体验;</li>
+<li>既可从现有数据库生成模型，然后手动编辑，也可从头开始创建模型，然后用于生成新的数据库;</li>
+<li>与 .NET Framework 应用程序模型（包括 ASP.NET）集成，并通过数据绑定与 WPF 和 WinForms 集成;</li>
+<li>基于 ADO.NET 的数据库连接和可用于连接到 SQL Server、Oracle、MySQL、SQLite、PostgreSQL、DB2 等的众多提供程序;</li>
+</ul>
+
+<p>架构图如下：
+<img src="https://SLTaurus.github.io/images/MVC/MVCEF.png" alt="MVCEF" /></p>
+
+<p>从上图可以看出，EF框架在底层是通过调用ADO.NET来实现数据库操作的。</p>
+
+<p>多转一道弯性能和灵活性肯定会受到影响，所以本系列文章结束后同样也会给出MVC+ADO.NET的方案，大家可以根据需要选择。</p>
+
+<p>微软官方推出的ORM框架主要有Linq to SQL和Entity Framework。EF是目前最新的，也是推荐配合MVC使用的框架。</p>
+
+<p>实际操作前再补充一些重要概念：</p>
+
+<p>如果不用ORM框架，我们一般这样来使用ADO.NET进行数据库开发：</p>
+
+<ul>
+<li>将ADO.NET对数据库的操作封装到一个类里SqlHelper中</li>
+<li>在DAL层调用SqlHelper</li>
+<li>其他层再调用DAL进行数据库操作</li>
+</ul>
+
+<p>ORM对传统方式的改进：</p>
+
+<ul>
+<li>充当桥梁，实现了关系数据和对象数据的映射，通过映射自动产生SQL语句。</li>
+<li>对常用的操作，节省了写SQL语句的步骤。</li>
+</ul>
+
+<h3 id="ef数据查询">EF数据查询</h3>
+
+<p>EF数据查询用LINQ实现（LINQ to Entities），通常有表达式和函数式两种方式。建议用函数式方式，比较简单。</p>
+
+<pre><code>    private AccountContext db = new AccountContext();
+    //[基本查询] 查询所有的SysUser
+    var users = from u in db.SysUsers
+                select u; //表达式方式
+    users = db.SysUsers; //函数式方式
+
+    //[条件查询] 加入查询条件
+    users = from u in db.SysUsers
+            where u.UserName == &quot;Tom&quot;
+            select u; //表达式方式
+    users = db.SysUsers.Where(u =&gt; u.UserName == &quot;Tom&quot;); //函数式方式
+    //NOTE 注意这边等号是C#写法 : &quot; == &quot;
+
+    //[排序和分页查询]
+    users = (from u in db.SysUsers
+            orderby u.UserName
+            select u).Skip(0).Take(5); //表达式方式
+    users = db.SysUsers.OrderBy(u =&gt; u.UserName).Skip(0).Take(5); //函数式方式
+    //NOTE 只有排序了才能分页
+
+    //[聚合查询]
+    //查user总数
+    var num = db.SysUsers.Count();
+    //查最小ID
+    var minId = db.SysUsers.Min(u =&gt; u.ID);
+    //NOTE 聚合查询只能通过函数式查询
+
+    //[连接查询]
+    var users = from ur in db. SysUserRoles
+                join u in db. SysUsers
+                on ur.SysUserID equals u.ID
+                select ur;
+</code></pre>
+
+<p>大家注意，连接查询返回的结果还是一个类型为SysUserRoles的集合，只是用了内连接进行了的筛选。那么问题来了，如果我需要选择一个集合，里面包括多张表，如SysUser里面的UserName和SysRole里面的RoleName怎么办？</p>
+
+<p>这个是通过navigation property来实现的， 前面新建model的时候提到过，例如SysUser里面的</p>
+
+<pre><code>public virtual ICollection&lt;SysUserRole&gt; SysUserRoles { get; set; }
+</code></pre>
+
+<p>但这种做法还是不是太灵活，具体做法我们在下面的详细步骤里面讲。</p>
+
+<h3 id="ef数据更新">EF数据更新</h3>
+
+<p>UPDATE步骤比较清晰，直接看下面代码:</p>
+
+<pre><code>//数据更新,分三步：找到对象--&gt; 更新对象数据--&gt; 保存更改
+public ActionResult EFUpdateDemo()
+{
+    //1.找到对象
+    var sysUser = db.SysUsers.FirstOrDefault(u =&gt; u.UserName == &quot;Tom&quot;);
+    //2.更新对象数据
+    if (sysUser != null)
+    {
+        sysUser.UserName = &quot;Tom2&quot;;
+    }
+    //3.保存修改
+    db.SaveChanges();
+    return View();
+}
+</code></pre>
+
+<h3 id="ef数据添加-删除">EF数据添加/删除</h3>
+
+<p>与UPDATE类似:</p>
+
+<pre><code>//数据添加和删除
+public ActionResult EFAddOrDeleteDemo()
+{
+    //添加
+    //1.创建新的实体
+    var newSysUser = new SysUser()
+    {
+        UserName = &quot;Scott&quot;,
+        Password = &quot;tiger&quot;,
+        Email = &quot;Scott@sohu.com&quot;
+    };
+    //2.增加
+    db.SysUsers.Add(newSysUser);
+    //3.保存修改
+    db.SaveChanges();
+
+    //删除
+    //1.找到需要删除的对象
+    var delSysUser = db.SysUsers.FirstOrDefault(u =&gt; u.UserName == &quot;Scott&quot;);
+    //2.删除
+    if (delSysUser!=null)
+    {
+        db.SysUsers.Remove(delSysUser);
+    }
+    //3.保存修改
+    db.SaveChanges();
+    return View(&quot;EFQueryDemo&quot;);
+}
+</code></pre>
+
+<h2 id="与htmlhelper搭配使用强类型显示数据展示">与HtmlHelper搭配使用强类型显示数据展示</h2>
+
+<p>展示用户信息：</p>
+
+<pre><code>&lt;body&gt;
+    &lt;div&gt;
+        &lt;table class=&quot;table table-striped&quot;&gt;
+            &lt;p&gt;@Html.ActionLink(&quot;创建&quot;, &quot;Create&quot;)&lt;/p&gt;
+            @using (Html.BeginForm(&quot;Index&quot;, &quot;Account&quot;, FormMethod.Get))
+            {
+                &lt;p&gt;
+                    用户名查找:@Html.TextBox(&quot;searchString&quot;, ViewBag.currentFilter as string)
+                    &lt;input type=&quot;submit&quot; value=&quot;查询&quot; /&gt;
+                &lt;/p&gt;
+            }
+            &lt;tr&gt;
+                &lt;th&gt;
+                    @Html.ActionLink(&quot;用户名&quot;, &quot;Index&quot;, new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.currentFilter })
+                &lt;/th&gt;
+                &lt;th&gt;
+                    邮件
+                &lt;/th&gt;
+                &lt;th&gt;创建日期&lt;/th&gt;
+                &lt;th&gt;部门&lt;/th&gt;
+                &lt;th&gt;&lt;/th&gt;
+            &lt;/tr&gt;
+            @foreach (var item in Model)
+            {
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        @Html.DisplayFor(modelItem =&gt; item.LoginName)
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        @Html.DisplayFor(modelItem =&gt; item.Email)
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        @Html.DisplayFor(modelItem =&gt; item.CreateDate)
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        @Html.DisplayFor(modelItem =&gt; item.SysDepartment.DepartmentName)
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        @Html.ActionLink(&quot;明细&quot;, &quot;Details&quot;, new { id = item.ID })
+                        @Html.ActionLink(&quot;修改&quot;, &quot;Edit&quot;, new { id = item.ID })
+                        @Html.ActionLink(&quot;删除&quot;, &quot;Delete&quot;, new { id = item.ID })
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            }
+        &lt;/table&gt;
+        页码 @(Model.PageCount &lt; Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page =&gt; Url.Action(&quot;Index&quot;, new { Page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.currentFilter }))
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>展示用户信息和用户的部门信息：</p>
+
+<pre><code>&lt;body&gt;
+    &lt;div&gt;
+        &lt;dl class=&quot;dl-horizontal&quot;&gt;
+            &lt;dt&gt;用户名：&lt;/dt&gt;
+            &lt;dd&gt;@Html.DisplayFor(model =&gt; model.LoginName)&lt;/dd&gt;
+
+            &lt;dt&gt;邮件地址：&lt;/dt&gt;
+            &lt;dd&gt;@Html.DisplayFor(model =&gt; model.Email)&lt;/dd&gt;
+
+
+            &lt;dt&gt;角色信息：&lt;/dt&gt;
+            &lt;dd&gt;
+                &lt;table class=&quot;table-striped&quot;&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;角色名称&lt;/th&gt;
+                        &lt;th&gt;角色信息&lt;/th&gt;
+                    &lt;/tr&gt;
+                    @foreach (var item in Model.SysUserRole)
+                    {
+                        &lt;tr&gt;
+                            &lt;td&gt;@Html.DisplayFor(modelItem =&gt; item.SysRole.RoleName)&lt;/td&gt;
+                            &lt;td&gt;@Html.DisplayFor(modelItem =&gt; item.SysRole.RoleDesc)&lt;/td&gt;
+                        &lt;/tr&gt;
+                    }
+                &lt;/table&gt;
+            &lt;/dd&gt;
+        &lt;/dl&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h1 id="整体规则">整体规则</h1>
+
+<h2 id="添加controller">添加Controller</h2>
+
+<p>控制器必须以Controller结尾（这是ASP.NET MVC的一个约定）,同一个控制器的页面，都必须在控制器名称去除Controller的文件夹下，每个cshtml都对应控制器Controller里面的每个方法。如图所示：</p>
+
+<p><img src="https://SLTaurus.github.io/images/MVC/Controller.jpg" alt="Controller" /></p>
+
+<h2 id="添加action">添加Action</h2>
+
+<ul>
+<li>通过手打或粘贴复制;</li>
+<li>右键，插入代码段（或ctrl k, x）;</li>
+</ul>
+
+<p>代码：</p>
+
+<pre><code>public ActionResult Index()
+{
+    return View(); 
+}
+</code></pre>
+
+<p>或者：</p>
+
+<pre><code> [HttpPost}]
+public ActionResult Index()
+{
+    return View(); 
+}
+</code></pre>
+
+<p>Action中增加了一个[HttpPost] ，表示这个Action只会接受http post请求。ASP.NET MVC提供了Action Method Selector, HttpPost就是其中之一。</p>
+
+<p>HttpPost属性典型的应用场景：</p>
+
+<ul>
+<li>涉及到需要接受客户端窗口数据的时候，创建一个用于接收HTTP Get请求的Action, 用于显示界面, 提供给用户填写数据;</li>
+<li>另一个同名Action则应用[HttpPost]属性，用于接收用户发来的数据，完成对应的功能。</li>
+</ul>
+
+<p>如图所示：
+<img src="https://SLTaurus.github.io/images/MVC/MVCHttpPost.jpg" alt="MVCHttpPost" /></p>
+
+<h2 id="添加view">添加View</h2>
+
+<p>添加Action相应的View,View的存放位置约定:</p>
+
+<ul>
+<li>所有的View都放在Views文件夹</li>
+<li>Views文件夹创建了一系列与Controller同名的子文件夹</li>
+<li>各子文件夹内存放与Action同名的cshtml文件（对应的View文件）</li>
+</ul>
+
+<p>如图所示：
+<img src="https://SLTaurus.github.io/images/MVC/MVCView.png" alt="MVCView" /></p>
+
+<h1 id="路由规则">路由规则</h1>
+
+<p>方框处正好对应于M, V, C，打开Global.asax, 注意到在程序启动的时候注册了路由规则，如图所示：</p>
+
+<p><img src="https://SLTaurus.github.io/images/MVC/RouteConfig.jpg" alt="RouteConfig" /></p>
+
+<p>看下具体的路由规则,打开RouteConfig.cs文件,注意到里面有个静态方法，这就是映射路由的控制，这个方法定义了路由规则:</p>
+
+<pre><code>public static void RegisterRoutes(RouteCollection routes)
+{
+    routes.IgnoreRoute(&quot;{resource}.axd/{*pathInfo}&quot;);
+
+    routes.MapRoute(
+        name: &quot;Default&quot;,
+        url: &quot;{controller}/{action}/{id}&quot;,
+        defaults: new { controller = &quot;Account&quot;, action = &quot;Login&quot;, id = UrlParameter.Optional }
+    );
+    //该值指示 ASP.NET 路由操作是否应处理与现有文件匹配的 URL
+    routes.RouteExistingFiles = true;
+}
+</code></pre>
+
+<p>其中：url: &ldquo;{controller}/{action}/{id}&ldquo;定义了URL的格式。</p>
+
+<p>打开页面显示的时候，如上图所示：</p>
+
+<p><img src="https://SLTaurus.github.io/images/MVC/AccountIndex.jpg" alt="AccountIndex" /></p>
+
+<p>这个地址与开头的路由规则（url: &ldquo;{controller}/{action}/{id}&ldquo;）就对应了起来。</p>
+
+<p>典型的一个执行过程：</p>
+
+<ul>
+<li>网址路由比对</li>
+<li>如成功，执行相应的Controller与Action</li>
+<li>执行相应的View并返回结果</li>
+</ul>
+
+<h1 id="viewdata-viewbag-tempdata-session的区别与联系">ViewData、ViewBag、TempData、Session的区别与联系</h1>
+
+<p>在ASP.NET MVC中，页面间和Controller与View之间主要有以下几种小量数据传值方式，ViewData、ViewBag、TempData、Session变量。</p>
+
+<p>这四种方法中，ViewData和ViewBag其实是一回事，ViewBag其实是对ViewData的封装，其内部其实是使用ViewData实现数据存储的。唯一的不同点是，ViewBag可以存储动态类型(dynamic)的变量值，而ViewData只能存储String Key/Object Value字典数组。所以我们可以将这四种方法归为三大类， ViewData和ViewBag， 与TempData，与Session。</p>
+
+<pre><code>ViewData[&quot;Message&quot;] = &quot;Hello ASP.NET MVC&quot;;
+// Or
+ViewBag.Message = &quot;Hello ASP.NET MVC&quot;;
+</code></pre>
+
+<p>TempData也是一个String Key/Object Value字典数组。和ViewData与ViewBag不同的是其所存储的数据对象的<strong>生命周期</strong>。如果页面发生了跳转(Redirection)，ViewBag和ViewData中的值将不复存在， 但是TempData中的值依然还在。 换句话讲，<strong>ViewBag和ViewData存储的值的生命周期只有在从Controller到View中</strong>， 而TempData中的数据不仅在从Controller到View中有效，<strong>在不同的Action之间或者从一个页面跳转到另一页面(Controller to Controller)后依然有效</strong>。</p>
+
+<pre><code>TempData[&quot;Message&quot;] = &quot;Hello ASP.NET MVC&quot;;
+</code></pre>
+
+<p>Session其实和ViewData类似，也是一个String Key/Object Value字典数组。但是，Session是存储在服务器端的缓存中，Session与Cookies是不同的，所以它的生命周期是最长的。但是，正因为其存储的客户端，所以必须确保没有敏感机密的信息存储其中。</p>
+
+<pre><code>Session[&quot;Message&quot;] = &quot;Hello ASP.NET MVC&quot;;
+</code></pre>
+
+<p>下面我们对每一个传值方法的特点进行以下总结：</p>
+
+<h2 id="viewdata">ViewData：</h2>
+
+<ul>
+<li>ViewData是一个继承自ViewDataDictionary类的Dictionary对象。</li>
+<li>ViewData用来从Controller向对应的View传递值。</li>
+<li>ViewData的只在当前当前的请求中有效，生命周期和View相同，其值不能在多个请求中共享。</li>
+<li>在重定向(redirection)后，ViewData中存储的变量值将变为null。</li>
+<li>在取出ViewData中的变量值是，必须进行合适的类型转换(隐式或显式)和空值检查。</li>
+</ul>
+
+<p>下面我们来看一个简单的例子，演示一下如何使用ViewData来从Controller向View传值。</p>
+
+<pre><code>public ActionResult Index()
+{
+    ViewData[&quot;Message&quot;] = &quot;This is a message from ViewData&quot;;
+    return View();
+}
+</code></pre>
+
+<p>然后，我们从视图中取出这个变量：</p>
+
+<pre><code>&lt;div&gt;
+    @ViewData[&quot;Message&quot;].toString()
+&lt;/div&gt;
+</code></pre>
+
+<p>可能你注意到了，我在从ViewData中取出变量Message时并没有对其进行类型转换，那时因为我们存储的是一个简单类型的变量值。假如存储的是复杂对象，在取出是必须进行类型转换。</p>
+
+<p>综上， ViewData更适合从Controller向View传递简单对象数据时使用。</p>
+
+<h2 id="viewbag">ViewBag</h2>
+
+<ul>
+<li>ViewBag是一个动态类型变量(dynamic)，这是C# 4.0引入的新特性，变量类型会在运行时进行解析。</li>
+<li>ViewBag基本上是ViewData的包装，也是用来从Controller向View来传递值的。</li>
+<li>ViewBag也只在当前的请求中有效。</li>
+<li>在重定向(redirection)后，ViewBag中存储的变量值将变为null</li>
+<li>因为ViewBag是动态类型，所以我们在取得其值时，不需要进行类型转换。</li>
+</ul>
+
+<p>同样，我们通过一个简单的例子来演示一下如何利用ViewBag从Controller向View传递数据。</p>
+
+<pre><code>public ActionResult Index()
+{
+    ViewBag.Message = &quot;This is a message from ViewBag&quot;;
+
+    return View();
+}
+</code></pre>
+
+<p>然后，在视图中取出数据并显示:</p>
+
+<pre><code>&lt;div&gt;
+    @ViewBag.Message
+&lt;/div&gt;
+</code></pre>
+
+<p>综上， ViewBag更适合从Controller向View传递复杂对象数据时使用， 因为取出存储在其中的数据变量时无需进行类型转换。</p>
+
+<h2 id="tempdata">TempData</h2>
+
+<ul>
+<li>TempData是一个继承自TempDataDictionary类的字典对象，它默认情况下是基于Session存储机制之上的。(备注： 你也可以让你的TempData基于其他存储机制之上， 我们可以提供我们自定义的ITempDataProvider来完成，具体可以参见： <a href="https://afana.me/archive/2010/11/23/session-less-controllers-and-tempdata-aspnet-mvc.aspx/">Session-less Controllers and TempData in ASP.NET MVC)</a>。</li>
+<li>TempData是用来在多个Actions或从当前请求向子请求, 页面发生了重定向(Redirection)时传递共享数据。</li>
+<li>只有在目标视图(View)完全加载后才有效。</li>
+<li>在取出TempData存储的变量值时，必须进行合适的类型转换(隐式或显式)和空值检查。</li>
+</ul>
+
+<p>下面，我们透过一个例子来演示一下如何在两个Action方法中传递数据。首先，创建一个客户Model类，如下：</p>
+
+<pre><code>public class Customer
+{
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public double Amount { get; set; }
+}
+</code></pre>
+
+<p>然后，在Controller中加入如下代码：</p>
+
+<pre><code>public ActionResult DisplayCustomer1()
+{
+    Customer customer = new Customer
+    {
+        Id = 1001,
+        Code = &quot;100101&quot;,
+        Amount = 100
+    };
+
+    TempData[&quot;OneCustomer&quot;] = customer;
+
+    return RedirectToAction(&quot;DisplayCustomer2&quot;);
+}
+
+public ActionResult DisplayCustomer2()
+{
+    Customer customer = TempData[&quot;OneCustomer&quot;] as Customer;
+
+    return View(customer);
+}
+</code></pre>
+
+<p>最后，创建一个强类型视图(Strong Typed View)来显示客户信息。</p>
+
+<p>@model.MyFirstMvcApps.Models.Customer</p>
+
+<div>
+    <ul>
+        <li>Customer ID：@model.Id</li>
+        <li>Customer Code：@model.Code</li>
+        <li>Customer Amount：@model.Amount</li>
+    </ul>
+</div>
+
+<p>综上， TempData主要用在需要在多个Actions或者页面重定向时共享传递数据时使用。</p>
+
+<h2 id="session">Session</h2>
+
+<ul>
+<li>Session也是ASP.NET MVC程序传递值的一种方式，但与TempData不同，用户的整个会话中Session都不会过期。</li>
+<li>Session在同一用户会话过程中的所有请求中有效，比如，刷新页面。</li>
+<li>Session中的值也需要进行类型转换(隐式或显式)和非空检查。</li>
+</ul>
+
+<p>我们仍然使用上面的这个例子，假如我们不用TempData而是使用Session， 也可以得到同样的结果。</p>
+
+<pre><code>public ActionResult DisplayCustomer1()
+{
+    Customer customer = new Customer
+    {
+        Id = 1001,
+        Code = &quot;100101&quot;,
+        Amount = 100
+    };
+
+    Session[&quot;OneCustomer&quot;] = customer;
+
+    return RedirectToAction(&quot;DisplayCustomer2&quot;);
+}
+
+public ActionResult DisplayCustomer2()
+{
+    Customer customer = Session[&quot;OneCustomer&quot;] as Customer;
+
+    return View(customer);
+}
+</code></pre>
+
+<p>Session的生命周期是最长的，但是它默认使用的是Cookies来存储数据，所以使用的时候必须注意数据保密的问题。</p>
+
+<p>综上， Session主要用在需要在多个Controllers, Actions and Views共享数据(非敏感数据)时使用。</p>
+
+<h1 id="htmlhelper">HtmlHelper</h1>
+
+<p>在ASP.NET MVC5的View页面中，HtmlHelper被用来输出HTML代码。更官方点的描述，System.Web.Mvc.HtmlHelper对象，该对象用于呈现HTML元素。</p>
+
+<p>为什么要用HtmlHelper而不直接写html？</p>
+
+<ul>
+<li>直接写HTML的话如果语句有语法错误，如缺少结尾标记</b>，编译器不会报错，出来的页面可能会很乱且难以查出错误在哪。如果用HtmlHelper在编译的时候就会指出错误，可以及时修改。</li>
+<li>View中的页面一般都是动态页面，也就是说如果没有HtmlHelper，我们经常会写如 <code>&lt;input type=&quot;text&quot; value=&quot;@id&quot;&gt;</code>  这样的服务器端代码和HTML代码的混合代码。这样写不仅形式混乱、执行顺序不好判断，而且出错也不容易发现，不如全部用HtmlHelper写成服务器端代码。而且用HtmlHelper做数据绑定更方便。</li>
+<li>HtmlHelper和HTML语言的关系，我觉得跟Linq和SQL语言的关系差不多。就是说微软给你提供了一种方式让你在不熟悉HTML或SQL这种非.NET语言的时候，使用.NET框架内的与之等价的类来帮助你更好的解决问题。</li>
+</ul>
+
+<p>为了更好的演示HtmlHelper，我们在项目中新建一个默认Controller和默认Action：</p>
+
+<pre><code>using System.Web.Mvc;
+namespace SlarkInc.Controllers
+{
+    public class DefaultControllerController : Controller
+    {
+        //
+        // GET: /DefaultController/
+        public ActionResult DefaultAction()
+        {
+            return View();
+        }
+    }
+}
+</code></pre>
+
+<p>从上面代码可以看出在名为DefaultController的Controller中我们创建了一个名为DefaultAction的的Action。</p>
+
+<p>然后我们来创建对应的View。在Views文件夹下的DefaultController文件夹里删除已有的View添加一个名为DefaultAction的View。打开这个DefaultAction.cshtml文件，删除掉所有代码。这样我们的准备工作就完成了。下面开始添加HtmlHelper代码。</p>
+
+<h2 id="actionlink">ActionLink</h2>
+
+<p>ActionLink用来生成HTML中的<code>&lt;a&gt;</code>标签，在页面中生成一个超链接下面给出ActionLink的三个常用重载：</p>
+
+<pre><code>@Html.ActionLink(&quot;LinkText&quot;, &quot;ActionName&quot;)
+@Html.ActionLink(&quot;LinkText&quot;, &quot;ActionName&quot;, &quot;ControllerName&quot;)
+@Html.ActionLink(&quot;LinkText&quot;, &quot;ActionName&quot;, new { id = 1 })
+</code></pre>
+
+<p>点击在浏览器中查看。运行结果：</p>
+
+<pre><code>&lt;a href=&quot;/DefaultController/ActionName&quot;&gt;LinkText&lt;/a&gt;
+&lt;a href=&quot;/ControllerName/ActionName&quot;&gt;LinkText&lt;/a&gt;
+&lt;a href=&quot;/DefaultController/ActionName/1&quot;&gt;LinkText&lt;/a&gt;
+</code></pre>
+
+<p>LinkText是链接显示出的文字，如果ActionLink的参数中给出Controller则链接指向对应的Controller下的Action。如果没有给出Controller则指向当前页面对应的Controller下的Action。如果ActionLink的参数中给出要传递的参数，如id，则在链接的最后写出id值。</p>
+
+<h2 id="routelink">RouteLink</h2>
+
+<p>RouteLink同样是用来生成HTML中的<code>&lt;a&gt;</code>标签的，但是其参数和ActionLink不同。我们这里给出能实现上面三行HTML代码的RouteLink代码：</p>
+
+<pre><code>@Html.RouteLink(&quot;LinkText&quot;, new { action = &quot;ActionName&quot; })
+@Html.RouteLink(&quot;LinkText&quot;, new { action = &quot;ActionName&quot;, controller = &quot;ControllerName&quot; })
+@Html.RouteLink(&quot;LinkText&quot;, new { action = &quot;ActionName&quot;, id = 1 })
+</code></pre>
+
+<p>从上面代码可以看出LinkText依然是链接显示的文字，而链接的其他信息则包含在RouteLink的第二个参数中。这个参数是个Object，它的action属性表示指向的Action而controller属性表示指向的Controller。如果没有controller属性则指向当前Controller。id属性则为要传递的参数。</p>
+
+<h2 id="input控件">Input控件</h2>
+
+<h3 id="textbox">TextBox</h3>
+
+<p>TextBox用来生成HTML中的<code>&lt;input type=&quot;text&quot;&gt;</code>标签，常用重载有下面两种：</p>
+
+<pre><code>@Html.TextBox(&quot;NameId&quot;)
+@Html.TextBox(&quot;NameId&quot;,&quot;Value&quot;)
+</code></pre>
+
+<p>生成标签如下：</p>
+
+<pre><code>&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;text&quot; value=&quot;Value&quot; /&gt;
+</code></pre>
+
+<p>可见TextBox的第一个参数被赋值给input标签的id和name属性，如果没有value参数则value为空，如果有则赋值给value属性。</p>
+
+<h3 id="hidden">Hidden</h3>
+
+<p>Hidden用来在页面中写入<code>&lt;input type=&quot;hidden&quot;&gt;</code>标签，其用法和TextBox类似。代码如下：</p>
+
+<pre><code>@Html.Hidden(&quot;NameId&quot;)
+@Html.Hidden(&quot;NameId&quot;, &quot;Value&quot;)
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;&quot; /&gt;
+&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;Value&quot; /&gt;
+</code></pre>
+
+<h3 id="password">Password</h3>
+
+<p>Password用来写入<code>&lt;input type=&quot;password&quot;&gt;</code>标签，其用法和TextBox类似。代码如下：</p>
+
+<pre><code>@Html.Password(&quot;NameId&quot;)
+@Html.Password(&quot;NameId&quot;, &quot;Value&quot;)
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;password&quot; value=&quot;&quot; /&gt;
+&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;password&quot; value=&quot;Value&quot; /&gt;
+</code></pre>
+
+<h3 id="checkbox">CheckBox</h3>
+
+<p>CheckBox这个函数比较特殊，先看代码和运行结果：</p>
+
+<pre><code>@Html.CheckBox(&quot;NameId&quot;, true)
+@Html.CheckBox(&quot;NameId&quot;, false)
+</code></pre>
+
+<p>结果如下：</p>
+
+<pre><code>&lt;input checked=&quot;checked&quot; id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;checkbox&quot; value=&quot;true&quot; /&gt;&lt;input name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;false&quot; /&gt;
+&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;checkbox&quot; value=&quot;true&quot; /&gt;&lt;input name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;false&quot; /&gt;
+</code></pre>
+
+<p>本来，正常情况下它应该只生成一个<input type="checkbox">的标签，如果CheckBox第二个参数是true则有checked=&ldquo;checked&rdquo;属性，表示这个框打勾。但是为什么这个标签有value=&ldquo;true&rdquo;而且后面还有个尾巴<input name="NameId" type="hidden" value="false" />呢？</p>
+
+<p>因为在我们ASP.NET MVC中这样子写的效果就是：如果这个CheckBox打勾了，那么提交之后就会传给目标页面一个NameId=&ldquo;true&rdquo;的值，如果没打勾就会传一个NameId=&ldquo;false&rdquo;的值。这个值就是由<code>&lt;input name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;false&quot; /&gt;</code>传递的。若是没有<code>&lt;input name=&quot;NameId&quot; type=&quot;hidden&quot; value=&quot;false&quot; /&gt;</code>这一段，如果打勾了之后提交，仍然会传给目标页面一个NameId=&ldquo;true&rdquo;的值，而不打勾则不会传NameId的值过去。</p>
+
+<h3 id="radiobutton">RadioButton</h3>
+
+<p>RadioButton会生成一个<code>&lt;input type=&quot;radio&quot;&gt;</code>标签，代码如下：</p>
+
+<pre><code>@Html.RadioButton(&quot;NameId&quot;,&quot;Value&quot;, true)
+@Html.RadioButton(&quot;NameId&quot;, &quot;Value&quot;, false)
+</code></pre>
+
+<p>生成代码如下：</p>
+
+<pre><code>&lt;input checked=&quot;checked&quot; id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;radio&quot; value=&quot;Value&quot; /&gt;
+&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;radio&quot; value=&quot;Value&quot; /&gt;
+</code></pre>
+
+<p>可以看出RadioButton和CheckBox一样都有checked参数，而RadioButton多了一个Value参数可以设置。</p>
+
+<h2 id="列表框">列表框</h2>
+
+<h3 id="dropdownlist">DropDownList</h3>
+
+<p>DropDownList函数可以创建<code>&lt;select&gt;</code>标签表示的下拉菜单。在创建下拉菜单之前我们需要创建用<code>&lt;option&gt;</code>标签表示的菜单选项列表，创建方法如下：</p>
+
+<pre><code>@{
+    SelectListItem item;
+    List&lt;SelectListItem&gt; list = new List&lt;SelectListItem&gt;();
+    for(int i=1;i&lt;5;i++)
+    {
+        item = new SelectListItem();
+        item.Text = &quot;Text&quot; + i;
+        item.Value = &quot;Value&quot; + i;
+        item.Selected = (i==2);
+        list.Add(item);
+    }       
+}
+</code></pre>
+
+<p>SelectListItem类会生成一个菜单项，其Text属性表示其显示的文字，Value属性表示其对应的值，Selected属性表示其是否被选中。上面代码生成了若干个<code>&lt;option&gt;</code>标签并且当i为2时，标签被选中。</p>
+
+<p>通过下面代码可以生成包含上面选项列表的下拉菜单：</p>
+
+<pre><code>@Html.DropDownList(&quot;Id&quot;, list)
+</code></pre>
+
+<p>生成的结果如下：</p>
+
+<pre><code>&lt;select id=&quot;NameId&quot; name=&quot;NameId&quot;&gt;
+    &lt;option value=&quot;Value1&quot;&gt;Text1&lt;/option&gt;
+    &lt;option selected=&quot;selected&quot; value=&quot;Value2&quot;&gt;Text2&lt;/option&gt;
+    &lt;option value=&quot;Value3&quot;&gt;Text3&lt;/option&gt;
+    &lt;option value=&quot;Value4&quot;&gt;Text4&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>可见DropDownList函数的第一个参数是其id和name，第二个参数就是其四个选项组成的List。每一个选项都有各自的Text、Value，并且第二个选项被选中。</p>
+
+<h3 id="listbox">ListBox</h3>
+
+<p>ListBox可以生成一个多选列表框，对应HTML里的<code>&lt;select multiple=&quot;multiple&quot;&gt;</code>标签，ListBox的结构和DropdownList的结构基本一样，只是多了multiple=&ldquo;multiple&rdquo;属性。我们这里依然使用上面创建的选项列表来创建我们的ListBox，代码如下：</p>
+
+<pre><code>@Html.ListBox(&quot;NameId&quot;, list)
+</code></pre>
+
+<p>生成的结果如下：</p>
+
+<pre><code>&lt;select id=&quot;NameId&quot; multiple=&quot;multiple&quot; name=&quot;NameId&quot;&gt;
+    &lt;option value=&quot;Value1&quot;&gt;Text1&lt;/option&gt;
+    &lt;option selected=&quot;selected&quot; value=&quot;Value2&quot;&gt;Text2&lt;/option&gt;
+    &lt;option value=&quot;Value3&quot;&gt;Text3&lt;/option&gt;
+    &lt;option value=&quot;Value4&quot;&gt;Text4&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<h2 id="添加属性">添加属性</h2>
+
+<p>例如想给一个标签添加class和style可以用下面办法：</p>
+
+<pre><code>@Html.TextBox(&quot;NameId&quot;, &quot;Value&quot;, new { @class = &quot;classText&quot;,@style=&quot;width:200px&quot; })
+</code></pre>
+
+<p>得到结果如下：</p>
+
+<pre><code>&lt;input class=&quot;classText&quot; id=&quot;NameId&quot; name=&quot;NameId&quot; style=&quot;width:200px&quot; type=&quot;text&quot; value=&quot;Value&quot; /&gt;
+</code></pre>
+
+<p>上面黄色标记部分即为添加的属性。其实你可以以同样的方式添加任意的属性名和属性值，都会生效。</p>
+
+<h2 id="form表单">Form表单</h2>
+
+<p>在HtmlHelper中生成表单Form会用到两个函数：BeginForm和EndForm。有两种方法可以生成<code>&lt;form&gt;...&lt;/form&gt;</code>表单，使用方法如下所示：</p>
+
+<pre><code>@using (Html.BeginForm(&quot;actionName&quot;, &quot;controllerName&quot;, FormMethod.Get))
+{
+    @Html.TextBox(&quot;NameId&quot;)
+    &lt;input type=&quot;submit&quot; value=&quot;SubmitButton&quot; /&gt;
+}
+
+@{Html.BeginForm(&quot;actionName&quot;, &quot;controllerName&quot;, FormMethod.Post);}
+    @Html.TextBox(&quot;NameId&quot;)
+    &lt;input type=&quot;submit&quot; value=&quot;SubmitButton&quot; /&gt;
+@{Html.EndForm();}
+</code></pre>
+
+<p>我们在Form中写入了一个TextBox和一个提交按钮。TextBox的HtmlHelper用法上一节已经讲过，而比较奇特的是提交按钮没有对应的HtmlHelper函数来生成，需要用HTML语言直接写。后面我们会解决这个问题。</p>
+
+<p>仔细看上面两种生成Form方法的区别：第一种方法将Html.BeginForm()函数放入<code>@using (){}</code>结构中这种方法可以直接生成form的开始标记和结束标记；第二种方法先写<code>Html.BeginForm()</code>函数生成开始标记，再在最后写<code>Html.EndForm()</code>函数生成结尾标记。这两种方法生成的结果是一样的。结果如下：</p>
+
+<pre><code>&lt;form action=&quot;/controllerName/actionName&quot; method=&quot;get&quot;&gt;
+　　&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;SubmitButton&quot; /&gt;
+&lt;/form&gt;
+
+&lt;form action=&quot;/controllerName/actionName&quot; method=&quot;post&quot;&gt;
+　　&lt;input id=&quot;NameId&quot; name=&quot;NameId&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+　　&lt;input type=&quot;submit&quot; value=&quot;SubmitButton&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>从运行结果可以看出BeginForm()的第一个参数指定Action的名字，第二个参数指定Controller的名字，第三个参数指定提交的时候是用Post方法还是Get方法。上面代码中第一个Form用的是Get方法，第二个Form用的是Post方法。</p>
+
+<h2 id="使用tagbuilder创建自定义标签">使用TagBuilder创建自定义标签</h2>
+
+<p>前面说到没有提交按钮对应的HtmlHelper函数，那么我们就自己动手创建一个。</p>
+
+<p>上帝关上了一扇门，就一定会为我们打开一扇窗。这个窗户就是TagBuilder。顾名思义，TagBuilder就是标签建造器，我们就用它来建造属于我们自己标签生成函数。</p>
+
+<p>首先在项目中创建一个Classes文件夹，用来存放我们将要创建的类。在这个文件夹中创建一个名为HtmlExtensions.cs的类，这个类名不是强制性的，写什么都可以。在这个类中写入如下代码：</p>
+
+<pre><code>using System.Web.Mvc;
+public static class HtmlExtensions
+{
+    /// &lt;summary&gt;
+    /// 自定义一个@html.Submit()
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;helper&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;value&quot;&gt;value属性&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static MvcHtmlString Submit(this HtmlHelper helper, string value)
+    {
+        var builder = new TagBuilder(&quot;input&quot;);
+        builder.MergeAttribute(&quot;type&quot;, &quot;submit&quot;);
+        builder.MergeAttribute(&quot;value&quot;, value);        
+        return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing)); 
+　　}
+}
+</code></pre>
+
+<p>我们来解读一下上面的代码：</p>
+
+<ul>
+<li>首先，要用TagBuilder就要引入System.Web.Mvc类库。</li>
+<li>接着我们看这个函数的参数，this HtmlHelper helper保证这个方法会被添加到HtmlHelper中，string value对应将来的提交按钮显示的文字，也就是value属性。</li>
+<li>var builder = new TagBuilder(&ldquo;input&rdquo;);使我们创建的标签名字设为input。</li>
+<li>MergeAttribute函数给创建出的元素添加属性，如MergeAttribute(&ldquo;type&rdquo;, &ldquo;submit&rdquo;) 就是加入 type=&ldquo;submit&rdquo; 属性。</li>
+<li>TagRenderMode.SelfClosing使生成的标签自我关闭，也就是说有<code>&lt;input /&gt;</code>这种形式。</li>
+<li>最后用MvcHtmlString作为返回值是为了使返回值不被转义，比如&rdquo;<code>&lt;</code>&ldquo;不会被转成&rdquo;<code>&amp;lt</code>&ldquo;。这是我们不想看到的。</li>
+</ul>
+
+<p>然后我们在View中写入下面代码调用刚才写好的函数：</p>
+
+<pre><code>@Html.Submit(&quot;SubmitButton&quot;)
+</code></pre>
+
+<p>生成结果如下：</p>
+
+<pre><code>&lt;input type=&quot;submit&quot; value=&quot;SubmitButton&quot; /&gt;
+</code></pre>
+
+<p>可以看到我们在函数中所设置的标签名、属性、自包含都做到了。这样我们就成功生成了自创的submit按钮。</p>
+
+<h2 id="强类型htmlhelper">强类型HtmlHelper</h2>
+
+<p>HtmlHelper有强类型和弱类型之分。前面所介绍的这些函数统统都是弱类型的。那么强类型和弱类型有什么区别？简单点说就是强类型会用到MVC中的Model，而弱类型不用。</p>
+
+<p>Htmlhelper中几乎每一个弱类型函数都会对应一个强类型函数，它们的对应关系是强类型函数名比弱类型函数名多了一个For。比如TextBox()是一个弱类型函数，那么其对应的强类型函数就是TextBoxFor()。</p>
+
+<p>后面的部分我们需要借助Model来展示代码，因此在解决方案中的Models文件夹中创建一个简单的Model，就叫Simple类。文件名为Simple.cs代码如下：</p>
+
+<pre><code>namespace SlarkInc.Models
+{
+    public class Simple
+    {
+        public string Name{ get; set; }
+    }
+}
+</code></pre>
+
+<p>既然是一个简单的Model，那我们就只给它一个属性：Name。</p>
+
+<p>创建好这个Model之后我们就可以在Controller中给这个Model初始化并赋值，并把它传递给View来为我们的强类型HtmlHelper做准备。编辑DefaultControllerController.cs文件，写入如下代码：</p>
+
+<pre><code>using System.Web.Mvc;
+using SlarkInc.Models;
+
+namespace SlarkInc.Controllers
+{
+    public class DefaultControllerController : Controller
+    {
+        // GET: /DefaultController/
+        public ActionResult DefaultAction()
+        {
+            Simple s = new Simple();
+            s.Name= &quot;Slark&quot;;
+            return View(s);
+        }
+    }
+}
+</code></pre>
+
+<p>图中黄色部分初始化Model，给Model赋值并将Model传递给View。</p>
+
+<p>下面我们就在View中用强类型HtmlHelper将Model中的数据显示出来。从上面的代码可以看出DefaultController调用的是名为DefaultAction的View。因此我们在Views文件夹下找到DefaultController文件夹，编辑其中的DefaultAction.cshtml文件。在文件第一行加入如下代码：</p>
+
+<p>@model SlarkInc.Models.Simple</p>
+
+<p>这行代码表示这个View用的是Simple这个Model。</p>
+
+<p>然后在文件中插入如下代码：</p>
+
+<pre><code>@Html.TextBoxFor(m =&gt;m.Name)
+</code></pre>
+
+<p>这就是我们的强类型HtmlHelper函数的一个例子TextBoxFor。这个函数只有一个参数m =&gt;m.Name。这里的m可以换成其他名字，它都指代我们这里的Model。TextBoxFor的这个参数的意思就是取Model的Name属性。由于我们在Controller中初始化了这个值，那么这个值应该是&rdquo;Slark&rdquo;。运行结果如下。</p>
+
+<pre><code>&lt;input id=&quot;Name&quot; name=&quot;Name&quot; type=&quot;text&quot; value=&quot;Slark&quot; /&gt;
+</code></pre>
+
+<p>由上面结果可以看出，属性的名字Name被赋值给了这个元素的id和name，属性值Slark赋值给了value属性。这样我们就完成了一个简单的强类型HtmlHelper。</p>
+
+<h2 id="labelfor数据标签">LabelFor数据标签</h2>
+
+<p>强类型的一大好处是我们可以通过改动Model而改变这个Model在所有View中的显示。如下图的一个输入框：
+<img src="https://SLTaurus.github.io/images/MVC/htmlhelper.png" alt="htmlhelper" /></p>
+
+<p>怎么样可以通过改动Model来改动输入框前面的文字呢？这里我们就要用到DataAnnotations，有人叫它元数据，或者叫数据批注。简单来说它就是对数据的描述。之后用HtmlHelper的LabelFor就可以读到这个信息并显示出来。我们把之前的Simple类写成如下样子：</p>
+
+<pre><code>using System.ComponentModel.DataAnnotations;
+namespace SlarkInc.Models
+{    
+    public class Simple
+    {
+        [Display(Name = &quot;Name&quot;)]
+public string Name { get; set; }
+
+        [Display(Name = &quot;E-mail&quot;)]
+　　  　 public string Email { get; set; }
+    }
+}
+</code></pre>
+
+<p>代码中黄色的部分就是我们为了使用元数据而增加的代码。第一行的部分是引入了要使用元数据所需要的类库。<code>[Display(Name = &quot;E-mail&quot;)]</code>这一行表示当要显示这个变量的名字的时候我们显示&rdquo;E-mail&rdquo;这个字符串。HtmlHelper函数LabelFor()正是从这里获取到需要显示的字符串。</p>
+
+<p>在DefaultController中我们要给Email变量赋值，代码如下：</p>
+
+<pre><code>using System.Web.Mvc;
+using SlarkInc.Models;
+
+namespace SlarkInc.Controllers
+{
+    public class DefaultControllerController : Controller
+    {
+        // GET: /DefaultController/
+        public ActionResult DefaultAction()
+        {
+            Simple s = new Simple();
+            s.Name = &quot;Slark&quot;;
+            s.Email = &quot;xxx@163.com&quot;;
+            return View(s);
+        }
+    }
+}
+</code></pre>
+
+<p>在对应的View中写下如下代码：</p>
+
+<pre><code>@Html.LabelFor(m =&gt; m.Email)
+: @Html.TextBoxFor(m =&gt; m.Email)
+</code></pre>
+
+<p>黄色标记的LabelFor函数获得的参数是Simple类的Email属性，LabelFor函数就会去寻找Model中对应Email的属性的Display元数据，进而生成结果如下：</p>
+
+<pre><code>&lt;label for=&quot;Email&quot;&gt;E-mail&lt;/label&gt;
+: &lt;input id=&quot;Email&quot; name=&quot;Email&quot; type=&quot;text&quot; value=&quot;xxx@163.com&quot; /&gt;
+</code></pre>
+
+<p>看生成的结果LabelFor函数会生成<Label>标签，并且其属性for的值对应变量名&rdquo;Email&rdquo;，而标签的内部文字InnerText就是Display元数据的Name属性对应的值&rdquo;E-mail&rdquo;。</p>
+
+<h2 id="displayfor-和-editorfor显示和编辑model数据">DisplayFor 和 EditorFor显示和编辑Model数据</h2>
+
+<p>元数据在ASP.NET MVC的一个最主要的应用就是可以通过Model来控制数据显示和修改时所生成的HTML元素的类型。在HtmlHelper中DisplayFor是用来显示数据的，而EditorFor是用来编辑数据的。它们都会根据元数据对数据的描述生成不同类型的HTML元素。</p>
+
+<p>将Simple改成如下代码：</p>
+
+<pre><code>using System.ComponentModel.DataAnnotations;
+namespace SlarkInc.Models
+{    
+    public class Simple
+    {
+        [Display(Name = &quot;Name&quot;)]       
+        public string Name { get; set; }
+
+        [Display(Name = &quot;E-mail&quot;)]
+        [DataType(DataType.EmailAddress)]       
+　　　　 public string Email { get; set; }
+    }
+}
+</code></pre>
+
+<p>代码中黄色部分是对Email数据类型的描述。它的数据类型是邮件地址EmailAddress。在View中写下如下代码：</p>
+
+<pre><code>@Html.DisplayFor(m =&gt; m.Email)
+@Html.EditorFor(m =&gt; m.Email)
+</code></pre>
+
+<p>DisplayFor和EditorFor都将Model的Email属性作为自己的参数。运行结果如下：
+<img src="https://SLTaurus.github.io/images/MVC/htmlhelper2.png" alt="htmlhelper2" /></p>
+
+<p>对应的代码如下：</p>
+
+<pre><code>&lt;a href=&quot;mailto:xxx@163.com&quot;&gt;xxx@163.com&lt;/a&gt;
+&lt;input class=&quot;text-box single-line&quot; id=&quot;Email&quot; name=&quot;Email&quot; type=&quot;email&quot; value=&quot;xxx@163.com&quot; /&gt;
+</code></pre>
+
+<p>从结果中可以看到由于数据类型是EmailAddress,其在显示数据时就生成了一个发送邮件的超链接。在编辑数据时就生成了一个email专用的输入框<code>&lt;input type=&quot;email&quot;&gt;</code>。</p>
+
+<h2 id="思考题">思考题</h2>
+
+<p>学而不思则罔，思而不学则殆。这里出几个思考题供大家检验学习效果。</p>
+
+<ul>
+<li>HtmlHelper生成Form有几种方法？分别怎么写？</li>
+<li>如何自定义一个能生成<code>&lt;img&gt;</code>元素的HtmlHelper函数。</li>
+<li>LableFor、DisplayFor、EditorFor函数用法有什么异同？</li>
+</ul>
+
+<h1 id="配置">配置</h1>
+
+<p>VS Browser Link废代码去除的配置，在webconfig中做如下修改：</p>
+
+<pre><code>&lt;appSettings&gt;
+    &lt;!--打开web.config添加如下代码，再去浏览器查看源代码，可以看到纯净的html了--&gt;
+    &lt;add key=&quot;vs:EnableBrowserLink&quot; value=&quot;false&quot; /&gt;
+&lt;/appSettings&gt;
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/mvc/">MVC</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/10/mvc%E6%95%B4%E7%90%86/" class="leancloud_visitors" data-flag-title="MVC整理">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" data-tooltip="SqlService笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/ado.net/" data-tooltip="ADO.NET">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" data-tooltip="SqlService笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/ado.net/" data-tooltip="ADO.NET">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/10/mvc%E6%95%B4%E7%90%86/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc%25E6%2595%25B4%25E7%2590%2586%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc%25E6%2595%25B4%25E7%2590%2586%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F10%2Fmvc%25E6%2595%25B4%25E7%2590%2586%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/10\/mvc%E6%95%B4%E7%90%86\/';
+          
+            this.page.identifier = '\/2019\/10\/mvc%E6%95%B4%E7%90%86\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
