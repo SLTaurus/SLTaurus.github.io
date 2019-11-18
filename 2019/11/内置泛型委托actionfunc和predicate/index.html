@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="委托, C#, .NET, 个人博客">
+<meta name="description" content="通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。">
+
+
+<meta property="og:description" content="通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内置泛型委托：Action、Func和Predicate">
+<meta name="twitter:title" content="内置泛型委托：Action、Func和Predicate">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。">
+<meta name="twitter:description" content="通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-11-14T15:28:26">
+  
+  
+    <meta property="article:modified_time" content="2019-11-14T15:28:26">
+  
+  
+  
+    
+      <meta property="article:section" content="委托">
+    
+      <meta property="article:section" content="Action">
+    
+      <meta property="article:section" content="Func">
+    
+      <meta property="article:section" content="Predicate">
+    
+  
+  
+    
+      <meta property="article:tag" content="委托">
+    
+      <meta property="article:tag" content="Action">
+    
+      <meta property="article:tag" content="Func">
+    
+      <meta property="article:tag" content="Predicate">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>内置泛型委托：Action、Func和Predicate</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      内置泛型委托：Action、Func和Predicate
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-11-14T15:28:26&#43;08:00">
+        
+  十一月 14, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/%e5%a7%94%e6%89%98">委托</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/action">Action</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/func">Func</a>, 
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/predicate">Predicate</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a>
+<ul>
+<li><a href="#action与func">Action与Func</a></li>
+<li><a href="#predicate-泛型委托">Predicate 泛型委托</a></li>
+</ul></li>
+<li><a href="#定义">定义</a>
+<ul>
+<li><a href="#system-action-无返回值">System.Action 无返回值</a></li>
+<li><a href="#system-func-有返回值">System.Func 有返回值</a></li>
+<li><a href="#predicate-t">Predicate<T>：</a></li>
+</ul></li>
+<li><a href="#示例">示例</a>
+<ul>
+<li><a href="#action">Action</a>
+<ul>
+<li><a href="#例子1-action">例子1：Action:</a></li>
+<li><a href="#例子2-action-t">例子2：Action<T>：</a></li>
+<li><a href="#例子3-action-t1-t2">例子3：Action<T1,T2></a></li>
+</ul></li>
+<li><a href="#func">Func</a>
+<ul>
+<li><a href="#例子1-func-tresult">例子1：Func<TResult >：</a></li>
+<li><a href="#例子2-func-t-tresult">例子2： Func<T,TResult></a></li>
+<li><a href="#例子3-func委托使用lambda表达式">例子3：Func委托使用lambda表达式：</a></li>
+</ul></li>
+<li><a href="#predicate">Predicate</a></li>
+</ul></li>
+<li><a href="#总结">总结：</a></li>
+</ul>
+</nav>
+
+<h1 id="概述">概述</h1>
+
+<h2 id="action与func">Action与Func</h2>
+
+<p>Action与Func是.NET类库中增加的内置委托，以便更加简洁方便的使用委托。最初使用委托时，均需要先定义委托类型，然后定义一个符合委托类型签名的函数，在调用前，需声明并创建委托对象，将指定函数与委托进行关联。代码如下：</p>
+
+<pre><code>public delegate int Math(int param1,int param2);定义委托类型
+Public int Add(int param1,int param2)//定义同签名函数
+{
+    Return param1+param2;
+}
+Math math;//声明委托
+math=new Math(Add);创建委托对象，与指定进行关联
+math(3,4);//调用委托函数
+</code></pre>
+
+<p>如果需要三个、四个参数的委托类型，则需要再次定义委托类型。简单的委托调用，却需要根据签名不断改变多次定义委托类型，而在3.5里面微软新推出了对此进行简化的内置委托类型：Action和Func，简化了这些不必要的操作。</p>
+
+<p>内置委托类型，顾名思义Action和Func本身就是已经定义好的委托类型。两种委托类型的区别在于：Action委托签名不提供返回类型，而Func提供返回类型。</p>
+
+<p>Action委托具有Action<T>、Action<T1,T2>、Action<T1,T2,T3>……Action<T1,……T16>多达16个的重载，其中传入参数均采用泛型中的类型参数T，涵盖了几乎所有可能存在的无返回值的委托类型。Func则具有Func<TResult>、Func<T,Tresult>……</p>
+
+<p>Func<T1,T2,T3……,Tresult>17种类型重载，T1……T16为出入参数，Tresult为返回类型。</p>
+
+<h2 id="predicate-泛型委托">Predicate 泛型委托</h2>
+
+<p>表示定义一组条件并确定指定对象是否符合这些条件的方法。此委托由 Array 和 List 类的几种方法使用，用于在集合中搜索元素。</p>
+
+<pre><code>public delegate bool Predicate&lt;T&gt;(T obj);
+</code></pre>
+
+<p>类型参数介绍：
+   T： 要比较的对象的类型。
+   obj： 要按照由此委托表示的方法中定义的条件进行比较的对象。
+   返回值：如果 obj 符合由此委托表示的方法中定义的条件，则为 true；否则为 false。
+看下面代码：</p>
+
+<pre><code>static void Main(string[] args)
+{
+    List&lt;string&gt; list = new List&lt;string&gt;() { &quot;Mike&quot;, &quot;Rose&quot;, &quot;Steve&quot; };
+    var mike = list.Find(new Predicate&lt;string&gt;(HaveLengthFive));
+    Console.WriteLine(mike);
+    Console.ReadLine();
+}
+static bool HaveLengthFive(string value)
+{
+    return value.Length == 5;
+}
+</code></pre>
+
+<h1 id="定义">定义</h1>
+
+<h2 id="system-action-无返回值">System.Action 无返回值</h2>
+
+<p>Action:</p>
+
+<pre><code>public delegate void Action ();
+</code></pre>
+
+<p>Action<T>:</p>
+
+<pre><code>public delegate void Action&lt;T&gt; (T obj);
+</code></pre>
+
+<p>Action<T1, T2>：</p>
+
+<pre><code>public delegate void Action&lt; T1, T2 &gt; (T1 arg1, T2 arg2);
+delegate void Action&lt;T1,T2,T3,T4&gt;T1 arg1, T2 arg2, T3 arg3, T4 arg4);
+</code></pre>
+
+<h2 id="system-func-有返回值">System.Func 有返回值</h2>
+
+<p>Func<TResult>:</p>
+
+<pre><code>public delegate TResult Func&lt;TResult&gt; ();
+</code></pre>
+
+<p>Func<T,TResult>:</p>
+
+<pre><code>public delegate TResult Func&lt; T, TResult &gt; (T arg);
+</code></pre>
+
+<p>Func&lt; T1,T2,TResult &gt;</p>
+
+<pre><code>public delegate TResult Func&lt; T1, T2, TResult &gt; (T1 arg1, T2 arg2);
+delegate TResult Func&lt;T1,T2,T3,T4,TResult&gt;T1 arg1, T2 arg2, T3 arg3, T4 arg4);
+</code></pre>
+
+<h2 id="predicate-t">Predicate<T>：</h2>
+
+<pre><code>public delegate bool Predicate&lt;T&gt;(T obj);
+</code></pre>
+
+<h1 id="示例">示例</h1>
+
+<h2 id="action">Action</h2>
+
+<h3 id="例子1-action">例子1：Action:</h3>
+
+<pre><code>using UnityEngine;
+using System.Collections;
+using System;
+public class ActionTest : MonoBehaviour {
+    void Start () {
+        Action action = XXX;
+        action();
+    }
+    void XXX()
+    {
+        Debug.Log(&quot;100&quot;);
+    }
+}
+</code></pre>
+
+<h3 id="例子2-action-t">例子2：Action<T>：</h3>
+
+<pre><code>using UnityEngine;
+using System.Collections;
+using System;
+public class ActionTest : MonoBehaviour {
+    void Start () {
+        Action&lt;string&gt; action = XXX;
+        action(&quot;unity C#&quot;);
+    }
+    void XXX(string name)
+    {
+        Debug.Log(name);
+    }
+}
+</code></pre>
+
+<h3 id="例子3-action-t1-t2">例子3：Action<T1,T2></h3>
+
+<pre><code>using UnityEngine;
+using System.Collections;
+using System;
+public class ActionTest : MonoBehaviour {
+    void Start () {
+        Action&lt;string,int&gt; action = XXX;
+        action(&quot;unity C#&quot;,100);
+    }
+    void XXX(string name,int score)
+    {
+        Debug.Log(string.Format(&quot;{0}  {1}&quot;,name,score);
+    }
+}
+#region Action的用法
+///Action&lt;T&gt;的用法
+///这里的T为代理函数的传入类型,无返回值
+Action&lt;string[]&gt; action = delegate(string[] x)
+{
+    var result = from p in x
+                where p.Contains(&quot;s&quot;)
+                select p;
+    foreach (string s in result.ToList())
+    {
+        Console.WriteLine(s);
+    }
+};
+string[] str={ &quot;charlies&quot;,&quot;nancy&quot;,&quot;alex&quot;,&quot;jimmy&quot;,&quot;selina&quot;};
+action(str);
+Console.ReadKey();
+#endregion
+</code></pre>
+
+<p>上面的例子是通过传入的String类型的数组，找出其中包含有字符s的项，然后输出到控制台。</p>
+
+<h2 id="func">Func</h2>
+
+<h3 id="例子1-func-tresult">例子1：Func<TResult >：</h3>
+
+<pre><code>using UnityEngine;
+using System.Collections;
+using System;
+public class FuncTest : MonoBehaviour {
+    void Start () {
+        Func&lt; int &gt; func= XXX;
+    Debug.Log( func() );
+    }
+    int XXX()
+    {
+        return 10;
+    }
+}
+</code></pre>
+
+<h3 id="例子2-func-t-tresult">例子2： Func<T,TResult></h3>
+
+<pre><code>using UnityEngine;
+using System;
+
+public Class FuncTest:MonoBehaviour{
+void Start(){
+    Func&lt;string ,int&gt; func= CallStringLength;
+    }
+
+    int CallStringLength(string str){
+        return str.Lenth;
+    }
+
+}
+
+Func&lt;string&gt; func=delegate(){
+    return &quot;我是Func&lt;TResult&gt;委托返回的结果&quot;;
+}
+</code></pre>
+
+<h3 id="例子3-func委托使用lambda表达式">例子3：Func委托使用lambda表达式：</h3>
+
+<p>示例代码如下：</p>
+
+<pre><code>public static void Main()
+{
+    Func&lt;string, string&gt; translation = x =&gt; x.ToUpper();
+    string name = &quot;make&quot;;
+    Console.WriteLine(translation(name));
+}
+</code></pre>
+
+<p>多个参数的：</p>
+
+<pre><code>public static void Main()
+{
+    Func&lt;int,int,string&gt;func=(x,y)=&gt;(x*y).Tostring();
+    Console.WriteLine(fun(5,20));
+}
+</code></pre>
+
+<h2 id="predicate">Predicate</h2>
+
+<p>例子1：Predicate只能接受一个传入参数，返回值为bool类型</p>
+
+<pre><code>#region Predicate
+///bool Predicate&lt;T&gt;的用法
+///输入一个T类型的参数,返回值为bool类型
+Predicate&lt;string[]&gt; predicate = delegate(string[] x)
+{
+    var result = from p in x
+                where p.Contains(&quot;s&quot;)
+                select p;
+    if (result.ToList().Count &gt; 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+};
+string[] _value = { &quot;charlies&quot;, &quot;nancy&quot;, &quot;alex&quot;, &quot;jimmy&quot;, &quot;selina&quot; };
+if (predicate(_value))
+{
+    Console.WriteLine(&quot;They contain.&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;They don't contain.&quot;);
+}
+Console.ReadKey();
+#endregion
+</code></pre>
+
+<p>上面的代码其实也是判断String数组中有没有包含s的项，有的话就在控制台打印出  They contain.没有的话就打印出They don&rsquo;t contain</p>
+
+<p>例子2：Predicate可以用在Find等linq中：</p>
+
+<pre><code>static void Main(string[] args)
+{
+    List&lt;string&gt; list = new List&lt;string&gt;() { &quot;Mike&quot;, &quot;Rose&quot;, &quot;Steve&quot; };
+    var mike = list.Find(new Predicate&lt;string&gt;(HaveLengthFive));
+    Console.WriteLine(mike);
+    Console.ReadLine();
+}
+static bool HaveLengthFive(string value)
+{
+    return value.Length == 5;
+}
+</code></pre>
+
+<p>例子3：延伸，除了上面提到的外，你完全可以使用Predicate 定义新的方法，来加强自己代码。</p>
+
+<pre><code>public class GenericDelegateDemo
+{
+    List&lt;String&gt; listString = new List&lt;String&gt;()
+    {
+        &quot;One&quot;,&quot;Two&quot;,&quot;Three&quot;,&quot;Four&quot;,&quot;Fice&quot;,&quot;Six&quot;,&quot;Seven&quot;,&quot;Eight&quot;,&quot;Nine&quot;,&quot;Ten&quot;
+    };
+
+    public String GetStringList(Predicate&lt;String&gt; p)
+    {
+        foreach(string item in listString)
+        {
+            if (p(item))
+                return item;
+        }
+        return null;
+    }
+
+    public bool ExistString()
+    {
+        string str = GetStringList((c) =&gt; { return c.Length &lt;= 3 &amp;&amp; c.Contains('S'); });
+        if (str == null)
+            return false;
+        else
+            return true;
+    }
+}
+</code></pre>
+
+<h1 id="总结">总结：</h1>
+
+<ul>
+<li>Action：无参数无返回值委托。</li>
+<li>Action<T>：泛型委托，无返回值，根据输入参数的个数不同有十六个重载。</li>
+<li>Func&lt; out T&gt;：无输入参数，有返回值。</li>
+<li>Func<in T,out T>：有输入参数，有返回值，根据输入参数个数不同，有十六个重载。</li>
+<li>Func<in T1，in T2,in T3,out T>：可以有多个参数</li>
+<li>Action和Func中可以使用Lambda和匿名方法处理方法体内逻辑。</li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/%E5%A7%94%E6%89%98/">委托</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/action/">Action</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/func/">Func</a>
+
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/predicate/">Predicate</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" class="leancloud_visitors" data-flag-title="内置泛型委托：Action、Func和Predicate">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/entityframework/" data-tooltip="EntityFramework">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/10/entityframework/" data-tooltip="EntityFramework">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F11%2F%25E5%2586%2585%25E7%25BD%25AE%25E6%25B3%259B%25E5%259E%258B%25E5%25A7%2594%25E6%2589%2598actionfunc%25E5%2592%258Cpredicate%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F11%2F%25E5%2586%2585%25E7%25BD%25AE%25E6%25B3%259B%25E5%259E%258B%25E5%25A7%2594%25E6%2589%2598actionfunc%25E5%2592%258Cpredicate%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F11%2F%25E5%2586%2585%25E7%25BD%25AE%25E6%25B3%259B%25E5%259E%258B%25E5%25A7%2594%25E6%2589%2598actionfunc%25E5%2592%258Cpredicate%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/11\/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate\/';
+          
+            this.page.identifier = '\/2019\/11\/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

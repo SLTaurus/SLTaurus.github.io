@@ -268,7 +268,15 @@
 <li><a href="#ef数据查询">EF数据查询</a></li>
 <li><a href="#ef数据更新">EF数据更新</a></li>
 <li><a href="#ef数据添加-删除">EF数据添加/删除</a></li>
+<li><a href="#使用原生sql">使用原生SQL</a>
+<ul>
+<li><a href="#编写实体sql查询">编写实体SQL查询</a></li>
+<li><a href="#从存储过程加载实体">从存储过程加载实体</a></li>
+<li><a href="#为非实体类型编写-sql-查询">为非实体类型编写 SQL 查询</a></li>
+<li><a href="#将原始命令发送到数据库">将原始命令发送到数据库</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#model中常用attribute">Model中常用Attribute</a></li>
 <li><a href="#与htmlhelper搭配使用强类型显示数据展示">与HtmlHelper搭配使用强类型显示数据展示</a></li>
 </ul></li>
 <li><a href="#整体规则">整体规则</a>
@@ -311,6 +319,14 @@
 <li><a href="#思考题">思考题</a></li>
 </ul></li>
 <li><a href="#配置">配置</a></li>
+<li><a href="#cookies的简单读写操作">Cookies的简单读写操作</a></li>
+<li><a href="#分部视图">分部视图</a>
+<ul>
+<li><a href="#通过html-partial-html-renderpartial-使用">通过Html.Partial / Html.RenderPartial 使用</a></li>
+<li><a href="#通过html-action-html-renderaction-使用">通过Html.Action / Html.RenderAction 使用</a></li>
+<li><a href="#两种使用方式小结">两种使用方式小结</a></li>
+</ul></li>
+<li><a href="#分页功能-使用pagedlist-mvc">分页功能(使用PagedList.MVC)</a></li>
 </ul>
 </nav>
 
@@ -474,6 +490,167 @@ public ActionResult EFAddOrDeleteDemo()
 }
 </code></pre>
 
+<h3 id="使用原生sql">使用原生SQL</h3>
+
+<blockquote>
+<p><a href="https://docs.microsoft.com/zh-cn/ef/ef6/querying/raw-sql?redirectedfrom=MSDN">MSDN 原生 SQL 查询</a></p>
+</blockquote>
+
+<p>使用EF的一个优点就是自动帮我们生成SQL，这在常规情况下很方便，但有些情况下用EF却不适合。例如我们上面更新张表时，每次增减一条数据，要循环很多次。另外还有些特别复杂的语句，利用EF很难生成。EF提供一组方法用来执行原生的SQL。有以下三种:</p>
+
+<ul>
+<li>DbSet.SqlQuery</li>
+<li>Database.SqlQuery</li>
+<li>Database.ExecuteSqlCommand</li>
+</ul>
+
+<h4 id="编写实体sql查询">编写实体SQL查询</h4>
+
+<p>DbSet的SqlQuery方法允许原始SQL查询，将返回实体实例写入。 返回的对象将由上下文跟踪，就像它们是如果它们未返回 LINQ 查询。</p>
+
+<p>原代码如下：</p>
+
+<pre><code>using (AccountContext db = new AccountContext())
+{
+    SysUser sysUser = db.SysUser.Find(id);
+}
+</code></pre>
+
+<p>使用DbSet.SqlQuery的代码如下：</p>
+
+<pre><code>string query = &quot;SELECT * FROM SysUser AS su WHERE su.ID = @Id&quot;;
+SqlParameter[] paras = new SqlParameter[] {
+    new SqlParameter(&quot;@Id&quot;,id)
+};
+using (AccountContext db = new AccountContext())
+{
+    SysUser sysUser = db.SysUser.SqlQuery(query, paras).SingleOrDefault();
+}
+</code></pre>
+
+<p>请注意，就像 LINQ 查询，不执行查询之前枚举结果-这在上面的示例通过调用SingleOrDefault。</p>
+
+<p>每当有原始SQL查询写入以下两个原因，应格外小心。首先，应编写查询以确保它仅返回所请求类型的新技术确实的实体。 例如，使用功能，例如继承时很容易编写查询将创建的错误的CLR 类型的实体。</p>
+
+<p>第二，某些类型的原始SQL查询公开潜在的安全风险，尤其是在方面 SQL 注入式攻击。请确保正确的方式来防止此类攻击的参数在查询中使用。</p>
+
+<p><strong>这种方法也有一些缺陷，比如用了<code>[Column()]</code>的话，需要在sql中使用as来为字段命名，不转换的话，model就会找不到匹配的字段而出错，而使用db.SysUser.Find(id)的话就可以根据字段特性来智能转换。</strong></p>
+
+<h4 id="从存储过程加载实体">从存储过程加载实体</h4>
+
+<p>DbSet.SqlQuery 可用于从存储过程的结果加载实体。 例如，以下代码调用 dbo。GetBlogs 数据库中的过程：</p>
+
+<pre><code>using (var context = new BloggingContext())
+{
+    var blogs = context.Blogs.SqlQuery(&quot;dbo.GetBlogs&quot;).ToList();
+}
+</code></pre>
+
+<p>此外可以将参数传递到存储过程，请使用以下语法：</p>
+
+<pre><code>using (var context = new BloggingContext())
+{
+    var blogId = 1;
+    var blogs = context.Blogs.SqlQuery(&quot;dbo.GetBlogById @p0&quot;, blogId).Single();
+}
+</code></pre>
+
+<h4 id="为非实体类型编写-sql-查询">为非实体类型编写 SQL 查询</h4>
+
+<p>可以使用数据库类中的 SqlQuery 方法创建返回任意类型，包括基元类型的实例的 SQL 查询。 例如：</p>
+
+<pre><code>using (AccountContext db = new AccountContext())
+{
+    string query = &quot;select loginName from SysUser&quot;;
+    var names=db.Database.SqlQuery&lt;string&gt;( query).ToList();
+}
+</code></pre>
+
+<p>以上会返回一个System.Collections.Generic.List<string>类型。我们也可以自定义一个entity type让它返回，例如类似我们上一个例子：</p>
+
+<pre><code>SysUser sysUser = db. Database.SqlQuery(query, paras).SingleOrDefault();
+</code></pre>
+
+<p>这样也可以返回entity, 但要注意，这种方式将不会被context track, 返回后就没关系了，如果我们在View中用类似于Model.XXX导航属性获取其他关联数据就会报错。例如@foreach (var item in Model.SysUserRoles)，这种情况下会报Model为null的错误。</p>
+
+<h4 id="将原始命令发送到数据库">将原始命令发送到数据库</h4>
+
+<p>可以在数据库上使用 ExecuteSqlCommand 方法向数据库发送非查询命令。 例如：</p>
+
+<pre><code>using (var context = new AccountContext())
+{
+    context.Database.ExecuteSqlCommand(
+    &quot;UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author&quot;, 
+    new SqlParameter(&quot;@author&quot;, userSuppliedAuthor));
+}
+</code></pre>
+
+<p>请注意使用ExecuteSqlCommand在数据库中的数据所做的任何更改都不会影响到上下文，直到加载或从数据库重新加载实体。</p>
+
+<h2 id="model中常用attribute">Model中常用Attribute</h2>
+
+<p>首先添加引用：</p>
+
+<pre><code>    using System.ComponentModel.DataAnnotations;
+</code></pre>
+
+<p><strong>DataType，DisplayFormate：</strong></p>
+
+<p>DataType属性用来指定更加具体的数据类型，DataType枚举值提供了一些常见的类型，比如Date,Time,EmailAddress等。但是DataType不能指定数据类型的显示格式，例如日期要什么格式显示。默认情况下显示格式会根据电脑的设定显示。这个时候就需要配合使用DisplayFormate属性来指定格式。Model中属性修改如下：</p>
+
+<pre><code>[DataType(DataType.Date)]
+[DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;,ApplyFormatInEditMode =true)]
+public System.DateTime CreateDate { get; set; }
+</code></pre>
+
+<p><strong>StringLength：</strong></p>
+
+<p>你可以指定数据验证规则以及出错信息。StringLength属性设置了数据库中存储字段的最大长度，为程序提供客户端和服务器端的验证。同样用这个属性也可以指定最小长度，不过不影响数据库的结构。Model中属性修改如下：</p>
+
+<pre><code>[StringLength(10,ErrorMessage =&quot;用户名不能超过10个字!&quot;)]
+public string LoginName { get; set; }
+</code></pre>
+
+<p>我们再修改下Create方法，测试下验证。之前我们的模型太简陋了，为了看到效果，再做两处修改。Views\Account\Create.cshtml增加一个Helper：ValidationMessageFor用来显示验证信息。原代码：</p>
+
+<pre><code>@Html.EditorFor(model =&gt; model.LoginName)
+</code></pre>
+
+<p>修改后代码：</p>
+
+<pre><code>@Html.EditorFor(model =&gt; model.LoginName) @Html.ValidationMessageFor(model =&gt; model.LoginName)
+</code></pre>
+
+<p>相应的控制器方法中增加一个判断条件ModelState.IsValid，不然会出错。</p>
+
+<pre><code>if (ModelState.IsValid)
+{
+    sysUser.CreateDate = DateTime.Now;
+    db.SysUser.Add(sysUser);
+    db.SaveChanges();
+    return RedirectToAction(&quot;Index&quot;);
+}
+</code></pre>
+
+<p><strong>Column：</strong>
+有时会有这么一种情况，我们Model中的字段和数据库中表的字段要用不同的命名。例如我们Model中命名为UserName，数据库表中命名为LoginName.这个时候就用到Column了。</p>
+
+<pre><code>[Column(&quot;UserName&quot;)]
+public string LoginName { get; set; }
+</code></pre>
+
+<p><strong>Display：</strong></p>
+
+<p>例子：</p>
+
+<pre><code>Display(Name=&quot;用户名&quot;)]
+</code></pre>
+
+<p><strong>多个特性可以用逗号分隔，写在一行里面。例如：</strong></p>
+
+<pre><code>[Column(&quot;FirstName&quot;),Display(Name = &quot;First Name&quot;),StringLength(50, MinimumLength=1)] 
+</code></pre>
+
 <h2 id="与htmlhelper搭配使用强类型显示数据展示">与HtmlHelper搭配使用强类型显示数据展示</h2>
 
 <p>展示用户信息：</p>
@@ -569,6 +746,10 @@ public ActionResult EFAddOrDeleteDemo()
 <p>控制器必须以Controller结尾（这是ASP.NET MVC的一个约定）,同一个控制器的页面，都必须在控制器名称去除Controller的文件夹下，每个cshtml都对应控制器Controller里面的每个方法。如图所示：</p>
 
 <p><img src="https://SLTaurus.github.io/images/MVC/Controller.jpg" alt="Controller" /></p>
+
+<p>代码封装在@{&hellip;}中,变量和函数以@开头,语句以分号结尾。</p>
+
+<p>如果不涉及更新数据操作，BeginForm建议用get方式。</p>
 
 <h2 id="添加action">添加Action</h2>
 
@@ -1300,6 +1481,153 @@ namespace SlarkInc.Models
     &lt;!--打开web.config添加如下代码，再去浏览器查看源代码，可以看到纯净的html了--&gt;
     &lt;add key=&quot;vs:EnableBrowserLink&quot; value=&quot;false&quot; /&gt;
 &lt;/appSettings&gt;
+</code></pre>
+
+<h1 id="cookies的简单读写操作">Cookies的简单读写操作</h1>
+
+<p>代码如下：</p>
+
+<pre><code>[HttpPost]
+public ActionResult Login()
+{
+    //写入cookies方式1
+    HttpCookie cookie = new HttpCookie(&quot;tempToken&quot;);
+    cookie.Value = &quot;123456&quot;;
+    cookie.Expires = DateTime.Now.AddDays(7);
+    Response.Cookies.Add(cookie);
+
+    //写入cookies方式2
+    Response.Cookies[&quot;tempToken&quot;].Value = &quot;123456&quot;;
+    Response.Cookies[&quot;tempToken&quot;].Expires = DateTime.Now.AddDays(7);
+    return Json(new { message=&quot;cookie设置成功&quot;});
+}
+
+[HttpPost]
+public ActionResult GainCookie()
+{
+    //读取cookies
+    string cook=&quot;&quot;;
+    if (Request.Cookies[&quot;tempToken&quot;]!=null)
+    {
+        cook = Request.Cookies[&quot;tempToken&quot;].Value;
+    }
+    return Json(new { message=cook});
+}
+
+[HttpPost]
+public ActionResult ClearCookie()
+{
+    //清除cookies
+    Response.Cookies[&quot;tempToken&quot;].Expires = DateTime.Now.AddDays(-1);
+    return Json(new { message=&quot;清除成功&quot;});
+}
+</code></pre>
+
+<h1 id="分部视图">分部视图</h1>
+
+<p>Partial View指可以应用于View中以作为其中一部分的View的片段(类似于之前的user control), 可以像类一样，编写一次， 然后在其他View中被反复使用。</p>
+
+<p>一般放在&rdquo;Views/Shared&rdquo;文件夹中以共享。创建Partial View：一般直接右键&rdquo;Views/Shared&rdquo;文件夹添加分部视图。</p>
+
+<p>使用Partial View有两类helper ：</p>
+
+<ul>
+<li>Html.Partial / Html.RenderPartial</li>
+<li>Html.Action / Html.RenderAction</li>
+</ul>
+
+<h2 id="通过html-partial-html-renderpartial-使用">通过Html.Partial / Html.RenderPartial 使用</h2>
+
+<p>直接应用Html.Partial或Html.RenderPartial辅助方法比较简单。打开之前建好的Views/MVCDemo/Index.cshtml文件，添加如下内容：</p>
+
+<pre><code>&lt;h1&gt;通过@@Html.Partial来使用&lt;/h1&gt;
+@Html.Partial(&quot;~/Views/Shared/_PartialPageWidget.cshtml&quot;)
+&lt;h1&gt;通过@@Html.RenderPartial来使用&lt;/h1&gt;
+@{
+    Html.RenderPartial(&quot;~/Views/Shared/_PartialPageWidget.cshtml&quot;);
+}
+</code></pre>
+
+<p>就可以使用&rdquo;Views/Shared&rdquo;文件夹中的_PartialPageWidget.cshtml的view片段。</p>
+
+<h2 id="通过html-action-html-renderaction-使用">通过Html.Action / Html.RenderAction 使用</h2>
+
+<p>通过Html.Action/Html.RenderAction使用稍微复杂一点，分成两步。</p>
+
+<p>第一步：在要显示的View所对应的Controller中心增加一个Action：</p>
+
+<pre><code>[ChildActionOnly]
+public ActionResult ShowWidget()
+{
+    return PartialView(&quot;~/Views/Shared/_PartialPageWidget.cshtml&quot;);
+}
+
+[ChildActionOnly]
+public ActionResult PartialViewDate()
+{
+    ViewBag.DateTime = DateTime.Now.AddMinutes(10);
+    return PartialView(&quot;_PartialPageDateTime&quot;);
+}
+</code></pre>
+
+<p>[ChildActionOnly]表示这个Action只应作为子操作进行调用。也就是说直接通过controller/action这样的网址是不能访问的，会提示只能由子请求访问的错误。必须返回一个PartialView。</p>
+
+<p>在View中添加相关代码：</p>
+
+<pre><code>&lt;h1&gt;通过@@Html.Action来使用&lt;/h1&gt;
+@Html.Action(&quot;ShowWidget&quot;)
+&lt;h1&gt;通过@@Html.RenderAction来使用&lt;/h1&gt;
+@{
+    Html.RenderAction(&quot;ShowWidget&quot;);
+}
+</code></pre>
+
+<h2 id="两种使用方式小结">两种使用方式小结</h2>
+
+<p>当View中引用了一个或多个分部视图时，此View与各分部视图默认得到一样的数据，也就是说View及其中所有的Partial View默认情况下共享View中的ViewData和ViewBag。</p>
+
+<p>需要使View和其中引入的Partial View有不同的数据，需要通过Html.Action/Html.RenderAction辅助方法， 并在对于被调用的Action中设置对应的数据。</p>
+
+<p>另外还有几点需要注意：</p>
+
+<ul>
+<li>
+XXX和RenderXXX的区别在于，一个是直接返回字符串，另外一个是直接写入到相应输出流，因此不能直接放在代码表达式中，必须放在代码块中。前面的示例中两种写法是等价的。RenderXXX有轻微的性能优势，在大量的RenderXXX运行时，才能反映出性能上的优势。</li>
+<li>Partial/RenderPartial通常在单独的文件夹中应用视图标记来帮助View渲染视图模型的一部分。Action/RenderAction执行单独Controller中的Action来显示结果，提供了更多的灵活性，例如利用单独的Controller传递不同值。</li>
+<li>Partial/RenderPartial和Action/RenderAction的参数分别是 partialView和 Action的名字。当然还有其他的重载函数，我们只说最常用的。应用时可以按照前面举的例子。</li>
+<li>Html.Partial使用方便，在不需要改变数据内容时非常方便。Html.Action 使用更加灵活，可以根据业务要求按需定制Partial View显示内容。</li>
+</ul>
+
+<h1 id="分页功能-使用pagedlist-mvc">分页功能(使用PagedList.MVC)</h1>
+
+<p>安装PagedList.MVC，打开Package Manager Console，确保Package source是nuget.org, 输入</p>
+
+<pre><code>install-package PagedList.mvc
+</code></pre>
+
+<p>AccountController.cs中先添加声明：</p>
+
+<pre><code>using PagedList;
+</code></pre>
+
+<p>Control中的代码增加：</p>
+
+<pre><code>int pageSize = 3;
+int pageNumber = (page ?? 1);
+return View(users.ToPagedList(pageNumber,pageSize));
+</code></pre>
+
+<p>在View中增加分页的显示和功能链接，顶部的@model声明指定view获得一个PagedList对象。（原来是List对象，见注释部分）增加@using PagedList.Mvc , 获得相关分页的helper。</p>
+
+<pre><code>@using PagedList;
+@model PagedList.IPagedList&lt;MvcDemo.Models.SysUser&gt;
+@using PagedList.Mvc;
+</code></pre>
+
+<p>最后再加上类似 Page x of x格式的当前页数和总共数量。如果没有页面显示，则显示 Page 0 of 0。这种情况下，page number&gt;page count.根据Index方法可以得知PageNumber是1，Model.PageCount是0。分页按钮通过PagedListPager helper来显示。</p>
+
+<pre><code>页码 @(Model.PageCount &lt; Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Page =&gt; Url.Action(&quot;Index&quot;, new { Page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.currentFilter }))
 </code></pre>
               
             </div>

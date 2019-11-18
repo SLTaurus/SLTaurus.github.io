@@ -6,10 +6,46 @@
     <description>Recent content in Categories on 轲的大风歌</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Oct 2019 08:25:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Nov 2019 15:28:26 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Action</title>
+      <link>https://SLTaurus.github.io/categories/action/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/action/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Func</title>
+      <link>https://SLTaurus.github.io/categories/func/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/func/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Predicate</title>
+      <link>https://SLTaurus.github.io/categories/predicate/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/predicate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>委托</title>
+      <link>https://SLTaurus.github.io/categories/%E5%A7%94%E6%89%98/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/categories/%E5%A7%94%E6%89%98/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>EF</title>
