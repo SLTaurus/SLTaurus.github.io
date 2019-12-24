@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="ORM, C#, .NET, 个人博客">
+<meta name="description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+">
+
+
+<meta property="og:description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比">
+<meta name="twitter:title" content="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+">
+<meta name="twitter:description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-12-13T11:00:17">
+  
+  
+    <meta property="article:modified_time" content="2019-12-13T11:00:17">
+  
+  
+  
+    
+      <meta property="article:section" content="ORM框架">
+    
+  
+  
+    
+      <meta property="article:tag" content="ORM">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/ORMPic/ORMPic.png">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/ORMPic/ORMPic.png">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">ORM框架的对比</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-13T11:00:17&#43;08:00">
+        
+  十二月 13, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/orm%e6%a1%86%e6%9e%b6">ORM框架</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>原文地址：<a href="https://blog.csdn.net/qq_40600379/article/details/101680870">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比</a></p>
+</blockquote>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#什么是orm">什么是ORM？</a></li>
+<li><a href="#orm框架的优缺点">ORM框架的优缺点</a></li>
+<li><a href="#四种框架的基本信息对比如下表">四种框架的基本信息对比如下表</a></li>
+<li><a href="#四种框架的耗时情况">四种框架的耗时情况</a></li>
+<li><a href="#四种框架都支持哪些功能">四种框架都支持哪些功能？</a></li>
+<li><a href="#就个人使用而言-比较推荐哪个框架">就个人使用而言，比较推荐哪个框架?</a></li>
+<li><a href="#sqlsugar的简单使用">SqlSugar的简单使用</a>
+<ul>
+<li><a href="#简单的实例">简单的实例</a></li>
+</ul></li>
+<li><a href="#chloe的简单使用">Chloe的简单使用</a></li>
+</ul>
+</nav>
+
+<h1 id="什么是orm">什么是ORM？</h1>
+
+<p>答：ORM(Object-relational mapping)即对象关系映射，是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。也就是说，ORM是通过使用描述对象和数据库之间映射的元数据（映射文件信息），将程序中的对象自动持久化到关系数据库中。说白了就是将相应的实体映射到相应的数据库表，然后使用orm框架封装好的api进行数据库访问，减少了自己写数据库访问类的步骤。</p>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/ORMPic.png" alt="ORMPic" /></p>
+
+<h1 id="orm框架的优缺点">ORM框架的优缺点</h1>
+
+<p>ORM框架的优点：</p>
+
+<ul>
+<li>操作简单，提高开发效率。</li>
+<li>支持面向对象封装。</li>
+<li>可移植。</li>
+<li>减少重复性代码</li>
+</ul>
+
+<p>ORM框架的缺点：</p>
+
+<ul>
+<li>处理多表联查之类的查询时，ORM的语法会变得很复杂。</li>
+<li>执行性能较低（但现在有一些轻型ORM框架，性能接近原生SQL）。</li>
+</ul>
+
+<h1 id="四种框架的基本信息对比如下表">四种框架的基本信息对比如下表</h1>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/ORMCompare.jpg" alt="ORMCompare" /></p>
+
+<h1 id="四种框架的耗时情况">四种框架的耗时情况</h1>
+
+<p>如下表格，展示的是四种ORM框架Crud的性能，其中，（1）增查删改都是循环5次，每次增删改1万条数据，查询是每次查询10万条数据，取5次的平均值；（2）批量增删改都是循环5次，每次增删改10万条数据，取5次平均值：</p>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/ORMTime.jpg" alt="ORMTime" /></p>
+
+<p>由上表可知，各种框架CRUD的性能如下（由快到慢）：</p>
+
+<p>（1）循环CRUD操作的性能如下：</p>
+
+<ul>
+<li>新增：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>删除：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>修改：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>查询：SqlSugar&gt;DOS.ORM&gt;EF&gt;Chloe</li>
+</ul>
+
+<p>综上可知：SqlSugar框架的CRUD性能是最高的，其中EF除了查询比较快之外，删改所花费的时间都是其他三种框架的4~5倍，而新增就是20倍左右！</p>
+
+<p>（2）循环批量CRUD的性能如下：</p>
+
+<ul>
+<li>批量新增：Chloe&gt;SqlSugar&gt;DOS.ORM&gt;EF</li>
+<li>批量修改：Chloe&gt;SqlSugar&gt;EF&gt;DOS.ORM</li>
+<li>批量删除：Chloe&gt;SqlSugar&gt;EF</li>
+</ul>
+
+<blockquote>
+<p>注解：Chloe是有批量新增的方法BulkInsert，故其批量新增操作与其他框架一样。但是，Chloe没有批量修改、删除的方法。DOS.ORM批量删除超过2009条数据时就会报错。综上，只有SqlSugar涵盖的方法比较多，而且速度也较快!</p>
+</blockquote>
+
+<h1 id="四种框架都支持哪些功能">四种框架都支持哪些功能？</h1>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/ORMFuction.jpg" alt="ORMFuction" /></p>
+
+<p>答：四种框架都支持：</p>
+
+<p>基本查询、多表查询、分组查询、批量增删改操作、存储过程、事务、执行SQL、日志等功能。</p>
+
+<h1 id="就个人使用而言-比较推荐哪个框架">就个人使用而言，比较推荐哪个框架?</h1>
+
+<p>答：个人比较推荐SqlSugar，原因如下：</p>
+
+<ul>
+<li>只要下载了SqlSugar包后，就可以直接按照官网的例子进行编码，日志跟踪方面我认为是最简单已用的，且文档写得比较好、可由代码生成数据库，可以快速上手。</li>
+<li>Chloe与SqlSugar差不多，但是由于我觉得SqlSugar日志跟踪方面做得比较好且可以由代码生成数据库，且Chloe对批量操作的支持不是很好，只能批量新增（且没有返回值），不能批量删除、修改，所以我才选择SqlSugar。</li>
+<li>Dos.ORM是这三个框架里面最不好上手，<strong><em>不能</em></strong>直接自己创建类文件，而是需要下载官网推荐的<strong><em>代码生成器</em></strong>去生成相应的类，然后才能进行数据库的访问，否则插入删除等操作都会报错，所以就个人而言，不推荐用这个，认为学习成本比其他两个高。</li>
+<li>EF是重量级ORM框架，上面三种框架有的功能它都有，且有微软这个大厂在背后支撑，百度谷歌可以轻易搜索到大多数问题的解决方法，一开始，只要修改类结构，容易遇到与&rdquo;dbo.Migrationary&rdquo;相关的错误（这是需要了解codefirst数据库迁移方面的知识，可通过这边文章了解<a href="https://blog.csdn.net/xwnxwn/article/details/90171519">https://blog.csdn.net/xwnxwn/article/details/90171519</a>），如果想用的功能不多，且不想框架太大的话，就还是推荐上面三种。</li>
+<li>四种框架中，SqlSugar进行CRUD的性能最高，而EF最慢。</li>
+</ul>
+
+<h1 id="sqlsugar的简单使用">SqlSugar的简单使用</h1>
+
+<p>在nuget中输入Install-Package sqlSugar或nuget管理工具中搜索sqlSugar，下载sqlSugar包。</p>
+
+<h2 id="简单的实例">简单的实例</h2>
+
+<p>相应的实体类：</p>
+
+<pre><code>public class Student
+{
+    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public int Age { get; set; }
+    [SugarColumn(IsNullable = true)]
+    public int? ClassessId { get; set; }
+
+    public override string ToString()
+    {
+        return this.Name + &quot;的id为：&quot; + this.Id + &quot;，年龄为：&quot; + this.Age;
+    }
+}
+
+public class Classess
+{
+    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+
+public class ORMTest
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+</code></pre>
+
+<p>实例代码：</p>
+
+<pre><code>//static string connStr = ConfigurationManager.ConnectionStrings[&quot;connStr&quot;].ConnectionString;
+static string connStr = &quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=SqlSugarTest&quot;;
+static void SqlSugarDemo()
+{
+    var db = GetInstance();
+    #region 使用代码优先的方法创建数据库表
+    //使用Code first的方法，需要使用CreateDatabase方法创建数据库
+    db.DbMaintenance.CreateDatabase();//创建数据库
+    db.CodeFirst.SetStringDefaultLength(200).InitTables(typeof(Student));//根据实体类创建数据库表
+    db.CodeFirst.SetStringDefaultLength(200).InitTables(typeof(Classess));//根据实体类创建数据库表
+    #endregion
+
+    #region 使用数据库优先的方法，根据数据库表生成相应的类文件
+    //注意：使用DbFirst数据库账户要有系统表的权限,否则无法读取表的结构
+    //1.将库里面所有表都生成实体类文件
+    var modelStr = db.DbFirst.ToClassStringList();//根据数据库的表生成类字符串
+    //将数据库表生成相应的实体类，并存储到相应的路径中,SqlSugarTest表示生成的类的命名空间
+    db.DbFirst.CreateClassFile(&quot;d:\\Demo&quot;, &quot;SqlSugarTest&quot;);
+    #endregion
+    #region 插入（Insert）
+    //向student表中插入单条数据
+    int result = db.Insertable(new Student { Name = &quot;王五强&quot;, Age = 26 }).ExecuteCommand();
+
+    //向student表中批量插入数据
+    var insertList = new Student[]
+    {
+        new Student { Name = &quot;小明&quot;, Age = 16,ClassessId=1 },
+         new Student { Name = &quot;小红&quot;, Age = 18 ,ClassessId=1},
+          new Student { Name = &quot;小刚&quot;, Age = 20,ClassessId=2 },
+          new Student { Name = &quot;小刚&quot;, Age = 20,ClassessId=2 }
+    };
+    int result2 = db.Insertable(insertList).ExecuteCommand();//向student表中插入数据
+
+    var insertList2 = new Classess[]
+    {
+        new Classess { Name = &quot;一年一班&quot;,  },
+         new Classess { Name = &quot;二年一班&quot;},
+
+    };
+    int result3 = db.Insertable(insertList2).ExecuteCommand();//向student表中插入数据
+    #endregion
+
+    #region 查询（Select）
+    //InSingle中填的是数据的id，如果数据不存在，则返回null
+    var model = db.Queryable&lt;Student&gt;().InSingle(1);//查询单条数据
+
+    ////First返回当前数据库表的第一条数据
+    var model2 = db.Queryable&lt;Student&gt;().First();//获取第一条数据
+    var selectList = db.Queryable&lt;Student&gt;().ToList();//查询所有数据
+
+    ////分页查询
+    int totalCount = 0, totalPage = 0;
+    var pageList = db.Queryable&lt;Student&gt;().ToPageList(2, 2, ref totalCount, ref totalPage);
+    #endregion
+
+    #region 分组和多表查询
+    var group = db.Queryable&lt;Student&gt;().GroupBy(it =&gt; it.ClassessId).Select(it =&gt; new { id = SqlFunc.AggregateCount(it.Id) }).ToList();
+
+    var joinList = db.Queryable&lt;Student, Classess&gt;((st, cs) =&gt; new JoinQueryInfos(JoinType.Left, st.ClassessId == cs.Id))
+    .OrderBy((st, cs) =&gt; cs.Id, OrderByType.Desc)//通过班级id排序
+    .OrderBy(st =&gt; st.Id, OrderByType.Desc)//通过学生id排序
+    .Select((st, cs) =&gt; new { StuName = st.Name, ClassName = cs.Name })
+    .ToList();
+    #endregion
+
+    #region 修改（Update）
+    //修改单条数据
+    int updateResult = db.Updateable&lt;Student&gt;(new Student { Id = 1, Name = &quot;sdfjdskjflk&quot;, Age = 18 }).ExecuteCommand();
+
+    //查询出相应的实体再进行修改
+    //UpdateColumns执行修改某一列，IgnoreColumns忽略某一列不进行更新操作，具体操作请看官方文档
+    var updateModel = db.Queryable&lt;Student&gt;().InSingle(2);
+    updateModel.Name = &quot;我是修改的&quot; + DateTime.Now;
+    int updateResult32 = db.Updateable&lt;Student&gt;(updateModel).ExecuteCommand();
+
+    ////批量修改数据
+    var list = db.Queryable&lt;Student&gt;().Take(5).ToList();
+    foreach (var item in list)
+    {
+        item.Name += DateTime.Now;
+    }
+    var manyResult = db.Updateable(list).ExecuteCommand();
+
+    #endregion
+
+    #region 删除（Delete）
+    //根据实体删除数据
+    db.Deleteable&lt;Student&gt;(new Student() { Id = 1 }).ExecuteCommand();
+
+    //删除id=1的数据，返回删除成功的条数
+    db.Deleteable&lt;Student&gt;().In(1).ExecuteCommand();
+
+    //根据id批量删除数据
+    db.Deleteable&lt;Student&gt;().In(new int[] { 1, 2 }).ExecuteCommand();
+
+    //也可以先查询出来一些数据进行批量删除,并通过sql语句的方式获取前五的数据
+    var deleteList = db.SqlQueryable&lt;Student&gt;(&quot;select top 5 * from Student&quot;).ToList();
+    var deleteResult = db.Deleteable&lt;Student&gt;(deleteList).ExecuteCommand();
+    #endregion
+
+    #region 事务
+    //想体验事务的回滚，就去掉下面代码的注释
+    try
+    {
+        db.Ado.BeginTran();
+        var insertListTran = new Student[]
+        {
+            new Student { Name = &quot;小明&quot;, Age = 16 },
+             new Student { Name = &quot;小红&quot;, Age = 18 },
+              new Student { Name = &quot;小刚&quot;, Age = 20 }
+        };
+        int result2Tran = db.Insertable(insertListTran).ExecuteCommand();//向student表中插入数据
+
+        //创建一个班级类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+        var cModel = new Classess()
+        {
+            Id = 1,
+            Name = &quot;一年一班&quot;
+        };
+        db.Insertable(cModel).ExecuteCommand();//向classes表中插入数据
+        db.Ado.CommitTran();
+    }
+    catch (Exception ex)
+    {
+        db.Ado.RollbackTran();
+        throw ex;
+    }
+    #endregion
+
+    #region 性能测试
+
+    //测试新增10万条数据花的时间
+    //Stopwatch watch = new Stopwatch();
+    //watch.Start();
+    //int circleCount = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //int count = 1;
+    //for (int i = 1; i &lt;= circleCount; i++)
+    //{
+    //    var insertList = new ORMTest[]
+    //    {
+    //        new ORMTest { Name = &quot;小明&quot;, Id=count++},
+    //         new ORMTest { Name = &quot;小红&quot;, Id=count++ },
+    //          new ORMTest { Name = &quot;小刚&quot;, Id=count++ },
+    //          new ORMTest { Name = &quot;小气&quot;, Id=count++ },
+    //         new ORMTest { Name = &quot;小兰&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小七&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小小&quot;, Id=count++ },
+    //         new ORMTest { Name = &quot;小五&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小六&quot;, Id=count++ },
+    //           new ORMTest { Name = &quot;零零七&quot;, Id=count++ }
+    //    };
+    //    int result2 = db.Insertable(insertList).ExecuteCommand();//向student表中插入数据
+    //}
+    //watch.Stop();
+    //Console.WriteLine(&quot;插入10万条数据花的时间为：&quot; + Convert.ToDouble(watch.ElapsedMilliseconds) / 1000 + &quot;秒&quot;);
+    //查询10完数据花费的时间，循环100次
+    //Stopwatch watch = new Stopwatch();
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //watch.Start();
+    //for (int i = 0; i &lt; count; i++)
+    //{
+    //    var list = db.Queryable&lt;ORMTest&gt;().ToList();
+    //}
+    //watch.Stop();
+    //double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //Console.WriteLine(&quot;SqlSugar查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //double sum = 0;
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //for (int i = 1; i &lt;= count; i++)
+    //{
+    //        Stopwatch watch = new Stopwatch();
+    //        watch.Start();
+    //        var list = db.Queryable&lt;ORMTest&gt;().ToList();
+    //        watch.Stop();
+    //        double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //        sum += useTime;
+    //    Console.WriteLine($&quot;SqlSugar第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //}
+    //Console.WriteLine($&quot;SqlSugar循环{count}次查询十万条数据的平均耗时为：&quot; + sum/count+&quot;秒&quot;);
+    #endregion
+
+    Console.ReadKey();
+
+}
+/// &lt;summary&gt;
+/// 数据库实例化类
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+private static SqlSugarClient GetInstance()
+{
+    SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
+    {
+        //ConnectionString = Config.ConnectionString,//数据库连接字符串
+        ConnectionString = connStr,
+        DbType = DbType.SqlServer,//数据库类型
+        IsAutoCloseConnection = true,////自动释放数据务，如果存在事务，在事务结束后释放
+        InitKeyType = InitKeyType.Attribute//从实体特性中读取主键自增列信息
+    });
+    //关闭日志打印
+    db.Aop.OnLogExecuting = (sql, pars) =&gt;
+    {
+        Console.WriteLine(sql + &quot;\r\n&quot; + db.Utilities.SerializeObject(pars.ToDictionary(it =&gt; it.ParameterName, it =&gt; it.Value)));
+        Console.WriteLine();
+    };
+    return db;
+}
+</code></pre>
+
+<h1 id="chloe的简单使用">Chloe的简单使用</h1>
+
+<p>在nuget中输入Install-Package Chloe.SqlServer或nuget管理工具中搜索Chloe.SqlServer，下载Chloe包。</p>
+
+<p>Chloe的简单实例：</p>
+
+<pre><code>public class City
+{
+    [Column(IsPrimaryKey = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int ProvinceId { get; set; }
+}
+
+public class Province
+{
+    [Column(IsPrimaryKey = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public enum Gender
+{
+    Man = 1,
+    Woman
+}
+
+[Table(&quot;Users&quot;)]
+public class User
+{
+    //Chloe.ORM 亦支持 Fluent Mapping，自带有一些简单的，如下
+    [Column(IsPrimaryKey = true)]
+    //[AutoIncrement]
+    [NonAutoIncrementAttribute]//标记为非自动增长
+    public string Id { get; set; }
+    [Column(Size = 100)]//字符长度
+    public string Name { get; set; }
+    public Gender? Gender { get; set; }
+    public int? Age { get; set; }
+    public int? CityId { get; set; }
+    public DateTime? OpTime { get; set; }
+    [NotMappedAttribute]//设置remark列不映射到数据库
+    public string Remark { get; set; }
+}
+
+public class ChloeORMTest
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+</code></pre>
+
+<p>实例代码：</p>
+
+<pre><code>private static string ConnectionString = @&quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=ChloeTest2&quot;;
+static void ChloeDemo()
+{
+    var context = GetContext();
+
+    #region 插入（Insert）
+    //Insert可以使用委托，也可不用
+    //如果传递的是一个函数，即使用含委托的方法，则返回插入成功的数据的实体
+    //如果传递的是一个实体类，则返回插入成功的数据的id
+    var result = context.Insert&lt;User&gt;(() =&gt; new User() { Id = Guid.NewGuid().ToString(), Name = &quot;xiaoming2&quot;, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now });
+
+    var resultOne = context.Insert&lt;User&gt;(new User() { Id = Guid.NewGuid().ToString(), Name = &quot;xiaohong&quot;, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now });
+    var resultTwo = context.Insert&lt;City&gt;(new City() { Id = 1, Name = &quot;广州&quot;, ProvinceId = 1 });//因数据库设置了自动增长，故设置了id=1是没用的
+    var resultThree = context.Insert&lt;Province&gt;(new Province() { Id = 1, Name = &quot;广东省&quot; });//同上
+
+    //批量插入
+    var insertList = new List&lt;User&gt;()
+    {
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小红&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;xiging&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;sdfds&quot;+DateTime.Now, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now }
+
+    };
+    context.BulkInsert&lt;User&gt;(insertList);//向student表中插入数据,返回插入成功的数据
+    #endregion
+
+    #region 修改（Update）
+    var model = context.Query&lt;User&gt;().First();
+    model.Name = &quot;被修改的&quot;;
+    model.OpTime = DateTime.Now;
+    var updateResult = context.Update(model); //返回修改成功的条数
+    #endregion
+
+    #region 删除（Delete）
+    var deleteResult = context.Delete&lt;User&gt;(a =&gt; a.Name == &quot;lu&quot;);//删除名字为lu的用户，并返回删除成功的条数
+    //该框架没有批量删除的功能，故无法演示
+    #endregion
+
+    #region 查询（Select）
+    //什么是懒加载？懒加载就是只有在tolist()、count()等这些操作才会真正去与数据库进行交互
+    IQuery&lt;User&gt; userData = context.Query&lt;User&gt;();//懒加载city表的数据
+    var UserModel = userData.Where(a =&gt; a.CityId == 1).FirstOrDefault();//查询城市编码为1的数据列表中的第一条数据
+    var list = userData.Where(a =&gt; a.CityId == 1).ToList();
+    var orderList = userData.Where(a =&gt; a.CityId &gt; 0).OrderBy(a =&gt; a.CityId).ToList();//通过城市编号进行排序
+    var topList = userData.Where(a =&gt; a.CityId &gt; 0).Take(10).OrderBy(a =&gt; a.Age).ToList();//获取前10条数据，并通过年龄排序
+
+    var pageList = userData.Where(a =&gt; a.Age &gt; 0).OrderBy(a =&gt; a.Age).ThenByDesc(a =&gt; a.CityId).Select(a =&gt; new { a.Id, a.Name }).Skip(5).Take(10).ToList();//跳过前5条数据，获取后面10条数据
+    #endregion
+
+    #region 多表连接
+    //三表连接
+    var user_city_province = context.Query&lt;User&gt;()
+                 .InnerJoin&lt;City&gt;((user, city) =&gt; user.CityId == city.Id)
+                 .InnerJoin&lt;Province&gt;((user, city, province) =&gt; city.ProvinceId == province.Id);
+
+    var joinList = user_city_province.Select((user, city, province) =&gt; new { UserId = user.Id, UserName = user.Name, CityName = city.Name, ProvinceName = province.Name }).ToList();
+    foreach (var item in joinList)
+    {
+        Console.WriteLine($&quot;{item.UserId}=&gt;{item.UserName}=&gt;{item.CityName}=&gt;{item.ProvinceName}&quot;);
+    }
+    #endregion
+
+    #region 分组函数
+    var groupList2 = context.Query&lt;User&gt;().GroupBy(a =&gt; a.Age).Select(a =&gt; new { a.Age, Count = Sql.Count(), Sum = Sql.Sum(a.Age), Max = Sql.Max(a.Age), Min = Sql.Min(a.Age), Avg = Sql.Average(a.Age) }).ToList();
+    #endregion
+
+    #region 事务
+    try
+    {
+        context.Session.BeginTransaction();
+
+        /* do some things here */
+        var insertTranList = new List&lt;User&gt;()
+        {
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小红Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小刚Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小明Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now }
+        };
+        context.BulkInsert(insertTranList);//向student表中插入数据，没有返回参数
+
+        //创建一个班级类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+        var cModel = new Classess()
+        {
+            Id = 1,
+            Name = &quot;一年一班&quot;
+        };
+        context.Insert(cModel);
+        context.Session.CommitTransaction();
+    }
+    catch (Exception ex)
+    {
+        if (context.Session.IsInTransaction)
+            context.Session.RollbackTransaction();
+        throw;
+    }
+    #endregion
+
+    #region 性能测试
+    //double sum = 0;
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //for (int i = 1; i &lt;= count; i++)
+    //{
+    //    Stopwatch watch = new Stopwatch();
+    //    watch.Start();
+    //    var list = context.Query&lt;ORMTest&gt;().ToList();
+    //    watch.Stop();
+    //    double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //    sum += useTime;
+    //    Console.WriteLine($&quot;SqlSugar第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //}
+    //Console.WriteLine($&quot;SqlSugar循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+    #endregion
+    Console.ReadKey();
+}
+
+public static MsSqlContext GetContext()
+{
+    MsSqlContext context = new MsSqlContext(ConnectionString);
+    // context.PagingMode = PagingMode.OFFSET_FETCH;//分页模式
+    return context;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/orm/">ORM</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" class="leancloud_visitors" data-flag-title="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" data-tooltip="内置泛型委托：Action、Func和Predicate">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" data-tooltip="内置泛型委托：Action、Func和Predicate">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fefchloesqlsugardos.orm%25E5%259B%259B%25E7%25A7%258Dorm%25E6%25A1%2586%25E6%259E%25B6%25E7%259A%2584%25E5%25AF%25B9%25E6%25AF%2594%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fefchloesqlsugardos.orm%25E5%259B%259B%25E7%25A7%258Dorm%25E6%25A1%2586%25E6%259E%25B6%25E7%259A%2584%25E5%25AF%25B9%25E6%25AF%2594%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fefchloesqlsugardos.orm%25E5%259B%259B%25E7%25A7%258Dorm%25E6%25A1%2586%25E6%259E%25B6%25E7%259A%2584%25E5%25AF%25B9%25E6%25AF%2594%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/12\/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94\/';
+          
+            this.page.identifier = '\/2019\/12\/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
