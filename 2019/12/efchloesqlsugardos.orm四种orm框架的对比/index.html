@@ -279,9 +279,25 @@
 <li><a href="#就个人使用而言-比较推荐哪个框架">就个人使用而言，比较推荐哪个框架?</a></li>
 <li><a href="#sqlsugar的简单使用">SqlSugar的简单使用</a>
 <ul>
-<li><a href="#简单的实例">简单的实例</a></li>
+<li><a href="#实体类">实体类：</a></li>
+<li><a href="#实例代码">实例代码</a></li>
 </ul></li>
-<li><a href="#chloe的简单使用">Chloe的简单使用</a></li>
+<li><a href="#chloe的简单使用">Chloe的简单使用</a>
+<ul>
+<li><a href="#实体类-1">实体类：</a></li>
+<li><a href="#实例代码-1">实例代码</a></li>
+</ul></li>
+<li><a href="#dos-orm的简单使用">DOS.ORM的简单使用</a>
+<ul>
+<li><a href="#实体类-由代码生成器生成">实体类(由代码生成器生成)</a></li>
+<li><a href="#webconfig配置">WebConfig配置</a></li>
+<li><a href="#实例代码-2">实例代码</a></li>
+</ul></li>
+<li><a href="#ef的使用-code-first">EF的使用（Code First）</a>
+<ul>
+<li><a href="#实体类-2">实体类</a></li>
+<li><a href="#简单实例">简单实例</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -368,9 +384,7 @@
 
 <p>在nuget中输入Install-Package sqlSugar或nuget管理工具中搜索sqlSugar，下载sqlSugar包。</p>
 
-<h2 id="简单的实例">简单的实例</h2>
-
-<p>相应的实体类：</p>
+<h2 id="实体类">实体类：</h2>
 
 <pre><code>public class Student
 {
@@ -404,7 +418,7 @@ public class ORMTest
 }
 </code></pre>
 
-<p>实例代码：</p>
+<h2 id="实例代码">实例代码</h2>
 
 <pre><code>//static string connStr = ConfigurationManager.ConnectionStrings[&quot;connStr&quot;].ConnectionString;
 static string connStr = &quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=SqlSugarTest&quot;;
@@ -618,7 +632,7 @@ private static SqlSugarClient GetInstance()
 
 <p>在nuget中输入Install-Package Chloe.SqlServer或nuget管理工具中搜索Chloe.SqlServer，下载Chloe包。</p>
 
-<p>Chloe的简单实例：</p>
+<h2 id="实体类-1">实体类：</h2>
 
 <pre><code>public class City
 {
@@ -667,7 +681,7 @@ public class ChloeORMTest
 }
 </code></pre>
 
-<p>实例代码：</p>
+<h2 id="实例代码-1">实例代码</h2>
 
 <pre><code>private static string ConnectionString = @&quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=ChloeTest2&quot;;
 static void ChloeDemo()
@@ -789,6 +803,730 @@ public static MsSqlContext GetContext()
     MsSqlContext context = new MsSqlContext(ConnectionString);
     // context.PagingMode = PagingMode.OFFSET_FETCH;//分页模式
     return context;
+}
+</code></pre>
+
+<h1 id="dos-orm的简单使用">DOS.ORM的简单使用</h1>
+
+<p>在nuget中输入Install-Package Dos.ORM或nuget管理工具中搜索Dos.ORM，下载Dos.ORM包。下载代码生成器GitHub：<a href="https://github.com/itdos/Dos.Tool">https://github.com/itdos/Dos.Tool</a>创建相应的数据库，运行步骤2中的代码，通过代码生成器生成实体类的代码。将生成的实体类代码复制到自己创建的项目中（如果不通过官网提供的代码生成器生成代码，而是按照我们平时的做法自己创建的话，查询没问题，但是增删改就都会报错）。</p>
+
+<h2 id="实体类-由代码生成器生成">实体类(由代码生成器生成)</h2>
+
+<pre><code>//------------------------------------------------------------------------------
+// &lt;auto-generated&gt;
+//     此代码由工具生成。
+//     运行时版本:4.0.30319.42000
+//     Website: http://ITdos.com/Dos/ORM/Index.html
+//     对此文件的更改可能会导致不正确的行为，并且如果
+//     重新生成代码，这些更改将会丢失。
+// &lt;/auto-generated&gt;
+//------------------------------------------------------------------------------
+
+using System;
+using Dos.ORM;
+
+namespace DOS.ORMTest
+{
+    /// &lt;summary&gt;
+    /// 实体类Student。(属性说明自动提取数据库字段的描述信息)
+    /// &lt;/summary&gt;
+    [Table(&quot;Student&quot;)]
+    [Serializable]
+    public partial class Student : Entity
+    {
+        #region Model
+        private string _Id;
+        private string _Name;
+        private int _Age;
+        private int _Classess;
+        private DateTime _CreateTime;
+
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Id&quot;)]
+        public string Id
+        {
+            get { return _Id; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Id&quot;);
+                this._Id = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Name&quot;)]
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Name&quot;);
+                this._Name = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Age&quot;)]
+        public int Age
+        {
+            get { return _Age; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Age&quot;);
+                this._Age = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Classess&quot;)]
+        public int Classess
+        {
+            get { return _Classess; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Classess&quot;);
+                this._Classess = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;CreateTime&quot;)]
+        public DateTime CreateTime
+        {
+            get { return _CreateTime; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;CreateTime&quot;);
+                this._CreateTime = value;
+            }
+        }
+        #endregion
+
+        #region Method
+        /// &lt;summary&gt;
+        /// 获取实体中的主键列
+        /// &lt;/summary&gt;
+        public override Field[] GetPrimaryKeyFields()
+        {
+            return new Field[] {
+                _.Id,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取列信息
+        /// &lt;/summary&gt;
+        public override Field[] GetFields()
+        {
+            return new Field[] {
+                _.Id,
+                _.Name,
+                _.Age,
+                _.Classess,
+                _.CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取值信息
+        /// &lt;/summary&gt;
+        public override object[] GetValues()
+        {
+            return new object[] {
+                this._Id,
+                this._Name,
+                this._Age,
+                this._Classess,
+                this._CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 是否是v1.10.5.6及以上版本实体。
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public override bool V1_10_5_6_Plus()
+        {
+            return true;
+        }
+        #endregion
+
+        #region _Field
+        /// &lt;summary&gt;
+        /// 字段信息
+        /// &lt;/summary&gt;
+        public class _
+        {
+            /// &lt;summary&gt;
+            /// * 
+            /// &lt;/summary&gt;
+            public readonly static Field All = new Field(&quot;*&quot;, &quot;Student&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Id = new Field(&quot;Id&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Name = new Field(&quot;Name&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Age = new Field(&quot;Age&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Classess = new Field(&quot;Classess&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field CreateTime = new Field(&quot;CreateTime&quot;, &quot;Student&quot;, &quot;&quot;);
+        }
+        #endregion
+    }
+}
+
+using Dos.ORM;
+using System;
+//------------------------------------------------------------------------------
+// &lt;auto-generated&gt;
+//     此代码由工具生成。
+//     运行时版本:4.0.30319.42000
+//     Website: http://ITdos.com/Dos/ORM/Index.html
+//     对此文件的更改可能会导致不正确的行为，并且如果
+//     重新生成代码，这些更改将会丢失。
+// &lt;/auto-generated&gt;
+//------------------------------------------------------------------------------
+namespace Dos.ORMTest
+{
+    /// &lt;summary&gt;
+    /// 实体类Classes。(属性说明自动提取数据库字段的描述信息)
+    /// &lt;/summary&gt;
+    [Table(&quot;Classes&quot;)]
+    [Serializable]
+    public partial class Classes : Entity
+    {
+        #region Model
+        private int _Id;
+        private string _Name;
+        private DateTime? _CreateTime;
+
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Id&quot;)]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Id&quot;);
+                this._Id = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Name&quot;)]
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Name&quot;);
+                this._Name = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;CreateTime&quot;)]
+        public DateTime? CreateTime
+        {
+            get { return _CreateTime; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;CreateTime&quot;);
+                this._CreateTime = value;
+            }
+        }
+        #endregion
+
+        #region Method
+        /// &lt;summary&gt;
+        /// 获取实体中的主键列
+        /// &lt;/summary&gt;
+        public override Field[] GetPrimaryKeyFields()
+        {
+            return new Field[] {
+                _.Id,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取实体中的标识列
+        /// &lt;/summary&gt;
+        public override Field GetIdentityField()
+        {
+            return _.Id;
+        }
+        /// &lt;summary&gt;
+        /// 获取列信息
+        /// &lt;/summary&gt;
+        public override Field[] GetFields()
+        {
+            return new Field[] {
+                _.Id,
+                _.Name,
+                _.CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取值信息
+        /// &lt;/summary&gt;
+        public override object[] GetValues()
+        {
+            return new object[] {
+                this._Id,
+                this._Name,
+                this._CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 是否是v1.10.5.6及以上版本实体。
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public override bool V1_10_5_6_Plus()
+        {
+            return true;
+        }
+        #endregion
+
+        #region _Field
+        /// &lt;summary&gt;
+        /// 字段信息
+        /// &lt;/summary&gt;
+        public class _
+        {
+            /// &lt;summary&gt;
+            /// * 
+            /// &lt;/summary&gt;
+            public readonly static Field All = new Field(&quot;*&quot;, &quot;Classes&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Id = new Field(&quot;Id&quot;, &quot;Classes&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Name = new Field(&quot;Name&quot;, &quot;Classes&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field CreateTime = new Field(&quot;CreateTime&quot;, &quot;Classes&quot;, &quot;&quot;);
+        }
+        #endregion
+    }
+}
+</code></pre>
+
+<h2 id="webconfig配置">WebConfig配置</h2>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/DOSConfig.png" alt="DOSConfig" /></p>
+
+<h2 id="实例代码-2">实例代码</h2>
+
+<pre><code>using Dos.ORM;
+using Dos.ORMTest;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+
+namespace DOS.ORMTest
+{
+    class Program
+    {
+        public class DB { public static readonly DbSession Context = new DbSession(&quot;connStr&quot;); }//获取访问数据库的上下文
+        public static void Main(string[] args)
+        {
+            #region 查询（Select）
+            //var list = DB.Context.From&lt;Student&gt;()
+            //    .Where(d =&gt; d.Age &gt; 0)
+            //    .ToList();
+            ////取部分字段
+            //var list2 = DB.Context.From&lt;Student&gt;()
+            //    .Select(d =&gt; new { d.Name, Age = d.Age })
+            //    .ToList();
+
+            ////分页，获取前十条数据
+            //var pageList = DB.Context.From&lt;Student&gt;()
+            //    .Page(10, 1)
+            //    .OrderBy(m=&gt;m.Age)
+            //    .ToList();
+
+            #endregion
+
+            #region 新增（Insert）
+            //var stu = new Student()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Name = &quot;xiaohong&quot;,
+            //    Age = 25,
+            //    Classess=1,
+            //    CreateTime = DateTime.Now
+            //};
+            //int insertResult2 = DB.Context.Insert&lt;Student&gt;(stu);//返回成功条数，也可进行批量插入
+
+            ////批量插入信息
+            //var insertList = new List&lt;Student&gt;()
+            //{
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小刚&quot;+DateTime.Now,
+            //        Age = 25,
+            //         Classess=1,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小明&quot; + DateTime.Now,
+            //        Age = 20,
+            //         Classess=2,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小红&quot; + DateTime.Now,
+            //        Age = 22,
+            //         Classess=1,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;笑笑&quot; + DateTime.Now,
+            //        Age = 22,
+            //         Classess=2,
+            //        CreateTime = DateTime.Now
+            //    }
+            //};
+            ////批量插入方法，ORM内部存在事务，不用担心某些数据插入成功，某些数据插入失败。
+            //var insertResult = DB.Context.Insert&lt;Student&gt;(insertList);
+            #endregion
+
+            #region 删除（Delete）
+            //var model = DB.Context.From&lt;Student&gt;().First();
+            //int deleteResult = DB.Context.Delete(model);//返回成功条数，也可进行批量删除操作
+
+            //批量删除
+            //var deleteList = DB.Context.From&lt;Student&gt;().Top(5).ToList();//取前五条数据出来删除
+            ////批量删除方法内部有事务，会自动添加where条件：WHERE id IN(list主键数据)
+            //var deleteResult = DB.Context.Delete&lt;Student&gt;(deleteList);
+            #endregion
+
+            #region 修改（Update）
+            //var updateModel = DB.Context.From&lt;Student&gt;().First();
+            //updateModel.Name = &quot;赵六&quot;;
+            //int updateResult = DB.Context.Update(updateModel);//返回成功条数，也可进行批量修改操作
+
+            //var updateList = DB.Context.From&lt;Student&gt;().Top(5).ToList();//取前五条数据出来进行批量修改
+            //foreach (var item in updateList)
+            //{
+            //    item.Name = &quot;我是被修改的&quot;+DateTime.Now;
+            //}
+            //var updateResult = DB.Context.Update(updateList);//返回成功修改条数
+            #endregion
+
+            #region 分组和多表查询
+            //多表查询
+            //var joinList = DB.Context.From&lt;Student&gt;()
+            //    .InnerJoin&lt;Classes&gt;((a, c) =&gt; a.Classess == c.Id)//内连接
+            //    .ToDataTable();
+
+            ////分组
+            //var groupList = DB.Context.From&lt;Student&gt;()
+            //   .GroupBy(m=&gt;m.Classess)//根据班级id分组
+            //   .Select(m=&gt;m.Classess)//分组后的班级id
+            //   .OrderBy(m=&gt;m.Classess)//根据班级id排序
+            //   .Select(m=&gt; new { Name=m.Name,ClassId=m.Classess})
+            //   .ToList();
+            #endregion
+
+            #region 事务
+            //using (DbTrans trans = DbSession.Default.BeginTransaction())
+            //{
+            //    try
+            //    {
+
+            //        var stu = new Student()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            Name = &quot;xiaohsdfsdf&quot;,
+            //            Age = 25,
+            //            Classess = 1,
+            //            CreateTime = DateTime.Now
+            //        };
+            //        int tranResult = DB.Context.Insert&lt;Student&gt;(stu);//向student表中插入数据
+            //        //创建一个测试类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+            //        var cModel = new ORMTestCls()
+            //        {
+            //            Id = 1,
+            //            Name = &quot;测试&quot;
+            //        };
+            //        int tranResult2 = DB.Context.Insert&lt;Student&gt;(stu);//向student表中插入数据
+
+            //        trans.Commit();
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        trans.Rollback();
+            //        throw;
+            //    }
+            //}
+
+            #endregion
+
+            #region 性能测试
+            //double sum = 0;
+            //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+            //for (int i = 1; i &lt;= count; i++)
+            //{
+            //    Stopwatch watch = new Stopwatch();
+            //    watch.Start();
+            //    var efficeList = DB.Context.From&lt;ORMTestCls&gt;().ToList();
+            //    watch.Stop();
+            //    double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+            //    sum += useTime;
+            //    Console.WriteLine($&quot;Dos.ORM第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+            //}
+            //Console.WriteLine($&quot;Dos.ORM循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+            #endregion
+
+            Console.ReadKey();
+        }
+    }
+}
+</code></pre>
+
+<h1 id="ef的使用-code-first">EF的使用（Code First）</h1>
+
+<p>在nuget中输入Install-EntityFramework或nuget管理工具中搜索EntityFramework，下载包。创建一个CodeFirstDBContext.cs文件，并继承DBContext如下图：</p>
+
+<p><img src="https://SLTaurus.github.io/images/ORMPic/EFInitSet.png" alt="EFInitSet" /></p>
+
+<h2 id="实体类-2">实体类</h2>
+
+<pre><code>using System.ComponentModel.DataAnnotations.Schema;
+namespace EFCodeFirstTest
+{
+    [Table(&quot;Student&quot;)]
+    public class Student
+    {
+        /// &lt;summary&gt;
+        /// 学生编号  默认自动增长
+        /// &lt;/summary&gt;
+        public int Id { get; set; }
+        /// &lt;summary&gt;
+        /// 学生名
+        /// &lt;/summary&gt;
+        public string StuName { get; set; }
+        /// &lt;summary&gt;
+        /// 学生年龄
+        /// &lt;/summary&gt;
+        public int Age { get; set; }
+        /// &lt;summary&gt;
+        /// 班级编号
+        /// &lt;/summary&gt;
+        public int ClassesId { get; set; }
+    }
+}
+
+namespace EFCodeFirstTest
+{
+    [Table(&quot;Classes&quot;)]
+    public class Classes
+    {
+        /// &lt;summary&gt;
+        /// 班级id
+        /// &lt;/summary&gt;
+        public int Id { get; set; }
+        /// &lt;summary&gt;
+        /// 班级名
+        /// &lt;/summary&gt;
+        public string ClassName { get; set; }
+    }
+}
+</code></pre>
+
+<h2 id="简单实例">简单实例</h2>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EFCodeFirstTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用using，可以访问数据库结束后自动关闭数据库连接
+            using (CodeFirstDbContext db = new CodeFirstDbContext())
+            {
+                //db.Database.Delete();//删除数据库
+                //db.Database.CreateIfNotExists();//如果不存在数据库，那么就创建 
+
+                #region 新增（Insert）
+                //Student stu = new Student()
+                //{
+                //    StuName = &quot;张三&quot;,
+                //    Age = 18,
+                //    ClassesId=1
+                //};
+                //var insertResult = db.Set&lt;Student&gt;().Add(stu);//通过DataSet新增
+                ////var inserResult2 = db.Students.Add(stu);//通过CodeFirstDbContext中定义的DataSet对象新增
+                ////批量插入数据
+                //var insertList = new List&lt;Student&gt;()
+                //{
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的小明&quot;,
+                //        Age = 18,
+                //        ClassesId=1
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的小红&quot;,
+                //        Age = 18,
+                //        ClassesId=1
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的王五&quot;,
+                //        Age = 18,
+                //        ClassesId=2
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的赵六&quot;,
+                //        Age = 18,
+                //        ClassesId=2
+                //    },
+                // };
+                //var insertResult3 = db.Set&lt;Student&gt;().AddRange(insertList);//返回成功插入的列表
+                ////var inserResult4 = db.Students.AddRange(insertList);
+
+                //var classList = new List&lt;Classes&gt;()
+                //{
+                //    new Classes{ ClassName=&quot;一年一班&quot;},
+                //    new Classes{ ClassName=&quot;一年二班&quot;},
+                //    new Classes{ ClassName=&quot;二年一班&quot;},
+                //    new Classes{ ClassName=&quot;三年一班&quot;},
+                //};
+                //var insertResult5 = db.Classess.AddRange(classList);//插入班级表
+                //db.SaveChanges();//执行操作后必须savechanges一下，不然不会去更新数据库
+                #endregion
+
+                #region 修改（Update）
+                var updateModel = db.Students.First();//获取第一条数据
+                updateModel.StuName = &quot;我是单条修改的数据&quot;;
+                //EF中没有update函数，通过修改查询出来的数据，然后saveChanges()，即可执行修改操作
+                var updateList = db.Students.OrderBy(m=&gt;m.Id).Skip(5).Take(5).ToList();//获取前6-10条数据,必须orderby之后才可以使用skip
+                foreach (var item in updateList)
+                {
+                    item.StuName = &quot;被修改的名字&quot; + DateTime.Now;
+                }
+                db.SaveChanges();//提交修改，只有执行了当前操作，updateModel、updateList中的数据才会修改
+                #endregion
+
+                #region 查询（Select）
+                //简单的查询
+                var selectList = db.Students.Where(m =&gt; m.ClassesId == 1).ToList();//查询班级为1的数据
+                //分页
+                int pageIndex = 1, pageSize = 10;
+                var selectList2 = db.Students.OrderBy(m=&gt;m.Id).Skip((pageIndex-1) * pageSize).Take(pageSize).ToList();//获取前十条数据
+                #endregion
+
+                #region 删除（Delete）
+                var deleteModel = db.Students.First();//获取第一条数据
+                db.Students.Remove(deleteModel);//删除一条数据
+
+                //批量删除
+                var deleteList = db.Students.OrderBy(m=&gt;m.Id).Skip(5).Take(3).ToList();//获取前6-10条数据
+                db.Students.RemoveRange(deleteList);
+                #endregion
+
+                #region 分组和子链接（group by and join）
+                var groupList = db.Students.GroupBy(m =&gt; m.ClassesId).Select(m=&gt;m.Count()).ToList();//通过班级id分组，并输出个数
+
+                //Join中的参数Join（左连接的表，左表的id，右表的id,输出的匿名类）
+                var joinList =db.Students.Join(db.Classess, stu =&gt; stu.ClassesId,
+                                        cls =&gt; cls.Id, (stu, cls) =&gt; new 
+                                        {
+                                            StuName=stu.StuName,
+                                            StuClassName=cls.ClassName
+                                        }).ToList();
+                #endregion
+            }
+
+            #region 事务
+                //using (var trans = db.Database.BeginTransaction())
+                //{
+                //    try
+                //    {
+                //        Student stu = new Student()
+                //        {
+                //            StuName = &quot;张三55&quot;,
+                //            Age = 18,
+                //            ClassesId = 1
+                //        };
+                //        var transResult = db.Students.Add(stu);//向student表中插入数据
+                //        db.SaveChanges();
+                //        //throw new Exception(&quot;抛异常让你回滚&quot;);//想要模拟事务回滚，就去掉这段代码的注释
+                //        trans.Commit();  
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        trans.Rollback();
+
+                //    }
+                //}
+
+                #endregion
+
+
+            #region 性能测试
+            //using (CodeFirstDbContext db = new CodeFirstDbContext())
+            //{
+            //   // db.Database.CreateIfNotExists();
+            //    double sum = 0;
+            //    int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+            //    for (int i = 1; i &lt;= count; i++)
+            //    {
+            //        Stopwatch watch = new Stopwatch();
+            //        watch.Start();
+            //        var efficeList = db.Set&lt;ORMTest&gt;().ToList();
+            //        watch.Stop();
+            //        double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+            //        sum += useTime;
+            //        Console.WriteLine($&quot;EFCodeFirst第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+            //    }
+            //    Console.WriteLine($&quot;EFCodeFirst循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+            //}          
+            #endregion
+            Console.ReadKey();
+        }
+    }
 }
 </code></pre>
               
