@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="轲">
+<meta name="keywords" content="MySql, C#, .NET, 个人博客">
+<meta name="description" content="简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。">
+
+
+<meta property="og:description" content="简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql拾遗">
+<meta name="twitter:title" content="MySql拾遗">
+<meta property="og:url" content="https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+<meta property="twitter:url" content="https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+<meta property="og:site_name" content="轲的大风歌">
+<meta property="og:description" content="简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。">
+<meta name="twitter:description" content="简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-12-30T14:14:18">
+  
+  
+    <meta property="article:modified_time" content="2019-12-30T14:14:18">
+  
+  
+  
+    
+      <meta property="article:section" content="MySql">
+    
+  
+  
+    
+      <meta property="article:tag" content="MySql">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/mySql/mySql.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/mySql/mySql.jpg">
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://SLTaurus.github.io/images/touxiang.jpg">
+
+
+    <title>MySql拾遗</title>
+
+    <link rel="icon" href="https://SLTaurus.github.io/favicon.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://SLTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://SLTaurus.github.io/">轲的大风歌</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://SLTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://SLTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">轲</h4>
+        
+          <h5 class="sidebar-profile-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SLTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://SLTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">MySql拾遗</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      MySql拾遗
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-30T14:14:18&#43;08:00">
+        
+  十二月 30, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://SLTaurus.github.io/categories/mysql">MySql</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#mysql-数据类型">MySQL 数据类型</a>
+<ul>
+<li><a href="#数值类型">数值类型</a></li>
+<li><a href="#日期和时间类型">日期和时间类型</a></li>
+<li><a href="#字符串类型">字符串类型</a>
+<ul>
+<li><a href="#字符串类型笔记">字符串类型笔记</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#mysql-正则表达式">MySQL 正则表达式</a>
+<ul>
+<li><a href="#实例">实例</a></li>
+</ul></li>
+<li><a href="#mysql-事务">MySQL 事务</a>
+<ul>
+<li><a href="#使用保留点-savepoint">使用保留点 SAVEPOINT</a></li>
+</ul></li>
+<li><a href="#mysql-函数">MySQL 函数</a>
+<ul>
+<li><a href="#mysql-字符串函数">MySQL 字符串函数</a></li>
+<li><a href="#mysql-数字函数">MySQL 数字函数</a></li>
+<li><a href="#mysql-日期函数">MySQL 日期函数</a>
+<ul>
+<li><a href="#日期函数示例">日期函数示例</a></li>
+</ul></li>
+<li><a href="#mysql-高级函数">MySQL 高级函数</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="mysql-数据类型">MySQL 数据类型</h1>
+
+<p>MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。</p>
+
+<h2 id="数值类型">数值类型</h2>
+
+<p>MySQL支持所有标准SQL数值数据类型。这些类型包括严格数值数据类型(INTEGER、SMALLINT、DECIMAL和NUMERIC)，以及近似数值数据类型(FLOAT、REAL和DOUBLE PRECISION)。</p>
+
+<p>关键字INT是INTEGER的同义词，关键字DEC是DECIMAL的同义词。BIT数据类型保存位字段值，并且支持MyISAM、MEMORY、InnoDB和BDB表。</p>
+
+<p>作为SQL标准的扩展，MySQL也支持整数类型TINYINT、MEDIUMINT和BIGINT。下面的表显示了需要的每个整数类型的存储和范围。</p>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/int.jpg" alt="int" /></p>
+
+<h2 id="日期和时间类型">日期和时间类型</h2>
+
+<p>表示时间值的日期和时间类型为DATETIME、DATE、TIMESTAMP、TIME和YEAR。</p>
+
+<p>每个时间类型有一个有效值范围和一个&rdquo;零&rdquo;值，当指定不合法的MySQL不能表示的值时使用&rdquo;零&rdquo;值。TIMESTAMP类型有专有的自动更新特性，将在后面描述。</p>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/date.jpg" alt="date" /></p>
+
+<h2 id="字符串类型">字符串类型</h2>
+
+<p>字符串类型指CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET。该节描述了这些类型如何工作以及如何在查询中使用这些类型。
+<img src="https://SLTaurus.github.io/images/mySql/char.jpg" alt="char" /></p>
+
+<p>CHAR 和 VARCHAR 类型类似，但它们保存和检索的方式不同。它们的最大长度和是否尾部空格被保留等方面也不同。在存储或检索过程中不进行大小写转换。</p>
+
+<p>BINARY 和 VARBINARY 类似于 CHAR 和 VARCHAR，不同的是它们包含二进制字符串而不要非二进制字符串。也就是说，它们包含字节字符串而不是字符字符串。这说明它们没有字符集，并且排序和比较基于列值字节的数值值。</p>
+
+<p>BLOB 是一个二进制大对象，可以容纳可变数量的数据。有 4 种 BLOB 类型：TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB。它们区别在于可容纳存储范围不同。</p>
+
+<p>有 4 种 TEXT 类型：TINYTEXT、TEXT、MEDIUMTEXT 和 LONGTEXT。对应的这 4 种 BLOB 类型，可存储的最大长度不同，可根据实际情况选择。</p>
+
+<h3 id="字符串类型笔记">字符串类型笔记</h3>
+
+<p>MySQL 5.0 以上的版本：</p>
+
+<ul>
+<li>一个汉字占多少长度与编码有关。UTF－8：一个汉字＝3个字节，GBK：一个汉字＝2个字节。</li>
+<li>varchar(n) 表示 n 个字符，无论汉字和英文，Mysql 都能存入 n 个字符，仅是实际字节长度有所区别</li>
+<li>MySQL 检查长度，可用 SQL 语言来查看：<code>select LENGTH(fieldname) from tablename</code>。</li>
+</ul>
+
+<p>关于 char、varchar 与 text 平时没有太在意，一般来说，可能现在大家都是用 varchar。但是当要存储的内容比较大时，究竟是选择 varchar 还是 text 呢？</p>
+
+<ul>
+<li>char: char 不用多说了，它是定长格式的，但是长度范围是0~255。当你想要储存一个长度不足255的字符时，Mysql会用空格来填充剩下的字符。因此在读取数据时，char 类型的数据要进行处理，把后面的空格去除。</li>
+<li>varchar :关于 varchar，有的说最大长度是255，也有的说是65535，查阅很多资料后发现是这样的：varchar类型在5.0.3以下的版本中的最大长度限制为255，而在5.0.3及以上的版本中，varchar数据类型的长度支持到了65535，也就是说可以存放65532个字节（注意是字节而不是字符）的数据（起始位和结束位占去了3个字节），也就是说，在5.0.3以下版本中需要使用固定的TEXT或BLOB 格式存放的数据可以在高版本中使用可变长的varchar来存放，这样就能有效的减少数据库文件的大小。</li>
+<li>text: 与char和varchar不同的是，text不可以有默认值，其最大长度是2的16次方-1。</li>
+</ul>
+
+<p>总结起来，有几点：
++ 经常变化的字段用varchar。
++ 知道固定长度的用char。
++ 尽量用varchar。
++ 超过255字符的只能用varchar或者text。
++ 能用varchar的地方不用text。</p>
+
+<h1 id="mysql-正则表达式">MySQL 正则表达式</h1>
+
+<p>MySQL 同样也支持其他正则表达式的匹配， MySQL中使用REGEXP操作符来进行正则表达式匹配。下表中的正则模式可应用于 REGEXP 操作符中：</p>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/regexp.jpg" alt="regexp" /></p>
+
+<h2 id="实例">实例</h2>
+
+<p>查找name字段中以&rsquo;st&rsquo;为开头的所有数据：</p>
+
+<pre><code>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP '^st';
+</code></pre>
+
+<p>查找name字段中以&rsquo;ok&rsquo;为结尾的所有数据：</p>
+
+<pre><code>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP 'ok$';
+</code></pre>
+
+<p>查找name字段中包含&rsquo;mar&rsquo;字符串的所有数据：</p>
+
+<pre><code>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP 'mar';
+</code></pre>
+
+<p>查找name字段中以元音字符开头或以&rsquo;ok&rsquo;字符串结尾的所有数据：</p>
+
+<pre><code>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP '^[aeiou]|ok$';
+</code></pre>
+
+<h1 id="mysql-事务">MySQL 事务</h1>
+
+<p>MySQL事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+
+<ul>
+<li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
+<li>事务处理可以用来维护数据库的完整性，保证成批的 SQL语句要么全部执行，要么全部不执行。</li>
+<li>事务用来管理 insert,update,delete语句</li>
+</ul>
+
+<p>一般来说，事务是必须满足4个条件（ACID）：：原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。</p>
+
+<ul>
+<li><strong>原子性</strong>：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li><strong>一致性</strong>：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li><strong>隔离性</strong>：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li><strong>持久性</strong>：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+
+<blockquote>
+<p>在 MySQL 命令行的默认设置下，事务都是自动提交的，即执行 SQL 语句后就会马上执行 COMMIT 操作。因此要显式地开启一个事务务须使用命令 BEGIN 或 START TRANSACTION，或者执行命令 SET AUTOCOMMIT=0，用来禁止使用当前会话的自动提交。</p>
+</blockquote>
+
+<p>事务控制语句：</p>
+
+<ul>
+<li>BEGIN 或 START TRANSACTION 显式地开启一个事务；</li>
+<li>COMMIT 也可以使用 COMMIT WORK，不过二者是等价的。COMMIT 会提交事务，并使已对数据库进行的所有修改成为永久性的；</li>
+<li>ROLLBACK 也可以使用 ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；</li>
+<li>SAVEPOINT identifier，SAVEPOINT 允许在事务中创建一个保存点，一个事务中可以有多个 SAVEPOINT；</li>
+<li>RELEASE SAVEPOINT identifier 删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；</li>
+<li>ROLLBACK TO identifier 把事务回滚到标记点；</li>
+<li>SET TRANSACTION 用来设置事务的隔离级别。InnoDB 存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。</li>
+</ul>
+
+<p>MYSQL 事务处理主要有两种方法：</p>
+
+<p>1、用 BEGIN, ROLLBACK, COMMIT来实现：</p>
+
+<ul>
+<li>BEGIN 开始一个事务</li>
+<li>ROLLBACK 事务回滚</li>
+<li>COMMIT 事务确认</li>
+</ul>
+
+<p>2、直接用 SET 来改变 MySQL 的自动提交模式:</p>
+
+<ul>
+<li>SET AUTOCOMMIT=0 禁止自动提交</li>
+<li>SET AUTOCOMMIT=1 开启自动提交</li>
+</ul>
+
+<h2 id="使用保留点-savepoint">使用保留点 SAVEPOINT</h2>
+
+<p>savepoint 是在数据库事务处理中实现“子事务”（subtransaction），也称为嵌套事务的方法。事务可以回滚到 savepoint 而不影响 savepoint 创建前的变化, 不需要放弃整个事务。</p>
+
+<p>ROLLBACK 回滚的用法可以设置保留点 SAVEPOINT，执行多条操作时，回滚到想要的那条语句之前。使用 SAVEPOINT：</p>
+
+<pre><code>SAVEPOINT savepoint_name;    // 声明一个 savepoint
+ROLLBACK TO savepoint_name;  // 回滚到savepoint
+</code></pre>
+
+<p>保留点再事务处理完成（执行一条 ROLLBACK 或 COMMIT）后自动释放。删除 SAVEPOINT，MySQL5 以来，可以用:</p>
+
+<pre><code>RELEASE SAVEPOINT savepoint_name;  // 删除指定保留点
+</code></pre>
+
+<h1 id="mysql-函数">MySQL 函数</h1>
+
+<p>MySQL 有很多内置的函数，以下列出了这些函数的说明。</p>
+
+<h2 id="mysql-字符串函数">MySQL 字符串函数</h2>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/charFunction.png" alt="charFunction" /></p>
+
+<h2 id="mysql-数字函数">MySQL 数字函数</h2>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/intFunction.png" alt="intFunction" /></p>
+
+<h2 id="mysql-日期函数">MySQL 日期函数</h2>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/dateFuction.png" alt="dateFuction" /></p>
+
+<h3 id="日期函数示例">日期函数示例</h3>
+
+<p><strong>需求</strong>：将数据库中每分钟一条的数据表，从 9:30 取到 22:00 ，以半小时为单位汇总，并输出 Excel。</p>
+
+<p>数据表字段：id（序号）、incount（计数）、cdate（数据时间）</p>
+
+<p>表名：m_temp</p>
+
+<p>难点：时间处理</p>
+
+<p>解决办法：使用 DATE_FORMAT、CONCAT、Date、Hour、Minute、Floor 函数将时间处理成半小时，在将这段时间的数据查询时 输出 cdate 统一变为  09:30，然后在 group by cdate ，用 sum（incount）求和。</p>
+
+<p>示例：2018-08-21 09:30:00 至 2018-08-21 22:00:00，第一个半小时 09:30 至 10:00，将这段时间的数据查询时 输出 cdate 统一变为 09:30，然后在 group by cdate ，sum（incount） 将分钟取出 /30  , 0-29 分结果为 0 ，30-59分结果为 1 再乘以 30 分钟即变为 00 或者 30。</p>
+
+<p>date(cdate)，取出年月日；hour(cdate)，取出小时；minute(cdate)，取出分钟；</p>
+
+<p>计算（minute(cdate)）/30 )*30，结果为 0 或30；floor( （minute(cdate)）/30 )*30)，处理成整数；concat(date(cdate),&rsquo; &lsquo;,hour(cdate),&rsquo;:&lsquo;,floor( （minute(cdate)）/30 )*30) ，按照日期格式进行拼接 DATE_FORMAT( concat(date(cdate),&rsquo; &lsquo;,hour(cdate),&rsquo;:&lsquo;,floor( minute(cdate)/30 )*30+12) ,&lsquo;%Y-%m-%d %H:%i&rsquo;) ，转换成date类型。</p>
+
+<p>完整 SQL：</p>
+
+<pre><code>select sum(incount),dataStartTime from (
+select incount, DATE_FORMAT( concat(date(cdate),' ',hour(cdate),':',floor( minute(cdate)/30 )*30+12) ,'%Y-%m-%d %H:%i')  as dataStartTime   
+from m_temp WHERE cdate&gt;='2018-08-21 09:30' and cdate&lt;='2018-08-21 22:00'  ORDER BY dataStartTime
+) a
+group by DATE_FORMAT( dataStartTime ,'%Y-%m-%d %H:%i')
+into outfile('c:/2018-08-21Data.xls');
+</code></pre>
+
+<h2 id="mysql-高级函数">MySQL 高级函数</h2>
+
+<p><img src="https://SLTaurus.github.io/images/mySql/higherLevelFunctions.png" alt="higherLevelFunctions" /></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://SLTaurus.github.io/tags/mysql/">MySql</a>
+
+                  </div>
+                
+              
+            
+			
+			  
+  <span id="/2019/12/mysql%E6%8B%BE%E9%81%97/" class="leancloud_visitors" data-flag-title="MySql拾遗">
+    <span class="post-meta-item-text">文章阅读量 </span>
+    <span class="leancloud-visitors-count">100</span>
+    <p></p>
+  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'qmkacTy81gjW31F1mPV0T8UP-gzGzoHsz',
+        appKey: '27rweMzy4Q07Rqa7s4RKVD8O',
+        notify:  false , 
+        verify:  false , 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" data-tooltip="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/SLTaurus">轲</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://SLTaurus.github.io/2019/12/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" data-tooltip="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fmysql%25E6%258B%25BE%25E9%2581%2597%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fmysql%25E6%258B%25BE%25E9%2581%2597%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2FSLTaurus.github.io%2F2019%2F12%2Fmysql%25E6%258B%25BE%25E9%2581%2597%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://SLTaurus.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">轲</h4>
+    
+      <div id="about-card-bio">作为一个好的程序员，一定要有执着钻研、刻苦学习、认真仔细和精益求精的朴素品质。</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        程序猿
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        广州
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://SLTaurus.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://SLTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://SLTaurus.github.io/js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/SLTaurus.github.io\/2019\/12\/mysql%E6%8B%BE%E9%81%97\/';
+          
+            this.page.identifier = '\/2019\/12\/mysql%E6%8B%BE%E9%81%97\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

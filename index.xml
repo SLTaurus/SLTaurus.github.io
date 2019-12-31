@@ -6,10 +6,19 @@
     <description>Recent content on 轲的大风歌</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Dec 2019 11:00:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 14:14:18 +0800</lastBuildDate>
     
 	<atom:link href="https://SLTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySql拾遗</title>
+      <link>https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Mon, 30 Dec 2019 14:14:18 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/</guid>
+      <description>&lt;p&gt;简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比</title>

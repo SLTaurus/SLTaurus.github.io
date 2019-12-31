@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySql on 轲的大风歌</title>
+    <link>https://SLTaurus.github.io/tags/mysql/</link>
+    <description>Recent content in MySql on 轲的大风歌</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Dec 2019 14:14:18 +0800</lastBuildDate>
+    
+	<atom:link href="https://SLTaurus.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql拾遗</title>
+      <link>https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Mon, 30 Dec 2019 14:14:18 +0800</pubDate>
+      
+      <guid>https://SLTaurus.github.io/2019/12/mysql%E6%8B%BE%E9%81%97/</guid>
+      <description>&lt;p&gt;简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
